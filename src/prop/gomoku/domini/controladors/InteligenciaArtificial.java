@@ -1,7 +1,8 @@
 package prop.gomoku.domini.controladors;
 
 import prop.gomoku.domini.models.EstatCasella;
-import prop.gomoku.domini.models.EstatMoviment;
+import prop.gomoku.domini.models.EstatPartida;
+import prop.gomoku.domini.models.Partida;
 import prop.gomoku.domini.models.Tauler;
 
 /**
@@ -13,38 +14,6 @@ import prop.gomoku.domini.models.Tauler;
  */
 public abstract class InteligenciaArtificial
 {
-	/**
-	 * Calcula quin és el valor màxim dels dos paràmetres enters que rep el mètode
-	 * 
-	 * @param a variable de tipus enter
-	 * @param b variable de tipus enter
-	 * @return Retorna el valor màxim dels paràmetres enters <code>a</code> i <code>b</code>
-	 */
-	private int max( int a, int b )
-	{
-		if ( a < b )
-		{
-			return b;
-		}
-		return a;
-	}
-
-	/**
-	 * Calcula quin és el valor mínim dels dos paràmetres enters que rep el mètode
-	 * 
-	 * @param a variable de tipus enter
-	 * @param b variable de tipus enter
-	 * @return Retorna el valor mínim dels paràmetres enters <code>a</code> i <code>b</code>
-	 */
-	private int min( int a, int b )
-	{
-		if ( a < b )
-		{
-			return a;
-		}
-		return b;
-	}
-
 	/**
 	 * Intercanvia l'estat d'una casella ocupada del tauler
 	 * 
@@ -71,7 +40,7 @@ public abstract class InteligenciaArtificial
 	 * @param fitxa_jugador Indica el jugador de la partida a partir del qual avaluar <em>tauler</em>
 	 * @return Retorna un enter indicant l'avaulació de <em>tauler</em>
 	 */
-	public abstract int funcioAvaluacio( Tauler tauler, EstatMoviment estat_moviment, int profunditat,
+	public abstract int funcioAvaluacio( Tauler tauler, EstatPartida estat_moviment, int profunditat,
 			EstatCasella fitxa_jugador );
 
 	/**
@@ -89,10 +58,11 @@ public abstract class InteligenciaArtificial
 	 *         (número de fila i número de col·lumna).
 	 */
 
-	public int[] minimax( Tauler tauler, EstatCasella estat_casella, int profunditat_max )
+	public int[] minimax( Partida partida, EstatCasella estat_casella, int profunditat_max )
 	{
 		int[] millorMoviment = { -1, -1 };
 		int maxim, maxim_actual;
+		Tauler tauler = partida.getTauler();
 		maxim = Integer.MIN_VALUE;
 		int m = tauler.getMida();
 		int profunditat = 0;
@@ -106,33 +76,37 @@ public abstract class InteligenciaArtificial
 		{
 			for ( int j = 0; j < m; ++j )
 			{
-				EstatMoviment em = tauler.setCasella( i, j, estat_casella );
-				if ( em == EstatMoviment.GUANYADOR || em == EstatMoviment.EMPAT || em == EstatMoviment.VALID )
+				if ( tauler.mouFitxa( estat_casella, i, j ) )
 				{
-					estat_casella = this.intercanviaEstatCasella( estat_casella );
-					maxim_actual = this.valorMax( tauler, em, Integer.MIN_VALUE, Integer.MAX_VALUE, estat_casella,
-							profunditat + 1, profunditat_max, fitxa_jugador );
-					if ( maxim_actual > maxim )
+					EstatPartida estat_partida = partida.comprovaEstatPartida( i, j );
+					if ( estat_partida == EstatPartida.GUANYA_JUGADOR_A
+							|| estat_partida == EstatPartida.GUANYA_JUGADOR_B || estat_partida == EstatPartida.EMPAT )
 					{
-						maxim = maxim_actual;
-						millorMoviment[0] = i;
-						millorMoviment[1] = j;
+						estat_casella = this.intercanviaEstatCasella( estat_casella );
+						maxim_actual = this.valorMax( tauler, estat_partida, Integer.MIN_VALUE, Integer.MAX_VALUE,
+								estat_casella, profunditat + 1, profunditat_max, fitxa_jugador );
+						if ( maxim_actual > maxim )
+						{
+							maxim = maxim_actual;
+							millorMoviment[0] = i;
+							millorMoviment[1] = j;
+						}
+						tauler.treuFitxa( i, j );
+						estat_casella = intercanviaEstatCasella( estat_casella );
 					}
-					tauler.setCasella( i, j, EstatCasella.BUIT );
-					estat_casella = intercanviaEstatCasella( estat_casella );
 				}
 			}
 		}
 		return millorMoviment;
 	}
 
-	private int valorMax( Tauler tauler, EstatMoviment estat_moviment, int alfa, int beta, EstatCasella estat_casella,
+	private int valorMax( Tauler tauler, EstatPartida estat_partida, int alfa, int beta, EstatCasella estat_casella,
 			int profunditat, int profunditat_max, EstatCasella fitxa_jugador )
 	{
-		if ( profunditat == profunditat_max || estat_moviment == EstatMoviment.GUANYADOR
-				|| estat_moviment == EstatMoviment.EMPAT )
+		if ( profunditat == profunditat_max || estat_partida == EstatPartida.GUANYA_JUGADOR_A
+				|| estat_partida == EstatPartida.GUANYA_JUGADOR_B || estat_partida == EstatPartida.EMPAT )
 		{
-			return funcioAvaluacio( tauler, estat_moviment, profunditat, fitxa_jugador );
+			return funcioAvaluacio( tauler, estat_partida, profunditat, fitxa_jugador );
 		}
 		else
 		{
@@ -141,18 +115,22 @@ public abstract class InteligenciaArtificial
 			{
 				for ( int j = 0; j < m; ++j )
 				{
-					EstatMoviment em = tauler.setCasella( i, j, estat_casella );
-					if ( em == EstatMoviment.GUANYADOR || em == EstatMoviment.EMPAT || em == EstatMoviment.VALID )
+					if ( tauler.mouFitxa( estat_casella, i, j ) )
 					{
-						estat_casella = intercanviaEstatCasella( estat_casella );
-						alfa = max( alfa, this.valorMin( tauler, em, alfa, beta, estat_casella, ( profunditat + 1 ),
-								profunditat_max, fitxa_jugador ) );
-						tauler.setCasella( i, j, EstatCasella.BUIT );
-						if ( alfa >= beta )
+						if ( estat_partida == EstatPartida.GUANYA_JUGADOR_A
+								|| estat_partida == EstatPartida.GUANYA_JUGADOR_B
+								|| estat_partida == EstatPartida.EMPAT )
 						{
-							return beta;
+							estat_casella = intercanviaEstatCasella( estat_casella );
+							alfa = Math.max( alfa, this.valorMin( tauler, estat_partida, alfa, beta, estat_casella,
+									( profunditat + 1 ), profunditat_max, fitxa_jugador ) );
+							tauler.treuFitxa( i, j );
+							if ( alfa >= beta )
+							{
+								return beta;
+							}
+							estat_casella = intercanviaEstatCasella( estat_casella );
 						}
-						estat_casella = intercanviaEstatCasella( estat_casella );
 					}
 				}
 			}
@@ -160,13 +138,13 @@ public abstract class InteligenciaArtificial
 		}
 	}
 
-	private int valorMin( Tauler tauler, EstatMoviment estat_moviment, int alfa, int beta, EstatCasella estat_casella,
+	private int valorMin( Tauler tauler, EstatPartida estat_partida, int alfa, int beta, EstatCasella estat_casella,
 			int profunditat, int profunditat_max, EstatCasella fitxa_jugador )
 	{
-		if ( profunditat == profunditat_max || estat_moviment == EstatMoviment.GUANYADOR
-				|| estat_moviment == EstatMoviment.EMPAT )
+		if ( profunditat == profunditat_max || estat_partida == EstatPartida.GUANYA_JUGADOR_A
+				|| estat_partida == EstatPartida.GUANYA_JUGADOR_B || estat_partida == EstatPartida.EMPAT )
 		{
-			return funcioAvaluacio( tauler, estat_moviment, profunditat, fitxa_jugador );
+			return funcioAvaluacio( tauler, estat_partida, profunditat, fitxa_jugador );
 		}
 		else
 		{
@@ -175,18 +153,23 @@ public abstract class InteligenciaArtificial
 			{
 				for ( int j = 0; j < m; ++j )
 				{
-					EstatMoviment em = tauler.setCasella( i, j, estat_casella );
-					if ( em == EstatMoviment.GUANYADOR || em == EstatMoviment.EMPAT || em == EstatMoviment.VALID )
+					if ( tauler.mouFitxa( estat_casella, i, j ) )
 					{
-						estat_casella = this.intercanviaEstatCasella( estat_casella );
-						beta = min( beta, this.valorMax( tauler, em, alfa, beta, estat_casella, ( profunditat + 1 ),
-								profunditat_max, fitxa_jugador ) );
-						tauler.setCasella( i, j, EstatCasella.BUIT );
-						if ( alfa >= beta )
+
+						if ( estat_partida == EstatPartida.GUANYA_JUGADOR_A
+								|| estat_partida == EstatPartida.GUANYA_JUGADOR_B
+								|| estat_partida == EstatPartida.EMPAT )
 						{
-							return alfa;
+							estat_casella = this.intercanviaEstatCasella( estat_casella );
+							beta = Math.min( beta, this.valorMax( tauler, estat_partida, alfa, beta, estat_casella,
+									( profunditat + 1 ), profunditat_max, fitxa_jugador ) );
+							tauler.treuFitxa( i, j );
+							if ( alfa >= beta )
+							{
+								return alfa;
+							}
+							estat_casella = this.intercanviaEstatCasella( estat_casella );
 						}
-						estat_casella = this.intercanviaEstatCasella( estat_casella );
 					}
 				}
 			}
