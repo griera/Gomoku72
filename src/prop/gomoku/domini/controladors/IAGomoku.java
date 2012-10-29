@@ -15,7 +15,9 @@ public class IAGomoku extends InteligenciaArtificial
 		else if ( estat_partida != EstatPartida.NO_FINALITZADA )
 		{ // suposant que mai cridarem al mètode per a un estat invalid!
 			if ( profunditat % 2 == 1 )
+			{
 				return Integer.MAX_VALUE;
+			}
 			return Integer.MIN_VALUE;
 		}
 		else
@@ -71,6 +73,7 @@ public class IAGomoku extends InteligenciaArtificial
 									case JUGADOR_B:
 										++opcio_linia_blanca;
 										break;
+
 									default:
 										break;
 
@@ -88,9 +91,12 @@ public class IAGomoku extends InteligenciaArtificial
 					}
 				}
 			}
+			
 			int avaluacio = opcio_linia_negra - opcio_linia_blanca;
 			if ( fitxa_jugador == EstatCasella.JUGADOR_A )
+			{
 				return avaluacio;
+			}
 			return -avaluacio;
 		}
 	}
