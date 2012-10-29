@@ -8,36 +8,36 @@ import java.util.Date;
  * 
  * Conté informació relativa al nombre de torns jugats i a l'estat de finalització de la partida
  */
-public class Partida
+public abstract class Partida
 {
 	/**
 	 * Usuari que farà de jugador A
 	 */
-	private Usuari jugador_a;
+	protected Usuari jugador_a;
 	/**
 	 * Usuari que farà de jugador B
 	 */
-	private Usuari jugador_b;
+	protected Usuari jugador_b;
 	/**
 	 * Tauler on es desenvolupa la partida
 	 */
-	private Tauler tauler;
+	protected Tauler tauler;
 	/**
 	 * Nombre de torns completats
 	 */
-	private int torns_jugats;
+	protected int torns_jugats;
 	/**
 	 * Data (i hora) de creació de la partida, seveix com a identificador únic
 	 */
-	private Date data_creacio;
+	protected Date data_creacio;
 	/**
 	 * Cadena de text que serveix per anomenar la partida
 	 */
-	private String nom;
+	protected String nom;
 	/**
 	 * Indica si la partida ha estat finalitzada o no
 	 */
-	private boolean finalitzada;
+	protected boolean finalitzada;
 
 	/**
 	 * Constructora amb tots el paràmetres
@@ -152,11 +152,22 @@ public class Partida
 	}
 
 	/**
+	 * Mètode consultor de l’estat de la partida. Els paràmetres permeten aportar informació a sobre de l’últim
+	 * moviment d’interès realitzat (normalment l’últim realitzat correctament).
+	 * 
+	 * @param fila Fila del moviment d'interès
+	 * @param columna Col·lumna del moviment d'interès
+	 * @return L'estat de la partida
+	 * @throws IndexOutOfBoundsException si (fila, columna) no és una coordenada dins dels límits del tauler on es
+	 * desenvolupa la partida
+	 */
+	public abstract EstatPartida comprovaEstatPartida(int fila, int columna) throws IndexOutOfBoundsException;
+	/**
 	 * Mètode modificador del jugador A
 	 * 
 	 * @param jugador_a Usuari que farà de jugador A
 	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveït no
-	 *         és vàlid
+	 * és vàlid
 	 */
 	public boolean setJugadorA( Usuari jugador_a )
 	{
