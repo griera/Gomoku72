@@ -22,6 +22,15 @@ public abstract class InteligenciaArtificial
 	 */
 	private EstatCasella intercanviaEstatCasella( EstatCasella estat )
 	{
+		/*
+		 * Verificar que aquest codi és idèntic a l'actual per substituir-lo
+		 * Desconec si amb aquesta versió tindria problemes amb referències
+		 * 
+		EstatCasella estat_intercanviat;
+		estat_intercanviat = (estat == EstatCasella.JUGADOR_A) ? EstatCasella.JUGADOR_B : EstatCasella.JUGADOR_A;
+		return estat_intercanviat;
+		*/
+		
 		if ( estat == EstatCasella.JUGADOR_A )
 		{
 			return EstatCasella.JUGADOR_B;
@@ -32,13 +41,13 @@ public abstract class InteligenciaArtificial
 	/**
 	 * Avalua un objecte de la classe <code>Tauler</code> seguint l'heurísitca que s'implementi
 	 * 
-	 * @param tauler Objecte de la classe <code>Tauler</code> sobre el qual es disputa una partida
+	 * @param tauler Objecte de la classe <code>Tauler</code> sobre el qual es disputa una partida.
 	 * @param estat_moviment Descriu en quin estat ha quedat <em>tauler</em> en funció de l'últim moviment efectuat
-	 *        sobre aquest
+	 *        sobre aquest.
 	 * @param profunditat És la profunditat a la que s'ha arribat durant l'exploració de les diferents possibilitats de
-	 *        moviment. Cada unitat de <em>profunditat</em> representa un torn jugat de la partida
-	 * @param fitxa_jugador Indica el jugador de la partida a partir del qual avaluar <em>tauler</em>
-	 * @return Retorna un enter indicant l'avaulació de <em>tauler</em>
+	 *        moviment. Cada unitat de <em>profunditat</em> representa un torn jugat de la partida.
+	 * @param fitxa_jugador Indica el jugador de la partida a partir del qual avaluar <em>tauler</em>.
+	 * @return Retorna un enter indicant l'avaulació de <em>tauler</em>.
 	 */
 	public abstract int funcioAvaluacio( Tauler tauler, EstatPartida estat_moviment, int profunditat,
 			EstatCasella fitxa_jugador );
@@ -50,7 +59,7 @@ public abstract class InteligenciaArtificial
 	 * nivell representa el pròxim torn i, en mateix nivell, es generen tots els possibles moviments a realtzar, també
 	 * cal tenir un límit que trunqui la cerca, per evitar que el cost temporal del MiniMax augmenti exponencialment.
 	 * 
-	 * @param tauler Objecte de la classe <code>Tauler</code>, sobre el qual es disputa una partida.
+	 * @param partida Objecte de la classe <code>Partida</code> que representa la partida actual en joc.
 	 * @param estat_casella Representa la fitxa del jugador que ha de disputar el torn actual de la partida.
 	 * @param profunditat_max Representa el nivell límit en la cerca arbòria del moviment òptim.
 	 * @return Retorna la posició del tauler òptima on el jugador controlat per aquesta intel·ligència artificial ha de
@@ -83,7 +92,7 @@ public abstract class InteligenciaArtificial
 							|| estat_partida == EstatPartida.GUANYA_JUGADOR_B || estat_partida == EstatPartida.EMPAT )
 					{
 						estat_casella = this.intercanviaEstatCasella( estat_casella );
-						maxim_actual = this.valorMax( tauler, estat_partida, Integer.MIN_VALUE, Integer.MAX_VALUE,
+						maxim_actual = this.valorMax( partida, estat_partida, Integer.MIN_VALUE, Integer.MAX_VALUE,
 								estat_casella, profunditat + 1, profunditat_max, fitxa_jugador );
 						if ( maxim_actual > maxim )
 						{
@@ -100,9 +109,10 @@ public abstract class InteligenciaArtificial
 		return millorMoviment;
 	}
 
-	private int valorMax( Tauler tauler, EstatPartida estat_partida, int alfa, int beta, EstatCasella estat_casella,
+	private int valorMax( Partida partida, EstatPartida estat_partida, int alfa, int beta, EstatCasella estat_casella,
 			int profunditat, int profunditat_max, EstatCasella fitxa_jugador )
 	{
+		Tauler tauler = partida.getTauler();
 		if ( profunditat == profunditat_max || estat_partida == EstatPartida.GUANYA_JUGADOR_A
 				|| estat_partida == EstatPartida.GUANYA_JUGADOR_B || estat_partida == EstatPartida.EMPAT )
 		{
@@ -117,13 +127,14 @@ public abstract class InteligenciaArtificial
 				{
 					if ( tauler.mouFitxa( estat_casella, i, j ) )
 					{
-						if ( estat_partida == EstatPartida.GUANYA_JUGADOR_A
-								|| estat_partida == EstatPartida.GUANYA_JUGADOR_B
-								|| estat_partida == EstatPartida.EMPAT )
+						EstatPartida estat_partida_aux = partida.comprovaEstatPartida( i, j );
+						if ( estat_partida_aux == EstatPartida.GUANYA_JUGADOR_A
+								|| estat_partida_aux == EstatPartida.GUANYA_JUGADOR_B
+								|| estat_partida_aux == EstatPartida.EMPAT )
 						{
 							estat_casella = intercanviaEstatCasella( estat_casella );
-							alfa = Math.max( alfa, this.valorMin( tauler, estat_partida, alfa, beta, estat_casella,
-									( profunditat + 1 ), profunditat_max, fitxa_jugador ) );
+							alfa = Math.max( alfa, this.valorMin( partida, estat_partida_aux, alfa, beta,
+									estat_casella, ( profunditat + 1 ), profunditat_max, fitxa_jugador ) );
 							tauler.treuFitxa( i, j );
 							if ( alfa >= beta )
 							{
@@ -138,9 +149,10 @@ public abstract class InteligenciaArtificial
 		}
 	}
 
-	private int valorMin( Tauler tauler, EstatPartida estat_partida, int alfa, int beta, EstatCasella estat_casella,
+	private int valorMin( Partida partida, EstatPartida estat_partida, int alfa, int beta, EstatCasella estat_casella,
 			int profunditat, int profunditat_max, EstatCasella fitxa_jugador )
 	{
+		Tauler tauler = partida.getTauler();
 		if ( profunditat == profunditat_max || estat_partida == EstatPartida.GUANYA_JUGADOR_A
 				|| estat_partida == EstatPartida.GUANYA_JUGADOR_B || estat_partida == EstatPartida.EMPAT )
 		{
@@ -155,14 +167,14 @@ public abstract class InteligenciaArtificial
 				{
 					if ( tauler.mouFitxa( estat_casella, i, j ) )
 					{
-
-						if ( estat_partida == EstatPartida.GUANYA_JUGADOR_A
-								|| estat_partida == EstatPartida.GUANYA_JUGADOR_B
-								|| estat_partida == EstatPartida.EMPAT )
+						EstatPartida estat_partida_aux = partida.comprovaEstatPartida( i, j );
+						if ( estat_partida_aux == EstatPartida.GUANYA_JUGADOR_A
+								|| estat_partida_aux == EstatPartida.GUANYA_JUGADOR_B
+								|| estat_partida_aux == EstatPartida.EMPAT )
 						{
 							estat_casella = this.intercanviaEstatCasella( estat_casella );
-							beta = Math.min( beta, this.valorMax( tauler, estat_partida, alfa, beta, estat_casella,
-									( profunditat + 1 ), profunditat_max, fitxa_jugador ) );
+							beta = Math.min( beta, this.valorMax( partida, estat_partida_aux, alfa, beta,
+									estat_casella, ( profunditat + 1 ), profunditat_max, fitxa_jugador ) );
 							tauler.treuFitxa( i, j );
 							if ( alfa >= beta )
 							{
