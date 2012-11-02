@@ -1,4 +1,4 @@
-package prop.gomoku.domini.models;
+package prop.cluster.domini.models.estats;
 
 public enum EstatCasella
 {

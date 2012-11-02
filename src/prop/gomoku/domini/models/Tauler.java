@@ -1,5 +1,7 @@
 package prop.gomoku.domini.models;
 
+import prop.cluster.domini.models.estats.EstatCasella;
+
 public abstract class Tauler
 {
 	protected int mida;
