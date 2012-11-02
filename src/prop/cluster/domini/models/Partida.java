@@ -1,6 +1,11 @@
-package prop.gomoku.domini.models;
+package prop.cluster.domini.models;
 
+import java.io.Serializable;
 import java.util.Date;
+
+import prop.gomoku.domini.models.EstatPartida;
+import prop.gomoku.domini.models.Tauler;
+import prop.gomoku.domini.models.Usuari;
 
 /**
  * Representa una partida on juguen dos usuaris i que es desenvolupa a un tauler. S'identifica per la seva data i hora
@@ -8,8 +13,12 @@ import java.util.Date;
  * 
  * Conté informació relativa al nombre de torns jugats i a l'estat de finalització de la partida
  */
-public abstract class Partida
+public abstract class Partida implements Serializable
 {
+	/**
+	 * ID de serialització
+	 */
+	private static final long serialVersionUID = -969562011587079574L;
 	/**
 	 * Usuari que farà de jugador A
 	 */
@@ -152,22 +161,23 @@ public abstract class Partida
 	}
 
 	/**
-	 * Mètode consultor de l’estat de la partida. Els paràmetres permeten aportar informació a sobre de l’últim
-	 * moviment d’interès realitzat (normalment l’últim realitzat correctament).
+	 * Mètode consultor de l’estat de la partida. Els paràmetres permeten aportar informació a sobre de l’últim moviment
+	 * d’interès realitzat (normalment l’últim realitzat correctament).
 	 * 
 	 * @param fila Fila del moviment d'interès
 	 * @param columna Col·lumna del moviment d'interès
 	 * @return L'estat de la partida
 	 * @throws IndexOutOfBoundsException si (fila, columna) no és una coordenada dins dels límits del tauler on es
-	 * desenvolupa la partida
+	 *         desenvolupa la partida
 	 */
-	public abstract EstatPartida comprovaEstatPartida(int fila, int columna) throws IndexOutOfBoundsException;
+	public abstract EstatPartida comprovaEstatPartida( int fila, int columna ) throws IndexOutOfBoundsException;
+
 	/**
 	 * Mètode modificador del jugador A
 	 * 
 	 * @param jugador_a Usuari que farà de jugador A
 	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveït no
-	 * és vàlid
+	 *         és vàlid
 	 */
 	public boolean setJugadorA( Usuari jugador_a )
 	{
