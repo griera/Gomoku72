@@ -3,7 +3,7 @@ package prop.cluster.domini.models;
 import java.io.Serializable;
 import java.util.Date;
 
-import prop.gomoku.domini.models.EstatPartida;
+import prop.cluster.domini.models.estats.EstatPartida;
 
 /**
  * Representa una partida on juguen dos usuaris i que es desenvolupa a un tauler. S'identifica per la seva data i hora

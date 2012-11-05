@@ -5,6 +5,7 @@ import java.util.Date;
 import prop.cluster.domini.models.Partida;
 import prop.cluster.domini.models.Tauler;
 import prop.cluster.domini.models.Usuari;
+import prop.cluster.domini.models.estats.EstatPartida;
 
 public class PartidaGomoku extends Partida
 {

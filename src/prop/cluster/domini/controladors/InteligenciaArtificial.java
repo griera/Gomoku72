@@ -1,7 +1,7 @@
-package prop.gomoku.domini.controladors;
+package prop.cluster.domini.controladors;
 
 import prop.cluster.domini.models.estats.EstatCasella;
-import prop.gomoku.domini.models.EstatPartida;
+import prop.cluster.domini.models.estats.EstatPartida;
 import prop.cluster.domini.models.Partida;
 import prop.cluster.domini.models.Tauler;
 
