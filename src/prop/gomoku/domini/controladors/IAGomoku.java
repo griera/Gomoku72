@@ -1,8 +1,8 @@
 package prop.gomoku.domini.controladors;
 
+import prop.cluster.domini.models.Tauler;
 import prop.cluster.domini.models.estats.EstatCasella;
 import prop.gomoku.domini.models.EstatPartida;
-import prop.gomoku.domini.models.Tauler;
 
 public class IAGomoku extends InteligenciaArtificial
 {

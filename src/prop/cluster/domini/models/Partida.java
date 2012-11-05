@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 import prop.gomoku.domini.models.EstatPartida;
-import prop.gomoku.domini.models.Tauler;
-import prop.gomoku.domini.models.Usuari;
 
 /**
  * Representa una partida on juguen dos usuaris i que es desenvolupa a un tauler. S'identifica per la seva data i hora
