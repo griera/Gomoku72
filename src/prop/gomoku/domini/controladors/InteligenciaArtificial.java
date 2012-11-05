@@ -85,8 +85,9 @@ public abstract class InteligenciaArtificial
 		{
 			for ( int j = 0; j < m; ++j )
 			{
-				if ( tauler.mouFitxa( estat_casella, i, j ) )
+				if ( tauler.esMovimentValid( estat_casella, i, j ) )
 				{
+					tauler.mouFitxa( estat_casella, i, j );
 					EstatPartida estat_partida = partida.comprovaEstatPartida( i, j );
 					if ( estat_partida == EstatPartida.GUANYA_JUGADOR_A
 							|| estat_partida == EstatPartida.GUANYA_JUGADOR_B || estat_partida == EstatPartida.EMPAT )
@@ -125,8 +126,9 @@ public abstract class InteligenciaArtificial
 			{
 				for ( int j = 0; j < m; ++j )
 				{
-					if ( tauler.mouFitxa( estat_casella, i, j ) )
+					if ( tauler.esMovimentValid( estat_casella, i, j ) )
 					{
+						tauler.mouFitxa( estat_casella, i, j );
 						EstatPartida estat_partida_aux = partida.comprovaEstatPartida( i, j );
 						if ( estat_partida_aux == EstatPartida.GUANYA_JUGADOR_A
 								|| estat_partida_aux == EstatPartida.GUANYA_JUGADOR_B
@@ -165,8 +167,9 @@ public abstract class InteligenciaArtificial
 			{
 				for ( int j = 0; j < m; ++j )
 				{
-					if ( tauler.mouFitxa( estat_casella, i, j ) )
+					if ( tauler.esMovimentValid( estat_casella, i, j ) )
 					{
+						tauler.mouFitxa( estat_casella, i, j );
 						EstatPartida estat_partida_aux = partida.comprovaEstatPartida( i, j );
 						if ( estat_partida_aux == EstatPartida.GUANYA_JUGADOR_A
 								|| estat_partida_aux == EstatPartida.GUANYA_JUGADOR_B
