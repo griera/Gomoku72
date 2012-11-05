@@ -3,6 +3,8 @@ package prop.gomoku.domini.models;
 import java.util.Date;
 
 import prop.cluster.domini.models.Partida;
+import prop.cluster.domini.models.Tauler;
+import prop.cluster.domini.models.Usuari;
 
 public class PartidaGomoku extends Partida
 {
@@ -11,6 +13,12 @@ public class PartidaGomoku extends Partida
 	 */
 	private static final long serialVersionUID = -2625983311773495229L;
 
+	public PartidaGomoku( Usuari jugador_a, Usuari jugador_b, Tauler tauler, String nom)
+	{
+		super(jugador_a, jugador_b, tauler, nom);
+		// TODO
+	}
+	
 	public PartidaGomoku( Usuari jugador_a, Usuari jugador_b, Tauler tauler, int torns_jugats, Date data_creacio,
 			String nom, boolean finalitzada )
 	{

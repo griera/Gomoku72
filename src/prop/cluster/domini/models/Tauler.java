@@ -1,4 +1,4 @@
-package prop.gomoku.domini.models;
+package prop.cluster.domini.models;
 
 import prop.cluster.domini.models.estats.EstatCasella;
 
