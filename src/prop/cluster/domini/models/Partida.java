@@ -7,22 +7,22 @@ import prop.cluster.domini.models.estats.EstatPartida;
 
 /**
  * Representa una partida on juguen dos usuaris i que es desenvolupa a un tauler. S'identifica per la seva data i hora
- * de creaciÛ, perÚ tambÈ tÈ un nom assignat per facilitar la seva identificaciÛ de cara als usuaris.
+ * de creaci√≥, per√≤ tamb√© t√© un nom assignat per facilitar la seva identificaci√≥ de cara als usuaris.
  * 
- * ContÈ informaciÛ relativa al nombre de torns jugats i a l'estat de finalitzaciÛ de la partida
+ * ContÔøΩ informaci√≥ relativa al nombre de torns jugats i a l'estat de finalitzaci√≥ de la partida
  */
 public abstract class Partida implements Serializable
 {
 	/**
-	 * ID de serialitzaciÛ
+	 * ID de serialitzaci√≥
 	 */
-	private static final long serialVersionUID = -969562011587079574L;
+	protected static final long serialVersionUID = -969562011587079574L;
 	/**
-	 * Usuari que far‡ de jugador A
+	 * Usuari que far√† de jugador A
 	 */
 	protected Usuari jugador_a;
 	/**
-	 * Usuari que far‡ de jugador B
+	 * Usuari que far√† de jugador B
 	 */
 	protected Usuari jugador_b;
 	/**
@@ -34,7 +34,7 @@ public abstract class Partida implements Serializable
 	 */
 	protected int torns_jugats;
 	/**
-	 * Data (i hora) de creaciÛ de la partida, seveix com a identificador ˙nic
+	 * Data (i hora) de creaci√≥ de la partida, seveix com a identificador ÔøΩnic
 	 */
 	protected Date data_creacio;
 	/**
@@ -47,13 +47,13 @@ public abstract class Partida implements Serializable
 	protected boolean finalitzada;
 
 	/**
-	 * Constructora amb tots el par‡metres
+	 * Constructora amb tots el par√†metres
 	 * 
 	 * @param jugador_a Usuari que fa de jugador A
 	 * @param jugador_b Usuari que fa de jugador B
 	 * @param tauler Tauler on es desenvolupa la partida
 	 * @param torns_jugats Torns completats a la partida
-	 * @param data_creacio Data i hora de creaciÛ de la partida
+	 * @param data_creacio Data i hora de creaci√≥ de la partida
 	 * @param nom Nom de la partida
 	 * @param finalitzada Indica si ha estat finalitzada o no
 	 */
@@ -72,9 +72,9 @@ public abstract class Partida implements Serializable
 	/**
 	 * Constructora alternativa per partides que no han estat jugades
 	 * 
-	 * @param jugador_a Usuari que far‡ de jugador A
-	 * @param jugador_b Usuari que far‡ de jugador B
-	 * @param tauler Tauler on es desenvolupar‡ la partida
+	 * @param jugador_a Usuari que far√† de jugador A
+	 * @param jugador_b Usuari que far√† de jugador B
+	 * @param tauler Tauler on es desenvolupar√† la partida
 	 * @param nom Nom de la partida
 	 */
 	public Partida( Usuari jugador_a, Usuari jugador_b, Tauler tauler, String nom )
@@ -89,7 +89,7 @@ public abstract class Partida implements Serializable
 	};
 
 	/**
-	 * MËtode consultor del jugador A
+	 * M√®tode consultor del jugador A
 	 * 
 	 * @return Usuari que fa de jugador A
 	 */
@@ -99,7 +99,7 @@ public abstract class Partida implements Serializable
 	}
 
 	/**
-	 * MËtode consultor del jugador B
+	 * M√®tode consultor del jugador B
 	 * 
 	 * @return Usuari que fa de jugador B
 	 */
@@ -109,7 +109,7 @@ public abstract class Partida implements Serializable
 	}
 
 	/**
-	 * MËtode consultor del tauler
+	 * M√®tode consultor del tauler
 	 * 
 	 * @return Tauler on es desenvolupa la partida
 	 */
@@ -119,7 +119,7 @@ public abstract class Partida implements Serializable
 	}
 
 	/**
-	 * MËtode consultor del nombre de torns jugats
+	 * M√®tode consultor del nombre de torns jugats
 	 * 
 	 * @return Nombre de torns jugats
 	 */
@@ -129,9 +129,9 @@ public abstract class Partida implements Serializable
 	}
 
 	/**
-	 * MËtode consultor de la data i hora de creaciÛ de la partida
+	 * M√®tode consultor de la data de creaci√≥
 	 * 
-	 * @return Data i hora de creaciÛ de la partida
+	 * @return Data i hora de creaci√≥ de la partida
 	 */
 	public Date getDataCreacio()
 	{
@@ -139,7 +139,7 @@ public abstract class Partida implements Serializable
 	}
 
 	/**
-	 * MËtode consultor del nom de la partida
+	 * M√®tode consusltor del nom de la partida
 	 * 
 	 * @return Nom de la partida
 	 */
@@ -149,7 +149,7 @@ public abstract class Partida implements Serializable
 	}
 
 	/**
-	 * MËtode consultor de si una partida ha estat finalitzada o no
+	 * M√®tode consultor de is una partida ha estat finalitzada o no
 	 * 
 	 * @return <em>true</em> si la partida ha estat finalitzada; <em>false</em> en cas contrari
 	 */
@@ -159,23 +159,23 @@ public abstract class Partida implements Serializable
 	}
 
 	/**
-	 * MËtode consultor de líestat de la partida. Els par‡metres permeten aportar informaciÛ a sobre de lí˙ltim moviment
-	 * díinterËs realitzat (normalment lí˙ltim realitzat correctament).
+	 * M√®tode consultor de l'estat de la partida. Els par√†metres permeten aportar informaci√≥ a sobre de l'√∫ltim
+	 * moviment d'inter√®s realitzat (normalment l'√∫ltim realitzat correctament)
 	 * 
-	 * @param fila Fila del moviment d'interËs
-	 * @param columna Col∑lumna del moviment d'interËs
+	 * @param fila Fila del moviment d'inter√®s
+	 * @param columna Col¬∑lumna del moviment d'inter√®s
 	 * @return L'estat de la partida
-	 * @throws IndexOutOfBoundsException si (fila, columna) no Ès una coordenada dins dels lÌmits del tauler on es
-	 *         desenvolupa la partida
+	 * @throws IndexOutOfBoundsException si (fila, columna) no √©s una coordenada dins dels l√≠mits del tauler on es
+	 * desenvolupa la partida
 	 */
 	public abstract EstatPartida comprovaEstatPartida( int fila, int columna ) throws IndexOutOfBoundsException;
 
 	/**
-	 * MËtode modificador del jugador A
+	 * M√®tode modificador del jugador A
 	 * 
-	 * @param jugador_a Usuari que far‡ de jugador A
-	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveÔt no
-	 *         Ès v‡lid
+	 * @param jugador_a Usuari que far√† de jugador A
+	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor prove√Øt
+	 * no √©s v√†lid
 	 */
 	public boolean setJugadorA( Usuari jugador_a )
 	{
@@ -184,11 +184,11 @@ public abstract class Partida implements Serializable
 	}
 
 	/**
-	 * MËtode modificador del jugador B
+	 * M√®tode modificador del jugador B
 	 * 
-	 * @param jugador_b Usuari que far‡ de jugador B
-	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveÔt no
-	 *         Ès v‡lid
+	 * @param jugador_b Usuari que far√† de jugador B
+	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor prove√Øt
+	 * no √©s v√†lid
 	 */
 	public boolean setJugadorB( Usuari jugador_b )
 	{
@@ -197,11 +197,11 @@ public abstract class Partida implements Serializable
 	}
 
 	/**
-	 * MËtode modificador del tauler
+	 * M√®tode modificador del tauler
 	 * 
-	 * @param tauler Tauler on es desenvolupar‡ la partida
-	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveÔt no
-	 *         Ès v‡lid
+	 * @param tauler Tauler on es desenvolupar√† la partida
+	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor prove√Øt
+	 * no √©s v√†lid
 	 */
 	public boolean setTauler( Tauler tauler )
 	{
@@ -210,11 +210,11 @@ public abstract class Partida implements Serializable
 	}
 
 	/**
-	 * MËtode modificador del nombre de torns jugats
+	 * M√®tode modificador del nombre de torns jugats
 	 * 
 	 * @param torns_jugats Nombre de torns jugats
-	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveÔt no
-	 *         Ès v‡lid
+	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor prove√Øt
+	 * no √©s v√†lid
 	 */
 	public boolean setTornsJugats( int torns_jugats )
 	{
@@ -223,11 +223,11 @@ public abstract class Partida implements Serializable
 	}
 
 	/**
-	 * MËtode modificador de la data i hora de creaciÛ
+	 * M√®tode modificador de la data i hora de creaci√≥
 	 * 
-	 * @param data_creacio Data i hora de creaciÛ
-	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveÔt no
-	 *         Ès v‡lid
+	 * @param data_creacio Data i hora de creaci√≥
+	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor prove√Øt
+	 * no √©s v√†lid
 	 */
 	public boolean setDataCreacio( Date data_creacio )
 	{
@@ -236,11 +236,11 @@ public abstract class Partida implements Serializable
 	}
 
 	/**
-	 * MËtode modificador del nom de la partida
+	 * M√®tode modificador del nom de la partida
 	 * 
 	 * @param nom Nom de la partida
-	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveÔt no
-	 *         Ès v‡lid
+	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor prove√Øt
+	 * no √©s v√†lid
 	 */
 	public boolean setNom( String nom )
 	{
@@ -249,11 +249,11 @@ public abstract class Partida implements Serializable
 	}
 
 	/**
-	 * MËtode modificador de l'estat de finalitzaciÛ de la partida
+	 * M√®tode modificador de l'estat de finalitzaci√≥ de la partida
 	 * 
 	 * @param finalitzada Indica si la partida ha estat finalitzada o no
-	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveÔt no
-	 *         Ès v‡lid
+	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor prove√Øt
+	 * no √©s v√†lid
 	 */
 	public boolean setFinalitzada( boolean finalitzada )
 	{
@@ -265,8 +265,8 @@ public abstract class Partida implements Serializable
 	 * Incrementa el nombre de torns jugats en la quantitat indicada
 	 * 
 	 * @param quantitat Quantitat en la que incrementar el nombre actual de torns jugats
-	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveÔt no
-	 *         Ès v‡lid
+	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor prove√Øt
+	 * no √©s v√†lid
 	 */
 	public boolean incrementaTornsJugats( int quantitat )
 	{
