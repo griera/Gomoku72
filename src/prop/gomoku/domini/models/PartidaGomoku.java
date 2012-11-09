@@ -2,6 +2,12 @@ package prop.gomoku.domini.models;
 
 import java.util.Date;
 
+import prop.cluster.domini.models.Partida;
+import prop.cluster.domini.models.Tauler;
+import prop.cluster.domini.models.Usuari;
+import prop.cluster.domini.models.estats.EstatCasella;
+import prop.cluster.domini.models.estats.EstatPartida;
+
 public class PartidaGomoku extends Partida
 {
 	public PartidaGomoku( Usuari jugador_a, Usuari jugador_b, Tauler tauler, int torns_jugats, Date data_creacio,
@@ -14,14 +20,29 @@ public class PartidaGomoku extends Partida
 	@Override
 	public EstatPartida comprovaEstatPartida( int fila, int columna ) throws IndexOutOfBoundsException
 	{
-		if (fila >= this.tauler.getMida()) {
-			throw new IndexOutOfBoundsException("Fila indicada fora del tauler");
+		TaulerGomoku tauler = (TaulerGomoku) this.tauler;
+		EstatCasella estat = tauler.getEstatCasella( fila, columna );
+		if ( fila < 0 || fila >= this.tauler.getMida() || columna < 0 || columna >= this.tauler.getMida() )
+		{
+			throw new IndexOutOfBoundsException( "Posició indicada fora del tauler" );
 		}
-		if (columna >= this.tauler.getMida()) {
-			throw new IndexOutOfBoundsException("Col·lumna indicada fora del tauler");
+
+		else if ( tauler.teFitxesSeguides( fila, columna, 5, estat ) )
+		{
+			if ( estat == EstatCasella.JUGADOR_A )
+			{
+				return EstatPartida.GUANYA_JUGADOR_A;
+			}
+
+			return EstatPartida.GUANYA_JUGADOR_B;
 		}
-		
-		return null;
+
+		else if ( tauler.getTotalFitxes() == tauler.getMida() * tauler.getMida() )
+		{
+			return EstatPartida.EMPAT;
+		}
+
+		return EstatPartida.NO_FINALITZADA;
 	}
 
 }
