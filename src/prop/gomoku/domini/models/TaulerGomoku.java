@@ -95,17 +95,12 @@ public class TaulerGomoku extends Tauler
 			}
 		}
 		return false;
->>>>>>> remotes/genisrieraperez/genis-fork-gomoku/master
 	}
 
 	@Override
 	public boolean esMovimentValid( EstatCasella fitxa, int fila, int columna ) throws IndexOutOfBoundsException,
 			IllegalArgumentException
 	{
-<<<<<<< HEAD
-		// TODO Auto-generated method stub
-		return false;
-=======
 		if ( fila < 0 || fila >= this.getMida() || columna < 0 || columna >= this.getMida() )
 		{
 			throw new IndexOutOfBoundsException( "Posició indicada fora del tauler" );
@@ -144,7 +139,6 @@ public class TaulerGomoku extends Tauler
 		}
 
 		return true;
->>>>>>> remotes/genisrieraperez/genis-fork-gomoku/master
 	}
 
 }

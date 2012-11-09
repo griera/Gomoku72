@@ -44,12 +44,6 @@ public class Usuari implements Serializable
     {
         this.nom = nom ;
         this.contrasenya = contrasenya;
-        
-        // Tocat per mi
-        num_victories = new int[dificultat];
-        num_empats = new int[dificultat];
-        num_derrotes = new int[dificultat];
-        // Fi de lo tocat per mi
         int i = 0;
         while ( i < dificultat ) 
         {
@@ -212,5 +206,4 @@ public class Usuari implements Serializable
               num_derrotes[i] = 0;
          }
     }
->>>>>>> remotes/genisrieraperez/genis-fork-gomoku/master
 }
