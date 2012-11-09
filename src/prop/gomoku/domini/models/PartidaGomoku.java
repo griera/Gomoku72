@@ -10,17 +10,6 @@ import prop.cluster.domini.models.estats.EstatPartida;
 
 public class PartidaGomoku extends Partida
 {
-	/**
-	 * ID de serialització
-	 */
-	private static final long serialVersionUID = -2625983311773495229L;
-
-	public PartidaGomoku( Usuari jugador_a, Usuari jugador_b, Tauler tauler, String nom)
-	{
-		super(jugador_a, jugador_b, tauler, nom);
-		// TODO
-	}
-	
 	public PartidaGomoku( Usuari jugador_a, Usuari jugador_b, Tauler tauler, int torns_jugats, Date data_creacio,
 			String nom, boolean finalitzada )
 	{
@@ -35,7 +24,7 @@ public class PartidaGomoku extends Partida
 		EstatCasella estat = tauler.getEstatCasella( fila, columna );
 		if ( fila < 0 || fila >= this.tauler.getMida() || columna < 0 || columna >= this.tauler.getMida() )
 		{
-			throw new IndexOutOfBoundsException( "Posició indicada fora del tauler" );
+			throw new IndexOutOfBoundsException( "PosiciÃ³ indicada fora del tauler" );
 		}
 
 		else if ( tauler.teFitxesSeguides( fila, columna, 5, estat ) )

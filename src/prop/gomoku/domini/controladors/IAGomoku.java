@@ -4,7 +4,6 @@ import prop.cluster.domini.controladors.InteligenciaArtificial;
 import prop.cluster.domini.models.Tauler;
 import prop.cluster.domini.models.estats.EstatCasella;
 import prop.cluster.domini.models.estats.EstatPartida;
-
 import prop.gomoku.domini.models.TaulerGomoku;
 
 public class IAGomoku extends InteligenciaArtificial
@@ -125,7 +124,7 @@ public class IAGomoku extends InteligenciaArtificial
 		}
 
 		boolean oberta = linia_oberta_dreta && linia_oberta_esquerra; // linia completament oberta?
-		boolean semioberta = linia_oberta_dreta || linia_oberta_esquerra; // línia semioberta?
+		boolean semioberta = linia_oberta_dreta || linia_oberta_esquerra; // lÃ­nia semioberta?
 		if ( fitxes_seguides > 1 && ( oberta || semioberta ) )
 		{
 			incrementaOpcions( estat, opcions_linia, oberta, semioberta, linia_amb_forat, fitxes_seguides );
@@ -171,7 +170,7 @@ public class IAGomoku extends InteligenciaArtificial
 		}
 
 		boolean oberta = linia_oberta_superior && linia_oberta_inferior; // linia completament oberta?
-		boolean semioberta = linia_oberta_superior || linia_oberta_inferior; // línia semioberta?
+		boolean semioberta = linia_oberta_superior || linia_oberta_inferior; // lÃ­nia semioberta?
 		if ( fitxes_seguides > 1 && ( oberta || semioberta ) )
 		{
 			incrementaOpcions( estat, opcions_linia, oberta, semioberta, linia_amb_forat, fitxes_seguides );
@@ -222,7 +221,7 @@ public class IAGomoku extends InteligenciaArtificial
 		}
 
 		boolean oberta = linia_oberta_sudest && linia_oberta_nordoest; // linia completament oberta?
-		boolean semioberta = linia_oberta_sudest || linia_oberta_nordoest; // línia semioberta?
+		boolean semioberta = linia_oberta_sudest || linia_oberta_nordoest; // lÃ­nia semioberta?
 		if ( fitxes_seguides > 1 && ( oberta || semioberta ) )
 		{
 			incrementaOpcions( estat, opcions_linia, oberta, semioberta, linia_amb_forat, fitxes_seguides );
@@ -273,7 +272,7 @@ public class IAGomoku extends InteligenciaArtificial
 		}
 
 		boolean oberta = linia_oberta_nordest && linia_oberta_sudoest; // linia completament oberta?
-		boolean semioberta = linia_oberta_nordest || linia_oberta_sudoest; // línia semioberta?
+		boolean semioberta = linia_oberta_nordest || linia_oberta_sudoest; // lÃ­nia semioberta?
 		if ( fitxes_seguides > 1 && ( oberta || semioberta ) )
 		{
 			incrementaOpcions( estat, opcions_linia, oberta, semioberta, linia_amb_forat, fitxes_seguides );
@@ -314,16 +313,16 @@ public class IAGomoku extends InteligenciaArtificial
 					{
 						EstatCasella estat = tauler.getEstatCasella( x, y );
 						opcions_linia = new int[2][14];
-						// Comprovació fila
+						// ComprovaciÃ³ fila
 						computaFila( (TaulerGomoku) tauler, estat, mida, x, y, opcions_linia );
 
-						// Comprovació columna
+						// ComprovaciÃ³ columna
 						computaColumna( (TaulerGomoku) tauler, estat, mida, x, y, opcions_linia );
 
-						// Comprovació diagonal nord-oest cap a sud-est
+						// ComprovaciÃ³ diagonal nord-oest cap a sud-est
 						computaDiagonalNoSe( (TaulerGomoku) tauler, estat, mida, x, y, opcions_linia );
 
-						// Comprovació diagonal nord-est cap a sud-oest
+						// ComprovaciÃ³ diagonal nord-est cap a sud-oest
 						computaDiagonalNeSo( (TaulerGomoku) tauler, estat, mida, x, y, opcions_linia );
 
 						estructures2D( estat, opcions_linia );
@@ -363,7 +362,7 @@ public class IAGomoku extends InteligenciaArtificial
 						}
 
 						// Final del recompte d'opcions per a una fitxa trobada en el tauler.
-						// Continuem recorrent el tauler en busca de més fitxes per computar les seves opcions...
+						// Continuem recorrent el tauler en busca de mÃ©s fitxes per computar les seves opcions...
 					}
 				}
 			}
@@ -466,7 +465,7 @@ public class IAGomoku extends InteligenciaArtificial
 			}
 
 			// Ja hem recorregut tot el tauler, per tant, ja hem fet totes les avaluacions
-			// Ara només cal computar els resultats obtinguts
+			// Ara nomÃ©s cal computar els resultats obtinguts
 
 			if ( fitxa_jugador == EstatCasella.JUGADOR_A )
 			{

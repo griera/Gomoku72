@@ -10,8 +10,8 @@ public class LecturaScanners implements Lectura {
     }
     
     /**
-     * MËtode que ens permet llegir un car‡cter 
-     * @return car‡cter llegit
+     * M√®tode que ens permet llegir un car√†cter 
+     * @return car√†cter llegit
      */
     public char llegirChar() {
         return this.scanner.findInLine(".").charAt(0);

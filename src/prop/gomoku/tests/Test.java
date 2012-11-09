@@ -109,7 +109,7 @@ public class Test
 		System.out.println( "/* BENVINGUTS AL JOC DE TAULA GOMOKU */" );
 		System.out.println( "/*                                   */" );
 		System.out.println( "/*************************************/\n" );
-		System.out.print( "Si us plau, ompli el seg¸ent formulari de registre " );
+		System.out.print( "Si us plau, ompli el seg√ºent formulari de registre " );
 		System.out.println( "al sistema per poder jugar partides\n" );
 
 		LecturaScanners dada = new LecturaScanners();
@@ -120,12 +120,12 @@ public class Test
 		String contrasenya_jugador = dada.llegirString();
 
 		Usuari jugador = new Usuari( nom_jugador, contrasenya_jugador, 2 );
-		System.out.print( "\nEl registre temporal s'ha efectuat amb Ëxit. " );
-		System.out.println( "Aquestes sÛn les dades que ha proporcionat al sistema:\n" + jugador.toString() + "\n" );
+		System.out.print( "\nEl registre temporal s'ha efectuat amb √®xit. " );
+		System.out.println( "Aquestes s√≥n les dades que ha proporcionat al sistema:\n" + jugador.toString() + "\n" );
 
-		System.out.println( jugador.getNom() + ", est‡ a punt per comenÁar una nova partida al Gomoku." );
+		System.out.println( jugador.getNom() + ", est√† a punt per comen√ßar una nova partida al Gomoku." );
 		System.out.println( "Si us plau, indiqui el seu oponent:\n" );
-		System.out.print( "1.- Jugador m‡quina\n2.- Jugador hum‡\nOponent (marqui 1 Û 2): " );
+		System.out.print( "1.- Jugador m√†quina\n2.- Jugador hum√†\nOponent (marqui 1 √≥ 2): " );
 		int tipus_oponent = dada.llegirInt();
 
 		Usuari oponent = new Usuari( "CPU", "CPU", 1 );
@@ -134,13 +134,13 @@ public class Test
 		switch ( tipus_oponent )
 		{
 			case 1:
-				System.out.println( "\n" + jugador.getNom() + ", ha seleccionat jugar contra el jugador m‡quina." );
-				System.out.println( "Aquestes sÛn les dades del jugador m‡quina:\n" + oponent.toString() );
+				System.out.println( "\n" + jugador.getNom() + ", ha seleccionat jugar contra el jugador m√†quina." );
+				System.out.println( "Aquestes s√≥n les dades del jugador m√†quina:\n" + oponent.toString() );
 				break;
 
 			case 2:
-				System.out.println( "\n" + jugador.getNom() + ", ha seleccionat jugar contra un altre jugador hum‡." );
-				System.out.print( "Si us plau " + jugador.getNom() + ", que el vostre oponent ompli el seg¸ent "
+				System.out.println( "\n" + jugador.getNom() + ", ha seleccionat jugar contra un altre jugador hum√†." );
+				System.out.print( "Si us plau " + jugador.getNom() + ", que el vostre oponent ompli el seg√ºent "
 						+ "formulari de registre " );
 				System.out.println( "al sistema per poder jugar partides\n" );
 
@@ -151,14 +151,14 @@ public class Test
 				contrasenya_oponent = dada.llegirString();
 
 				oponent = new Usuari( nom_oponent, contrasenya_oponent, 2 );
-				System.out.print( "\nEl registre temporal s'ha efectuat amb Ëxit. " );
-				System.out.println( "Aquestes sÛn les dades que el seu oponentha proporcionat al sistema:" );
+				System.out.print( "\nEl registre temporal s'ha efectuat amb √®xit. " );
+				System.out.println( "Aquestes s√≥n les dades que el seu oponentha proporcionat al sistema:" );
 				System.out.println( oponent.toString() );
 				break;
 		}
 
 		System.out.println( "\nSi us plau " + jugador.getNom() + ", indiqui amb quines fitxes vol jugar la partida:" );
-		System.out.print( "1.- Fitxes negres\n2.- Fitxes blanques\nColor de les fitxes (marqui 1 Û 2): " );
+		System.out.print( "1.- Fitxes negres\n2.- Fitxes blanques\nColor de les fitxes (marqui 1 √≥ 2): " );
 		int color_fitxes = dada.llegirInt();
 		switch ( color_fitxes )
 		{
@@ -176,7 +176,7 @@ public class Test
 		String nom_partida = dada_buffer.llegirString();
 		PartidaGomoku partida = new PartidaGomoku( jugador, oponent, new TaulerGomoku(), 0, new Date(), nom_partida,
 				false );
-		System.out.println( "\nLa partida que s'est‡ a punt de disputar s'anomena " + partida.getNom() + "\n");
+		System.out.println( "\nLa partida que s'est√† a punt de disputar s'anomena " + partida.getNom() + "\n");
 
 		EstatPartida estat_partida = EstatPartida.NO_FINALITZADA;
 		EstatCasella fitxa = EstatCasella.BUIDA;
@@ -210,7 +210,7 @@ public class Test
 			}
 			
 			System.out.println( "/* TORN " + torn_actual + " */" );
-			System.out.println( nom_jugador_actual + ", Ès el seu torn." );
+			System.out.println( nom_jugador_actual + ", √©s el seu torn." );
 
 			if ( nom_jugador_actual.equals( "CPU" ) )
 			{
@@ -238,10 +238,10 @@ public class Test
 
 					if ( moviment_maquina[0] == -1 && moviment_maquina[1] == -1 )
 					{
-						System.out.print( nom_jugador_actual + "s'ha rendit perquË ja ha perdut matem‡ticament." );
-						System.out.println( " Far‡ un moviment aleatori:" );
+						System.out.print( nom_jugador_actual + "s'ha rendit perqu√® ja ha perdut matem√†ticament." );
+						System.out.println( " Far√† un moviment aleatori:" );
 						moviment_maquina = movimentAleatori( tauler );
-						System.out.println( "fila: " + moviment_maquina[0] + ", col∑lumna: " + moviment_maquina[1] );
+						System.out.println( "fila: " + moviment_maquina[0] + ", col¬∑lumna: " + moviment_maquina[1] );
 					}
 				}
 
@@ -253,7 +253,7 @@ public class Test
 
 			else
 			{
-				System.out.println( "Si us plau, indiqui quin ser‡ el seu prÚxim moviment (fila (espai) col∑lumna):" );
+				System.out.println( "Si us plau, indiqui quin ser√† el seu pr√≤xim moviment (fila (espai) col¬∑lumna):" );
 				fila = dada.llegirInt();
 				columna = dada.llegirInt();
 			}

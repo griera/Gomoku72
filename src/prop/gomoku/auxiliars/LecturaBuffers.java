@@ -13,8 +13,8 @@ public class LecturaBuffers implements Lectura {
         } catch (IOException e) {
             System.out.println("Error durant la lectura per teclat");
             e.printStackTrace(); // Ajuda a debugar errors del programa, imprimint
-                                 // una traça de la pila on es van empilant els
-                                 // mètodes cridat (la pila la gestiona la JVM)
+                                 // una traÃ§a de la pila on es van empilant els
+                                 // mÃ¨todes cridat (la pila la gestiona la JVM)
         }
         return c;
     }
