@@ -1,6 +1,5 @@
 package prop.gomoku.drivers;
 
-import prop.cluster.domini.models.Tauler;
 import prop.cluster.domini.models.Usuari;
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.TaulerGomoku;
@@ -30,11 +29,11 @@ public class DriverPartidaGomoku
 
 	private static void inicialitza()
 	{
-		jugador_a = new Usuari( "A", "" );
-		jugador_b = new Usuari( "B", "" );
-		tauler = new TaulerGomoku( 15 );
+		jugador_a = new Usuari( "A", "", 0 );
+		jugador_b = new Usuari( "B", "", 0 );
+		tauler = new TaulerGomoku();
 		partida = new PartidaGomoku( jugador_a, jugador_b, tauler, "prova_driver" );
-		System.out.println("Inicialitzat correctament");
+		System.out.println( "Inicialitzat correctament" );
 	}
 
 	private static void consulta()
@@ -49,14 +48,14 @@ public class DriverPartidaGomoku
 
 	private static void modifica()
 	{
-		
+
 	}
 
 	public static void main( String[] args )
 	{
 		while ( true )
 		{
-			switch(menuPrincipal())
+			switch ( menuPrincipal() )
 			{
 				case 1:
 					inicialitza();
