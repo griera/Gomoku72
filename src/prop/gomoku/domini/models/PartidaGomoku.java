@@ -17,6 +17,12 @@ public class PartidaGomoku extends Partida
 		// TODO Auto-generated constructor stub
 	}
 
+	public PartidaGomoku( Usuari jugador_a, Usuari jugador_b, Tauler tauler, String nom )
+	{
+		super( jugador_a, jugador_b, tauler, nom );
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public EstatPartida comprovaEstatPartida( int fila, int columna ) throws IndexOutOfBoundsException
 	{
