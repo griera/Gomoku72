@@ -35,7 +35,7 @@ public abstract class Tauler implements Serializable
 
 	/**
 	 * Constructor del tauler. Crea un tauler de la mida desitjada amb totes les caselles buides (EstatCasella.BUIDA).
-	 *
+	 * 
 	 * @param mida Les dimensions que tindrà el tauler
 	 */
 	public Tauler( int mida )
@@ -54,9 +54,9 @@ public abstract class Tauler implements Serializable
 	/**
 	 * Constructor que inicialitza el tauler a un estat diferent del per defecte. No comprova que els paràmetres siguin
 	 * correctes.
-	 *
-	 * @param mida         Les dimensions del tauler
-	 * @param caselles     Un array bidimensional mida × mida amb l'estat inicial
+	 * 
+	 * @param mida Les dimensions del tauler
+	 * @param caselles Un array bidimensional mida × mida amb l'estat inicial
 	 * @param num_fitxes_a La quantitat de fitxes que té el jugador A al tauler
 	 * @param num_fitxes_b La quantitat de fitxes que té el jugador B al tauler
 	 */
@@ -70,7 +70,7 @@ public abstract class Tauler implements Serializable
 
 	/**
 	 * Constructor per còpia. Crea un nou tauler idèntic a original.
-	 *
+	 * 
 	 * @param original Tauler que es vol copiar
 	 */
 	public Tauler( Tauler original )
@@ -88,7 +88,7 @@ public abstract class Tauler implements Serializable
 
 	/**
 	 * Consulta la mida del tauler
-	 *
+	 * 
 	 * @return La mida del tauler
 	 */
 	public int getMida()
@@ -98,8 +98,8 @@ public abstract class Tauler implements Serializable
 
 	/**
 	 * Comprova si una casella és vàlida dins el tauler
-	 *
-	 * @param fila    Fila de la casella dins el tauler.
+	 * 
+	 * @param fila Fila de la casella dins el tauler.
 	 * @param columna Columna de la casella dins el tauler.
 	 * @return Cert si la posició (fila, columna) és una casella vàlida. Fals altrament.
 	 */
@@ -110,7 +110,7 @@ public abstract class Tauler implements Serializable
 
 	/**
 	 * Consulta si el tauler és buit
-	 *
+	 * 
 	 * @return Cert si el tauler no té cap fitxa. Fals altrament.
 	 */
 	public boolean esBuit()
@@ -120,7 +120,7 @@ public abstract class Tauler implements Serializable
 
 	/**
 	 * Consulta les fitxes del jugador A.
-	 *
+	 * 
 	 * @return La quantitat de fitxes del jugador A.
 	 */
 	public int getNumFitxesA()
@@ -130,7 +130,7 @@ public abstract class Tauler implements Serializable
 
 	/**
 	 * Consulta les fitxes del jugador B.
-	 *
+	 * 
 	 * @return La quantitat de fitxes del jugador A.
 	 */
 	public int getNumFitxesB()
@@ -140,7 +140,7 @@ public abstract class Tauler implements Serializable
 
 	/**
 	 * Consulta la quantitat de fitxes que hi ha al tauler.
-	 *
+	 * 
 	 * @return La quantitat total de fitxes que tenen els dos jugadors al tauler.
 	 */
 	public int getTotalFitxes()
@@ -150,8 +150,8 @@ public abstract class Tauler implements Serializable
 
 	/**
 	 * Consulta l'estat d'una casella del tauler.
-	 *
-	 * @param fila    Fila de la casella del tauler que es vol consultar.
+	 * 
+	 * @param fila Fila de la casella del tauler que es vol consultar.
 	 * @param columna Columna de la casella del tauler que es vol consultar.
 	 * @return L'estat actual de la casella.
 	 */
@@ -167,9 +167,9 @@ public abstract class Tauler implements Serializable
 
 	/**
 	 * Canvia l'estat d'una casella i actualitza els comptadors.
-	 *
-	 * @param e       Estat nou de la casella
-	 * @param fila    Fila de la casella del tauler que canvia d'estat
+	 * 
+	 * @param e Estat nou de la casella
+	 * @param fila Fila de la casella del tauler que canvia d'estat
 	 * @param columna Columna de la casella del tauler que canvia d'estat
 	 * @return Cert si el canvi ha estat realitzat amb èxit. Fals altrament.
 	 */
@@ -206,30 +206,29 @@ public abstract class Tauler implements Serializable
 
 	/**
 	 * Comprova si un moviment és vàlid.
-	 *
-	 * @param fitxa   Fitxa que es vol comprovar
-	 * @param fila    Fila de la casella dins el tauler
+	 * 
+	 * @param fitxa Fitxa que es vol comprovar
+	 * @param fila Fila de la casella dins el tauler
 	 * @param columna Columna de la casella dins el tauler.
 	 * @return Cert si el moviment és vàlid. Fals altrament.
 	 * @throws IndexOutOfBoundsException si (fila, columna) no és una casella vàlida.
-	 * @throws IllegalArgumentException  si fitxa no és de cap jugador (és EstatCasella.BUIDA).
+	 * @throws IllegalArgumentException si fitxa no és de cap jugador (és EstatCasella.BUIDA).
 	 */
 	public abstract boolean esMovimentValid( EstatCasella fitxa, int fila, int columna )
 			throws IndexOutOfBoundsException, IllegalArgumentException;
 
 	/**
 	 * Mou la fitxa a la casella indicada i actualitza els comptadors.
-	 *
-	 * @param fitxa   Fitxa que es vol col·locar.
-	 * @param fila    Fila de la casella dins el tauler.
+	 * 
+	 * @param fitxa Fitxa que es vol col·locar.
+	 * @param fila Fila de la casella dins el tauler.
 	 * @param columna Columna de la casella dins el tauler.
 	 * @return Cert si s’ha realitzat el moviment. Fals altrament.
 	 * @throws IndexOutOfBoundsException si (fila, columna) no és una casella vàlida.
-	 * @throws IllegalArgumentException  si fitxa no és de cap jugador (és EstatCasella.BUIDA)  o el moviment no és
-	 *                                   vàlid.
+	 * @throws IllegalArgumentException si fitxa no és de cap jugador (és EstatCasella.BUIDA) o el moviment no és vàlid.
 	 */
-	public boolean mouFitxa( EstatCasella fitxa, int fila, int columna )
-			throws IndexOutOfBoundsException, IllegalArgumentException
+	public boolean mouFitxa( EstatCasella fitxa, int fila, int columna ) throws IndexOutOfBoundsException,
+			IllegalArgumentException
 	{
 		if ( !esMovimentValid( fitxa, fila, columna ) )
 		{
@@ -242,12 +241,12 @@ public abstract class Tauler implements Serializable
 
 	/**
 	 * Treu la fitxa de la casella indicada i actualitza els comptadors.
-	 *
-	 * @param fila    Fila de la casella dins el tauler.
+	 * 
+	 * @param fila Fila de la casella dins el tauler.
 	 * @param columna Columna de la casella dins el tauler.
 	 * @return Cert si s’ha realitzat el moviment. Fals altrament.
 	 * @throws IndexOutOfBoundsException si (fila, columna) no és una casella vàlida.
-	 * @throws IllegalArgumentException  si la casella és buida (és EstatCasella.BUIDA).
+	 * @throws IllegalArgumentException si la casella és buida (és EstatCasella.BUIDA).
 	 */
 	public boolean treuFitxa( int fila, int columna ) throws IndexOutOfBoundsException, IllegalArgumentException
 	{
@@ -262,12 +261,12 @@ public abstract class Tauler implements Serializable
 
 	/**
 	 * Intercanvia la fitxa d'una casella amb la de l'altre jugador i actualitza els comptadors.
-	 *
-	 * @param fila    Fila de la casella dins el tauler.
+	 * 
+	 * @param fila Fila de la casella dins el tauler.
 	 * @param columna Columna de la casella dins el tauler.
 	 * @return Cert si s'ha intercanviat la fitxa. Fals altrament.
 	 * @throws IndexOutOfBoundsException si (fila, columna) no és una casella vàlida.
-	 * @throws IllegalArgumentException  si la casella és buida (és EstatCasella.BUIDA).
+	 * @throws IllegalArgumentException si la casella és buida (és EstatCasella.BUIDA).
 	 */
 	public boolean intercanviaFitxa( int fila, int columna ) throws IndexOutOfBoundsException, IllegalArgumentException
 	{
@@ -288,13 +287,13 @@ public abstract class Tauler implements Serializable
 
 	/**
 	 * Crea un String amb tota la informació del tauler.
-	 *
+	 * 
 	 * @return El String amb la informació completa del tauler.
 	 */
 	public String toString()
 	{
-		String informacio = "[Mida: " + mida + ", num. fitxes jugador A: " + num_fitxes_a + ", " +
-		                    "num. fitxes jugador B: " + num_fitxes_b + ", estat de les caselles:\n";
+		String informacio = "[Mida: " + mida + ", num. fitxes jugador A: " + num_fitxes_a + ", "
+				+ "num. fitxes jugador B: " + num_fitxes_b + ", estat de les caselles:\n";
 
 		for ( EstatCasella[] fila : caselles )
 		{

@@ -159,14 +159,14 @@ public abstract class Partida implements Serializable
 	}
 
 	/**
-	 * Mètode consultor de l'estat de la partida. Els paràmetres permeten aportar informació a sobre de l'últim
-	 * moviment d'interès realitzat (normalment l'últim realitzat correctament)
+	 * Mètode consultor de l'estat de la partida. Els paràmetres permeten aportar informació a sobre de l'últim moviment
+	 * d'interès realitzat (normalment l'últim realitzat correctament)
 	 * 
 	 * @param fila Fila del moviment d'interès
 	 * @param columna Col·lumna del moviment d'interès
 	 * @return L'estat de la partida
 	 * @throws IndexOutOfBoundsException si (fila, columna) no és una coordenada dins dels límits del tauler on es
-	 * desenvolupa la partida
+	 *         desenvolupa la partida
 	 */
 	public abstract EstatPartida comprovaEstatPartida( int fila, int columna ) throws IndexOutOfBoundsException;
 
@@ -174,8 +174,8 @@ public abstract class Partida implements Serializable
 	 * Mètode modificador del jugador A
 	 * 
 	 * @param jugador_a Usuari que farà de jugador A
-	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveït
-	 * no és vàlid
+	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveït no
+	 *         és vàlid
 	 */
 	public boolean setJugadorA( Usuari jugador_a )
 	{
@@ -187,8 +187,8 @@ public abstract class Partida implements Serializable
 	 * Mètode modificador del jugador B
 	 * 
 	 * @param jugador_b Usuari que farà de jugador B
-	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveït
-	 * no és vàlid
+	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveït no
+	 *         és vàlid
 	 */
 	public boolean setJugadorB( Usuari jugador_b )
 	{
@@ -200,8 +200,8 @@ public abstract class Partida implements Serializable
 	 * Mètode modificador del tauler
 	 * 
 	 * @param tauler Tauler on es desenvoluparà la partida
-	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveït
-	 * no és vàlid
+	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveït no
+	 *         és vàlid
 	 */
 	public boolean setTauler( Tauler tauler )
 	{
@@ -213,8 +213,8 @@ public abstract class Partida implements Serializable
 	 * Mètode modificador del nombre de torns jugats
 	 * 
 	 * @param torns_jugats Nombre de torns jugats
-	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveït
-	 * no és vàlid
+	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveït no
+	 *         és vàlid
 	 */
 	public boolean setTornsJugats( int torns_jugats )
 	{
@@ -226,8 +226,8 @@ public abstract class Partida implements Serializable
 	 * Mètode modificador de la data i hora de creació
 	 * 
 	 * @param data_creacio Data i hora de creació
-	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveït
-	 * no és vàlid
+	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveït no
+	 *         és vàlid
 	 */
 	public boolean setDataCreacio( Date data_creacio )
 	{
@@ -239,8 +239,8 @@ public abstract class Partida implements Serializable
 	 * Mètode modificador del nom de la partida
 	 * 
 	 * @param nom Nom de la partida
-	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveït
-	 * no és vàlid
+	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveït no
+	 *         és vàlid
 	 */
 	public boolean setNom( String nom )
 	{
@@ -252,8 +252,8 @@ public abstract class Partida implements Serializable
 	 * Mètode modificador de l'estat de finalització de la partida
 	 * 
 	 * @param finalitzada Indica si la partida ha estat finalitzada o no
-	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveït
-	 * no és vàlid
+	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveït no
+	 *         és vàlid
 	 */
 	public boolean setFinalitzada( boolean finalitzada )
 	{
@@ -265,8 +265,8 @@ public abstract class Partida implements Serializable
 	 * Incrementa el nombre de torns jugats en la quantitat indicada
 	 * 
 	 * @param quantitat Quantitat en la que incrementar el nombre actual de torns jugats
-	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveït
-	 * no és vàlid
+	 * @return <em>true</em> si el canvi s'ha realitzat, </em>false</em> si no s'ha realitzat ja que el valor proveït no
+	 *         és vàlid
 	 */
 	public boolean incrementaTornsJugats( int quantitat )
 	{

@@ -1,6 +1,5 @@
 package prop.gomoku.tests;
 
-import java.util.Date;
 import java.util.Random;
 
 import prop.cluster.domini.models.Usuari;
@@ -21,14 +20,11 @@ public class Test
 		int[] coordenades_adjacents = { -1, 0, 1 };
 		do
 		{
-			// System.out.println("x = " + fila + ", y = " + columna);
 			Random aleatori = new Random();
 			k = (int) Math.round( aleatori.nextDouble() * 2 );
 			l = (int) Math.round( aleatori.nextDouble() * 2 );
-			// System.out.println("k = " + k + ", l = " + l);
 			k = fila + coordenades_adjacents[k];
 			l = columna + coordenades_adjacents[l];
-			// System.out.println("x = " + k + ", y = " + l + "\n");
 		} while ( k < 0 || l < 0 || k >= mida || l >= mida || ( k == fila && l == columna ) );
 		int[] moviment_aleatori = { k, l };
 		return moviment_aleatori;
@@ -44,9 +40,7 @@ public class Test
 			Random aleatori = new Random();
 			moviment_aleatori[0] = (int) Math.round( aleatori.nextDouble() * ( mida - 1 ) );
 			moviment_aleatori[1] = (int) Math.round( aleatori.nextDouble() * ( mida - 1 ) );
-			// System.out.println("x = " + moviment_aleatori[0] + ", y = " + moviment_aleatori[1] + "\n");
 			estat = tauler.getEstatCasella( moviment_aleatori[0], moviment_aleatori[1] );
-			// System.out.println(estat.toString());
 		} while ( estat != EstatCasella.BUIDA );
 		return moviment_aleatori;
 	}
@@ -174,9 +168,8 @@ public class Test
 		System.out.print( "\nSi us plau " + jugador.getNom() + ", indiqui el nom que vol posar a la partida: " );
 		LecturaBuffers dada_buffer = new LecturaBuffers();
 		String nom_partida = dada_buffer.llegirString();
-		PartidaGomoku partida = new PartidaGomoku( jugador, oponent, new TaulerGomoku(), 0, new Date(), nom_partida,
-				false );
-		System.out.println( "\nLa partida que s'està a punt de disputar s'anomena " + partida.getNom() + "\n");
+		PartidaGomoku partida = new PartidaGomoku( jugador, oponent, new TaulerGomoku(), nom_partida );
+		System.out.println( "\nLa partida que s'està a punt de disputar s'anomena " + partida.getNom() + "\n" );
 
 		EstatPartida estat_partida = EstatPartida.NO_FINALITZADA;
 		EstatCasella fitxa = EstatCasella.BUIDA;
@@ -189,26 +182,26 @@ public class Test
 		{
 			int torn_actual = partida.getTornsJugats() + 1;
 			fitxa = ( torn_actual % 2 == 1 ) ? EstatCasella.JUGADOR_A : EstatCasella.JUGADOR_B;
-			if (color_fitxes == 1 && torn_actual % 2 == 1)
+			if ( color_fitxes == 1 && torn_actual % 2 == 1 )
 			{
 				nom_jugador_actual = nom_jugador;
 			}
-			
-			else if (color_fitxes == 1 && torn_actual % 2 == 0)
+
+			else if ( color_fitxes == 1 && torn_actual % 2 == 0 )
 			{
 				nom_jugador_actual = oponent.getNom();
 			}
-			
-			else if (color_fitxes == 2 && torn_actual % 2 == 1)
+
+			else if ( color_fitxes == 2 && torn_actual % 2 == 1 )
 			{
 				nom_jugador_actual = oponent.getNom();
 			}
-			
+
 			else
 			{
 				nom_jugador_actual = nom_jugador;
 			}
-			
+
 			System.out.println( "/* TORN " + torn_actual + " */" );
 			System.out.println( nom_jugador_actual + ", és el seu torn." );
 
@@ -257,7 +250,7 @@ public class Test
 				fila = dada.llegirInt();
 				columna = dada.llegirInt();
 			}
-			
+
 			if ( tauler.esMovimentValid( fitxa, fila, columna ) )
 			{
 				tauler.mouFitxa( fitxa, fila, columna );
@@ -269,6 +262,7 @@ public class Test
 						.println( "\n------------------------------------------------------------------------------------------\n" );
 			}
 		}
+
 		switch ( estat_partida )
 		{
 			case EMPAT:
