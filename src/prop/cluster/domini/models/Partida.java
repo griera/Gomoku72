@@ -273,20 +273,18 @@ public abstract class Partida implements Serializable
 		this.torns_jugats += quantitat;
 		return true;
 	}
-	
+
 	/**
 	 * Crea un String amb informació de la partida.
 	 * 
 	 * @return Text amb informació de la partida
 	 */
 	@Override
-	public String toString() {
-		String text = "[nom: " + this.nom +
-				", jugador A: " + this.jugador_a.getNom() +
-				", jugador B: " + this.jugador_b.getNom() +
-				", mida tauler: " + this.tauler.getMida() +
-				", data creació: " + this.data_creacio.toString() +
-				", finalitzada: " + this.finalitzada;
+	public String toString()
+	{
+		String text = "[nom: " + this.nom + ", jugador A: " + this.jugador_a.getNom() + ", jugador B: "
+				+ this.jugador_b.getNom() + ", mida tauler: " + this.tauler.getMida() + ", data creació: "
+				+ this.data_creacio.toString() + ", finalitzada: " + this.finalitzada;
 		return text;
 	}
 }
