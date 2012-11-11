@@ -45,57 +45,6 @@ public class Test
 		return moviment_aleatori;
 	}
 
-	static void pintaTauler( TaulerGomoku tauler )
-	{
-		int mida = tauler.getMida();
-		System.out.print( "   " );
-		for ( int k = 0; k < mida; ++k )
-		{
-			System.out.print( " " );
-			if ( k <= 9 )
-			{
-				System.out.print( " " + k );
-			}
-
-			else
-			{
-				System.out.print( k );
-			}
-		}
-
-		System.out.println();
-		for ( int fila = 0; fila < mida; ++fila )
-		{
-			System.out.print( fila + ":  " );
-			if ( fila <= 9 )
-			{
-				System.out.print( " " );
-			}
-
-			for ( int columna = 0; columna < mida; ++columna )
-			{
-				EstatCasella estat = tauler.getEstatCasella( fila, columna );
-				switch ( estat )
-				{
-					case BUIDA:
-						System.out.print( ".  " );
-						break;
-
-					case JUGADOR_A:
-						System.out.print( "X  " );
-						break;
-
-					case JUGADOR_B:
-						System.out.print( "O  " );
-						break;
-				}
-
-			}
-			System.out.println();
-		}
-		System.out.println();
-	}
-
 	public static void main( String[] args )
 	{
 		System.out.println( "/*************************************/" );
@@ -257,9 +206,8 @@ public class Test
 				estat_partida = partida.comprovaEstatPartida( fila, columna );
 				partida.incrementaTornsJugats( 1 );
 				System.out.println( "Ara el tauler te " + tauler.getTotalFitxes() + " interseccio(ns) ocupada(es)\n" );
-				pintaTauler( tauler );
-				System.out
-						.println( "\n------------------------------------------------------------------------------------------\n" );
+				tauler.pinta();
+				System.out.println( "\n--------------------------------------------------------------------------\n" );
 			}
 		}
 
@@ -272,22 +220,12 @@ public class Test
 				System.out.println( "/********************************/" );
 				break;
 
-			case GUANYA_JUGADOR_A:
-				System.out.println( "/********************************/" );
-				System.out.println( "      PARTIDA FINALITZADA         " );
-				System.out.println( "    RESULTAT => GUANYA " + nom_jugador_actual + "      " );
-				System.out.println( "/********************************/" );
-				break;
-
-			case GUANYA_JUGADOR_B:
-				System.out.println( "/********************************/" );
-				System.out.println( "      PARTIDA FINALITZADA         " );
-				System.out.println( "    RESULTAT => GUANYA " + nom_jugador_actual + "      " );
-				System.out.println( "/********************************/" );
-				break;
-
 			default:
-				break;
+				System.out.println( "/********************************/" );
+				System.out.println( "      PARTIDA FINALITZADA         " );
+				System.out.println( "    RESULTAT => GUANYA " + nom_jugador_actual + "      " );
+				System.out.println( "/********************************/" );
+				break;			
 		}
 	}
 }

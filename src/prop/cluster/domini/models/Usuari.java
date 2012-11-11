@@ -44,9 +44,9 @@ public class Usuari implements Serializable
     {
         this.nom = nom ;
         this.contrasenya = contrasenya;
-        num_victories = new int[dificultat];
-        num_empats = new int[dificultat];
-        num_derrotes = new int[dificultat];
+	num_victories = new int[dificultat];
+	num_empats = new int[dificultat];
+	num_derrotes = new int[dificultat];
         int i = 0;
         while ( i < dificultat ) 
         {
