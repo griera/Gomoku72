@@ -140,5 +140,55 @@ public class TaulerGomoku extends Tauler
 
 		return true;
 	}
+	
+	public void pinta()
+	{
+		int mida = this.getMida();
+		System.out.print( "   " );
+		for ( int k = 0; k < mida; ++k )
+		{
+			System.out.print( " " );
+			if ( k <= 9 )
+			{
+				System.out.print( " " + k );
+			}
 
+			else
+			{
+				System.out.print( k );
+			}
+		}
+
+		System.out.println();
+		for ( int fila = 0; fila < mida; ++fila )
+		{
+			System.out.print( fila + ":  " );
+			if ( fila <= 9 )
+			{
+				System.out.print( " " );
+			}
+
+			for ( int columna = 0; columna < mida; ++columna )
+			{
+				EstatCasella estat = this.getEstatCasella( fila, columna );
+				switch ( estat )
+				{
+					case BUIDA:
+						System.out.print( ".  " );
+						break;
+
+					case JUGADOR_A:
+						System.out.print( "X  " );
+						break;
+
+					case JUGADOR_B:
+						System.out.print( "O  " );
+						break;
+				}
+
+			}
+			System.out.println();
+		}
+		System.out.println();
+	}
 }

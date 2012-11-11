@@ -1,5 +1,7 @@
 package prop.gomoku.domini.controladors;
 
+import java.util.Random;
+
 import prop.cluster.domini.controladors.InteligenciaArtificial;
 import prop.cluster.domini.models.Tauler;
 import prop.cluster.domini.models.estats.EstatCasella;
@@ -473,5 +475,37 @@ public class IAGomoku extends InteligenciaArtificial
 			}
 			return avaluacio_blanc - avaluacio_negre;
 		}
+	}
+	
+	public int[] movimentAdjacentAleatori( int fila, int columna, int mida )
+	{
+		int k;
+		int l;
+		int[] coordenades_adjacents = { -1, 0, 1 };
+		do
+		{
+			Random aleatori = new Random();
+			k = (int) Math.round( aleatori.nextDouble() * 2 );
+			l = (int) Math.round( aleatori.nextDouble() * 2 );
+			k = fila + coordenades_adjacents[k];
+			l = columna + coordenades_adjacents[l];
+		} while ( k < 0 || l < 0 || k >= mida || l >= mida || ( k == fila && l == columna ) );
+		int[] moviment_aleatori = { k, l };
+		return moviment_aleatori;
+	}
+
+	public int[] movimentAleatori( TaulerGomoku tauler )
+	{
+		int[] moviment_aleatori = new int[2];
+		int mida = tauler.getMida();
+		EstatCasella estat;
+		do
+		{
+			Random aleatori = new Random();
+			moviment_aleatori[0] = (int) Math.round( aleatori.nextDouble() * ( mida - 1 ) );
+			moviment_aleatori[1] = (int) Math.round( aleatori.nextDouble() * ( mida - 1 ) );
+			estat = tauler.getEstatCasella( moviment_aleatori[0], moviment_aleatori[1] );
+		} while ( estat != EstatCasella.BUIDA );
+		return moviment_aleatori;
 	}
 }
