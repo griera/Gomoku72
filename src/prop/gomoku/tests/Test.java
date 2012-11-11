@@ -1,7 +1,5 @@
 package prop.gomoku.tests;
 
-import java.util.Random;
-
 import prop.cluster.domini.models.Usuari;
 import prop.cluster.domini.models.estats.EstatCasella;
 import prop.cluster.domini.models.estats.EstatPartida;
@@ -13,38 +11,6 @@ import prop.gomoku.domini.models.TaulerGomoku;
 
 public class Test
 {
-	static int[] movimentAdjacentAleatori( int fila, int columna, int mida )
-	{
-		int k;
-		int l;
-		int[] coordenades_adjacents = { -1, 0, 1 };
-		do
-		{
-			Random aleatori = new Random();
-			k = (int) Math.round( aleatori.nextDouble() * 2 );
-			l = (int) Math.round( aleatori.nextDouble() * 2 );
-			k = fila + coordenades_adjacents[k];
-			l = columna + coordenades_adjacents[l];
-		} while ( k < 0 || l < 0 || k >= mida || l >= mida || ( k == fila && l == columna ) );
-		int[] moviment_aleatori = { k, l };
-		return moviment_aleatori;
-	}
-
-	static int[] movimentAleatori( TaulerGomoku tauler )
-	{
-		int[] moviment_aleatori = new int[2];
-		int mida = tauler.getMida();
-		EstatCasella estat;
-		do
-		{
-			Random aleatori = new Random();
-			moviment_aleatori[0] = (int) Math.round( aleatori.nextDouble() * ( mida - 1 ) );
-			moviment_aleatori[1] = (int) Math.round( aleatori.nextDouble() * ( mida - 1 ) );
-			estat = tauler.getEstatCasella( moviment_aleatori[0], moviment_aleatori[1] );
-		} while ( estat != EstatCasella.BUIDA );
-		return moviment_aleatori;
-	}
-
 	public static void main( String[] args )
 	{
 		System.out.println( "/*************************************/" );
@@ -167,7 +133,7 @@ public class Test
 
 				else if ( torn_actual == 2 )
 				{
-					moviment_maquina = movimentAdjacentAleatori( fila, columna, mida );
+					moviment_maquina = maquina.movimentAdjacentAleatori( fila, columna, mida );
 				}
 
 				else
@@ -182,7 +148,7 @@ public class Test
 					{
 						System.out.print( nom_jugador_actual + "s'ha rendit perquè ja ha perdut matemàticament." );
 						System.out.println( " Farà un moviment aleatori:" );
-						moviment_maquina = movimentAleatori( tauler );
+						moviment_maquina = maquina.movimentAleatori( tauler );
 						System.out.println( "fila: " + moviment_maquina[0] + ", col·lumna: " + moviment_maquina[1] );
 					}
 				}
