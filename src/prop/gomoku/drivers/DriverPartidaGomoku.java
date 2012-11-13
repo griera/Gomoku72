@@ -25,7 +25,7 @@ public class DriverPartidaGomoku
 		System.out.println( "1. Inicialitza" );
 		System.out.println( "2. Consulta" );
 		System.out.println( "3. Modifica" );
-		System.out.println();
+		System.out.println( "4. Surt");
 		return lectura.llegirInt();
 	}
 
@@ -37,7 +37,7 @@ public class DriverPartidaGomoku
 		String nom_a = lectura.llegirString();
 		System.out.println( "Introdueix el nom del jugador B: " );
 		String nom_b = lectura.llegirString();
-		System.out.println("Introduex el nom de la partida: ");
+		System.out.println( "Introduex el nom de la partida: " );
 		String nom_partida = lectura.llegirString();
 		jugador_a = new Usuari( nom_a, "", 0 );
 		jugador_b = new Usuari( nom_b, "", 0 );
@@ -62,15 +62,16 @@ public class DriverPartidaGomoku
 
 	private static void modifica()
 	{
-		System.out.println("Modificació PartidaGomoku");
-		System.out.println("-------------------------");
-		System.out.println("1. Modifica");
+		System.out.println( "Modificació PartidaGomoku" );
+		System.out.println( "-------------------------" );
+		System.out.println( "1. Modifica" );
 		System.out.println();
 	}
 
 	public static void main( String[] args )
 	{
-		while ( true )
+		boolean finalitza = false;
+		while ( !finalitza )
 		{
 			switch ( menuPrincipal() )
 			{
@@ -83,6 +84,8 @@ public class DriverPartidaGomoku
 				case 3:
 					modifica();
 					break;
+				case 4:
+					finalitza = true;
 				default:
 					break;
 			}
