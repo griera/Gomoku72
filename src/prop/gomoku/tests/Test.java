@@ -139,7 +139,7 @@ public class Test
 				else
 				{
 					long temps_inical = System.nanoTime();
-					moviment_maquina = maquina.minimax( partida, fitxa, 2 );
+					moviment_maquina = maquina.minimax( partida, fitxa, 3 );
 					long temps_final = System.nanoTime();
 					System.out.println( "Temps que ha tardat " + nom_jugador_actual + " en moure: "
 							+ ( ( temps_final - temps_inical ) / 1000000000.0 ) + " segons" );
