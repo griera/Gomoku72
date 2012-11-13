@@ -369,18 +369,21 @@ public class IAGomoku extends InteligenciaArtificial
 				}
 			}
 
-			if ( fitxa_jugador == EstatCasella.JUGADOR_A && tauler.getTotalFitxes() % 2 == 1 )
+			if ( fitxa_jugador == EstatCasella.JUGADOR_A )
 			{
-				if ( opcions_linia_total[1][0] > 0 || opcions_linia_total[1][1] > 0 || opcions_linia_total[1][2] > 0
-						|| opcions_linia_total[1][3] > 0 || opcions_linia_total[1][6] > 0 )
+				if ( opcions_linia_total[1][1] > 0 || opcions_linia_total[1][2] > 0 || opcions_linia_total[1][3] > 0 
+						|| opcions_linia_total[1][6] > 0 )
 				{
 					return Integer.MIN_VALUE;
 				}
 
-				if ( opcions_linia_total[0][0] > 0 || opcions_linia_total[0][1] > 0 || opcions_linia_total[0][2] > 0
-						|| opcions_linia_total[0][3] > 0 )
+				if ( opcions_linia_total[0][1] > 0 || opcions_linia_total[0][2] > 0 || opcions_linia_total[0][3] > 0 )
 				{
-					return Integer.MAX_VALUE;
+					/* Restem una unitat al valor màxim dels enters per evitar que, si el jugador màquina 
+					 * ja té la victòria garantida, faci moviments sense lògica fins que el seu oponent no
+					 * intenti contrarestar aquesta situació.
+					 */ 
+					return Integer.MAX_VALUE - 1;
 				}
 
 				if ( opcions_linia_total[1][4] > 0 || opcions_linia_total[1][5] > 0 || opcions_linia_total[1][6] > 0
@@ -390,73 +393,21 @@ public class IAGomoku extends InteligenciaArtificial
 				}
 			}
 
-			if ( fitxa_jugador == EstatCasella.JUGADOR_A && tauler.getTotalFitxes() % 2 == 0 )
+			if ( fitxa_jugador == EstatCasella.JUGADOR_B )
 			{
-				if ( opcions_linia_total[0][0] > 0 || opcions_linia_total[0][1] > 0 || opcions_linia_total[0][2] > 0
-						|| opcions_linia_total[0][3] > 0 )
-				{
-					return Integer.MAX_VALUE;
-				}
-
-				if ( opcions_linia_total[1][0] > 0 || opcions_linia_total[1][1] > 0 || opcions_linia_total[1][2] > 0
-						|| opcions_linia_total[1][3] > 0 )
+				if ( opcions_linia_total[0][1] > 0 || opcions_linia_total[0][2] > 0 || opcions_linia_total[0][3] > 0 
+						|| opcions_linia_total[0][6] > 0 )
 				{
 					return Integer.MIN_VALUE;
 				}
 
-				if ( opcions_linia_total[0][4] > 0 || opcions_linia_total[0][5] > 0 || opcions_linia_total[0][6] > 0
-						|| opcions_linia_total[0][7] > 0 || opcions_linia_total[0][13] > 0 )
+				if ( opcions_linia_total[1][1] > 0 || opcions_linia_total[1][2] > 0 || opcions_linia_total[1][3] > 0 )
 				{
-					return Integer.MAX_VALUE;
-				}
-
-				if ( opcions_linia_total[1][4] > 0 || opcions_linia_total[1][5] > 0 || opcions_linia_total[1][6] > 0
-						|| opcions_linia_total[1][7] > 0 || opcions_linia_total[1][13] > 0 )
-				{
-					return Integer.MIN_VALUE;
-				}
-
-			}
-
-			if ( fitxa_jugador == EstatCasella.JUGADOR_B && tauler.getTotalFitxes() % 2 == 0 )
-			{
-				if ( opcions_linia_total[0][0] > 0 || opcions_linia_total[0][1] > 0 || opcions_linia_total[0][2] > 0
-						|| opcions_linia_total[0][3] > 0 || opcions_linia_total[0][6] > 0 )
-				{
-					return Integer.MIN_VALUE;
-				}
-
-				if ( opcions_linia_total[1][0] > 0 || opcions_linia_total[1][1] > 0 || opcions_linia_total[1][2] > 0
-						|| opcions_linia_total[1][3] > 0 )
-				{
-					return Integer.MAX_VALUE;
-				}
-
-				if ( opcions_linia_total[0][4] > 0 || opcions_linia_total[0][5] > 0 || opcions_linia_total[0][6] > 0
-						|| opcions_linia_total[0][7] > 0 || opcions_linia_total[0][13] > 0 )
-				{
-					return Integer.MIN_VALUE;
-				}
-			}
-
-			if ( fitxa_jugador == EstatCasella.JUGADOR_B && tauler.getTotalFitxes() % 2 == 1 )
-			{
-				if ( opcions_linia_total[1][0] > 0 || opcions_linia_total[1][1] > 0 || opcions_linia_total[1][2] > 0
-						|| opcions_linia_total[1][3] > 0 )
-				{
-					return Integer.MAX_VALUE;
-				}
-
-				if ( opcions_linia_total[0][0] > 0 || opcions_linia_total[0][1] > 0 || opcions_linia_total[0][2] > 0
-						|| opcions_linia_total[0][3] > 0 )
-				{
-					return Integer.MIN_VALUE;
-				}
-
-				if ( opcions_linia_total[1][4] > 0 || opcions_linia_total[1][5] > 0 || opcions_linia_total[1][6] > 0
-						|| opcions_linia_total[1][7] > 0 || opcions_linia_total[1][13] > 0 )
-				{
-					return Integer.MAX_VALUE;
+					/* Restem una unitat al valor màxim dels enters per evitar que, si el jugador màquina 
+					 * ja té la victòria garantida, faci moviments sense lògica fins que el seu oponent no
+					 * intenti contrarestar aquesta situació.
+					 */ 
+					return Integer.MAX_VALUE - 1;
 				}
 
 				if ( opcions_linia_total[0][4] > 0 || opcions_linia_total[0][5] > 0 || opcions_linia_total[0][6] > 0

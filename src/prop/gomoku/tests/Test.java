@@ -166,15 +166,26 @@ public class Test
 				columna = dada.llegirInt();
 			}
 
-			if ( tauler.esMovimentValid( fitxa, fila, columna ) )
+			try
 			{
 				tauler.mouFitxa( fitxa, fila, columna );
-				estat_partida = partida.comprovaEstatPartida( fila, columna );
-				partida.incrementaTornsJugats( 1 );
-				System.out.println( "Ara el tauler te " + tauler.getTotalFitxes() + " interseccio(ns) ocupada(es)\n" );
-				tauler.pinta();
-				System.out.println( "\n--------------------------------------------------------------------------\n" );
+			} catch ( IndexOutOfBoundsException excepcio )
+			{
+				System.out.println( excepcio.getMessage() + ".\nSi us plau " + nom_jugador_actual + ", torni a "
+						+ "moure al seva fitxa en una posició vàlida del tauler.\n" );
+				continue;
+			} catch ( IllegalArgumentException excepcio )
+			{
+				System.out.println( excepcio.getMessage() + ".\nSi us plau " + nom_jugador_actual
+						+ ", torni a moure al seva fitxa en una posició vàlida del tauler.\n" );
+				continue;
 			}
+
+			estat_partida = partida.comprovaEstatPartida( fila, columna );
+			partida.incrementaTornsJugats( 1 );
+			System.out.println( "Ara el tauler te " + tauler.getTotalFitxes() + " interseccio(ns) ocupada(es)\n" );
+			tauler.pinta();
+			System.out.println( "\n------------------------------------------------------------------------------\n" );
 		}
 
 		switch ( estat_partida )
@@ -191,7 +202,7 @@ public class Test
 				System.out.println( "      PARTIDA FINALITZADA         " );
 				System.out.println( "    RESULTAT => GUANYA " + nom_jugador_actual + "      " );
 				System.out.println( "/********************************/" );
-				break;			
+				break;
 		}
 	}
 }
