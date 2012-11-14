@@ -13,6 +13,10 @@ import java.io.Serializable;
 public class Usuari implements Serializable
 {
     /**
+	 * ID de serialització
+	 */
+	private static final long serialVersionUID = -6931949087273294500L;
+	/**
     * Nom (Identificador) de l'usuari.
     */
     protected String nom;
@@ -44,16 +48,16 @@ public class Usuari implements Serializable
     {
         this.nom = nom ;
         this.contrasenya = contrasenya;
-	num_victories = new int[dificultat];
-	num_empats = new int[dificultat];
-	num_derrotes = new int[dificultat];
-        int i = 0;
-        while ( i < dificultat ) 
+        this.num_victories = new int[dificultat];
+        this.num_empats = new int[dificultat];
+        this.num_derrotes = new int[dificultat];
+        
+
+        for (int i = 0; i < dificultat; i++)
         {
-            num_victories[i] = 0;
-            num_empats[i] = 0;
-            num_derrotes[i] = 0;
-            i = i + 1;
+            this.num_victories[i] = 0;
+            this.num_empats[i] = 0;
+            this.num_derrotes[i] = 0;
         }
     }
 
@@ -84,7 +88,7 @@ public class Usuari implements Serializable
     */
     public String getNom () 
     {
-        return nom;
+        return this.nom;
     }
 
     /**
@@ -92,7 +96,7 @@ public class Usuari implements Serializable
     */
     public String getContrasenya () 
     {
-        return contrasenya;
+        return this.contrasenya;
     }
 
     /**
@@ -103,7 +107,7 @@ public class Usuari implements Serializable
      */
     public int getVictories ( int contrincant ) 
     {
-        return num_victories[contrincant];
+        return this.num_victories[contrincant];
     }
 
     /**
@@ -114,7 +118,7 @@ public class Usuari implements Serializable
      */
     public int getEmpats ( int contrincant ) 
     {
-        return num_empats[contrincant];
+        return this.num_empats[contrincant];
     }
 
     /**
@@ -125,7 +129,7 @@ public class Usuari implements Serializable
      */
     public int getDerrotes ( int contrincant ) 
     {
-        return num_derrotes[contrincant];
+        return this.num_derrotes[contrincant];
     }
     
     /**
@@ -136,7 +140,7 @@ public class Usuari implements Serializable
      */
     public boolean incrementaVictories ( int contrincant ) 
     {
-         num_victories[contrincant] = num_victories[contrincant] + 1;
+         this.num_victories[contrincant] += 1;
          return true;
     }
     
@@ -148,7 +152,7 @@ public class Usuari implements Serializable
      */
     public boolean incrementaEmpats ( int contrincant ) 
     {
-         num_empats[contrincant] = num_empats[contrincant] + 1;
+         this.num_empats[contrincant] += 1;
          return true;
     }
     
@@ -160,7 +164,7 @@ public class Usuari implements Serializable
      */
     public boolean incrementaDerrotes ( int contrincant ) 
     {
-         num_derrotes[contrincant] = num_derrotes[contrincant] + 1;
+         this.num_derrotes[contrincant] += 1;
          return true;
     }
     
@@ -172,9 +176,9 @@ public class Usuari implements Serializable
     public String toString() 
     {
          return "[Nom: " + nom + ", contrasenya: " + contrasenya + 
-         ", num victories: [" + obteStringDeVector( num_victories ) + 
-         "], num empats: [" + obteStringDeVector( num_empats ) + 
-         "], num derrotes: [" + obteStringDeVector( num_derrotes ) + "]]";
+         ", num victories: [" + this.obteStringDeVector( num_victories ) + 
+         "], num empats: [" + this.obteStringDeVector( num_empats ) + 
+         "], num derrotes: [" + this.obteStringDeVector( num_derrotes ) + "]]";
     }
     
     /**
@@ -201,12 +205,11 @@ public class Usuari implements Serializable
      */
     public void reiniciaEstadistiques ( int dificultat ) 
     {
-         int i;
-         for ( i = 0; i < dificultat; i++)
+         for (int i = 0; i < dificultat; i++)
          {
-              num_victories[i] = 0;
-              num_empats[i] = 0;
-              num_derrotes[i] = 0;
+              this.num_victories[i] = 0;
+              this.num_empats[i] = 0;
+              this.num_derrotes[i] = 0;
          }
     }
 }
