@@ -3,6 +3,11 @@ package prop.gomoku.domini.models;
 import prop.cluster.domini.models.Tauler;
 import prop.cluster.domini.models.estats.EstatCasella;
 
+/**
+ * Representa un tauler del joc de taula Gomoku. Aquest té 15 files i 15 col·lumnes. Té un control de les fitxes que té
+ * cada jugador al tauler i revisa que les fitxes s’afegeixen d’acord amb la normativa del Gomoku mitjançant un mètode 
+ * redefinit de la seva classe pare <code>Tauler</code>.
+ */
 public class TaulerGomoku extends Tauler
 {
 

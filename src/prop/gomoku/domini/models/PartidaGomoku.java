@@ -7,6 +7,10 @@ import prop.cluster.domini.models.Usuari;
 import prop.cluster.domini.models.estats.EstatCasella;
 import prop.cluster.domini.models.estats.EstatPartida;
 
+/**
+ * Representa una partida al joc de taula Gomoku, on juguen dos usuaris i que es desenvolupa a un tauler del propi joc 
+ * Gomoku.
+ */
 public class PartidaGomoku extends Partida
 {
 	/**
