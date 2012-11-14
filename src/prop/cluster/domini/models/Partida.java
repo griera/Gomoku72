@@ -34,7 +34,7 @@ public abstract class Partida implements Serializable
 	 */
 	protected int torns_jugats;
 	/**
-	 * Data (i hora) de creació de la partida, seveix com a identificador �nic
+	 * Data (i hora) de creació de la partida, seveix com a identificador únic
 	 */
 	protected Date data_creacio;
 	/**
