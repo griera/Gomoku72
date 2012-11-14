@@ -6,17 +6,35 @@ import prop.cluster.domini.models.estats.EstatCasella;
 public class TaulerGomoku extends Tauler
 {
 
+	/**
+	 * Mètode contructor de la classe <code>TaulerGomoku</code>. Crea un tauler de mida 15 files per 15 columnes,
+	 * seguint la normativa estàndrad del joc de Taula Gomoku.
+	 */
 	public TaulerGomoku()
 	{
 		super( 15 );
 	}
 
+	/**
+	 * Mètode que comprova si, donada la posició (<em>fila</em>, <em>columna</em>) d'una fitxa dins el tauler, existeix
+	 * al voltant d'aquesta una línia de tantes fitxes del mateix color com indica <em>limit</em>. Aquesta línia pot
+	 * estar formada en qualsevol de les direccions i sentits possibles a partir de la posició donada (vertical,
+	 * horitzonatl, les dues diagonals, i de cadascuna d'aquestes direccions els dos sentit possibles, fent un total de
+	 * 8 possibilitats de formar una línia d'exactament <em>limit</em> fitxes del mateix color).
+	 * 
+	 * @param fila Índex de la fila dins del tauler on es troba la fitxa sobre la qual volem fer la comprovació
+	 * @param columna Índex de la col·lumna dins del tauler on es troba la fitxa sobre la qual volem fer la comprovació
+	 * @param limit Nombre de fitxes seguides a comprovar si es troba formada dins del tauler.
+	 * @param estat Representa l'estat de la casella a partir de la qual fer la comprovació. 
+	 * @return Cert si, a partir de la fitxa en la posició indicada del tauler, existeix una línia de <em>límit</em>
+	 *         fitxes seguides del mateix color que <em>estat</em>. Fals altrament.
+	 */
 	public boolean teFitxesSeguides( int fila, int columna, int limit, EstatCasella estat )
 	{
 		int fitxes_seguides = 1;
 		int mida = this.mida;
 
-		// Comprovació fila
+		// Comprovació de la fila en els seus dos sentits
 		for ( int k = columna + 1; k < mida && estat == this.getEstatCasella( fila, k ); ++k )
 		{
 			++fitxes_seguides;
@@ -35,7 +53,7 @@ public class TaulerGomoku extends Tauler
 			}
 		}
 
-		// Comprovació col·lumna
+		// Comprovació de la col·lumna en els seus dos sentits
 		fitxes_seguides = 1;
 		for ( int k = fila + 1; k < mida && estat == this.getEstatCasella( k, columna ); ++k )
 		{
@@ -55,7 +73,7 @@ public class TaulerGomoku extends Tauler
 			}
 		}
 
-		// Comprovació diagonal nord-oest cap a sud-est
+		// Comprovació de la diagonal nord-oest cap a sud-est i viceversa
 		fitxes_seguides = 1;
 		for ( int k = fila + 1, l = columna + 1; k < mida && l < mida && estat == this.getEstatCasella( k, l ); ++k, ++l )
 		{
@@ -75,7 +93,7 @@ public class TaulerGomoku extends Tauler
 			}
 		}
 
-		// Comprovació diagonal nord-est cap a sud-oest
+		// Comprovació de la diagonal nord-est cap a sud-oest i viceversa
 		fitxes_seguides = 1;
 		for ( int k = fila - 1, l = columna + 1; k >= 0 && l < mida && estat == this.getEstatCasella( k, l ); --k, ++l )
 		{
@@ -137,6 +155,36 @@ public class TaulerGomoku extends Tauler
 		return true;
 	}
 	
+	
+	/**
+	 * Mètode que escriu per pantalla la representació de l'actual tauler mitjançant caràcters. Tant les files com les
+	 * col·lumnes estan indexades per proporcionar major facilitat en la lectura del tauler. El significat dels
+	 * possibles caràcters és el següent:
+	 * <ul>
+	 * <li> El caràcter '.' significa que la casella està buida
+	 * <li> El caràcter 'X' significa que la casella està ocupada per una fitxa de color negre
+	 * <li> El caràcter 'O' significa que la casella està ocupada per una fitxa de color blanca
+	 * </ul>
+	 * Exemple del format d'escriptura per a un tauler de mida 15x15 (15 files per 15 col·lumnes):
+	 * <pre>
+	 *      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
+	 * 0:   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+	 * 1:   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+	 * 2:   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+	 * 3:   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+	 * 4:   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+	 * 5:   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+	 * 6:   .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+	 * 7:   .  .  .  O  .  .  .  .  .  .  .  .  .  .  .
+	 * 8:   .  .  X  X  .  O  .  .  .  .  .  .  .  .  .
+	 * 9:   .  .  X  X  O  O  .  .  .  .  .  .  .  .  .
+	 * 10:  .  .  X  X  X  O  .  .  .  .  .  .  .  .  .
+	 * 11:  .  .  .  O  X  O  O  .  .  .  .  .  .  .  .
+	 * 12:  .  .  .  .  .  X  .  O  .  .  .  .  .  .  .
+	 * 13:  .  .  .  .  .  .  .  .  X  .  .  .  .  .  .
+	 * 14:  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+	 * </pre>
+	 */
 	public void pinta()
 	{
 		int mida = this.getMida();

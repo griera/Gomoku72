@@ -50,14 +50,13 @@ public class PartidaGomoku extends Partida
 	@Override
 	public EstatPartida comprovaEstatPartida( int fila, int columna ) throws IndexOutOfBoundsException
 	{
-		TaulerGomoku tauler = (TaulerGomoku) this.tauler;
-		EstatCasella estat = tauler.getEstatCasella( fila, columna );
 		if ( fila < 0 || fila >= this.tauler.getMida() || columna < 0 || columna >= this.tauler.getMida() )
 		{
 			throw new IndexOutOfBoundsException( "Posició indicada fora del tauler" );
 		}
 
-		else if ( tauler.teFitxesSeguides( fila, columna, 5, estat ) )
+		EstatCasella estat = this.tauler.getEstatCasella( fila, columna );
+		if ( ( (TaulerGomoku) this.tauler ).teFitxesSeguides( fila, columna, 5, estat ) )
 		{
 			if ( estat == EstatCasella.JUGADOR_A )
 			{
