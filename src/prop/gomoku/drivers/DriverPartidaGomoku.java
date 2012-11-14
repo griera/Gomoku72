@@ -31,7 +31,7 @@ public class DriverPartidaGomoku
 		jugador_a = new Usuari( "JugadorA", "passA", 2 );
 		jugador_b = new Usuari( "JugadorB", "passB", 2 );
 		tauler = new TaulerGomoku();
-		partida = new PartidaGomoku( jugador_a, jugador_b, tauler, nom_partida );
+		partida = new PartidaGomoku( jugador_a, jugador_b, tauler, "PartidaGomokuDriver" );
 		System.out.println( "Inicialitzat correctament" );
 		System.out.println();
 	}
