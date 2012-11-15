@@ -9,7 +9,7 @@ import prop.cluster.domini.models.estats.EstatPartida;
  * Representa una partida on juguen dos usuaris i que es desenvolupa a un tauler. S'identifica per la seva data i hora
  * de creació, però també té un nom assignat per facilitar la seva identificació de cara als usuaris.
  * 
- * Cont� informació relativa al nombre de torns jugats i a l'estat de finalització de la partida
+ * Conté informació relativa al nombre de torns jugats i a l'estat de finalització de la partida
  */
 public abstract class Partida implements Serializable
 {
@@ -34,7 +34,7 @@ public abstract class Partida implements Serializable
 	 */
 	protected int torns_jugats;
 	/**
-	 * Data (i hora) de creació de la partida, seveix com a identificador �nic
+	 * Data (i hora) de creació de la partida, seveix com a identificador únic
 	 */
 	protected Date data_creacio;
 	/**
