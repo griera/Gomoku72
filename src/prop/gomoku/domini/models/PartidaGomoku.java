@@ -8,16 +8,18 @@ import prop.cluster.domini.models.estats.EstatCasella;
 import prop.cluster.domini.models.estats.EstatPartida;
 
 /**
- * Representa una partida al joc de taula Gomoku, on juguen dos usuaris i que es desenvolupa a un tauler del propi joc 
+ * Representa una partida al joc de taula Gomoku, on juguen dos usuaris i que es desenvolupa a un tauler del propi joc
  * Gomoku.
  */
 public class PartidaGomoku extends Partida
 {
+	private Usuari jugador_principal;
+
 	/**
 	 * Mètode contructor d'un objecte de la classe <code>PartidaGomoku</code>. Aquest nou objecte representa una nova
-	 * partida al joc de taula Gomoku en la qual juga l'usuari <em>jugador_a</em> contra l'usuari <em>jugador_b</em>,
-	 * en un <em>tauler</em> prèviament definit, amb un nombre de <em>torns_jugats</em> ja jugats, creada exactament el
-	 * dia i hora <em>data_creacio</em>, amb el nom <em>nom</em>, i si ja ha finalitzat o no segons el valor booleà de
+	 * partida al joc de taula Gomoku en la qual juga l'usuari <em>jugador_a</em> contra l'usuari <em>jugador_b</em>, en
+	 * un <em>tauler</em> prèviament definit, amb un nombre de <em>torns_jugats</em> ja jugats, creada exactament el dia
+	 * i hora <em>data_creacio</em>, amb el nom <em>nom</em>, i si ja ha finalitzat o no segons el valor booleà de
 	 * <em>finalitzada</em>.
 	 * 
 	 * @param jugador_a Objecte de la classe <code>Usuari</code> que juga la partida.
