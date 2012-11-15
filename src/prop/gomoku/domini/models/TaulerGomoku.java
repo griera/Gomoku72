@@ -27,8 +27,8 @@ public class TaulerGomoku extends Tauler
 	 * horitzonatl, les dues diagonals, i de cadascuna d'aquestes direccions els dos sentit possibles, fent un total de
 	 * 8 possibilitats de formar una línia d'exactament <em>limit</em> fitxes del mateix color).
 	 * 
-	 * @param fila Índex de la fila dins del tauler on es troba la fitxa sobre la qual volem fer la comprovació
-	 * @param columna Índex de la col·lumna dins del tauler on es troba la fitxa sobre la qual volem fer la comprovació
+	 * @param fila Índex de la fila dins del tauler on es troba la fitxa sobre la qual volem fer la comprovació.
+	 * @param columna Índex de la col·lumna dins del tauler on es troba la fitxa sobre la qual volem fer la comprovació.
 	 * @param limit Nombre de fitxes seguides a comprovar si es troba formada dins del tauler.
 	 * @param estat Representa l'estat de la casella a partir de la qual fer la comprovació. 
 	 * @return Cert si, a partir de la fitxa en la posició indicada del tauler, existeix una línia de <em>límit</em>
