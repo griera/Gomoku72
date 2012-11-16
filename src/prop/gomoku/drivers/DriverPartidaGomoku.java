@@ -3,6 +3,7 @@ package prop.gomoku.drivers;
 import java.util.Date;
 
 import prop.cluster.domini.models.Usuari;
+import prop.gomoku.auxiliars.LecturaScanners;
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.TaulerGomoku;
 

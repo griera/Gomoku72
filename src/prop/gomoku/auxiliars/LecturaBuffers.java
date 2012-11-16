@@ -2,11 +2,10 @@ package prop.gomoku.auxiliars;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Classe qur implementa els mètodes de la interfície Lectura que permeten llegir dades entrades per teclat.
+ * Classe que implementa els mètodes de la interfície Lectura que permeten llegir dades entrades per teclat.
  * <p>
  * Llegeix tota la línia en la qual s'han introduït dades per teclat fins que es troba un salt de línia.
  * <p>
@@ -14,6 +13,17 @@ import java.io.InputStreamReader;
  */
 public class LecturaBuffers implements Lectura
 {
+
+	private BufferedReader in;
+
+	/**
+	 * 
+	 */
+	public LecturaBuffers()
+	{
+		this.in = new BufferedReader( new InputStreamReader( System.in ) );
+	}
+
 	/**
 	 * 
 	 */
@@ -24,7 +34,7 @@ public class LecturaBuffers implements Lectura
 		{
 			BufferedInputStream in = new BufferedInputStream( System.in );
 			c = (char) in.read();
-		} catch ( IOException e )
+		} catch ( Exception e )
 		{
 			System.out.println( "Error durant la lectura per teclat" );
 
@@ -41,16 +51,17 @@ public class LecturaBuffers implements Lectura
 	public byte llegirByte()
 	{
 		String s = null;
+		byte dada = 0;
 		try
 		{
-			BufferedReader in = new BufferedReader( new InputStreamReader( System.in ) );
-			s = in.readLine();
-		} catch ( IOException e )
+			s = this.in.readLine();
+			dada = Byte.parseByte( s );
+		} catch ( Exception e )
 		{
 			System.out.println( "Error durant la lectura per teclat" );
 			e.printStackTrace();
 		}
-		return Byte.parseByte( s );
+		return dada;
 	}
 
 	/**
@@ -59,16 +70,18 @@ public class LecturaBuffers implements Lectura
 	public short llegirShort()
 	{
 		String s = null;
+		Short dada = null;
 		try
 		{
-			BufferedReader in = new BufferedReader( new InputStreamReader( System.in ) );
-			s = in.readLine();
-		} catch ( IOException e )
+			s = this.in.readLine();
+			dada = Short.parseShort( s );
+
+		} catch ( Exception e )
 		{
 			System.out.println( "Error durant la lectura per teclat" );
 			e.printStackTrace();
 		}
-		return Short.parseShort( s );
+		return dada;
 	}
 
 	/**
@@ -77,16 +90,17 @@ public class LecturaBuffers implements Lectura
 	public int llegirInt()
 	{
 		String s = null;
+		int dada = 0;
 		try
 		{
-			BufferedReader in = new BufferedReader( new InputStreamReader( System.in ) );
-			s = in.readLine();
-		} catch ( IOException e )
+			s = this.in.readLine();
+			dada = Integer.parseInt( s );
+		} catch ( Exception e )
 		{
 			System.out.println( "Error durant la lectura per teclat" );
 			e.printStackTrace();
 		}
-		return Integer.parseInt( s );
+		return dada;
 	}
 
 	/**
@@ -95,16 +109,17 @@ public class LecturaBuffers implements Lectura
 	public long llegirLong()
 	{
 		String s = null;
+		Long dada = (long) 0;
 		try
 		{
-			BufferedReader in = new BufferedReader( new InputStreamReader( System.in ) );
-			s = in.readLine();
-		} catch ( IOException e )
+			s = this.in.readLine();
+			dada = Long.parseLong( s );
+		} catch ( Exception e )
 		{
 			System.out.println( "Error durant la lectura per teclat" );
 			e.printStackTrace();
 		}
-		return Long.parseLong( s );
+		return dada;
 	}
 
 	/**
@@ -113,16 +128,17 @@ public class LecturaBuffers implements Lectura
 	public float llegirFloat()
 	{
 		String s = null;
+		Float dada = (float) 0;
 		try
 		{
-			BufferedReader in = new BufferedReader( new InputStreamReader( System.in ) );
-			s = in.readLine();
-		} catch ( IOException e )
+			s = this.in.readLine();
+			dada = Float.parseFloat( s );
+		} catch ( Exception e )
 		{
 			System.out.println( "Error durant la lectura per teclat" );
 			e.printStackTrace();
 		}
-		return Float.parseFloat( s );
+		return dada;
 	}
 
 	/**
@@ -131,16 +147,17 @@ public class LecturaBuffers implements Lectura
 	public double llegirDouble()
 	{
 		String s = null;
+		Double dada = (double) 0;
 		try
 		{
-			BufferedReader in = new BufferedReader( new InputStreamReader( System.in ) );
-			s = in.readLine();
-		} catch ( IOException e )
+			s = this.in.readLine();
+			dada = Double.parseDouble( s );
+		} catch ( Exception e )
 		{
 			System.out.println( "Error durant la lectura per teclat" );
 			e.printStackTrace();
 		}
-		return Double.parseDouble( s );
+		return dada;
 	}
 
 	/**
@@ -151,9 +168,8 @@ public class LecturaBuffers implements Lectura
 		String s = null;
 		try
 		{
-			BufferedReader in = new BufferedReader( new InputStreamReader( System.in ) );
-			s = in.readLine();
-		} catch ( IOException e )
+			s = this.in.readLine();
+		} catch ( Exception e )
 		{
 			System.out.println( "Error durant la lectura per teclat" );
 			e.printStackTrace();

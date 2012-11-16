@@ -5,12 +5,13 @@ import java.util.Scanner;
 /**
  * Classe qur implementa els mètodes de la interfície Lectura que permeten llegir dades entrades per teclat.
  * <p>
- * Llegeix la dada introduïda per teclat fins que arriba a un espai en blanc. 
+ * Llegeix la dada introduïda per teclat fins que arriba a un delimitador
+ * @see java.util.Scanner
  */
 public class LecturaScanners implements Lectura
 {
 	private Scanner scanner;
-
+	
 	/**
 	 * Mètode contructor per defecte.
 	 */
@@ -26,7 +27,7 @@ public class LecturaScanners implements Lectura
 	 */
 	public char llegirChar()
 	{
-		return this.scanner.findInLine( "." ).charAt( 0 );
+		return this.scanner.next().charAt( 0 );
 	}
 
 	/**
@@ -86,7 +87,7 @@ public class LecturaScanners implements Lectura
 	 */
 	public double llegirDouble()
 	{
-		return this.scanner.nextFloat();
+		return this.scanner.nextDouble();
 	}
 
 	/**
