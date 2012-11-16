@@ -13,6 +13,10 @@ import prop.cluster.domini.models.estats.EstatPartida;
  */
 public class PartidaGomoku extends Partida
 {
+	/**
+	 * ID de serialització
+	 */
+	private static final long serialVersionUID = -3925242254167360100L;
 	private Usuari jugador_principal;
 
 	/**

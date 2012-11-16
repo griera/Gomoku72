@@ -12,6 +12,12 @@ public class TaulerGomoku extends Tauler
 {
 
 	/**
+	 * ID de serialització
+	 */
+	private static final long serialVersionUID = 2970709775673282357L;
+
+
+	/**
 	 * Mètode contructor de la classe <code>TaulerGomoku</code>. Crea un tauler de mida 15 files per 15 columnes,
 	 * seguint la normativa estàndrad del joc de Taula Gomoku.
 	 */
@@ -192,7 +198,6 @@ public class TaulerGomoku extends Tauler
 	 */
 	public void pinta()
 	{
-		int mida = this.getMida();
 		System.out.print( "   " );
 		for ( int k = 0; k < mida; ++k )
 		{
@@ -209,7 +214,7 @@ public class TaulerGomoku extends Tauler
 		}
 
 		System.out.println();
-		for ( int fila = 0; fila < mida; ++fila )
+		for ( int fila = 0; fila < this.mida; ++fila )
 		{
 			System.out.print( fila + ":  " );
 			if ( fila <= 9 )
@@ -217,7 +222,7 @@ public class TaulerGomoku extends Tauler
 				System.out.print( " " );
 			}
 
-			for ( int columna = 0; columna < mida; ++columna )
+			for ( int columna = 0; columna < this.mida; ++columna )
 			{
 				EstatCasella estat = this.getEstatCasella( fila, columna );
 				switch ( estat )
