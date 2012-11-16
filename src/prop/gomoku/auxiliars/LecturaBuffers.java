@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
  * Llegeix tota la línia en la qual s'han introduït dades per teclat fins que es troba un salt de línia.
  * <p>
  * Tota la línia llegida s'interpreta coma una sola dada.
+ * @see java.io.BufferedReader
  */
 public class LecturaBuffers implements Lectura
 {
