@@ -18,7 +18,8 @@ public class PartidaGomoku extends Partida
 	 */
 	private static final long serialVersionUID = -3925242254167360100L;
 
-	/* TODO De cara a la segona entrega, aquest atribut servirà per treballar a la capa de persistència */
+	// TODO De cara a la segona entrega, aquest atribut servirà per treballar a la capa de persistència
+	@SuppressWarnings( "unused" )
 	private Usuari jugador_principal;
 
 	/**

@@ -1,5 +1,6 @@
 package prop.gomoku.drivers;
 
+import prop.gomoku.auxiliars.LecturaScanners;
 import prop.gomoku.domini.models.LlistaRecordsIndividuals;
 import prop.gomoku.domini.models.UsuariGomoku;
 

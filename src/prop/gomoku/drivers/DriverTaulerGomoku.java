@@ -1,6 +1,7 @@
 package prop.gomoku.drivers;
 
 import prop.cluster.domini.models.estats.EstatCasella;
+import prop.gomoku.auxiliars.LecturaScanners;
 import prop.gomoku.domini.models.TaulerGomoku;
 
 public class DriverTaulerGomoku

@@ -11,6 +11,11 @@ import prop.cluster.domini.models.Usuari;
 public class UsuariGomoku extends Usuari
 {
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4414787291777756469L;
+
+	/**
 	 * Creadora d'un usuari Gomoku
 	 * 
 	 * @param nom Nom identificador de l'usuari

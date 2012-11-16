@@ -5,8 +5,6 @@ import prop.cluster.domini.models.estats.EstatCasella;
 import prop.cluster.domini.models.estats.EstatPartida;
 import prop.gomoku.auxiliars.LecturaBuffers;
 import prop.gomoku.auxiliars.LecturaScanners;
-import prop.gomoku.domini.models.PartidaGomoku;
-import prop.gomoku.domini.models.TaulerGomoku;
 import prop.gomoku.domini.controladors.ControladorPartidaEnJoc;
 
 public class ProgramaPrincipal

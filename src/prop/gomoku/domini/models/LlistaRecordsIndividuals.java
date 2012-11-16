@@ -13,7 +13,7 @@ public class LlistaRecordsIndividuals
 	/**
 	 * Usuari al qual pertanyen les estadistiques
 	 */
-	private UsuariGomoku usuari;
+	private UsuariGomoku usuari; // TODO: s'utilitzarà de cara a la tercera entrega
 
 	/**
 	 * Creadora per defecte que a partir d'un usuari, crea unes estadistiques basantse en les dades primitives que te
@@ -46,6 +46,14 @@ public class LlistaRecordsIndividuals
 	public void setStatsPartidaRapida( EstadistiquesPartides estadistiques )
 	{
 		this.estadistiques = estadistiques;
+	}
+	
+	/**
+	 * Mètode per obtenir el Usuari al que correspon aquestes estadístiques
+	 */
+	public UsuariGomoku getUsuari()
+	{
+		return this.usuari;
 	}
 
 }
