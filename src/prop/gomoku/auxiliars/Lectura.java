@@ -1,5 +1,9 @@
 package prop.gomoku.auxiliars;
 
+/**
+ * Interfície que proporciona les eines adequades per llegir qualsevol tipus de dada primitiva en Java.
+ * 
+ */
 public interface Lectura
 {
 	public char llegirChar();

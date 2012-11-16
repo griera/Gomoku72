@@ -5,8 +5,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * Classe qur implementa els mètodes de la interfície Lectura que permeten llegir dades entrades per teclat.
+ * <p>
+ * Llegeix tota la línia en la qual s'han introduït dades per teclat fins que es troba un salt de línia.
+ * <p>
+ * Tota la línia llegida s'interpreta coma una sola dada.
+ */
 public class LecturaBuffers implements Lectura
 {
+	/**
+	 * 
+	 */
 	public char llegirChar()
 	{
 		char c = ' ';
@@ -17,16 +27,17 @@ public class LecturaBuffers implements Lectura
 		} catch ( IOException e )
 		{
 			System.out.println( "Error durant la lectura per teclat" );
-			
-			/*
-			 * Ajuda a debugar errors del programa, imprimint una traça de la pila on es van empilant els mètodes 
-			 * cridats (la pila la gestiona la JVM)
-			 */			
+
+			/* Ajuda a debugar errors del programa, imprimint una traça de la pila on es van empilant els mètodes
+			 * cridats (la pila la gestiona la JVM) */
 			e.printStackTrace();
 		}
 		return c;
 	}
 
+	/**
+	 * 
+	 */
 	public byte llegirByte()
 	{
 		String s = null;
@@ -42,6 +53,9 @@ public class LecturaBuffers implements Lectura
 		return Byte.parseByte( s );
 	}
 
+	/**
+	 * 
+	 */
 	public short llegirShort()
 	{
 		String s = null;
@@ -57,6 +71,9 @@ public class LecturaBuffers implements Lectura
 		return Short.parseShort( s );
 	}
 
+	/**
+	 * 
+	 */
 	public int llegirInt()
 	{
 		String s = null;
@@ -72,6 +89,9 @@ public class LecturaBuffers implements Lectura
 		return Integer.parseInt( s );
 	}
 
+	/**
+	 * 
+	 */
 	public long llegirLong()
 	{
 		String s = null;
@@ -87,6 +107,9 @@ public class LecturaBuffers implements Lectura
 		return Long.parseLong( s );
 	}
 
+	/**
+	 * 
+	 */
 	public float llegirFloat()
 	{
 		String s = null;
@@ -102,6 +125,9 @@ public class LecturaBuffers implements Lectura
 		return Float.parseFloat( s );
 	}
 
+	/**
+	 * 
+	 */
 	public double llegirDouble()
 	{
 		String s = null;
@@ -117,6 +143,9 @@ public class LecturaBuffers implements Lectura
 		return Double.parseDouble( s );
 	}
 
+	/**
+	 * 
+	 */
 	public String llegirString()
 	{
 		String s = null;
