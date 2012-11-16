@@ -3,12 +3,33 @@ package prop.gomoku.drivers;
 import prop.gomoku.domini.models.LlistaRecordsIndividuals;
 import prop.gomoku.domini.models.UsuariGomoku;
 
+/**
+ * Driver de LlistaRecordsIndividuals, permet probar les diferents funcionalitats que pot oferir-nos la classe i
+ * comprovar el seu correcte funcionament
+ * 
+ */
 public class DriverLlistaRecordsIndividuals
 {
+	/**
+	 * Indica el nombre de dificultats que podem trobar en el nostre joc. Una persona també compta com a possible
+	 * dificultat.
+	 */
 	private static final int nombre_dificultats = 4;
+	/**
+	 * Conjunt d'estadistiques individuals d'un jugador
+	 */
 	private static LlistaRecordsIndividuals estadistiques;
+	/**
+	 * Variable que permet gestionar mes comodement lectures de dades
+	 */
 	private static LecturaScanners lectura = new LecturaScanners();
 
+	/**
+	 * Aquest menu mostra les principals opcions de creació i consulta que es poden dur a terme a la classe
+	 * LlistaRecordIndividuals L'usuari introduira per teclat la opció que vulgui probar
+	 * 
+	 * @return Retornara la opcio del menú escollida per l'usuari
+	 */
 	private static int menuPrincipal()
 	{
 		System.out.println( "Driver LlistaRecordsIndividuals" );
@@ -21,9 +42,13 @@ public class DriverLlistaRecordsIndividuals
 
 	}
 
-	private static void Crea_estadistiques()
+	/**
+	 * Menu per a probar la funcionalitat de creacio de noves estadistiques
+	 */
+	private static void creaEstadistiques()
 	{
 		System.out.println( "Menu de Crear LlistarecordsIndividuals" );
+		System.out.println( "====================" );
 		System.out.println( "Escull si vols crear una llista amb tots els valors a 0 o a partir de dades ja existents" );
 		System.out.println( "1. Totes les dades a 0" );
 		System.out.println( "2. A partir de dades ja existents" );
@@ -55,13 +80,21 @@ public class DriverLlistaRecordsIndividuals
 		System.out.println();
 	}
 
-	public static void consulta_estadistiques()
+	/**
+	 * Funcio per a consultar estadistiques
+	 */
+	public static void consultaEstadistiques()
 	{
 		System.out.println( "Menu de Consultar Estadistiques" );
 		System.out.println( "====================" );
 		Print_Estadistiques();
 	}
 
+	/**
+	 * Gestiona quines funcions probarem en funcio de la dada llegida previament, introduida per l'usuari
+	 * 
+	 * @param args Indica quina opcio tractarem, si la creadora o la consultora
+	 */
 	public static void main( String[] args )
 	{
 		while ( true )
@@ -69,19 +102,20 @@ public class DriverLlistaRecordsIndividuals
 			switch ( menuPrincipal() )
 			{
 				case 1:
-					Crea_estadistiques();
+					creaEstadistiques();
 					break;
 				case 2:
-					consulta_estadistiques();
+					consultaEstadistiques();
 					break;
 				default:
 					break;
 			}
-
 		}
-
 	}
 
+	/**
+	 * Funcio que imprimieix totes les estadistiques
+	 */
 	public static void Print_Estadistiques()
 	{
 		System.out.println( "Victories contra IA  Facil "
