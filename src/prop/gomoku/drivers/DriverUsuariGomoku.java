@@ -37,8 +37,9 @@ public class DriverUsuariGomoku
 		System.out.println( "====================" );
 		System.out.println( "Opcions:" );
 		System.out.println( "1. Crea Usuari" );
-		System.out.println( "2. Consultar dades Usuari" );
-		System.out.println( "3. Modifica" );
+		System.out.println( "2. Consulta Ràpida" );
+		System.out.println( "3. Consultar UsuariGomoku" );
+		System.out.println( "4. Modifica" );
 		System.out.println();
 		return lectura.llegirInt();
 	}
@@ -55,6 +56,16 @@ public class DriverUsuariGomoku
 		usuari = new UsuariGomoku( nom, pass, nombre_dificultats );
 	}
 
+	/**
+	 * Mètode que ens permetrà comprovar el mètode toString() de UsuariGomoku (i en conseqüència el del stub d'Usuari)
+	 */
+	private static void consultaRapida()
+	{
+		System.out.println("Consulta Ràpida UsuariGomoku");
+		System.out.println("============================");
+		System.out.println(usuari.toString());
+	}
+	
 	/**
 	 * Driver de les funcions consultores de UsuariGomoku, amb les que podem veure totes les dades guardades a
 	 * UsuariGomoku
@@ -105,26 +116,25 @@ public class DriverUsuariGomoku
 				break;
 			case 3:
 				System.out
-						.println( "Introdueix la dificultat per incrementar el nombre de victories(0=facil 1=dificil 2=huma)" );
+						.println( "Introdueix la dificultat per incrementar el nombre de victories(0=facil 1=mitja 2=dificil 3=huma)" );
 				System.out.println( "Seguit del nombre de victories en que el vols incrementar" );
 				usuari.incrementaVictories( lectura.llegirInt(), lectura.llegirInt() );
 				break;
 			case 4:
 				System.out
-						.println( "Introdueix la dificultat per incrementar el nombre de derrotes(0=facil 1=dificil 2=huma)" );
+						.println( "Introdueix la dificultat per incrementar el nombre de derrotes(0=facil 1=mitja 2=dificil 3=huma)" );
 				System.out.println( "Seguit del nombre de derrotes en que el vols incrementar" );
 				usuari.incrementaDerrotes( lectura.llegirInt(), lectura.llegirInt() );
 				break;
 			case 5:
 				System.out
-						.println( "Introdueix la dificultat per incrementar el nombre de empats(0=facil 1=dificil 2=huma)" );
+						.println( "Introdueix la dificultat per incrementar el nombre de empats(0=facil 1=mitja 2=dificil 3=huma)" );
 				System.out.println( "Seguit del nombre de empats en que el vols incrementar" );
 				usuari.incrementaEmpats( lectura.llegirInt(), lectura.llegirInt() );
 				break;
 			case 6:
-				System.out
-						.println( "Introdueix la dificultat per posar a 0 el nombre de victories/empats/derrotes(0=facil 1=dificil 2=huma)" );
-				usuari.reiniciaEstadistiques( lectura.llegirInt() );
+				usuari.reiniciaEstadistiques();
+				System.out.println("Estadístiques reiniciades");
 				break;
 		}
 		System.out.println();
@@ -144,10 +154,14 @@ public class DriverUsuariGomoku
 				case 1:
 					Crea_Usuari();
 					break;
+					
 				case 2:
-					consulta();
+					consultaRapida();
 					break;
 				case 3:
+					consulta();
+					break;
+				case 4:
 					modifica();
 					break;
 				default:

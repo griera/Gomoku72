@@ -3,6 +3,7 @@ package prop.gomoku.drivers;
 import java.util.Date;
 
 import prop.cluster.domini.models.Usuari;
+import prop.cluster.domini.models.estats.EstatCasella;
 import prop.gomoku.auxiliars.LecturaScanners;
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.TaulerGomoku;
@@ -52,7 +53,11 @@ public class DriverPartidaGomoku
 			System.out.println( "6. Consulta data creació" );
 			System.out.println( "7. Consulta nom" );
 			System.out.println( "8. Consulta estat finalització" );
-			System.out.println( "9. Torna al menú principal" );
+			System.out.println( "9. Comprova l'estat d'una partida en curs" );
+			System.out.println( "10. Comprova l'estat d'una partida en empat" );
+			System.out.println( "11. Comprova l'estat d'una partida on guanya jugador A" );
+			System.out.println( "12. Comprova l'estat d'una partida on guanya jugador B" );
+			System.out.println( "13. Torna al menú principal" );
 			System.out.println();
 
 			switch ( lectura.llegirInt() )
@@ -81,7 +86,112 @@ public class DriverPartidaGomoku
 				case 8:
 					System.out.println( partida.estaFinalitzada() );
 					break;
+
 				case 9:
+				{
+					TaulerGomoku tauler_original = partida.getTauler();
+					TaulerGomoku mock_tauler = new TaulerGomoku();
+					mock_tauler.mouFitxa( EstatCasella.JUGADOR_A, 7, 7 );
+					mock_tauler.mouFitxa( EstatCasella.JUGADOR_B, 7, 8 );
+					partida.setTauler( mock_tauler );
+					System.out.println("Si el tauler fos: ");
+					partida.getTauler().pinta();
+					System.out.println( "Estat partida: " + partida.comprovaEstatPartida( 7, 8 ) );
+					partida.setTauler( tauler_original );
+					System.out.println("Tauler anterior restablert");
+					break;
+				}
+				case 10:
+				{
+					TaulerGomoku tauler_original = partida.getTauler();
+					TaulerGomoku mock_tauler = new TaulerGomoku();
+
+					for ( int i = 0; i < mock_tauler.getMida(); i++ )
+					{
+
+						EstatCasella color_x;
+						EstatCasella color_y;
+
+						if ( i % 2 == 0 )
+						{
+							color_x = EstatCasella.JUGADOR_A;
+							color_y = EstatCasella.JUGADOR_B;
+						}
+						else
+						{
+							color_x = EstatCasella.JUGADOR_B;
+							color_y = EstatCasella.JUGADOR_A;
+						}
+
+						mock_tauler.mouFitxa( color_x, i, 0 );
+						mock_tauler.mouFitxa( color_x, i, 1 );
+						mock_tauler.mouFitxa( color_x, i, 2 );
+						mock_tauler.mouFitxa( color_y, i, 3 );
+						mock_tauler.mouFitxa( color_y, i, 4 );
+						mock_tauler.mouFitxa( color_x, i, 5 );
+						mock_tauler.mouFitxa( color_x, i, 6 );
+						mock_tauler.mouFitxa( color_x, i, 7 );
+						mock_tauler.mouFitxa( color_y, i, 8 );
+						mock_tauler.mouFitxa( color_y, i, 9 );
+						mock_tauler.mouFitxa( color_x, i, 10 );
+						mock_tauler.mouFitxa( color_x, i, 11 );
+						mock_tauler.mouFitxa( color_x, i, 12 );
+						mock_tauler.mouFitxa( color_y, i, 13 );
+						mock_tauler.mouFitxa( color_y, i, 14 );
+
+					}
+					partida.setTauler( mock_tauler );
+					System.out.println("Si el tauler fos: ");
+					partida.getTauler().pinta();
+					System.out.println( "Estat partida: " + partida.comprovaEstatPartida( 11, 7 ) );
+					partida.setTauler( tauler_original );
+					System.out.println("Tauler anterior restablert");
+					break;
+				}
+				case 11:
+				{
+					TaulerGomoku tauler_original = partida.getTauler();
+					TaulerGomoku mock_tauler = new TaulerGomoku();
+					mock_tauler.mouFitxa( EstatCasella.JUGADOR_A, 7, 7 );
+					mock_tauler.mouFitxa( EstatCasella.JUGADOR_B, 7, 8 );
+					mock_tauler.mouFitxa( EstatCasella.JUGADOR_A, 8, 7 );
+					mock_tauler.mouFitxa( EstatCasella.JUGADOR_B, 6, 8 );
+					mock_tauler.mouFitxa( EstatCasella.JUGADOR_A, 9, 7 );
+					mock_tauler.mouFitxa( EstatCasella.JUGADOR_B, 5, 8 );
+					mock_tauler.mouFitxa( EstatCasella.JUGADOR_A, 10, 7 );
+					mock_tauler.mouFitxa( EstatCasella.JUGADOR_B, 4, 8 );
+					mock_tauler.mouFitxa( EstatCasella.JUGADOR_A, 11, 7 );
+					partida.setTauler( mock_tauler );
+					System.out.println("Si el tauler fos: ");
+					partida.getTauler().pinta();
+					System.out.println( "Estat partida: " + partida.comprovaEstatPartida( 11, 7 ) );
+					partida.setTauler( tauler_original );
+					System.out.println("Tauler anterior restablert");
+					break;
+				}
+				case 12:
+				{
+					TaulerGomoku tauler_original = partida.getTauler();
+					TaulerGomoku mock_tauler = new TaulerGomoku();
+					mock_tauler.mouFitxa( EstatCasella.JUGADOR_B, 7, 7 );
+					mock_tauler.mouFitxa( EstatCasella.JUGADOR_A, 7, 8 );
+					mock_tauler.mouFitxa( EstatCasella.JUGADOR_B, 8, 7 );
+					mock_tauler.mouFitxa( EstatCasella.JUGADOR_A, 6, 8 );
+					mock_tauler.mouFitxa( EstatCasella.JUGADOR_B, 9, 7 );
+					mock_tauler.mouFitxa( EstatCasella.JUGADOR_A, 5, 8 );
+					mock_tauler.mouFitxa( EstatCasella.JUGADOR_B, 10, 7 );
+					mock_tauler.mouFitxa( EstatCasella.JUGADOR_A, 4, 8 );
+					mock_tauler.mouFitxa( EstatCasella.JUGADOR_B, 11, 7 );
+					partida.setTauler( mock_tauler );
+					System.out.println("Si el tauler fos: ");
+					partida.getTauler().pinta();
+					System.out.println( "Estat partida: " + partida.comprovaEstatPartida( 11, 7 ) );
+					partida.setTauler( tauler_original );
+					System.out.println("Tauler anterior restablert");
+					break;
+				}
+
+				case 13:
 					surt = true;
 					break;
 			}
@@ -173,7 +283,8 @@ public class DriverPartidaGomoku
 					}
 					System.out.println( "Estat de finalització modificat" );
 					break;
-				case 9:
+
+				case 13:
 					surt = true;
 					break;
 			}
