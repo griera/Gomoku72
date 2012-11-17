@@ -13,7 +13,8 @@ public class LlistaRecordsIndividuals
 	/**
 	 * Usuari al qual pertanyen les estadistiques
 	 */
-	private UsuariGomoku usuari; // TODO: s'utilitzarà de cara a la tercera entrega
+	@SuppressWarnings( "unused" )
+	private UsuariGomoku usuari; // TODO: encara no s'utilitza
 
 	/**
 	 * Creadora per defecte que a partir d'un usuari, crea unes estadistiques basantse en les dades primitives que te
@@ -31,7 +32,8 @@ public class LlistaRecordsIndividuals
 	/**
 	 * Metode per obtenir les estadistiques de la LlistaRecordsIndividuals
 	 * 
-	 * @return Retorna el conjunt d'estadistiques(conjunt de victories,derrotes,empats i percentatges)
+	 * @return Retorna el conjunt d'estadistiques(conjunt de victories,derrotes,empats i percentatges i partides
+	 *         disputades)
 	 */
 	public EstadistiquesPartides getStatsPartidaRapida()
 	{
@@ -47,14 +49,5 @@ public class LlistaRecordsIndividuals
 	{
 		this.estadistiques = estadistiques;
 	}
-	
-	/**
-	 * Mètode per obtenir el Usuari al que correspon aquestes estadístiques
-	 */
-	public UsuariGomoku getUsuari()
-	{
-		return this.usuari;
-	}
 
 }
-

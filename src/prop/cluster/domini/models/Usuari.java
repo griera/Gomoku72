@@ -80,18 +80,16 @@ public class Usuari implements Serializable
 	@Override
 	public String toString()
 	{
-		String text = "[" + this.nom + ", " + this.contrasenya
-				+ ", Victories: " + Arrays.toString( this.num_victories )
-				+ ", Empats: " + Arrays.toString( this.num_empats )
-				+ ", Derrotes: " + Arrays.toString( this.num_derrotes )
-				+ "]";
+		String text = "[" + this.nom + ", " + this.contrasenya + ", Victories: " + Arrays.toString( this.num_victories )
+				+ ", Empats: " + Arrays.toString( this.num_empats ) + ", Derrotes: "
+				+ Arrays.toString( this.num_derrotes ) + "]";
 		return text;
 	}
 
 	public void reiniciaEstadistiques()
 	{
 		int mida = this.num_victories.length;
-		for (int i = 0; i < mida; i++)
+		for ( int i = 0; i < mida; i++ )
 		{
 			this.num_derrotes[i] = 0;
 			this.num_empats[i] = 0;

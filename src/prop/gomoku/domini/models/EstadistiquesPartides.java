@@ -31,6 +31,10 @@ public class EstadistiquesPartides
 	 * Nombre de percentatge de empats
 	 */
 	private ResumResultats percentatge_empats;
+	/**
+	 * Nombre de partides disputades
+	 */
+	private ResumResultats total_disputades;
 
 	/**
 	 * Creadora per defecte, inicialitza totes les dades com si el jugador no hagues jugat mai una partida
@@ -43,6 +47,7 @@ public class EstadistiquesPartides
 		percentatge_derrotes = new ResumResultats();
 		percentatge_empats = new ResumResultats();
 		percentatge_victories = new ResumResultats();
+		total_disputades = new ResumResultats();
 	}
 
 	/**
@@ -59,7 +64,8 @@ public class EstadistiquesPartides
 		empats = new ResumResultats( num_empats );
 		percentatge_derrotes = new ResumResultats( num_victories, num_derrotes, num_empats, 1 );
 		percentatge_victories = new ResumResultats( num_victories, num_derrotes, num_empats, 0 );
-		percentatge_empats = new ResumResultats( num_victories, num_derrotes, num_empats, 3 );
+		percentatge_empats = new ResumResultats( num_victories, num_derrotes, num_empats, 2 );
+		total_disputades = new ResumResultats( num_victories, num_derrotes, num_empats, 3 );
 	}
 
 	/**
@@ -90,6 +96,16 @@ public class EstadistiquesPartides
 	public ResumResultats getEmpats()
 	{
 		return empats;
+	}
+
+	/**
+	 * Metode per obtenir el ResumResultats referents al total de partides disputades
+	 * 
+	 * @return Retorna el ResumResultats referents al total de partides disputades
+	 */
+	public ResumResultats getTotalDisputades()
+	{
+		return total_disputades;
 	}
 
 	/**

@@ -155,16 +155,6 @@ public class DriverLlistaRecordsIndividuals
 				+ estadistiques.getStatsPartidaRapida().getpercentatgevictories().getNumHumans() + "%" );
 		System.out.println( "Percentatge de victories Total "
 				+ estadistiques.getStatsPartidaRapida().getpercentatgevictories().getNumTotal() + "%" );
-		System.out.println( "Percentatge de empats contra IA Facil "
-				+ estadistiques.getStatsPartidaRapida().getpercentatgeempats().getNumFacils() + "%" );
-		System.out.println( "Percentatge de empats contra IA Mitja "
-				+ estadistiques.getStatsPartidaRapida().getpercentatgeempats().getNumMitja() + "%" );
-		System.out.println( "Percentatge de empats contra IA Dificil "
-				+ estadistiques.getStatsPartidaRapida().getpercentatgeempats().getNumDificils() + "%" );
-		System.out.println( "Percentatge de empats contra Humans "
-				+ estadistiques.getStatsPartidaRapida().getpercentatgeempats().getNumHumans() + "%" );
-		System.out.println( "Percentatge de empats Total "
-				+ estadistiques.getStatsPartidaRapida().getpercentatgeempats().getNumTotal() + "%" );
 		System.out.println( "Percentatge de derrotes contra IA Facil "
 				+ estadistiques.getStatsPartidaRapida().getpercentatgederrotes().getNumFacils() + "%" );
 		System.out.println( "Percentatge de derrotes contra IA Mitja "
@@ -175,6 +165,26 @@ public class DriverLlistaRecordsIndividuals
 				+ estadistiques.getStatsPartidaRapida().getpercentatgederrotes().getNumHumans() + "%" );
 		System.out.println( "Percentatge de derrotes Total "
 				+ estadistiques.getStatsPartidaRapida().getpercentatgederrotes().getNumTotal() + "%" );
+		System.out.println( "Percentatge de empats contra IA Facil "
+				+ estadistiques.getStatsPartidaRapida().getpercentatgeempats().getNumFacils() + "%" );
+		System.out.println( "Percentatge de empats contra IA Mitja "
+				+ estadistiques.getStatsPartidaRapida().getpercentatgeempats().getNumMitja() + "%" );
+		System.out.println( "Percentatge de empats contra IA Dificil "
+				+ estadistiques.getStatsPartidaRapida().getpercentatgeempats().getNumDificils() + "%" );
+		System.out.println( "Percentatge de empats contra Humans "
+				+ estadistiques.getStatsPartidaRapida().getpercentatgeempats().getNumHumans() + "%" );
+		System.out.println( "Percentatge de empats Total "
+				+ estadistiques.getStatsPartidaRapida().getpercentatgeempats().getNumTotal() + "%" );
+		System.out.println( "Total partides disputades contra IA Facil "
+				+ estadistiques.getStatsPartidaRapida().getTotalDisputades().getNumFacils() );
+		System.out.println( "Total partides disputades contra IA Mitja "
+				+ estadistiques.getStatsPartidaRapida().getTotalDisputades().getNumMitja() );
+		System.out.println( "Total partides disputades contra IA Dificil "
+				+ estadistiques.getStatsPartidaRapida().getTotalDisputades().getNumDificils() );
+		System.out.println( "Total partides disputades contra Humans "
+				+ estadistiques.getStatsPartidaRapida().getTotalDisputades().getNumHumans() );
+		System.out.println( "Total partides disputades contra tot tipus d'oponents "
+				+ estadistiques.getStatsPartidaRapida().getTotalDisputades().getNumTotal() );
 	}
 
 }

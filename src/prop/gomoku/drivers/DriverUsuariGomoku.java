@@ -61,11 +61,11 @@ public class DriverUsuariGomoku
 	 */
 	private static void consultaRapida()
 	{
-		System.out.println("Consulta Ràpida UsuariGomoku");
-		System.out.println("============================");
-		System.out.println(usuari.toString());
+		System.out.println( "Consulta Ràpida UsuariGomoku" );
+		System.out.println( "============================" );
+		System.out.println( usuari.toString() );
 	}
-	
+
 	/**
 	 * Driver de les funcions consultores de UsuariGomoku, amb les que podem veure totes les dades guardades a
 	 * UsuariGomoku
@@ -134,7 +134,7 @@ public class DriverUsuariGomoku
 				break;
 			case 6:
 				usuari.reiniciaEstadistiques();
-				System.out.println("Estadístiques reiniciades");
+				System.out.println( "Estadístiques reiniciades" );
 				break;
 		}
 		System.out.println();
@@ -154,7 +154,7 @@ public class DriverUsuariGomoku
 				case 1:
 					Crea_Usuari();
 					break;
-					
+
 				case 2:
 					consultaRapida();
 					break;

@@ -94,11 +94,11 @@ public class DriverPartidaGomoku
 					mock_tauler.mouFitxa( EstatCasella.JUGADOR_A, 7, 7 );
 					mock_tauler.mouFitxa( EstatCasella.JUGADOR_B, 7, 8 );
 					partida.setTauler( mock_tauler );
-					System.out.println("Si el tauler fos: ");
+					System.out.println( "Si el tauler fos: " );
 					partida.getTauler().pinta();
 					System.out.println( "Estat partida: " + partida.comprovaEstatPartida( 7, 8 ) );
 					partida.setTauler( tauler_original );
-					System.out.println("Tauler anterior restablert");
+					System.out.println( "Tauler anterior restablert" );
 					break;
 				}
 				case 10:
@@ -141,11 +141,11 @@ public class DriverPartidaGomoku
 
 					}
 					partida.setTauler( mock_tauler );
-					System.out.println("Si el tauler fos: ");
+					System.out.println( "Si el tauler fos: " );
 					partida.getTauler().pinta();
 					System.out.println( "Estat partida: " + partida.comprovaEstatPartida( 11, 7 ) );
 					partida.setTauler( tauler_original );
-					System.out.println("Tauler anterior restablert");
+					System.out.println( "Tauler anterior restablert" );
 					break;
 				}
 				case 11:
@@ -162,11 +162,11 @@ public class DriverPartidaGomoku
 					mock_tauler.mouFitxa( EstatCasella.JUGADOR_B, 4, 8 );
 					mock_tauler.mouFitxa( EstatCasella.JUGADOR_A, 11, 7 );
 					partida.setTauler( mock_tauler );
-					System.out.println("Si el tauler fos: ");
+					System.out.println( "Si el tauler fos: " );
 					partida.getTauler().pinta();
 					System.out.println( "Estat partida: " + partida.comprovaEstatPartida( 11, 7 ) );
 					partida.setTauler( tauler_original );
-					System.out.println("Tauler anterior restablert");
+					System.out.println( "Tauler anterior restablert" );
 					break;
 				}
 				case 12:
@@ -183,11 +183,11 @@ public class DriverPartidaGomoku
 					mock_tauler.mouFitxa( EstatCasella.JUGADOR_A, 4, 8 );
 					mock_tauler.mouFitxa( EstatCasella.JUGADOR_B, 11, 7 );
 					partida.setTauler( mock_tauler );
-					System.out.println("Si el tauler fos: ");
+					System.out.println( "Si el tauler fos: " );
 					partida.getTauler().pinta();
 					System.out.println( "Estat partida: " + partida.comprovaEstatPartida( 11, 7 ) );
 					partida.setTauler( tauler_original );
-					System.out.println("Tauler anterior restablert");
+					System.out.println( "Tauler anterior restablert" );
 					break;
 				}
 

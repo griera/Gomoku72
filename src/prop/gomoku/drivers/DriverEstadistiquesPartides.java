@@ -60,7 +60,8 @@ public class DriverEstadistiquesPartides
 	}
 
 	/**
-	 * Consulta les estadistiques, mostrant totes les dades referents a victories,derrotes,empats i percentatges
+	 * Consulta les estadistiques, mostrant totes les dades referents a victories,derrotes,empats i percentatges i
+	 * partides disputades
 	 */
 
 	private static void consultaEstadistiques()
@@ -111,6 +112,17 @@ public class DriverEstadistiquesPartides
 				+ estadistiques.getpercentatgederrotes().getNumHumans() + "%" );
 		System.out.println( "Percentatge de derrotes Total " + estadistiques.getpercentatgederrotes().getNumTotal()
 				+ "%" );
+		System.out.println( "Total partides disputades contra IA Facil "
+				+ estadistiques.getTotalDisputades().getNumFacils() );
+		System.out.println( "Total partides disputades contra IA Mitja "
+				+ estadistiques.getTotalDisputades().getNumMitja() );
+		System.out.println( "Total partides disputades contra IA Dificil "
+				+ estadistiques.getTotalDisputades().getNumDificils() );
+		System.out.println( "Total partides disputades contra Humans "
+				+ estadistiques.getTotalDisputades().getNumHumans() );
+		System.out.println( "Total partides disputades contra tot tipus d'oponents "
+				+ estadistiques.getTotalDisputades().getNumTotal() );
+
 	}
 
 	/**
@@ -145,7 +157,7 @@ public class DriverEstadistiquesPartides
 					derrotes[iterador] = lectura.llegirInt();
 				}
 				System.out
-						.println( "Introdueix els valors corresponents al diferents tipus de dificultats(4) referents al numero de derrotes" );
+						.println( "Introdueix els valors corresponents al diferents tipus de dificultats(4) referents al numero d'empats" );
 				int[] empats = new int[4];
 				for ( int iterador = 0; iterador < 4; ++iterador )
 				{

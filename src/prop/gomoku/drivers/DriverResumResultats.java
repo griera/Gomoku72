@@ -47,7 +47,7 @@ public class DriverResumResultats
 		System.out.println( "Opcions:" );
 		System.out.println( "1. Crear ResumResultats a 0" );
 		System.out.println( "2. Crear ResumResultats a partir de dades ja existents" );
-		System.out.println( "3.Crear ResumResultats a partir de dades ja existents per crear percentatges" );
+		System.out.println( "3. Crear ResumResultats a partir de dades ja existents per crear percentatges" );
 		switch ( lectura.llegirInt() )
 		{
 			case 1:
@@ -78,16 +78,16 @@ public class DriverResumResultats
 					derrotes[iterador] = lectura.llegirInt();
 				}
 				System.out
-						.println( "Introdueix els valors corresponents al diferents tipus de dificultats(4) referents al numero de derrotes" );
+						.println( "Introdueix els valors corresponents al diferents tipus de dificultats(4) referents al numero d'empats" );
 				int[] empats = new int[4];
 				for ( int iterador = 0; iterador < 4; ++iterador )
 				{
 					empats[iterador] = lectura.llegirInt();
 				}
 				System.out.println( "Introdueix el tipus de percentatge que vols calcular" );
-				System.out.println( "0.Victories" );
-				System.out.println( "1.Derrotes" );
-				System.out.println( "2.Empats" );
+				System.out.println( "0. Victories" );
+				System.out.println( "1. Derrotes" );
+				System.out.println( "2. Empats" );
 				int tipus = lectura.llegirInt();
 				resultats = new ResumResultats( victories, derrotes, empats, tipus );
 				break;

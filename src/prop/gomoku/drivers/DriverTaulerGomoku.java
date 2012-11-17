@@ -104,8 +104,8 @@ public class DriverTaulerGomoku
 							+ "2 - blanc): " );
 					int color = lectura.llegirInt();
 					System.out.println();
-					EstatCasella estat_casella_aux = (color == 1) ? EstatCasella.JUGADOR_A: EstatCasella.JUGADOR_B;
-					
+					EstatCasella estat_casella_aux = ( color == 1 ) ? EstatCasella.JUGADOR_A : EstatCasella.JUGADOR_B;
+
 					try
 					{
 						tauler.esMovimentValid( estat_casella_aux, fila, columna );
@@ -140,7 +140,7 @@ public class DriverTaulerGomoku
 			System.out.println( "2. Col·loca una fitxa blanca al tauler" );
 			System.out.println( "3. Treu una fitxa del tauler" );
 			System.out.println( "4. Torna al menú principal" );
-			
+
 			switch ( lectura.llegirInt() )
 			{
 				case 1:
