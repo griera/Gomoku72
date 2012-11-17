@@ -13,6 +13,13 @@ import prop.cluster.domini.models.estats.EstatPartida;
  */
 public class PartidaGomoku extends Partida
 {
+	/**
+	 * ID de serialització
+	 */
+	private static final long serialVersionUID = -3925242254167360100L;
+
+	// TODO De cara a la segona entrega, aquest atribut servirà per treballar a la capa de persistència
+	@SuppressWarnings( "unused" )
 	private Usuari jugador_principal;
 
 	/**
@@ -80,4 +87,9 @@ public class PartidaGomoku extends Partida
 		return EstatPartida.NO_FINALITZADA;
 	}
 
+	public TaulerGomoku getTauler()
+	{
+		return (TaulerGomoku) this.tauler;
+	}
+	
 }

@@ -1,185 +1,1 @@
-package prop.gomoku.domini.models;
-
-/**
- * Clase que representa
- * 
- */
-public class ResumResultats
-{
-	/**
-	 * 
-	 */
-	private static final int nombre_dificultats = 4;
-	private int facil;
-	private int mitja;
-	private int dificil;
-	private int persona;
-	private int numero_total; // Sumatori de tots els atributs anteriors
-
-	public ResumResultats()
-	{
-		facil = 0;
-		dificil = 0;
-		persona = 0;
-		mitja = 0;
-		numero_total = 0;
-	}
-
-	public ResumResultats( int[] estadistiques )
-	{
-
-		facil = estadistiques[0];
-		dificil = estadistiques[2];
-		persona = estadistiques[3];
-		mitja = estadistiques[1];
-		numero_total = facil + dificil + persona + mitja;
-	}
-
-	/**
-	 * 
-	 * @param numero_victories
-	 * @param numero_derrotes
-	 * @param numero_empats
-	 * @param tipus_percentatge
-	 */
-	public ResumResultats( int[] numero_victories, int[] numero_derrotes, int[] numero_empats, int tipus_percentatge )
-	{
-		if ( tipus_percentatge == 0 )
-		{
-			if ( numero_victories[0] + numero_derrotes[0] + numero_empats[0] == 0 )
-			{
-				facil = 0;
-			}
-			else
-			{
-				facil = numero_victories[0] * 100 / ( numero_victories[0] + numero_derrotes[0] + numero_empats[0] );
-			}
-			if ( numero_victories[2] + numero_derrotes[2] + numero_empats[2] == 0 )
-			{
-				dificil = 0;
-			}
-			else
-			{
-				dificil = numero_victories[2] * 100 / ( numero_victories[2] + numero_derrotes[2] + numero_empats[2] );
-			}
-			if ( numero_victories[3] + numero_derrotes[3] + numero_empats[3] == 0 )
-			{
-				persona = 0;
-			}
-			else
-			{
-				persona = numero_victories[3] * 100 / ( numero_victories[3] + numero_derrotes[3] + numero_empats[3] );
-			}
-			if ( numero_victories[1] + numero_derrotes[1] + numero_empats[1] == 0 )
-			{
-				mitja = 0;
-			}
-			else
-			{
-				mitja = numero_victories[1] * 100 / ( numero_victories[1] + numero_derrotes[1] + numero_empats[1] );
-			}
-			int total = 0;
-			for ( int i = 0; i < nombre_dificultats; ++i )
-			{
-				total += numero_victories[i];
-				total += numero_derrotes[i];
-				total += numero_empats[i];
-			}
-			if ( total == 0 )
-			{
-				numero_total = 0;
-			}
-			else
-			{
-				numero_total = ( ( numero_victories[0] + numero_victories[1] + numero_victories[2] + numero_victories[3] ) * 100 / total );
-			}
-		}
-		else if ( tipus_percentatge == 1 )
-		{
-			if ( numero_victories[0] + numero_derrotes[0] + numero_empats[0] == 0 )
-				facil = 0;
-			else
-				facil = numero_derrotes[0] * 100 / ( numero_victories[0] + numero_derrotes[0] + numero_empats[0] );
-			if ( numero_victories[2] + numero_derrotes[2] + numero_empats[2] == 0 )
-				dificil = 0;
-			else
-				dificil = numero_derrotes[2] * 100 / ( numero_victories[2] + numero_derrotes[2] + numero_empats[2] );
-			if ( numero_victories[1] + numero_derrotes[1] + numero_empats[1] == 0 )
-				mitja = 0;
-			else
-				mitja = numero_derrotes[1] * 100 / ( numero_victories[1] + numero_derrotes[1] + numero_empats[1] );
-			if ( numero_victories[3] + numero_derrotes[3] + numero_empats[3] == 0 )
-				persona = 0;
-			else
-				persona = numero_derrotes[3] * 100 / ( numero_victories[3] + numero_derrotes[3] + numero_empats[3] );
-			int total = 0;
-			for ( int i = 0; i < nombre_dificultats; ++i )
-			{
-				total += numero_victories[i];
-				total += numero_derrotes[i];
-				total += numero_empats[i];
-			}
-			if ( total == 0 )
-				numero_total = 0;
-			else
-				numero_total = ( ( numero_derrotes[0] + numero_derrotes[1] + numero_derrotes[2] + numero_derrotes[3] ) * 100 / total );
-		}
-		else
-		{
-			if ( numero_victories[0] + numero_derrotes[0] + numero_empats[0] == 0 )
-				facil = 0;
-			else
-				facil = numero_empats[0] * 100 / ( numero_victories[0] + numero_derrotes[0] + numero_empats[0] );
-			if ( numero_victories[2] + numero_derrotes[2] + numero_empats[2] == 0 )
-			{
-				dificil = 0;
-			}
-			else
-				dificil = numero_empats[2] * 100 / ( numero_victories[2] + numero_derrotes[2] + numero_empats[2] );
-			if ( numero_victories[3] + numero_derrotes[3] + numero_empats[3] == 0 )
-				persona = 0;
-			else
-				persona = numero_empats[3] * 100 / ( numero_victories[3] + numero_derrotes[3] + numero_empats[3] );
-			if ( numero_victories[1] + numero_derrotes[1] + numero_empats[1] == 0 )
-				mitja = 0;
-			else
-				mitja = numero_victories[1] * 100 / ( numero_victories[1] + numero_derrotes[1] + numero_empats[1] );
-			int total = 0;
-			for ( int i = 0; i < nombre_dificultats; ++i )
-			{
-				total += numero_victories[i];
-				total += numero_derrotes[i];
-				total += numero_empats[i];
-			}
-			if ( total == 0 )
-				numero_total = 0;
-			else
-				numero_total = ( ( numero_empats[0] + numero_empats[1] + numero_empats[2] + numero_empats[3] ) * 100 / total );
-		}
-	}
-
-	public int getNumFacils()
-	{
-		return this.facil;
-	}
-
-	public int getNumDificils()
-	{
-		return this.dificil;
-	}
-
-	public int getNumMitja()
-	{
-		return this.mitja;
-	}
-
-	public int getNumHumans()
-	{
-		return this.persona;
-	}
-
-	public int getNumTotal()
-	{
-		return this.numero_total;
-	}
-}
+package prop.gomoku.domini.models;/** * Clase que representa la qualificacio que ha obtingut un jugador en els diferents nivells de dificultat. Poden * correspondre a victories,empats,derrotes o percentatges de qualsevol d'aquestes tres ultimes. *  */public class ResumResultats{	/**	 * Indica el nombre de dificultats que podem trobar en el nostre joc. Una persona també compta com a possible	 * dificultat.	 */	private static final int nombre_dificultats = 4;	/**	 * Nombre aconseguit per a dificultat facil.	 */	private int facil;	/**	 * Nombre aconseguit per a dificultat mitjana.	 */	private int mitja;	/**	 * Nombre aconseguit per a dificultat dificil.	 */	private int dificil;	/**	 * Nombre aconseguit contra persones.	 */	private int persona;	/**	 * Sumatori de tots els atributs anteriors(facil,mitja,dificil,persona).	 */	private int numero_total;	/**	 * Creadora per defecte que inicialitza tots els valors a 0.	 */	public ResumResultats()	{		facil = 0;		dificil = 0;		persona = 0;		mitja = 0;		numero_total = 0;	}	/**	 * Funció creadora que reb els valors que han de rebre cada atribut de la clase ResumResultats	 * 	 * @param estadistiques Indica els valors corresponents per a cada atribut.	 */	public ResumResultats( int[] estadistiques )	{		facil = estadistiques[0];		dificil = estadistiques[2];		persona = estadistiques[3];		mitja = estadistiques[1];		numero_total = facil + dificil + persona + mitja;	}	/**	 * Funció creadora que reb totes les dades respecte victories, derrotes i empats contra tots els nivells de	 * dificultat, el tipus de cercentatge que es demana i crea un resum resultats adequat al tipus de percentatge que	 * necesitem calcular.	 * 	 * @param numero_victories Numero de victories contra els diferents tipos d'oponents.	 * @param numero_derrotes Numero de derrotes contra els diferents tipos d'oponents.	 * @param numero_empats Numero d'empats contra els diferents tipos d'oponents.	 * @param tipus_percentatge Indica si el percentatge es per calcular victories,derrotes o empats. La codificacio	 *        utilitzada es 0=victories, 1=derrotes, altre valor=empats.	 */	public ResumResultats( int[] numero_victories, int[] numero_derrotes, int[] numero_empats, int tipus_percentatge )	{		if ( tipus_percentatge == 0 )		{			if ( numero_victories[0] + numero_derrotes[0] + numero_empats[0] == 0 )			{				facil = 0;			}			else			{				facil = numero_victories[0] * 100 / ( numero_victories[0] + numero_derrotes[0] + numero_empats[0] );			}			if ( numero_victories[2] + numero_derrotes[2] + numero_empats[2] == 0 )			{				dificil = 0;			}			else			{				dificil = numero_victories[2] * 100 / ( numero_victories[2] + numero_derrotes[2] + numero_empats[2] );			}			if ( numero_victories[3] + numero_derrotes[3] + numero_empats[3] == 0 )			{				persona = 0;			}			else			{				persona = numero_victories[3] * 100 / ( numero_victories[3] + numero_derrotes[3] + numero_empats[3] );			}			if ( numero_victories[1] + numero_derrotes[1] + numero_empats[1] == 0 )			{				mitja = 0;			}			else			{				mitja = numero_victories[1] * 100 / ( numero_victories[1] + numero_derrotes[1] + numero_empats[1] );			}			int total = 0;			for ( int i = 0; i < nombre_dificultats; ++i )			{				total += numero_victories[i];				total += numero_derrotes[i];				total += numero_empats[i];			}			if ( total == 0 )			{				numero_total = 0;			}			else			{				numero_total = ( ( numero_victories[0] + numero_victories[1] + numero_victories[2] + numero_victories[3] ) * 100 / total );			}		}		else if ( tipus_percentatge == 1 )		{			if ( numero_victories[0] + numero_derrotes[0] + numero_empats[0] == 0 )				facil = 0;			else				facil = numero_derrotes[0] * 100 / ( numero_victories[0] + numero_derrotes[0] + numero_empats[0] );			if ( numero_victories[2] + numero_derrotes[2] + numero_empats[2] == 0 )				dificil = 0;			else				dificil = numero_derrotes[2] * 100 / ( numero_victories[2] + numero_derrotes[2] + numero_empats[2] );			if ( numero_victories[1] + numero_derrotes[1] + numero_empats[1] == 0 )				mitja = 0;			else				mitja = numero_derrotes[1] * 100 / ( numero_victories[1] + numero_derrotes[1] + numero_empats[1] );			if ( numero_victories[3] + numero_derrotes[3] + numero_empats[3] == 0 )				persona = 0;			else				persona = numero_derrotes[3] * 100 / ( numero_victories[3] + numero_derrotes[3] + numero_empats[3] );			int total = 0;			for ( int i = 0; i < nombre_dificultats; ++i )			{				total += numero_victories[i];				total += numero_derrotes[i];				total += numero_empats[i];			}			if ( total == 0 )				numero_total = 0;			else				numero_total = ( ( numero_derrotes[0] + numero_derrotes[1] + numero_derrotes[2] + numero_derrotes[3] ) * 100 / total );		}		else		{			if ( numero_victories[0] + numero_derrotes[0] + numero_empats[0] == 0 )				facil = 0;			else				facil = numero_empats[0] * 100 / ( numero_victories[0] + numero_derrotes[0] + numero_empats[0] );			if ( numero_victories[2] + numero_derrotes[2] + numero_empats[2] == 0 )			{				dificil = 0;			}			else				dificil = numero_empats[2] * 100 / ( numero_victories[2] + numero_derrotes[2] + numero_empats[2] );			if ( numero_victories[3] + numero_derrotes[3] + numero_empats[3] == 0 )				persona = 0;			else				persona = numero_empats[3] * 100 / ( numero_victories[3] + numero_derrotes[3] + numero_empats[3] );			if ( numero_victories[1] + numero_derrotes[1] + numero_empats[1] == 0 )				mitja = 0;			else				mitja = numero_victories[1] * 100 / ( numero_victories[1] + numero_derrotes[1] + numero_empats[1] );			int total = 0;			for ( int i = 0; i < nombre_dificultats; ++i )			{				total += numero_victories[i];				total += numero_derrotes[i];				total += numero_empats[i];			}			if ( total == 0 )				numero_total = 0;			else				numero_total = ( ( numero_empats[0] + numero_empats[1] + numero_empats[2] + numero_empats[3] ) * 100 / total );		}	}	/**	 * Metode per obtenir tots els resultats referents a la dificultat facil	 * 	 * @return Torna el nombre de vegades que s'ha guanyat/perdut/empatat o percentatge d'alguna d'aquestres tres	 *         ultimes contra IA en nivell facil.	 */	public int getNumFacils()	{		return this.facil;	}	/**	 * Metode per obtenir el resultat referents a la dificultat dificil	 * 	 * @return Torna el nombre de vegades que s'ha guanyat/perdut/empatat o percentatge d'alguna d'aquestres tres	 *         ultimes contra IA en nivell dificil.	 */	public int getNumDificils()	{		return this.dificil;	}	/**	 * Metode per obtenir el resultat referents a la dificultat mitja	 * 	 * @return Torna el nombre de vegades que s'ha guanyat/perdut/empatat o percentatge d'alguna d'aquestres tres	 *         ultimes contra IA en nivell mitjà.	 */	public int getNumMitja()	{		return this.mitja;	}	/**	 * Metode per obtenir el resultat referents a partides contra persones	 * 	 * @return Torna el nombre de vegades que s'ha guanyat/perdut/empatat o percentatge d'alguna d'aquestres tres	 *         ultimes contra persones.	 */	public int getNumHumans()	{		return this.persona;	}	/**	 * Metode per obtenir el resultat total, es a dir la suma de tots els resultats dels altres atributs:	 * Facil,Mitja,Dificil i Huma.	 * 	 * @return Torna el nombre de vegades que s'ha guanyat/perdut/empatat o percentatge d'alguna d'aquestres tres	 *         ultimes en total.	 */	public int getNumTotal()	{		return this.numero_total;	}}

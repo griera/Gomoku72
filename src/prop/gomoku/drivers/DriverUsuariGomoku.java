@@ -1,13 +1,36 @@
 package prop.gomoku.drivers;
 
+import prop.gomoku.auxiliars.LecturaScanners;
 import prop.gomoku.domini.models.UsuariGomoku;
 
+/**
+ * 
+ * Aquesta clase es el driver de usuari gomoku i ens permet probar les seves funcionalitats per comprovar el seu
+ * correcte funcionament
+ * 
+ */
 public class DriverUsuariGomoku
 {
+	/**
+	 * Indica el nombre de dificultats que podem trobar en el nostre joc. Una persona també compta com a possible
+	 * dificultat
+	 */
 	private static final int nombre_dificultats = 4;
+	/**
+	 * Representa l'usuari del sistema gomoku
+	 */
 	private static UsuariGomoku usuari;
+	/**
+	 * Variable que permet gestionar mes comodement lectures de dades
+	 */
 	private static LecturaScanners lectura = new LecturaScanners();
 
+	/**
+	 * Aquest menu mostra les principals opcions de consulta,creació i modificació que es poden dur a terme a la classe
+	 * UsuariGomoku L'usuari introduira per teclat la opció que vulgui probar
+	 * 
+	 * @return Retornara la opcio del menú escollida per l'usuari
+	 */
 	private static int menuPrincipal()
 	{
 		System.out.println( "Driver UsuariGomoku" );
@@ -20,15 +43,22 @@ public class DriverUsuariGomoku
 		return lectura.llegirInt();
 	}
 
+	/**
+	 * Driver de la funcio creadora de UsuariGomoku
+	 */
 	private static void Crea_Usuari()
 	{
 		System.out.println( "Introdueix Nom Usuari" );
 		String nom = lectura.llegirString();
 		System.out.println( "Introdueix Contrasenya Usuari" );
 		String pass = lectura.llegirString();
-		usuari = new UsuariGomoku( nom, pass, nombre_dificultats);
+		usuari = new UsuariGomoku( nom, pass, nombre_dificultats );
 	}
 
+	/**
+	 * Driver de les funcions consultores de UsuariGomoku, amb les que podem veure totes les dades guardades a
+	 * UsuariGomoku
+	 */
 	private static void consulta()
 	{
 		System.out.println( "Consulta UsuariGomoku" );
@@ -50,6 +80,9 @@ public class DriverUsuariGomoku
 		System.out.println();
 	}
 
+	/**
+	 * Driver que ens permet probar les diferents funcions modificadores que disposa UsuariGomoku
+	 */
 	private static void modifica()
 	{
 		System.out.println( "Modificació UsuariGomoku" );
@@ -97,6 +130,11 @@ public class DriverUsuariGomoku
 		System.out.println();
 	}
 
+	/**
+	 * Gestiona quines funcions probarem en funcio de la dada llegida previament, introduida per l'usuari
+	 * 
+	 * @param args Indica quina opcio tractarem, si la creadora, la modificadora o la consultora
+	 */
 	public static void main( String[] args )
 	{
 		while ( true )

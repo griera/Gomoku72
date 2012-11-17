@@ -22,6 +22,14 @@ public class ControladorPartidaEnJoc
 		this.columna_ult_moviment = 0;
 	}
 
+	public ControladorPartidaEnJoc( Usuari jugador_a, Usuari jugador_b, String nom_partida )
+	{
+		this.partida = new PartidaGomoku(jugador_a, jugador_b, new TaulerGomoku(), nom_partida);
+		this.ia = new IAGomoku();
+		this.fila_ult_moviment = 0;
+		this.columna_ult_moviment = 0;
+	}
+	
 	public PartidaGomoku getPartida()
 	{
 		return this.partida;
