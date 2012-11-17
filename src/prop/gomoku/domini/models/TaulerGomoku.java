@@ -132,19 +132,19 @@ public class TaulerGomoku extends Tauler
 	{
 		if ( fila < 0 || fila >= this.getMida() || columna < 0 || columna >= this.getMida() )
 		{
-			throw new IndexOutOfBoundsException( "Posició indicada fora del tauler" );
+			throw new IndexOutOfBoundsException( "Posicio indicada fora del tauler" );
 		}
 
 		else if ( fitxa == EstatCasella.BUIDA )
 		{
 			if ( this.esBuit() )
 			{
-				throw new IllegalArgumentException( "No es pot treure cap fitxa pequè el tauler està buit" );
+				throw new IllegalArgumentException( "No es pot treure cap fitxa perque el tauler esta buit" );
 			}
 
 			else if ( this.getEstatCasella( fila, columna ) == fitxa )
 			{
-				throw new IllegalArgumentException( "La casella (" + fila + ", " + columna + ") ja està buida" );
+				throw new IllegalArgumentException( "La casella (" + fila + ", " + columna + ") ja esta buida" );
 			}
 
 			else
@@ -155,12 +155,12 @@ public class TaulerGomoku extends Tauler
 
 		else if ( this.getEstatCasella( fila, columna ) != EstatCasella.BUIDA )
 		{
-			throw new IllegalArgumentException( "La casella (" + fila + ", " + columna + ") ja està ocupada" );
+			throw new IllegalArgumentException( "La casella (" + fila + ", " + columna + ") ja esta ocupada" );
 		}
 
 		else if ( this.teFitxesSeguides( fila, columna, 6, fitxa ) )
 		{
-			throw new IllegalArgumentException( "No poden haver línies de més de cinc fitxes seguides" );
+			throw new IllegalArgumentException( "No poden haver linies de mes de cinc fitxes seguides" );
 		}
 
 		return true;

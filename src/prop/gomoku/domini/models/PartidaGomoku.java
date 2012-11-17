@@ -65,7 +65,7 @@ public class PartidaGomoku extends Partida
 	{
 		if ( fila < 0 || fila >= this.tauler.getMida() || columna < 0 || columna >= this.tauler.getMida() )
 		{
-			throw new IndexOutOfBoundsException( "Posició indicada fora del tauler" );
+			throw new IndexOutOfBoundsException( "Posicio indicada fora del tauler" );
 		}
 
 		EstatCasella estat = this.tauler.getEstatCasella( fila, columna );

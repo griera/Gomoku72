@@ -50,7 +50,7 @@ public class ProgramaPrincipal
 
 			System.out.println( jugador.getNom() + ", esta a punt per iniciar una nova partida al Gomoku." );
 			System.out.println( "Si us plau, indiqui el seu oponent:\n" );
-			System.out.print( "1.- Jugador maquina\n2.- Jugador huma\nOponent (marqui 1 ó 2): " );
+			System.out.print( "1.- Jugador maquina\n2.- Jugador huma\nOponent (marqui 1 o 2): " );
 			int tipus_oponent = dada.llegirInt();
 
 			Usuari oponent = new Usuari( "CPU", "CPU", 4 );
@@ -68,7 +68,7 @@ public class ProgramaPrincipal
 							+ "formulari de registre al sistema per poder jugar partides\n" );
 					oponent = llegirJugador();
 					System.out.print( "\nEl registre temporal s'ha efectuat amb èxit. " );
-					System.out.println( "Aquestes són les dades que el seu oponentha proporcionat al sistema:" );
+					System.out.println( "Aquestes son les dades que el seu oponentha proporcionat al sistema:" );
 					System.out.println( oponent.toString() );
 					break;
 			}
@@ -80,7 +80,7 @@ public class ProgramaPrincipal
 
 			System.out.println( "\nSi us plau " + jugador.getNom()
 					+ ", indiqui amb quines fitxes vol jugar la partida:" );
-			System.out.print( "1.- Fitxes negres\n2.- Fitxes blanques\nColor de les fitxes (marqui 1 ó 2): " );
+			System.out.print( "1.- Fitxes negres\n2.- Fitxes blanques\nColor de les fitxes (marqui 1 o 2): " );
 
 			// PartidaGomoku partida;
 			int color_fitxes = dada.llegirInt();
