@@ -6,7 +6,9 @@ import prop.gomoku.domini.models.TaulerGomoku;
 
 public class GestorPartidesGuardades
 {
-	private static String ruta_partides_guardades = "Algun lloc del PC";
+	
+	@SuppressWarnings( "unused" )
+	private static String ruta_partides_guardades = "Algun lloc del PC"; // TODO idea de cara serialitzacio
 	private static int limit_partides = 3;
 
 	public boolean guardaPartida( PartidaGomoku partida )
