@@ -24,12 +24,12 @@ public class ControladorPartidaEnJoc
 
 	public ControladorPartidaEnJoc( Usuari jugador_a, Usuari jugador_b, String nom_partida )
 	{
-		this.partida = new PartidaGomoku(jugador_a, jugador_b, new TaulerGomoku(), nom_partida);
+		this.partida = new PartidaGomoku( jugador_a, jugador_b, new TaulerGomoku(), nom_partida );
 		this.ia = new IAGomoku();
 		this.fila_ult_moviment = 0;
 		this.columna_ult_moviment = 0;
 	}
-	
+
 	public PartidaGomoku getPartida()
 	{
 		return this.partida;
@@ -106,9 +106,9 @@ public class ControladorPartidaEnJoc
 		this.getPartida().getTauler().mouFitxa( fitxa, fila, columna );
 		this.fila_ult_moviment = fila;
 		this.columna_ult_moviment = columna;
-		
+
 		EstatPartida estat_partida = this.partida.comprovaEstatPartida( fila, columna );
-		if (estat_partida == EstatPartida.NO_FINALITZADA)
+		if ( estat_partida == EstatPartida.NO_FINALITZADA )
 		{
 			this.partida.incrementaTornsJugats( 1 );
 		}
