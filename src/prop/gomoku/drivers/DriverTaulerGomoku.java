@@ -35,9 +35,9 @@ public class DriverTaulerGomoku
 		{
 			System.out.println( "Consulta TaulerGomoku" );
 			System.out.println( "----------------------" );
-			System.out.println( "1. Consulta ràpida del tauler" );
-			System.out.println( "2. Consulta ràpida alternativa del tauler (només l'estat del tauler)" );
-			System.out.println( "3. Consulta si el tauler està buit" );
+			System.out.println( "1. Consulta rapida del tauler" );
+			System.out.println( "2. Consulta rapida alternativa del tauler (nomes l'estat del tauler)" );
+			System.out.println( "3. Consulta si el tauler esta buit" );
 			System.out.println( "4. Consulta el nombre de fitxes del jugador A (fitxes negres) sobre el tauler" );
 			System.out.println( "5. Consulta el nombre de fitxes del jugador B (fitxes blanques) sobre el tauler" );
 			System.out.println( "6. Consulta el nombre total de fitxes sobre el tauler" );
@@ -56,11 +56,11 @@ public class DriverTaulerGomoku
 					tauler.pinta();
 					break;
 				case 3:
-					String resposta = ( tauler.esBuit() ) ? "El tauler està buit" : "El tauler no està buit";
+					String resposta = ( tauler.esBuit() ) ? "El tauler esta buit" : "El tauler no esta buit";
 					System.out.println( resposta );
 					break;
 				case 4:
-					System.out.println( "El jugador A (fitxes negres) té " + tauler.getNumFitxesA() + " fitxa/es" );
+					System.out.println( "El jugador A (fitxes negres) te " + tauler.getNumFitxesA() + " fitxa/es" );
 					break;
 				case 5:
 					System.out.println( "El jugador B (fitxes blanques) té " + tauler.getNumFitxesB() + " fitxa/es" );
@@ -70,11 +70,11 @@ public class DriverTaulerGomoku
 					break;
 				case 7:
 					System.out.println( "Si us plau, indiqui les coordenades de la casella que vol consultar:" );
-					System.out.print( "Índex de la fila: " );
+					System.out.print( "Index de la fila: " );
 					int fila = lectura.llegirInt();
 					System.out.println();
 
-					System.out.print( "Índex de la col·lumna: " );
+					System.out.print( "Index de la columna: " );
 					int columna = lectura.llegirInt();
 					System.out.println();
 					EstatCasella estat_casella;
@@ -86,17 +86,17 @@ public class DriverTaulerGomoku
 						System.out.println( excepcio.getMessage() );
 						continue;
 					}
-					System.out.println( "La casella (" + fila + ", " + columna + ") té el següent estat: "
+					System.out.println( "La casella (" + fila + ", " + columna + ") te el seguent estat: "
 							+ estat_casella.toString() );
 					break;
 				case 8:
 					System.out.println( "Si us plau, indiqui les coordenades de la casella on voldria fer el "
 							+ "moviment:" );
-					System.out.print( "Índex de la fila: " );
+					System.out.print( "Index de la fila: " );
 					fila = lectura.llegirInt();
 					System.out.println();
 
-					System.out.print( "Índex de la col·lumna: " );
+					System.out.print( "Index de la columna: " );
 					columna = lectura.llegirInt();
 					System.out.println();
 
@@ -136,21 +136,21 @@ public class DriverTaulerGomoku
 		{
 			System.out.println( "Modifica TaulerGomoku" );
 			System.out.println( "----------------------" );
-			System.out.println( "1. Col·loca una fitxa negra al tauler" );
-			System.out.println( "2. Col·loca una fitxa blanca al tauler" );
+			System.out.println( "1. Coloca una fitxa negra al tauler" );
+			System.out.println( "2. Coloca una fitxa blanca al tauler" );
 			System.out.println( "3. Treu una fitxa del tauler" );
 			System.out.println( "4. Torna al menú principal" );
 
 			switch ( lectura.llegirInt() )
 			{
 				case 1:
-					System.out.println( "Si us plau, indiqui les coordenades de la casella on vol col·locar una fitxa "
+					System.out.println( "Si us plau, indiqui les coordenades de la casella on vol colocar una fitxa "
 							+ "negra:" );
 					System.out.print( "Índex de la fila: " );
 					int fila = lectura.llegirInt();
 					System.out.println();
 
-					System.out.print( "Índex de la col·lumna: " );
+					System.out.print( "Índex de la columna: " );
 					int columna = lectura.llegirInt();
 					System.out.println();
 
@@ -166,17 +166,17 @@ public class DriverTaulerGomoku
 						System.out.println( excepcio.getMessage() );
 						continue;
 					}
-					System.out.println( " La fitxa s'ha col·locat correctament " );
+					System.out.println( " La fitxa s'ha colocat correctament " );
 					break;
 
 				case 2:
-					System.out.println( "Si us plau, indiqui les coordenades de la casella on vol col·locar una fitxa "
+					System.out.println( "Si us plau, indiqui les coordenades de la casella on vol colocar una fitxa "
 							+ "blanca:" );
-					System.out.print( "Índex de la fila: " );
+					System.out.print( "Index de la fila: " );
 					fila = lectura.llegirInt();
 					System.out.println();
 
-					System.out.print( "Índex de la col·lumna: " );
+					System.out.print( "Index de la columna: " );
 					columna = lectura.llegirInt();
 					System.out.println();
 
@@ -192,15 +192,15 @@ public class DriverTaulerGomoku
 						System.out.println( excepcio.getMessage() );
 						continue;
 					}
-					System.out.println( " La fitxa s'ha col·locat correctament " );
+					System.out.println( " La fitxa s'ha colocat correctament " );
 					break;
 				case 3:
 					System.out.println( "Si us plau, indiqui les coordenades de la fitxa que vol treure del tauler:" );
-					System.out.print( "Índex de la fila: " );
+					System.out.print( "Index de la fila: " );
 					fila = lectura.llegirInt();
 					System.out.println();
 
-					System.out.print( "Índex de la col·lumna: " );
+					System.out.print( "Índex de la columna: " );
 					columna = lectura.llegirInt();
 					System.out.println();
 

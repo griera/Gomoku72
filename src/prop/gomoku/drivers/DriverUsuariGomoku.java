@@ -37,7 +37,7 @@ public class DriverUsuariGomoku
 		System.out.println( "====================" );
 		System.out.println( "Opcions:" );
 		System.out.println( "1. Crea Usuari" );
-		System.out.println( "2. Consulta Ràpida" );
+		System.out.println( "2. Consulta Rapida" );
 		System.out.println( "3. Consultar UsuariGomoku" );
 		System.out.println( "4. Modifica" );
 		System.out.println();
@@ -61,7 +61,7 @@ public class DriverUsuariGomoku
 	 */
 	private static void consultaRapida()
 	{
-		System.out.println( "Consulta Ràpida UsuariGomoku" );
+		System.out.println( "Consulta Rapida UsuariGomoku" );
 		System.out.println( "============================" );
 		System.out.println( usuari.toString() );
 	}
@@ -134,7 +134,7 @@ public class DriverUsuariGomoku
 				break;
 			case 6:
 				usuari.reiniciaEstadistiques();
-				System.out.println( "Estadístiques reiniciades" );
+				System.out.println( "Estadistiques reiniciades" );
 				break;
 		}
 		System.out.println();

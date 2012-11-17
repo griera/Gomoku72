@@ -37,34 +37,34 @@ public class ProgramaPrincipal
 
 		imprimeixBenvinguda();
 
-		System.out.print( "Si us plau, ompli el següent formulari de registre " );
+		System.out.print( "Si us plau, ompli el seguent formulari de registre " );
 		System.out.println( "al sistema per poder jugar partides\n" );
 		Usuari jugador = llegirJugador();
-		System.out.print( "\nEl registre temporal s'ha efectuat amb èxit. " );
-		System.out.println( "Aquestes són les dades que ha proporcionat al sistema:\n" + jugador.toString() + "\n" );
+		System.out.print( "\nEl registre temporal s'ha efectuat amb exit. " );
+		System.out.println( "Aquestes son les dades que ha proporcionat al sistema:\n" + jugador.toString() + "\n" );
 
 		boolean surt_programa = false;
 
 		while ( !surt_programa )
 		{
 
-			System.out.println( jugador.getNom() + ", està a punt per començar una nova partida al Gomoku." );
+			System.out.println( jugador.getNom() + ", esta a punt per iniciar una nova partida al Gomoku." );
 			System.out.println( "Si us plau, indiqui el seu oponent:\n" );
-			System.out.print( "1.- Jugador màquina\n2.- Jugador humà\nOponent (marqui 1 ó 2): " );
+			System.out.print( "1.- Jugador maquina\n2.- Jugador huma\nOponent (marqui 1 ó 2): " );
 			int tipus_oponent = dada.llegirInt();
 
 			Usuari oponent = new Usuari( "CPU", "CPU", 4 );
 			switch ( tipus_oponent )
 			{
 				case 1:
-					System.out.println( "\n" + jugador.getNom() + ", ha seleccionat jugar contra el jugador màquina." );
-					System.out.println( "Aquestes són les dades del jugador màquina:\n" + oponent.toString() );
+					System.out.println( "\n" + jugador.getNom() + ", ha seleccionat jugar contra el jugador maquina." );
+					System.out.println( "Aquestes son les dades del jugador màquina:\n" + oponent.toString() );
 					break;
 
 				case 2:
 					System.out.println( "\n" + jugador.getNom()
-							+ ", ha seleccionat jugar contra un altre jugador humà." );
-					System.out.print( "Si us plau " + jugador.getNom() + ", que el vostre oponent ompli el següent "
+							+ ", ha seleccionat jugar contra un altre jugador huma." );
+					System.out.print( "Si us plau " + jugador.getNom() + ", que el vostre oponent ompli el seguent "
 							+ "formulari de registre al sistema per poder jugar partides\n" );
 					oponent = llegirJugador();
 					System.out.print( "\nEl registre temporal s'ha efectuat amb èxit. " );
@@ -76,7 +76,7 @@ public class ProgramaPrincipal
 			System.out.print( "\nSi us plau " + jugador.getNom() + ", indiqui el nom que vol posar a la partida: " );
 			LecturaBuffers dada_buffer = new LecturaBuffers();
 			String nom_partida = dada_buffer.llegirString();
-			System.out.println( "\nLa partida que s'està a punt de disputar s'anomena " + nom_partida + "\n" );
+			System.out.println( "\nLa partida que s'esta a punt de disputar s'anomena " + nom_partida + "\n" );
 
 			System.out.println( "\nSi us plau " + jugador.getNom()
 					+ ", indiqui amb quines fitxes vol jugar la partida:" );
@@ -113,7 +113,7 @@ public class ProgramaPrincipal
 				EstatCasella fitxa = controlador_partida.getColorActual();
 
 				System.out.println( "/* TORN " + controlador_partida.getTornActual() + " */" );
-				System.out.println( jugador_actual.getNom() + ", és el seu torn." );
+				System.out.println( jugador_actual.getNom() + ", es el seu torn." );
 
 				if ( jugador_actual.getNom().equals( "CPU" ) )
 				{
@@ -142,12 +142,12 @@ public class ProgramaPrincipal
 				} catch ( IndexOutOfBoundsException excepcio )
 				{
 					System.out.println( excepcio.getMessage() + ".\nSi us plau " + jugador_actual.getNom()
-							+ ", torni a " + "moure al seva fitxa en una posició vàlida del tauler.\n" );
+							+ ", torni a " + "moure al seva fitxa en una posicio valida del tauler.\n" );
 					continue;
 				} catch ( IllegalArgumentException excepcio )
 				{
 					System.out.println( excepcio.getMessage() + ".\nSi us plau " + jugador_actual.getNom()
-							+ ", torni a moure al seva fitxa en una posició vàlida del tauler.\n" );
+							+ ", torni a moure al seva fitxa en una posicio valida del tauler.\n" );
 					continue;
 				}
 

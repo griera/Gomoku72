@@ -45,19 +45,19 @@ public class DriverPartidaGomoku
 		{
 			System.out.println( "Consulta PartidaGomoku" );
 			System.out.println( "----------------------" );
-			System.out.println( "1. Consulta ràpida" );
+			System.out.println( "1. Consulta rapida" );
 			System.out.println( "2. Consulta jugador A" );
 			System.out.println( "3. Consulta jugador B" );
 			System.out.println( "4. Consulta tauler" );
 			System.out.println( "5. Consulta torns jugats" );
-			System.out.println( "6. Consulta data creació" );
+			System.out.println( "6. Consulta data creacio" );
 			System.out.println( "7. Consulta nom" );
-			System.out.println( "8. Consulta estat finalització" );
+			System.out.println( "8. Consulta estat finalitzacio" );
 			System.out.println( "9. Comprova l'estat d'una partida en curs" );
 			System.out.println( "10. Comprova l'estat d'una partida en empat" );
 			System.out.println( "11. Comprova l'estat d'una partida on guanya jugador A" );
 			System.out.println( "12. Comprova l'estat d'una partida on guanya jugador B" );
-			System.out.println( "13. Torna al menú principal" );
+			System.out.println( "13. Torna al menu principal" );
 			System.out.println();
 
 			switch ( lectura.llegirInt() )
@@ -203,7 +203,7 @@ public class DriverPartidaGomoku
 		boolean surt = false;
 		while ( !surt )
 		{
-			System.out.println( "Modificació PartidaGomoku" );
+			System.out.println( "Modificacio PartidaGomoku" );
 			System.out.println( "-------------------------" );
 			System.out.println( "1. Modifica jugador A" );
 			System.out.println( "2. Modifica jugador B" );
@@ -212,8 +212,8 @@ public class DriverPartidaGomoku
 			System.out.println( "5. Incrementa el nombre de torns jugats" );
 			System.out.println( "6. Modifica data creació (actualitza a aquest moment)" );
 			System.out.println( "7. Modifica nom" );
-			System.out.println( "8. Modifica estat finalització" );
-			System.out.println( "9. Torna al menú principal" );
+			System.out.println( "8. Modifica estat finalitzacio" );
+			System.out.println( "9. Torna al menu principal" );
 			System.out.println();
 
 			switch ( lectura.llegirInt() )
@@ -257,7 +257,7 @@ public class DriverPartidaGomoku
 					break;
 				case 6:
 					partida.setDataCreacio( new Date() );
-					System.out.println( "Hora de creació actualitzada" );
+					System.out.println( "Hora de creacio actualitzada" );
 					break;
 				case 7:
 					System.out.println( "Introdueix el nou nom de la partida: " );
@@ -266,7 +266,7 @@ public class DriverPartidaGomoku
 					System.out.println( "Nom actualitzat" );
 					break;
 				case 8:
-					System.out.println( "Introdueix el nou estat de finalització [s/n]" );
+					System.out.println( "Introdueix el nou estat de finalitzacio [s/n]" );
 					String resposta = lectura.llegirString();
 					if ( resposta.toLowerCase().equals( "s" ) )
 					{
@@ -278,10 +278,10 @@ public class DriverPartidaGomoku
 					}
 					else
 					{
-						System.out.println( "Resposta no vàlida" );
+						System.out.println( "Resposta no valida" );
 						break;
 					}
-					System.out.println( "Estat de finalització modificat" );
+					System.out.println( "Estat de finalitzacio modificat" );
 					break;
 
 				case 13:
