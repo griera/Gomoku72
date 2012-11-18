@@ -113,184 +113,180 @@
     </display>  
   </class>  
   <association id="15">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="16" name="estadistiques"/>      
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="16" name="jugador_principal"/>      
       <multiplicity id="17" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="18">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <association id="19">    
-    <bendpoint x="391" y="1813"/>    
-    <bendpoint x="417" y="1824"/>    
-    <bendpoint x="449" y="1818"/>    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="20" name="percentatge_derrotes"/>      
-      <multiplicity id="21" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="22">    
-    <bendpoint x="383" y="1773"/>    
-    <bendpoint x="437" y="1772"/>    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="23" name="percentatge_empats"/>      
-      <multiplicity id="24" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="25">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <dependency id="26">    
-    <bendpoint x="1033" y="506"/>    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="6"/>  
-  </dependency>  
-  <generalization id="27">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <association id="28">    
-    <bendpoint x="1154" y="978"/>    
-    <bendpoint x="1090" y="940"/>    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="29" name="jugador_b"/>      
-      <multiplicity id="30" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="31">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="7"/>  
-  </generalization>  
-  <generalization id="32">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <dependency id="33">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <association id="34">    
-    <bendpoint x="1112" y="1006"/>    
-    <bendpoint x="1086" y="992"/>    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="35" name="jugador_a"/>      
-      <multiplicity id="36" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="37">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="38" name="jugador_principal"/>      
-      <multiplicity id="39" minimum="0" maximum="1"/>    
-    </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="40">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="41" name="usuari"/>      
-      <multiplicity id="42" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="43">    
+  <association id="18">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="44" name="partida"/>      
-      <multiplicity id="45" minimum="0" maximum="1"/>    
+      <attribute id="19" name="partida"/>      
+      <multiplicity id="20" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="46">    
+  <association id="21">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="22" name="caselles"/>      
+      <multiplicity id="23" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="24">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <generalization id="25">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <association id="26">    
     <bendpoint x="348" y="1586"/>    
     <bendpoint x="425" y="1574"/>    
     <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="47" name="empats"/>      
-      <multiplicity id="48" minimum="0" maximum="1"/>    
+      <attribute id="27" name="empats"/>      
+      <multiplicity id="28" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="49">    
-    <bendpoint x="395" y="1604"/>    
+  <association id="29">    
+    <bendpoint x="1112" y="1006"/>    
+    <bendpoint x="1086" y="992"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="30" name="jugador_a"/>      
+      <multiplicity id="31" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="32">    
+    <bendpoint x="343" y="1547"/>    
+    <bendpoint x="398" y="1542"/>    
+    <bendpoint x="430" y="1542"/>    
+    <bendpoint x="456" y="1545"/>    
     <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="50" name="derrotes"/>      
-      <multiplicity id="51" minimum="0" maximum="1"/>    
+      <attribute id="33" name="percentatge_victories"/>      
+      <multiplicity id="34" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="52">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="53" name="ia"/>      
-      <multiplicity id="54" minimum="0" maximum="1"/>    
+  <association id="35">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="36" name="estadistiques"/>      
+      <multiplicity id="37" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="55">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="11"/>  
-  </dependency>  
-  <association id="56">    
+  <association id="38">    
     <bendpoint x="360" y="1725"/>    
     <bendpoint x="382" y="1733"/>    
     <bendpoint x="422" y="1736"/>    
     <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="57" name="victories"/>      
+      <attribute id="39" name="victories"/>      
+      <multiplicity id="40" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="41">    
+    <bendpoint x="383" y="1773"/>    
+    <bendpoint x="437" y="1772"/>    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="42" name="percentatge_empats"/>      
+      <multiplicity id="43" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="44">    
+    <bendpoint x="371" y="1696"/>    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="45" name="total_disputades"/>      
+      <multiplicity id="46" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="47">    
+    <bendpoint x="1033" y="506"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <generalization id="48">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <dependency id="49">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <association id="50">    
+    <bendpoint x="391" y="1813"/>    
+    <bendpoint x="417" y="1824"/>    
+    <bendpoint x="449" y="1818"/>    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="51" name="percentatge_derrotes"/>      
+      <multiplicity id="52" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="53">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="54" name="usuari"/>      
+      <multiplicity id="55" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="56">    
+    <bendpoint x="395" y="1604"/>    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="57" name="derrotes"/>      
       <multiplicity id="58" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="59">    
-    <bendpoint x="371" y="1696"/>    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="60" name="total_disputades"/>      
+    <bendpoint x="1154" y="978"/>    
+    <bendpoint x="1090" y="940"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="60" name="jugador_b"/>      
       <multiplicity id="61" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
+    <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="62">    
-    <bendpoint x="343" y="1547"/>    
-    <bendpoint x="398" y="1542"/>    
-    <bendpoint x="430" y="1542"/>    
-    <bendpoint x="456" y="1545"/>    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="63" name="percentatge_victories"/>      
-      <multiplicity id="64" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="65">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="66" name="caselles"/>      
-      <multiplicity id="67" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="68">    
+  <generalization id="62">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <association id="63">    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="69" name="tauler"/>      
-      <multiplicity id="70" minimum="0" maximum="1"/>    
+      <attribute id="64" name="tauler"/>      
+      <multiplicity id="65" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="66">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <association id="67">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="68" name="ia"/>      
+      <multiplicity id="69" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
