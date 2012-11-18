@@ -32,6 +32,7 @@ public class DriverEstadistiquesPartides
 		System.out.println( "Opcions:" );
 		System.out.println( "1. Crea ResumResultats" );
 		System.out.println( "2. Consulta ResumResultats" );
+		System.out.println( "3. Surt" );
 		System.out.println();
 		return lectura.llegirInt();
 	}
@@ -43,7 +44,8 @@ public class DriverEstadistiquesPartides
 	 */
 	public static void main( String[] args )
 	{
-		while ( true )
+		boolean surt = false;
+		while ( !surt )
 		{
 			switch ( menuPrincipal() )
 			{
@@ -52,6 +54,9 @@ public class DriverEstadistiquesPartides
 					break;
 				case 2:
 					consultaEstadistiques();
+					break;
+				case 3:
+					surt = true;
 					break;
 				default:
 					break;

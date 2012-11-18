@@ -32,6 +32,7 @@ public class DriverResumResultats
 		System.out.println( "Opcions:" );
 		System.out.println( "1. Crea ResumResultats" );
 		System.out.println( "2. Consulta ResumResultats" );
+		System.out.println( "3. Surt" );
 		System.out.println();
 		return lectura.llegirInt();
 	}
@@ -116,7 +117,8 @@ public class DriverResumResultats
 	 */
 	public static void main( String[] args )
 	{
-		while ( true )
+		boolean surt = false;
+		while ( !surt )
 		{
 			switch ( menuPrincipal() )
 			{
@@ -125,6 +127,9 @@ public class DriverResumResultats
 					break;
 				case 2:
 					consultaResultats();
+					break;
+				case 3:
+					surt = true;
 					break;
 				default:
 					break;

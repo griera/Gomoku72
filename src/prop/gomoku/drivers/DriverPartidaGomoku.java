@@ -2,17 +2,17 @@ package prop.gomoku.drivers;
 
 import java.util.Date;
 
-import prop.cluster.domini.models.Usuari;
 import prop.cluster.domini.models.estats.EstatCasella;
 import prop.gomoku.auxiliars.LecturaScanners;
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.TaulerGomoku;
+import prop.gomoku.domini.models.UsuariGomoku;
 
 public class DriverPartidaGomoku
 {
 	private static PartidaGomoku partida;
-	private static Usuari jugador_a;
-	private static Usuari jugador_b;
+	private static UsuariGomoku jugador_a;
+	private static UsuariGomoku jugador_b;
 	private static TaulerGomoku tauler;
 	private static LecturaScanners lectura = new LecturaScanners();
 
@@ -30,8 +30,8 @@ public class DriverPartidaGomoku
 
 	private static void inicialitza()
 	{
-		jugador_a = new Usuari( "JugadorA", "passA", 2 );
-		jugador_b = new Usuari( "JugadorB", "passB", 2 );
+		jugador_a = new UsuariGomoku( "JugadorA", "passA", 2 );
+		jugador_b = new UsuariGomoku( "JugadorB", "passB", 2 );
 		tauler = new TaulerGomoku();
 		partida = new PartidaGomoku( jugador_a, jugador_b, tauler, "PartidaGomokuDriver" );
 		System.out.println( "Inicialitzat correctament" );
@@ -223,7 +223,7 @@ public class DriverPartidaGomoku
 					String nom_a = lectura.llegirString();
 					System.out.println( "Introdueix la contrasenya del nou jugador A: " );
 					String contrasenya_a = lectura.llegirString();
-					partida.setJugadorA( new Usuari( nom_a, contrasenya_a, 0 ) );
+					partida.setJugadorA( new UsuariGomoku( nom_a, contrasenya_a, 2 ) );
 					System.out.println( "Nou jugador A assignat" );
 					System.out.println();
 					break;
@@ -232,7 +232,7 @@ public class DriverPartidaGomoku
 					String nom_b = lectura.llegirString();
 					System.out.println( "Introdueix la contrasenya del nou jugador B: " );
 					String contrasenya_b = lectura.llegirString();
-					partida.setJugadorA( new Usuari( nom_b, contrasenya_b, 0 ) );
+					partida.setJugadorA( new UsuariGomoku( nom_b, contrasenya_b, 2 ) );
 					System.out.println( "Nou jugador B assignat" );
 					System.out.println();
 					break;
