@@ -1,10 +1,10 @@
 package prop.gomoku.domini.controladors;
 
-import prop.cluster.domini.models.Usuari;
 import prop.cluster.domini.models.estats.EstatCasella;
 import prop.cluster.domini.models.estats.EstatPartida;
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.TaulerGomoku;
+import prop.gomoku.domini.models.UsuariGomoku;
 
 /**
  * Controlador de domini encarregat del control de partides en joc. Abstrau les interaccions més comuns que els
@@ -51,7 +51,7 @@ public class ControladorPartidaEnJoc
 	 * @param jugador_b Usuari que farà de jugador B
 	 * @param nom_partida Nom que se li vol assignar a la nova partida
 	 */
-	public ControladorPartidaEnJoc( Usuari jugador_a, Usuari jugador_b, String nom_partida )
+	public ControladorPartidaEnJoc( UsuariGomoku jugador_a, UsuariGomoku jugador_b, String nom_partida )
 	{
 		this.partida = new PartidaGomoku( jugador_a, jugador_b, new TaulerGomoku(), nom_partida );
 		this.ia = new IAGomoku();
@@ -72,16 +72,16 @@ public class ControladorPartidaEnJoc
 	 * Mètode consultor del jugador actual (al que li toca moure fitxa)
 	 * @return Jugador al qual li toca moure
 	 */
-	public Usuari getJugadorActual()
+	public UsuariGomoku getJugadorActual()
 	{
 		int torn_actual = this.getTornActual();
 		if ( torn_actual % 2 == 1 )
 		{
-			return this.getPartida().getJugadorA();
+			return (UsuariGomoku) this.getPartida().getJugadorA();
 		}
 		else
 		{
-			return this.getPartida().getJugadorB();
+			return (UsuariGomoku) this.getPartida().getJugadorB();
 		}
 	}
 

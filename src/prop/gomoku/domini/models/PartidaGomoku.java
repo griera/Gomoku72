@@ -3,7 +3,6 @@ package prop.gomoku.domini.models;
 import java.util.Date;
 
 import prop.cluster.domini.models.Partida;
-import prop.cluster.domini.models.Usuari;
 import prop.cluster.domini.models.estats.EstatCasella;
 import prop.cluster.domini.models.estats.EstatPartida;
 
@@ -20,7 +19,7 @@ public class PartidaGomoku extends Partida
 
 	// TODO De cara a la segona entrega, aquest atribut servirà per treballar a la capa de persistència
 	@SuppressWarnings( "unused" )
-	private Usuari jugador_principal;
+	private UsuariGomoku jugador_principal;
 
 	/**
 	 * Mètode contructor d'un objecte de la classe <code>PartidaGomoku</code>. Aquest nou objecte representa una nova
@@ -29,15 +28,15 @@ public class PartidaGomoku extends Partida
 	 * i hora <em>data_creacio</em>, amb el nom <em>nom</em>, i si ja ha finalitzat o no segons el valor booleà de
 	 * <em>finalitzada</em>.
 	 * 
-	 * @param jugador_a Objecte de la classe <code>Usuari</code> que juga la partida.
-	 * @param jugador_b Objecte de la classe <code>Usuari</code> que juga la partida.
+	 * @param jugador_a Objecte de la classe <code>UsuariGomoku</code> que juga la partida.
+	 * @param jugador_b Objecte de la classe <code>UsuariGomoku</code> que juga la partida.
 	 * @param tauler Objecte de la classe <code>TaulerGomoku</code> on es juga la partida.
 	 * @param torns_jugats Nombre de torns que ja s'han disputat en la partida.
 	 * @param data_creacio Data en la que s'ha creat la partida.
 	 * @param nom Nom identificatiu de la partida.
 	 * @param finalitzada Indica si la partida ha acabat o encara continua en joc.
 	 */
-	public PartidaGomoku( Usuari jugador_a, Usuari jugador_b, TaulerGomoku tauler, int torns_jugats, Date data_creacio,
+	public PartidaGomoku( UsuariGomoku jugador_a, UsuariGomoku jugador_b, TaulerGomoku tauler, int torns_jugats, Date data_creacio,
 			String nom, boolean finalitzada )
 	{
 		super( jugador_a, jugador_b, tauler, torns_jugats, data_creacio, nom, finalitzada );
@@ -50,12 +49,12 @@ public class PartidaGomoku extends Partida
 	 * partida no té cap torn jugat, la data de creació és la mateixa que quan es crea l'objecte de la classe
 	 * <code>PartidaGomoku</code> i tampoc està finalitzada.
 	 * 
-	 * @param jugador_a Objecte de la classe <code>Usuari</code> que juga la partida.
-	 * @param jugador_b Objecte de la classe <code>Usuari</code> que juga la partida.
+	 * @param jugador_a Objecte de la classe <code>UsuariGomoku</code> que juga la partida.
+	 * @param jugador_b Objecte de la classe <code>UsuariGomoku</code> que juga la partida.
 	 * @param tauler Objecte de la classe <code>TaulerGomoku</code> on es juga la partida.
 	 * @param nom Nom identificatiu de la partida.
 	 */
-	public PartidaGomoku( Usuari jugador_a, Usuari jugador_b, TaulerGomoku tauler, String nom )
+	public PartidaGomoku( UsuariGomoku jugador_a, UsuariGomoku jugador_b, TaulerGomoku tauler, String nom )
 	{
 		super( jugador_a, jugador_b, tauler, nom );
 	}
