@@ -121,8 +121,8 @@ public class ControladorPartidaEnJoc
 
 		if ( moviment_ia[0] == -1 && moviment_ia[1] == -1 )
 		{
-			System.out.print( this.getJugadorActual().getNom() + "s'ha rendit perquè ja ha perdut matemàticament." );
-			System.out.println( " Farà un moviment aleatori:" );
+			System.out.print( this.getJugadorActual().getNom() + "s'ha rendit perque ja ha perdut matematicament." );
+			System.out.println( " Fara un moviment aleatori:" );
 			TaulerGomoku tauler = (TaulerGomoku) this.getPartida().getTauler();
 			moviment_ia = ia.movimentAleatori( tauler );
 		}

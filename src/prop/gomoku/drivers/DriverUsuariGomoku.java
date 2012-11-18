@@ -40,6 +40,7 @@ public class DriverUsuariGomoku
 		System.out.println( "2. Consulta Rapida" );
 		System.out.println( "3. Consultar UsuariGomoku" );
 		System.out.println( "4. Modifica" );
+		System.out.println( "5. Surt" );
 		System.out.println();
 		return lectura.llegirInt();
 	}
@@ -47,7 +48,7 @@ public class DriverUsuariGomoku
 	/**
 	 * Driver de la funcio creadora de UsuariGomoku
 	 */
-	private static void Crea_Usuari()
+	private static void creaUsuari()
 	{
 		System.out.println( "Introdueix Nom Usuari" );
 		String nom = lectura.llegirString();
@@ -147,12 +148,13 @@ public class DriverUsuariGomoku
 	 */
 	public static void main( String[] args )
 	{
-		while ( true )
+		boolean surt = false;
+		while ( !surt )
 		{
 			switch ( menuPrincipal() )
 			{
 				case 1:
-					Crea_Usuari();
+					creaUsuari();
 					break;
 
 				case 2:
@@ -163,6 +165,9 @@ public class DriverUsuariGomoku
 					break;
 				case 4:
 					modifica();
+					break;
+				case 5:
+					surt = true;
 					break;
 				default:
 					break;
