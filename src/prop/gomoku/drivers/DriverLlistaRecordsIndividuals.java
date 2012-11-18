@@ -34,7 +34,7 @@ public class DriverLlistaRecordsIndividuals
 	private static int menuPrincipal()
 	{
 		System.out.println( "Driver LlistaRecordsIndividuals" );
-		System.out.println( "====================" );
+		System.out.println( "===============================" );
 		System.out.println( "Opcions:" );
 		System.out.println( "1. Crea LlistaRecordsIndividuals" );
 		System.out.println( "2. Consulta LlistaRecordsIndividuals" );

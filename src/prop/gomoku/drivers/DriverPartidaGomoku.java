@@ -232,7 +232,7 @@ public class DriverPartidaGomoku
 					String nom_b = lectura.llegirString();
 					System.out.println( "Introdueix la contrasenya del nou jugador B: " );
 					String contrasenya_b = lectura.llegirString();
-					partida.setJugadorA( new UsuariGomoku( nom_b, contrasenya_b, 2 ) );
+					partida.setJugadorB( new UsuariGomoku( nom_b, contrasenya_b, 2 ) );
 					System.out.println( "Nou jugador B assignat" );
 					System.out.println();
 					break;

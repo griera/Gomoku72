@@ -27,11 +27,11 @@ public class DriverEstadistiquesPartides
 	 */
 	private static int menuPrincipal()
 	{
-		System.out.println( "Driver ResumResultats" );
-		System.out.println( "====================" );
+		System.out.println( "Driver EstadistiquesPartides" );
+		System.out.println( "============================" );
 		System.out.println( "Opcions:" );
-		System.out.println( "1. Crea ResumResultats" );
-		System.out.println( "2. Consulta ResumResultats" );
+		System.out.println( "1. Crea EstadistiquesPartides" );
+		System.out.println( "2. Consulta EstadistiquesPartides" );
 		System.out.println( "3. Surt" );
 		System.out.println();
 		return lectura.llegirInt();
