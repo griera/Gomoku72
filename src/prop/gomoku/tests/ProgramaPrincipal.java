@@ -31,14 +31,32 @@ public class ProgramaPrincipal
 		return new Usuari( nom_jugador, contrasenya_jugador, 4 );
 	}
 
+	private static void imprimeixResultat( EstatPartida estat_partida, String nom_jugador_actual )
+	{
+		switch ( estat_partida )
+		{
+			case EMPAT:
+				System.out.println( "/********************************/" );
+				System.out.println( "      PARTIDA FINALITZADA         " );
+				System.out.println( "       RESULTAT => EMPAT          " );
+				System.out.println( "/********************************/" );
+				break;
+
+			default:
+				System.out.println( "/********************************/" );
+				System.out.println( "      PARTIDA FINALITZADA         " );
+				System.out.println( "    RESULTAT => GUANYA " + nom_jugador_actual + "      " );
+				System.out.println( "/********************************/" );
+				break;
+		}
+
+	}
+
 	public static void main( String[] args )
 	{
 		dada = new LecturaScanners();
-
 		imprimeixBenvinguda();
-
-		System.out.print( "Si us plau, ompli el seguent formulari de registre " );
-		System.out.println( "al sistema per poder jugar partides\n" );
+		System.out.print( "Si us plau, ompli el seguent formulari de registre al sistema per poder jugar partides\n" );
 		Usuari jugador = llegirJugador();
 		System.out.print( "\nEl registre temporal s'ha efectuat amb exit. " );
 		System.out.println( "Aquestes son les dades que ha proporcionat al sistema:\n" + jugador.toString() + "\n" );
@@ -48,7 +66,7 @@ public class ProgramaPrincipal
 		while ( !surt_programa )
 		{
 
-			System.out.println( jugador.getNom() + ", esta a punt per iniciar una nova partida al Gomoku." );
+			System.out.println( jugador.getNom() + ", esta a punt per iniciar una nova partida al joc Gomoku." );
 			System.out.println( "Si us plau, indiqui el seu oponent:\n" );
 			System.out.print( "1.- Jugador maquina\n2.- Jugador huma\nOponent (marqui 1 o 2): " );
 			int tipus_oponent = dada.llegirInt();
@@ -58,7 +76,7 @@ public class ProgramaPrincipal
 			{
 				case 1:
 					System.out.println( "\n" + jugador.getNom() + ", ha seleccionat jugar contra el jugador maquina." );
-					System.out.println( "Aquestes son les dades del jugador màquina:\n" + oponent.toString() );
+					System.out.println( "Aquestes son les dades del jugador maquina:\n" + oponent.toString() );
 					break;
 
 				case 2:
@@ -82,27 +100,24 @@ public class ProgramaPrincipal
 					+ ", indiqui amb quines fitxes vol jugar la partida:" );
 			System.out.print( "1.- Fitxes negres\n2.- Fitxes blanques\nColor de les fitxes (marqui 1 o 2): " );
 
-			// PartidaGomoku partida;
 			int color_fitxes = dada.llegirInt();
-
 			ControladorPartidaEnJoc controlador_partida;
 
 			switch ( color_fitxes )
 			{
 				case 2:
-					System.out.println( "\nHa seleccionat jugar amb fitxes blanques." );
+					System.out.println( "\nHa seleccionat jugar amb fitxes blanques.\n" );
 					controlador_partida = new ControladorPartidaEnJoc( oponent, jugador, nom_partida );
 					break;
 
 				default:
 					// Inclou case 1
-					System.out.println( "\nHa seleccionat jugar amb fitxes negres." );
+					System.out.println( "\nHa seleccionat jugar amb fitxes negres.\n" );
 					controlador_partida = new ControladorPartidaEnJoc( jugador, oponent, nom_partida );
 					break;
 			}
 
 			EstatPartida estat_partida = EstatPartida.NO_FINALITZADA;
-			// TaulerGomoku tauler = partida.getTauler();
 			int fila = 0;
 			int columna = 0;
 
@@ -128,10 +143,11 @@ public class ProgramaPrincipal
 					System.out.println( "Temps que ha tardat " + jugador_actual.getNom() + " en moure: "
 							+ ( ( temps_final - temps_inical ) / 1000000000.0 ) + " segons" );
 				}
+
 				else
 				{
 					System.out
-							.println( "Si us plau, indiqui quin serà el seu pròxim moviment (fila (espai) col·lumna):" );
+							.println( "Si us plau, indiqui quin sera el seu proxim moviment (fila (espai) columna):" );
 					fila = dada.llegirInt();
 					columna = dada.llegirInt();
 				}
@@ -142,7 +158,7 @@ public class ProgramaPrincipal
 				} catch ( IndexOutOfBoundsException excepcio )
 				{
 					System.out.println( excepcio.getMessage() + ".\nSi us plau " + jugador_actual.getNom()
-							+ ", torni a " + "moure al seva fitxa en una posicio valida del tauler.\n" );
+							+ ", torni a " + "moure la seva fitxa en una posicio valida del tauler.\n" );
 					continue;
 				} catch ( IllegalArgumentException excepcio )
 				{
@@ -158,29 +174,12 @@ public class ProgramaPrincipal
 						+ " interseccio(ns) ocupada(es)\n" );
 				controlador_partida.getPartida().getTauler().pinta();
 				System.out
-						.println( "\n------------------------------------------------------------------------------\n" );
+						.println( "\n-----------------------------------------------------------------------------\n" );
 
 			}
 
-			switch ( estat_partida )
-			{
-				case EMPAT:
-					System.out.println( "/********************************/" );
-					System.out.println( "      PARTIDA FINALITZADA         " );
-					System.out.println( "       RESULTAT => EMPAT          " );
-					System.out.println( "/********************************/" );
-					break;
-
-				default:
-					System.out.println( "/********************************/" );
-					System.out.println( "      PARTIDA FINALITZADA         " );
-					System.out.println( "    RESULTAT => GUANYA " + controlador_partida.getJugadorActual().getNom()
-							+ "      " );
-					System.out.println( "/********************************/" );
-					break;
-			}
-
-			System.out.println( "Vols tornar a jugar una altra partida? [s/n]: " );
+			imprimeixResultat( estat_partida, controlador_partida.getJugadorActual().getNom() );
+			System.out.println( jugador.getNom() + ", vol tornar a jugar una altra partida? [s/n]: " );
 			surt_programa = ( dada.llegirString().trim().toLowerCase().equals( "s" ) ) ? false : true;
 		}
 	}
