@@ -38,6 +38,7 @@ public class DriverLlistaRecordsIndividuals
 		System.out.println( "Opcions:" );
 		System.out.println( "1. Crea LlistaRecordsIndividuals" );
 		System.out.println( "2. Consulta LlistaRecordsIndividuals" );
+		System.out.println( "3. Surt" );
 		System.out.println();
 		return lectura.llegirInt();
 
@@ -98,7 +99,8 @@ public class DriverLlistaRecordsIndividuals
 	 */
 	public static void main( String[] args )
 	{
-		while ( true )
+		boolean surt = false;
+		while ( !surt )
 		{
 			switch ( menuPrincipal() )
 			{
@@ -107,6 +109,9 @@ public class DriverLlistaRecordsIndividuals
 					break;
 				case 2:
 					consultaEstadistiques();
+					break;
+				case 3:
+					surt = true;
 					break;
 				default:
 					break;
