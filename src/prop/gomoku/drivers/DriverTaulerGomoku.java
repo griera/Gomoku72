@@ -44,7 +44,7 @@ public class DriverTaulerGomoku
 			System.out.println( "7. Consulta l'estat d'una casella dins del tauler" );
 			System.out.println( "8. Consulta si un moviment és vàlid (segons el reglament del Gomoku) abans de "
 					+ "realitzar-lo" );
-			System.out.println( "9. Torna al menú principal" );
+			System.out.println( "9. Torna al menu principal" );
 			System.out.println();
 
 			switch ( lectura.llegirInt() )
@@ -52,22 +52,28 @@ public class DriverTaulerGomoku
 				case 1:
 					System.out.println( tauler );
 					break;
+
 				case 2:
 					tauler.pinta();
 					break;
+
 				case 3:
 					String resposta = ( tauler.esBuit() ) ? "El tauler esta buit" : "El tauler no esta buit";
-					System.out.println( resposta );
+					System.out.println( resposta + "\n" );
 					break;
+
 				case 4:
-					System.out.println( "El jugador A (fitxes negres) te " + tauler.getNumFitxesA() + " fitxa/es" );
+					System.out.println( "El jugador A (fitxes negres) te " + tauler.getNumFitxesA() + " fitxa/es\n" );
 					break;
+
 				case 5:
-					System.out.println( "El jugador B (fitxes blanques) té " + tauler.getNumFitxesB() + " fitxa/es" );
+					System.out.println( "El jugador B (fitxes blanques) té " + tauler.getNumFitxesB() + " fitxa/es\n" );
 					break;
+
 				case 6:
-					System.out.println( "Al tauler hi ha un total de " + tauler.getTotalFitxes() + " fitxa/es" );
+					System.out.println( "Al tauler hi ha un total de " + tauler.getTotalFitxes() + " fitxa/es\n" );
 					break;
+
 				case 7:
 					System.out.println( "Si us plau, indiqui les coordenades de la casella que vol consultar:" );
 					System.out.print( "Index de la fila: " );
@@ -83,12 +89,13 @@ public class DriverTaulerGomoku
 						estat_casella = tauler.getEstatCasella( fila, columna );
 					} catch ( IndexOutOfBoundsException excepcio )
 					{
-						System.out.println( excepcio.getMessage() );
+						System.out.println( excepcio.getMessage() + "\n" );
 						continue;
 					}
 					System.out.println( "La casella (" + fila + ", " + columna + ") te el seguent estat: "
-							+ estat_casella.toString() );
+							+ estat_casella.toString() + "\n" );
 					break;
+
 				case 8:
 					System.out.println( "Si us plau, indiqui les coordenades de la casella on voldria fer el "
 							+ "moviment:" );
@@ -112,16 +119,17 @@ public class DriverTaulerGomoku
 					} catch ( IndexOutOfBoundsException excepcio )
 					{
 						System.out.println( excepcio.getMessage() );
-						System.out.println( "Per tant, el moviment no es podria efectuar" );
+						System.out.println( "Per tant, el moviment no es podria efectuar\n" );
 						continue;
 					} catch ( IllegalArgumentException excepcio )
 					{
 						System.out.println( excepcio.getMessage() );
-						System.out.println( "Per tant, el moviment no es podria efectuar" );
+						System.out.println( "Per tant, el moviment no es podria efectuar\n" );
 						continue;
 					}
-					System.out.println( " El moviment que voldria efectuar no viola el reglament del Gomoku " );
+					System.out.println( "El moviment que voldria efectuar no viola el reglament del Gomoku\n" );
 					break;
+
 				case 9:
 					surt = true;
 					break;
@@ -139,7 +147,7 @@ public class DriverTaulerGomoku
 			System.out.println( "1. Coloca una fitxa negra al tauler" );
 			System.out.println( "2. Coloca una fitxa blanca al tauler" );
 			System.out.println( "3. Treu una fitxa del tauler" );
-			System.out.println( "4. Torna al menú principal" );
+			System.out.println( "4. Torna al menu principal" );
 
 			switch ( lectura.llegirInt() )
 			{
@@ -166,7 +174,7 @@ public class DriverTaulerGomoku
 						System.out.println( excepcio.getMessage() );
 						continue;
 					}
-					System.out.println( " La fitxa s'ha colocat correctament " );
+					System.out.println( "La fitxa s'ha colocat correctament\n" );
 					break;
 
 				case 2:
@@ -185,15 +193,16 @@ public class DriverTaulerGomoku
 						tauler.mouFitxa( EstatCasella.JUGADOR_B, fila, columna );
 					} catch ( IndexOutOfBoundsException excepcio )
 					{
-						System.out.println( excepcio.getMessage() );
+						System.out.println( excepcio.getMessage() + "\n" );
 						continue;
 					} catch ( IllegalArgumentException excepcio )
 					{
-						System.out.println( excepcio.getMessage() );
+						System.out.println( excepcio.getMessage() + "\n" );
 						continue;
 					}
-					System.out.println( " La fitxa s'ha colocat correctament " );
+					System.out.println( "La fitxa s'ha colocat correctament\n" );
 					break;
+
 				case 3:
 					System.out.println( "Si us plau, indiqui les coordenades de la fitxa que vol treure del tauler:" );
 					System.out.print( "Index de la fila: " );
@@ -209,15 +218,16 @@ public class DriverTaulerGomoku
 						tauler.treuFitxa( fila, columna );
 					} catch ( IndexOutOfBoundsException excepcio )
 					{
-						System.out.println( excepcio.getMessage() );
+						System.out.println( excepcio.getMessage() + "\n" );
 						continue;
 					} catch ( IllegalArgumentException excepcio )
 					{
-						System.out.println( excepcio.getMessage() );
+						System.out.println( excepcio.getMessage() + "\n" );
 						continue;
 					}
-					System.out.println( " La fitxa s'ha tret correctament " );
+					System.out.println( "La fitxa s'ha tret correctament\n" );
 					break;
+
 				case 4:
 					surt = true;
 					break;
@@ -235,14 +245,18 @@ public class DriverTaulerGomoku
 				case 1:
 					inicialitza();
 					break;
+
 				case 2:
 					consulta();
 					break;
+
 				case 3:
 					modifica();
 					break;
+
 				case 4:
 					surt = true;
+
 				default:
 					break;
 			}
