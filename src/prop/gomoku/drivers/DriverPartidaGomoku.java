@@ -284,7 +284,7 @@ public class DriverPartidaGomoku
 					System.out.println( "Estat de finalitzacio modificat" );
 					break;
 
-				case 13:
+				case 9:
 					surt = true;
 					break;
 			}
