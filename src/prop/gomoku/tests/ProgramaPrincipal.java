@@ -1,11 +1,11 @@
 package prop.gomoku.tests;
 
-import prop.cluster.domini.models.Usuari;
 import prop.cluster.domini.models.estats.EstatCasella;
 import prop.cluster.domini.models.estats.EstatPartida;
 import prop.gomoku.auxiliars.LecturaBuffers;
 import prop.gomoku.auxiliars.LecturaScanners;
 import prop.gomoku.domini.controladors.ControladorPartidaEnJoc;
+import prop.gomoku.domini.models.UsuariGomoku;
 
 public class ProgramaPrincipal
 {
@@ -20,7 +20,7 @@ public class ProgramaPrincipal
 		System.out.println( "/*************************************/\n" );
 	}
 
-	private static Usuari llegirJugador()
+	private static UsuariGomoku llegirJugador()
 	{
 		System.out.print( "Nom: " );
 		String nom_jugador = dada.llegirString();
@@ -28,7 +28,7 @@ public class ProgramaPrincipal
 		System.out.print( "Contrasenya: " );
 		String contrasenya_jugador = dada.llegirString();
 
-		return new Usuari( nom_jugador, contrasenya_jugador, 4 );
+		return new UsuariGomoku( nom_jugador, contrasenya_jugador, 4 );
 	}
 
 	private static void imprimeixResultat( EstatPartida estat_partida, String nom_jugador_actual )
@@ -57,7 +57,7 @@ public class ProgramaPrincipal
 		dada = new LecturaScanners();
 		imprimeixBenvinguda();
 		System.out.print( "Si us plau, ompli el seguent formulari de registre al sistema per poder jugar partides\n" );
-		Usuari jugador = llegirJugador();
+		UsuariGomoku jugador = llegirJugador();
 		System.out.print( "\nEl registre temporal s'ha efectuat amb exit. " );
 		System.out.println( "Aquestes son les dades que ha proporcionat al sistema:\n" + jugador.toString() + "\n" );
 
@@ -71,7 +71,7 @@ public class ProgramaPrincipal
 			System.out.print( "1.- Jugador maquina\n2.- Jugador huma\nOponent (marqui 1 o 2): " );
 			int tipus_oponent = dada.llegirInt();
 
-			Usuari oponent = new Usuari( "CPU", "CPU", 4 );
+			UsuariGomoku oponent = new UsuariGomoku( "CPU", "CPU", 4 );
 			switch ( tipus_oponent )
 			{
 				case 1:
@@ -123,7 +123,7 @@ public class ProgramaPrincipal
 
 			while ( estat_partida == EstatPartida.NO_FINALITZADA )
 			{
-				Usuari jugador_actual = controlador_partida.getJugadorActual();
+				UsuariGomoku jugador_actual = controlador_partida.getJugadorActual();
 
 				EstatCasella fitxa = controlador_partida.getColorActual();
 
