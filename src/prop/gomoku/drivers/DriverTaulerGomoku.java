@@ -52,28 +52,28 @@ public class DriverTaulerGomoku
 				case 1:
 					System.out.println( tauler );
 					break;
-				
+
 				case 2:
 					tauler.pinta();
 					break;
-				
+
 				case 3:
 					String resposta = ( tauler.esBuit() ) ? "El tauler esta buit" : "El tauler no esta buit";
 					System.out.println( resposta + "\n" );
 					break;
-				
+
 				case 4:
 					System.out.println( "El jugador A (fitxes negres) te " + tauler.getNumFitxesA() + " fitxa/es\n" );
 					break;
-				
+
 				case 5:
 					System.out.println( "El jugador B (fitxes blanques) té " + tauler.getNumFitxesB() + " fitxa/es\n" );
 					break;
-				
+
 				case 6:
 					System.out.println( "Al tauler hi ha un total de " + tauler.getTotalFitxes() + " fitxa/es\n" );
 					break;
-				
+
 				case 7:
 					System.out.println( "Si us plau, indiqui les coordenades de la casella que vol consultar:" );
 					System.out.print( "Index de la fila: " );
@@ -95,7 +95,7 @@ public class DriverTaulerGomoku
 					System.out.println( "La casella (" + fila + ", " + columna + ") te el seguent estat: "
 							+ estat_casella.toString() + "\n" );
 					break;
-				
+
 				case 8:
 					System.out.println( "Si us plau, indiqui les coordenades de la casella on voldria fer el "
 							+ "moviment:" );
@@ -129,7 +129,7 @@ public class DriverTaulerGomoku
 					}
 					System.out.println( "El moviment que voldria efectuar no viola el reglament del Gomoku\n" );
 					break;
-				
+
 				case 9:
 					surt = true;
 					break;
@@ -202,7 +202,7 @@ public class DriverTaulerGomoku
 					}
 					System.out.println( "La fitxa s'ha colocat correctament\n" );
 					break;
-				
+
 				case 3:
 					System.out.println( "Si us plau, indiqui les coordenades de la fitxa que vol treure del tauler:" );
 					System.out.print( "Index de la fila: " );
@@ -227,7 +227,7 @@ public class DriverTaulerGomoku
 					}
 					System.out.println( "La fitxa s'ha tret correctament\n" );
 					break;
-				
+
 				case 4:
 					surt = true;
 					break;
@@ -245,18 +245,18 @@ public class DriverTaulerGomoku
 				case 1:
 					inicialitza();
 					break;
-				
+
 				case 2:
 					consulta();
 					break;
-				
+
 				case 3:
 					modifica();
 					break;
-				
+
 				case 4:
 					surt = true;
-				
+
 				default:
 					break;
 			}
