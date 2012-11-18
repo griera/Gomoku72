@@ -210,7 +210,7 @@ public class DriverPartidaGomoku
 			System.out.println( "3. Modifica tauler (assigna un de nou)" );
 			System.out.println( "4. Modifica torns jugats" );
 			System.out.println( "5. Incrementa el nombre de torns jugats" );
-			System.out.println( "6. Modifica data creació (actualitza a aquest moment)" );
+			System.out.println( "6. Modifica data creacio (actualitza a aquest moment)" );
 			System.out.println( "7. Modifica nom" );
 			System.out.println( "8. Modifica estat finalitzacio" );
 			System.out.println( "9. Torna al menu principal" );
