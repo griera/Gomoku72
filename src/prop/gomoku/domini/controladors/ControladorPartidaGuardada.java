@@ -14,7 +14,7 @@ public class ControladorPartidaGuardada
 		return this.gestor.carregaPartides( usuari );
 	}
 
-	public boolean guardaPartida( PartidaGomoku partida )
+	public String guardaPartida( PartidaGomoku partida )
 	{
 		// TODO
 		// Presuposa que partida conté informació a sobre de l'amo d'aquesta

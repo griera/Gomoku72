@@ -1,5 +1,12 @@
 package prop.gomoku.gestors;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.TaulerGomoku;
 import prop.gomoku.domini.models.UsuariGomoku;
@@ -7,15 +14,75 @@ import prop.gomoku.domini.models.UsuariGomoku;
 public class GestorPartidesGuardades
 {
 
-	@SuppressWarnings( "unused" )
-	private static String ruta_partides_guardades = "Algun lloc del PC"; // TODO idea de cara serialitzacio
+	private static final String ruta_partides_guardades = System.getProperty( "user.home" ) + "\\gomoku\\partides\\";
 	private static int limit_partides = 3;
-
-	public boolean guardaPartida( PartidaGomoku partida )
+	
+	// TODO de moment retorna string
+	public String guardaPartida( PartidaGomoku partida )
 	{
-		// TODO
-		// Direm que sempre es guarden
-		return true;
+		creaArbreDirectoris();
+
+		String nom_fitxer = partida.getDataCreacio().toString().replace( " ", "" ).replace( ":", "" )
+				.replace( ".", "." )
+				+ ".ser";
+
+		String ruta_fitxer = ruta_partides_guardades + nom_fitxer;
+
+		try
+		{
+			FileOutputStream fitxer = new FileOutputStream( ruta_fitxer );
+			ObjectOutputStream sortida = new ObjectOutputStream( fitxer );
+			sortida.writeObject( partida );
+			sortida.close();
+			fitxer.close();
+		} catch ( IOException io_e )
+		{
+			io_e.printStackTrace();
+		}
+
+		return ruta_fitxer;
+	}
+
+	public PartidaGomoku carregaPartida( String ruta_fitxer )
+	{
+		PartidaGomoku partida = null;
+		try
+		{
+			FileInputStream fitxer = new FileInputStream( ruta_fitxer );
+			ObjectInputStream entrada = new ObjectInputStream( fitxer );
+			partida = (PartidaGomoku) entrada.readObject();
+			entrada.close();
+			fitxer.close();
+		} catch ( IOException ex )
+		{
+			ex.printStackTrace();
+		} catch ( ClassNotFoundException ex )
+		{
+			ex.printStackTrace();
+		}
+		return partida;
+	}
+
+	private void creaArbreDirectoris()
+	{
+		File dir_partides = new File( ruta_partides_guardades );
+
+		if ( !dir_partides.exists() )
+		{
+			if ( dir_partides.mkdirs() )
+			{
+				System.out.println( "Directori " + ruta_partides_guardades + " creat" );
+			}
+			else
+			{
+				System.out.println( "No s'ha pogut crear! " + ruta_partides_guardades );
+			}
+		}
+	}
+
+	public PartidaGomoku[] carregaTotes()
+	{
+		return null;
 	}
 
 	public PartidaGomoku[] carregaPartides( UsuariGomoku usuari )
@@ -39,5 +106,10 @@ public class GestorPartidesGuardades
 			}
 		}
 		return partides;
+	}
+
+	public String getRuta()
+	{
+		return ruta_partides_guardades;
 	}
 }
