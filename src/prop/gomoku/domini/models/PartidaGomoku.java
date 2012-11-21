@@ -17,8 +17,9 @@ public class PartidaGomoku extends Partida
 	 */
 	private static final long serialVersionUID = -3925242254167360100L;
 
-	// TODO De cara a la segona entrega, aquest atribut servirà per treballar a la capa de persistència
-	@SuppressWarnings( "unused" )
+	/**
+	 * Serveix per identificar l'usuari al qual pertany la partida
+	 */
 	private UsuariGomoku jugador_principal;
 
 	/**
@@ -89,6 +90,19 @@ public class PartidaGomoku extends Partida
 	public TaulerGomoku getTauler()
 	{
 		return (TaulerGomoku) this.tauler;
+	}
+	
+	// TODO
+	public UsuariGomoku getJugadorPrincipal()
+	{
+		return this.jugador_principal;
+	}
+	
+	// TODO
+	public boolean serJugadorPrincipal(UsuariGomoku usuari)
+	{
+		this.jugador_principal = usuari;
+		return true;
 	}
 	
 }

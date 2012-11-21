@@ -1,5 +1,7 @@
 package prop.gomoku.domini.controladors;
 
+import java.util.List;
+
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.UsuariGomoku;
 import prop.gomoku.gestors.GestorPartidesGuardades;
@@ -8,7 +10,7 @@ public class ControladorPartidaGuardada
 {
 	GestorPartidesGuardades gestor = new GestorPartidesGuardades();
 
-	public PartidaGomoku[] getLlistaPartides( UsuariGomoku usuari )
+	public List<PartidaGomoku> getLlistaPartides( UsuariGomoku usuari )
 	{
 		// TODO
 		return this.gestor.carregaPartides( usuari );

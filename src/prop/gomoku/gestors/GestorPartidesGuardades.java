@@ -10,22 +10,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import prop.gomoku.domini.models.PartidaGomoku;
-import prop.gomoku.domini.models.TaulerGomoku;
 import prop.gomoku.domini.models.UsuariGomoku;
 
 public class GestorPartidesGuardades
 {
 
-	private static final String ruta_partides_guardades = System.getProperty( "user.home" ) + "\\gomoku\\partides\\";
-	private static int limit_partides = 3;
+	private static final String ruta_partides_guardades = System.getProperty( "user.home" ) + "/gomoku/partides/";
 
-	// TODO de moment retorna string
 	public String guardaPartida( PartidaGomoku partida )
 	{
 		creaArbreDirectoris();
 
-		String nom_fitxer = partida.getDataCreacio().toString().replace( " ", "" ).replace( ":", "" )
-				.replace( ".", "." )
+		String nom_fitxer = partida.getDataCreacio().toString().replace( " ", "" ).replace( ":", "" ).replace( ".", "" )
 				+ ".ser";
 
 		String ruta_fitxer = ruta_partides_guardades + nom_fitxer;
@@ -93,31 +89,23 @@ public class GestorPartidesGuardades
 			llista_partides.add( this.carregaPartida( ruta_partides_guardades + llista_fitxers[i] ) );
 
 		}
-
 		return llista_partides;
 	}
 
-	public PartidaGomoku[] carregaPartides( UsuariGomoku usuari )
+	public List<PartidaGomoku> carregaPartides( UsuariGomoku usuari )
 	{
 		// TODO
-		// Crearem algunes i les tornarem
-		// No es carregaran d'enlloc
-		PartidaGomoku[] partides = new PartidaGomoku[limit_partides];
-		for ( int i = 0; i < limit_partides; i++ )
+		List<PartidaGomoku> llista_partides = this.carregaTotes();
+		List<PartidaGomoku> partides_usuari = new ArrayList<PartidaGomoku>();
+		for ( int i = 0; i < llista_partides.size(); i++ )
 		{
-			if ( limit_partides % 2 == 0 )
+			PartidaGomoku partida = llista_partides.get( i );
+			if ( partida.getJugadorPrincipal().getNom().equals( usuari.getNom() ) )
 			{
-				partides[i] = new PartidaGomoku( usuari,
-						new UsuariGomoku( "Oponent" + limit_partides, "passwd" + i, 4 ), new TaulerGomoku(),
-						"PartidaEmmagatzemada" + i );
-			}
-			else
-			{
-				partides[i] = new PartidaGomoku( new UsuariGomoku( "Oponent" + limit_partides, "passwd" + i, 4 ),
-						usuari, new TaulerGomoku(), "PartidaEmmagatzemada" + i );
+				partides_usuari.add( partida );
 			}
 		}
-		return partides;
+		return llista_partides;
 	}
 
 	public String getRuta()
