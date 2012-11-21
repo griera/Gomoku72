@@ -6,7 +6,7 @@ import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.UsuariGomoku;
 import prop.gomoku.gestors.GestorPartidesGuardades;
 
-public class ControladorPartidaGuardada
+public class ControladorPartidesGuardades
 {
 	GestorPartidesGuardades gestor = new GestorPartidesGuardades();
 

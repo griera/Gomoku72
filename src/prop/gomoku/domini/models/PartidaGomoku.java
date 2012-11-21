@@ -99,7 +99,7 @@ public class PartidaGomoku extends Partida
 	}
 	
 	// TODO
-	public boolean serJugadorPrincipal(UsuariGomoku usuari)
+	public boolean setJugadorPrincipal(UsuariGomoku usuari)
 	{
 		this.jugador_principal = usuari;
 		return true;

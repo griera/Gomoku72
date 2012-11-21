@@ -5,6 +5,7 @@ import prop.cluster.domini.models.estats.EstatPartida;
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.TaulerGomoku;
 import prop.gomoku.domini.models.UsuariGomoku;
+import prop.gomoku.gestors.GestorPartidesGuardades;
 
 /**
  * Controlador de domini encarregat del control de partides en joc. Abstrau les interaccions més comuns que els
@@ -35,6 +36,7 @@ public class ControladorPartidaEnJoc
 
 	/**
 	 * Constructora on s'indica la partida que volem controlar
+	 * 
 	 * @param partida Partida a controlar
 	 */
 	public ControladorPartidaEnJoc( PartidaGomoku partida )
@@ -47,6 +49,7 @@ public class ControladorPartidaEnJoc
 
 	/**
 	 * Constructora on s'indica els atributs desitjats per a iniciar una partida des de zero
+	 * 
 	 * @param jugador_a Usuari que farà de jugador A
 	 * @param jugador_b Usuari que farà de jugador B
 	 * @param nom_partida Nom que se li vol assignar a la nova partida
@@ -61,6 +64,7 @@ public class ControladorPartidaEnJoc
 
 	/**
 	 * Mètode consultor de la partida
+	 * 
 	 * @return La partida controlada
 	 */
 	public PartidaGomoku getPartida()
@@ -70,6 +74,7 @@ public class ControladorPartidaEnJoc
 
 	/**
 	 * Mètode consultor del jugador actual (al que li toca moure fitxa)
+	 * 
 	 * @return Jugador al qual li toca moure
 	 */
 	public UsuariGomoku getJugadorActual()
@@ -87,6 +92,7 @@ public class ControladorPartidaEnJoc
 
 	/**
 	 * Mètode consultor del torn actual
+	 * 
 	 * @return Número que representa el torn actual
 	 */
 	public int getTornActual()
@@ -96,7 +102,8 @@ public class ControladorPartidaEnJoc
 
 	/**
 	 * Mètode consultor del moviment òptim per al jugador màquina (si n'hi ha) a l'actual situació de la partida
-	 * @return Moviment òptim segons l'algorisme que implementa IAGomoku amb <em>rofunditat_maxima</em> 
+	 * 
+	 * @return Moviment òptim segons l'algorisme que implementa IAGomoku amb <em>rofunditat_maxima</em>
 	 */
 	public int[] getMovimentMaquina()
 	{
@@ -135,7 +142,8 @@ public class ControladorPartidaEnJoc
 
 	/**
 	 * Mètode consultor del color del jugador al que li toca moure
-	 * @return Representació del "color"/jugador 
+	 * 
+	 * @return Representació del "color"/jugador
 	 */
 	public EstatCasella getColorActual()
 	{
@@ -150,11 +158,12 @@ public class ControladorPartidaEnJoc
 	}
 
 	/**
-	 * Mètode per a moure una fitxa a la partida. Avança el nombre de torns jugats en conseqüència i comprova l'estat
-	 * de la partida com a resultat del moviment
+	 * Mètode per a moure una fitxa a la partida. Avança el nombre de torns jugats en conseqüència i comprova l'estat de
+	 * la partida com a resultat del moviment
+	 * 
 	 * @param fitxa El color/jugador de la fitxa que volem col·locar a la casella
 	 * @param fila Índex que indica la fila on volem posicionar la fitxa
-	 * @param columna Índex que indica la col·lumna on volem posicionar la fitxa 
+	 * @param columna Índex que indica la col·lumna on volem posicionar la fitxa
 	 * @return Estat en el que queda la partida un cop moguda la fitxa
 	 */
 	public EstatPartida mouFitxa( EstatCasella fitxa, int fila, int columna )
@@ -170,5 +179,12 @@ public class ControladorPartidaEnJoc
 			this.partida.incrementaTornsJugats( 1 );
 		}
 		return estat_partida;
+	}
+
+	public boolean guardaPartida()
+	{
+		GestorPartidesGuardades gestor = new GestorPartidesGuardades();
+		gestor.guardaPartida( partida );
+		return false;
 	}
 }
