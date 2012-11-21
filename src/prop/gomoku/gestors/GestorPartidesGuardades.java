@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.TaulerGomoku;
@@ -16,7 +18,7 @@ public class GestorPartidesGuardades
 
 	private static final String ruta_partides_guardades = System.getProperty( "user.home" ) + "\\gomoku\\partides\\";
 	private static int limit_partides = 3;
-	
+
 	// TODO de moment retorna string
 	public String guardaPartida( PartidaGomoku partida )
 	{
@@ -80,9 +82,19 @@ public class GestorPartidesGuardades
 		}
 	}
 
-	public PartidaGomoku[] carregaTotes()
+	public List<PartidaGomoku> carregaTotes()
 	{
-		return null;
+		List<PartidaGomoku> llista_partides = new ArrayList<PartidaGomoku>();
+		File dir = new File( ruta_partides_guardades );
+		String[] llista_fitxers = dir.list();
+		int nombre_fitxers = llista_fitxers.length;
+		for ( int i = 0; i < nombre_fitxers; i++ )
+		{
+			llista_partides.add( this.carregaPartida( ruta_partides_guardades + llista_fitxers[i] ) );
+
+		}
+
+		return llista_partides;
 	}
 
 	public PartidaGomoku[] carregaPartides( UsuariGomoku usuari )

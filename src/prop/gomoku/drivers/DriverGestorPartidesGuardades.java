@@ -1,5 +1,7 @@
 package prop.gomoku.drivers;
 
+import java.util.List;
+
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.TaulerGomoku;
 import prop.gomoku.domini.models.UsuariGomoku;
@@ -16,12 +18,18 @@ public class DriverGestorPartidesGuardades
 
 		PartidaGomoku partida = new PartidaGomoku( new UsuariGomoku( "A", "a", 4 ), new UsuariGomoku( "B", "b", 4 ),
 				new TaulerGomoku(), "C" );
-		System.out.println("Partida creada:");
-		System.out.println(partida);
+		System.out.println( "Partida creada:" );
+		System.out.println( partida );
 		String ruta = gestor_partides_guardades.guardaPartida( partida );
-		
-		PartidaGomoku partida_carregada = gestor_partides_guardades.carregaPartida(ruta);
-		System.out.println("Partida carregada:");
-		System.out.println(partida_carregada);
+
+		PartidaGomoku partida_carregada = gestor_partides_guardades.carregaPartida( ruta );
+		System.out.println( "Partida carregada:" );
+		System.out.println( partida_carregada );
+
+		List<PartidaGomoku> partides = gestor_partides_guardades.carregaTotes();
+		for ( int i = 0; i < partides.size(); i++ )
+		{
+			System.out.println( partides.get( i ) );
+		}
 	}
 }
