@@ -10,7 +10,7 @@ public class ControladorPartidesGuardades
 {
 	GestorPartidesGuardades gestor = new GestorPartidesGuardades();
 
-	public List<PartidaGomoku> getLlistaPartides( UsuariGomoku usuari )
+	public List<PartidaGomoku> carregaPartides( UsuariGomoku usuari )
 	{
 		// TODO
 		return this.gestor.carregaPartides( usuari );

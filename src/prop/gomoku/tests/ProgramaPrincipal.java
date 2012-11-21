@@ -7,9 +7,9 @@ import prop.cluster.domini.models.estats.EstatPartida;
 import prop.gomoku.auxiliars.LecturaBuffers;
 import prop.gomoku.auxiliars.LecturaScanners;
 import prop.gomoku.domini.controladors.ControladorPartidaEnJoc;
+import prop.gomoku.domini.controladors.ControladorPartidesGuardades;
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.UsuariGomoku;
-import prop.gomoku.gestors.GestorPartidesGuardades;
 
 public class ProgramaPrincipal
 {
@@ -125,8 +125,8 @@ public class ProgramaPrincipal
 		{
 
 			/* Prova càrrega */
-			GestorPartidesGuardades gestor_partides = new GestorPartidesGuardades();
-			List<PartidaGomoku> partides = gestor_partides.carregaPartides( jugador );
+			ControladorPartidesGuardades ctlr_partides_guardades = new ControladorPartidesGuardades();
+			List<PartidaGomoku> partides = ctlr_partides_guardades.carregaPartides( jugador );
 			boolean es_nova_partida = true;
 			PartidaGomoku partida = null;
 			if ( !partides.isEmpty() )

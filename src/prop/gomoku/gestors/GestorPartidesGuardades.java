@@ -105,7 +105,7 @@ public class GestorPartidesGuardades
 				partides_usuari.add( partida );
 			}
 		}
-		return llista_partides;
+		return partides_usuari;
 	}
 
 	public String getRuta()
