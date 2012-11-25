@@ -15,7 +15,7 @@ public class Vigenere
 	private static final int INDEX_INICIAL_ASCII = 33;
 	
 	/**
-	 * Índex de la taula de caràcters ASCII que correspon a l'últim caràcter vàlid del diccionari
+	 * Índex de la taula de caràcters ASCII que correspmason a l'últim caràcter vàlid del diccionari
 	 */
 	private static final int INDEX_FINAL_ASCII = 126;
 	
