@@ -9,6 +9,7 @@ import prop.gomoku.domini.models.TaulerGomoku;
 import prop.gomoku.domini.models.UsuariGomoku;
 import prop.gomoku.gestors.GestorPartidesGuardades;
 import prop.gomoku.gestors.GestorUsuaris;
+import prop.gomoku.gestors.excepcions.UsuariJaExisteix;
 import prop.gomoku.gestors.excepcions.UsuariNoExisteix;
 
 public class AdminTools
@@ -37,10 +38,14 @@ public class AdminTools
 		System.out.print( "Contrasenya: " );
 		String contrasenya = lectura.llegirString();
 
-		UsuariGomoku usuari = new UsuariGomoku( nom, contrasenya);
+		UsuariGomoku usuari = new UsuariGomoku( nom, contrasenya );
 		try
 		{
-			gestor_usuaris.guardaUsuari( usuari );
+			gestor_usuaris.guardaNouUsuari( usuari );
+		} catch ( UsuariJaExisteix e )
+		{
+			System.out.println( "No s'ha pogut donar d'alta el usuari " + usuari.toString()
+					+ ", ja existeix un amb aquest nom" );
 		} catch ( IOException e )
 		{
 			System.out.println( "No s'ha pogut donar d'alta - " + usuari.toString() );
