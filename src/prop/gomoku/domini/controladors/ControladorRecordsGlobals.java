@@ -13,7 +13,7 @@ public class ControladorRecordsGlobals
 	
 	public ControladorRecordsGlobals()
 	{
-		this.llista_victories = new PriorityQueue<LlistaRecordsIndividuals>( 0, new ComparadorRecords(0) );
+		this.llista_victories = new PriorityQueue<LlistaRecordsIndividuals>( 5, new ComparadorRecords(0) );
 	}
 
 	private class ComparadorRecords implements Comparator<LlistaRecordsIndividuals>
@@ -36,9 +36,13 @@ public class ControladorRecordsGlobals
 		public int compare( LlistaRecordsIndividuals record_0, LlistaRecordsIndividuals record_1 )
 		{
 			// TODO Auto-generated method stub
-			
+//			if (record_0.getStatsPartidaRapida().getDerrotes().getNumFacils())
+//			{
+//				
+//			}
 			return 0;
 		}
 
 	}
+	
 }

@@ -11,7 +11,12 @@ import prop.cluster.domini.models.Usuari;
 public class UsuariGomoku extends Usuari
 {
 	/**
-	 * 
+	 * Nombre de dificultats per defecte
+	 */
+	private static final int nombre_dificultats = 4;
+	
+	/**
+	 * ID serialització
 	 */
 	private static final long serialVersionUID = -4414787291777756469L;
 
@@ -20,11 +25,10 @@ public class UsuariGomoku extends Usuari
 	 * 
 	 * @param nom Nom identificador de l'usuari
 	 * @param contrasenya Contrasenya de l'usuari
-	 * @param dificultat Nombre de dificultats que es podra trobar l'usuari
 	 */
-	public UsuariGomoku( String nom, String contrasenya, int dificultat )
+	public UsuariGomoku( String nom, String contrasenya)
 	{
-		super( nom, contrasenya, dificultat );
+		super( nom, contrasenya, nombre_dificultats );
 	}
 
 	/**

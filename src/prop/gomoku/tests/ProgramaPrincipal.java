@@ -32,7 +32,7 @@ public class ProgramaPrincipal
 		System.out.print( "Contrasenya: " );
 		String contrasenya_jugador = dada.llegirString();
 
-		return new UsuariGomoku( nom_jugador, contrasenya_jugador, 4 );
+		return new UsuariGomoku( nom_jugador, contrasenya_jugador );
 	}
 
 	private static void imprimeixResultat( EstatPartida estat_partida, String nom_jugador_actual )
@@ -63,7 +63,7 @@ public class ProgramaPrincipal
 		System.out.print( "1.- Jugador maquina\n2.- Jugador huma\nOponent (marqui 1 o 2): " );
 		int tipus_oponent = dada.llegirInt();
 
-		UsuariGomoku oponent = new UsuariGomoku( "CPU", "CPU", 4 );
+		UsuariGomoku oponent = new UsuariGomoku( "CPU", "CPU" );
 		switch ( tipus_oponent )
 		{
 			case 1:
@@ -156,18 +156,19 @@ public class ProgramaPrincipal
 				partida = creaPartida( jugador );
 				partida.setJugadorPrincipal( jugador );
 			}
-			
-			else {
+
+			else
+			{
 				partida.getTauler().pinta();
 			}
 
-			ControladorPartidaEnJoc controlador_partida = new ControladorPartidaEnJoc(partida);
+			ControladorPartidaEnJoc controlador_partida = new ControladorPartidaEnJoc( partida );
 			EstatPartida estat_partida = EstatPartida.NO_FINALITZADA;
 			int fila = 0;
 			int columna = 0;
 
 			boolean continua = true;
-			while ( estat_partida == EstatPartida.NO_FINALITZADA && continua)
+			while ( estat_partida == EstatPartida.NO_FINALITZADA && continua )
 			{
 				UsuariGomoku jugador_actual = controlador_partida.getJugadorActual();
 
@@ -200,7 +201,7 @@ public class ProgramaPrincipal
 					{
 						controlador_partida.guardaPartida();
 					}
-					if (fila == -5 && columna == -5)
+					if ( fila == -5 && columna == -5 )
 					{
 						continua = false;
 					}

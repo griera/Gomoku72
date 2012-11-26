@@ -8,11 +8,11 @@ import prop.gomoku.gestors.excepcions.UsuariNoExisteix;
 
 public class DriverGestorUsuaris
 {
-	public static void main(String[] args)
+	public static void main( String[] args )
 	{
 		GestorUsuaris gestor_usuaris = new GestorUsuaris();
-		
-		UsuariGomoku usuari_1 = new UsuariGomoku( "Usuari_I", "this_is_password!¿?!", 4 );
+
+		UsuariGomoku usuari_1 = new UsuariGomoku( "Usuari_I", "this_is_password!¿?!" );
 		try
 		{
 			gestor_usuaris.guardaUsuari( usuari_1 );
@@ -20,9 +20,9 @@ public class DriverGestorUsuaris
 		{
 			e.printStackTrace();
 		}
-		
-		System.out.println("Guardat usuari: " + usuari_1.toString());
-		
+
+		System.out.println( "Guardat usuari: " + usuari_1.toString() );
+
 		UsuariGomoku usuari_2 = null;
 		try
 		{
@@ -32,8 +32,7 @@ public class DriverGestorUsuaris
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Carregat usuari: " + usuari_2.toString());
-		
-		
+		System.out.println( "Carregat usuari: " + usuari_2.toString() );
+
 	}
 }

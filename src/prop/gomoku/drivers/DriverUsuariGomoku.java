@@ -12,11 +12,6 @@ import prop.gomoku.domini.models.UsuariGomoku;
 public class DriverUsuariGomoku
 {
 	/**
-	 * Indica el nombre de dificultats que podem trobar en el nostre joc. Una persona també compta com a possible
-	 * dificultat
-	 */
-	private static final int nombre_dificultats = 4;
-	/**
 	 * Representa l'usuari del sistema gomoku
 	 */
 	private static UsuariGomoku usuari;
@@ -54,7 +49,7 @@ public class DriverUsuariGomoku
 		String nom = lectura.llegirString();
 		System.out.println( "Introdueix Contrasenya Usuari" );
 		String pass = lectura.llegirString();
-		usuari = new UsuariGomoku( nom, pass, nombre_dificultats );
+		usuari = new UsuariGomoku( nom, pass );
 	}
 
 	/**

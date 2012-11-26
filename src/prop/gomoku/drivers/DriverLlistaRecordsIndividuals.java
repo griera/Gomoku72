@@ -57,10 +57,10 @@ public class DriverLlistaRecordsIndividuals
 		switch ( lectura.llegirInt() )
 		{
 			case 1:
-				estadistiques = new LlistaRecordsIndividuals( new UsuariGomoku( "pablo", "afk", nombre_dificultats ) );
+				estadistiques = new LlistaRecordsIndividuals( new UsuariGomoku( "pablo", "afk" ) );
 				break;
 			case 2:
-				UsuariGomoku usuari = new UsuariGomoku( "pablo", "afk", 4 );
+				UsuariGomoku usuari = new UsuariGomoku( "pablo", "afk" );
 				System.out.println( "Introdueix els valors per a victories per a 0=facil 1=mitja 2=dificil 3=huma:" );
 				for ( int iterador = 0; iterador < nombre_dificultats; ++iterador )
 				{

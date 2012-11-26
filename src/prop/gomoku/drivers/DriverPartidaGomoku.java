@@ -30,8 +30,8 @@ public class DriverPartidaGomoku
 
 	private static void inicialitza()
 	{
-		jugador_a = new UsuariGomoku( "JugadorA", "passA", 2 );
-		jugador_b = new UsuariGomoku( "JugadorB", "passB", 2 );
+		jugador_a = new UsuariGomoku( "JugadorA", "passA" );
+		jugador_b = new UsuariGomoku( "JugadorB", "passB" );
 		tauler = new TaulerGomoku();
 		partida = new PartidaGomoku( jugador_a, jugador_b, tauler, "PartidaGomokuDriver" );
 		System.out.println( "Inicialitzat correctament" );
@@ -223,7 +223,7 @@ public class DriverPartidaGomoku
 					String nom_a = lectura.llegirString();
 					System.out.println( "Introdueix la contrasenya del nou jugador A: " );
 					String contrasenya_a = lectura.llegirString();
-					partida.setJugadorA( new UsuariGomoku( nom_a, contrasenya_a, 2 ) );
+					partida.setJugadorA( new UsuariGomoku( nom_a, contrasenya_a ) );
 					System.out.println( "Nou jugador A assignat" );
 					System.out.println();
 					break;
@@ -232,7 +232,7 @@ public class DriverPartidaGomoku
 					String nom_b = lectura.llegirString();
 					System.out.println( "Introdueix la contrasenya del nou jugador B: " );
 					String contrasenya_b = lectura.llegirString();
-					partida.setJugadorB( new UsuariGomoku( nom_b, contrasenya_b, 2 ) );
+					partida.setJugadorB( new UsuariGomoku( nom_b, contrasenya_b ) );
 					System.out.println( "Nou jugador B assignat" );
 					System.out.println();
 					break;
