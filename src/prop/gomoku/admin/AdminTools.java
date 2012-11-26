@@ -36,10 +36,8 @@ public class AdminTools
 		String nom = lectura.llegirString();
 		System.out.print( "Contrasenya: " );
 		String contrasenya = lectura.llegirString();
-		System.out.print( "Nombre de dificultats: " );
-		int dificultats = lectura.llegirInt();
 
-		UsuariGomoku usuari = new UsuariGomoku( nom, contrasenya, dificultats );
+		UsuariGomoku usuari = new UsuariGomoku( nom, contrasenya);
 		try
 		{
 			gestor_usuaris.guardaUsuari( usuari );
