@@ -40,8 +40,13 @@ public class GestorPartidesGuardades
 
 		return ruta_fitxer;
 	}
+	
+	public PartidaGomoku carregaPartida(String identificador )
+	{
+		return null;
+	}
 
-	public PartidaGomoku carregaPartida( String ruta_fitxer )
+	public PartidaGomoku carregaPartidaDeFitxer( String ruta_fitxer )
 	{
 		PartidaGomoku partida = null;
 		try

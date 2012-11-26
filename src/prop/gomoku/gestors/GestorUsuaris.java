@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import prop.gomoku.domini.models.UsuariGomoku;
+import prop.gomoku.gestors.excepcions.UsuariJaExisteix;
 import prop.gomoku.gestors.excepcions.UsuariNoExisteix;
 
 public class GestorUsuaris
@@ -58,6 +59,41 @@ public class GestorUsuaris
 	{
 		this.creaArbreDirectoris();
 		this.salvaUsuari( usuari );
+		// no ha d'haver error si no hi era l'usuari
+	}
+
+	private boolean comprovaUsuariJaExisteix( UsuariGomoku usuari )
+	{
+		File dir = new File( ruta_usuaris );
+		String[] llista_fitxers = dir.list();
+
+		for ( String nom_fitxer : llista_fitxers )
+		{
+			if ( nom_fitxer.equals( usuari.getNom() + extensio ) )
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public void guardaNouUsuari( UsuariGomoku usuari ) throws UsuariJaExisteix, IOException
+	{
+		this.creaArbreDirectoris();
+
+		// Ha de llençar excepció si ja existeix l'usuari
+		if ( this.comprovaUsuariJaExisteix( usuari ) )
+		{
+			throw new UsuariJaExisteix( "Ja existeix l'usuari amb nom " + usuari.getNom() );
+		}
+		try
+		{
+			this.salvaUsuari( usuari );
+		} catch ( IOException e )
+		{
+			throw new IOException("No s'ha pogut guardar al sistema el usuari de nom " + usuari.getNom());
+		}
 	}
 
 	private void creaArbreDirectoris()

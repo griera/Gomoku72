@@ -22,7 +22,7 @@ public class DriverGestorPartidesGuardades
 		System.out.println( partida );
 		String ruta = gestor_partides_guardades.guardaPartida( partida );
 
-		PartidaGomoku partida_carregada = gestor_partides_guardades.carregaPartida( ruta );
+		PartidaGomoku partida_carregada = gestor_partides_guardades.carregaPartidaDeFitxer( ruta );
 		System.out.println( "Partida carregada:" );
 		System.out.println( partida_carregada );
 
