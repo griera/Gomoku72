@@ -158,7 +158,6 @@ public class ControladorRecordsGlobals
 			// {
 			//
 			// }
-			return 0;
 		}
 	}
 
