@@ -43,7 +43,7 @@ public class ControladorUsuari
 	}
 	
 	// TODO Aqui es retornaran els usuaris de diferents tipus
-	public UsuariGomoku carregaUsuariIA(TipusUsuari tipus)
+	public UsuariGomoku carregaUsuariSistema(TipusUsuari tipus)
 	{
 		if ((tipus != TipusUsuari.FACIL))
 		{
