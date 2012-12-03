@@ -23,6 +23,9 @@ public class UsuariGomoku extends Usuari
 	// TODO
 	private TipusUsuari tipus;
 
+	// TODO
+	private static final int longitud_mininima_contrasenya = 4;
+	
 	/**
 	 * Creadora d'un usuari Gomoku
 	 * 
@@ -45,7 +48,7 @@ public class UsuariGomoku extends Usuari
 		super( nom, contrasenya, nombre_dificultats );
 		if ( !validaContrasenya( contrasenya ) )
 		{
-			throw new IllegalArgumentException( "La contrasenya no pot incloure espais" );
+			throw new IllegalArgumentException( "Contrasenya conté espais o és massa curta" );
 		}
 		this.tipus = tipus;
 	}
@@ -53,7 +56,7 @@ public class UsuariGomoku extends Usuari
 	// TODO
 	private boolean validaContrasenya( String contrasenya )
 	{
-		if ( contrasenya.contains( " " ) )
+		if ( contrasenya.contains( " " ) || contrasenya.length() < longitud_mininima_contrasenya)
 		{
 			return false;
 		}

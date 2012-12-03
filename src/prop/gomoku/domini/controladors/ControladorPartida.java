@@ -22,13 +22,14 @@ public class ControladorPartida
 	public PartidaGomoku creaNovaPartida( UsuariGomoku jugador_principal, UsuariGomoku jugador_negres,
 			TipusUsuari ia_blanques, String nom_partida )
 	{
-		
+		// TODO
 		return null;
 	}
 
 	public PartidaGomoku creaNovaPartida( UsuariGomoku jugador_principal, TipusUsuari ia_negres,
 			UsuariGomoku jugador_blanques, String nom_partida )
 	{
+		// TODO
 		return null;
 	}
 
