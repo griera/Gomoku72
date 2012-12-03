@@ -14,11 +14,14 @@ public class UsuariGomoku extends Usuari
 	 * Nombre de dificultats per defecte
 	 */
 	private static final int nombre_dificultats = 4;
-	
+
 	/**
 	 * ID serialització
 	 */
 	private static final long serialVersionUID = -4414787291777756469L;
+
+	// TODO
+	private TipusUsuari tipus;
 
 	/**
 	 * Creadora d'un usuari Gomoku
@@ -26,9 +29,44 @@ public class UsuariGomoku extends Usuari
 	 * @param nom Nom identificador de l'usuari
 	 * @param contrasenya Contrasenya de l'usuari
 	 */
-	public UsuariGomoku( String nom, String contrasenya)
+	public UsuariGomoku( String nom, String contrasenya )
 	{
 		super( nom, contrasenya, nombre_dificultats );
+		if ( !validaContrasenya( contrasenya ) )
+		{
+			throw new IllegalArgumentException( "La contrasenya no pot incloure espais" );
+		}
+		tipus = TipusUsuari.HUMA;
+	}
+
+	// TODO
+	public UsuariGomoku( String nom, String contrasenya, TipusUsuari tipus )
+	{
+		super( nom, contrasenya, nombre_dificultats );
+		if ( !validaContrasenya( contrasenya ) )
+		{
+			throw new IllegalArgumentException( "La contrasenya no pot incloure espais" );
+		}
+		this.tipus = tipus;
+	}
+
+	// TODO
+	private boolean validaContrasenya( String contrasenya )
+	{
+		if ( contrasenya.contains( " " ) )
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+
+	// TODO
+	public TipusUsuari getTipus()
+	{
+		return this.tipus;
 	}
 
 	/**
@@ -101,5 +139,17 @@ public class UsuariGomoku extends Usuari
 	{
 		num_empats[nivell_oponent] = num_empats[nivell_oponent] + quantitat;
 		return true;
+	}
+
+	/**
+	 * Sobrecarrega del mètode de la superclasse per tal de incloure comprovació de la validesa de la contrasenya
+	 */
+	public boolean setContrasenya( String contrasenya )
+	{
+		if ( contrasenya.contains( " " ) )
+		{
+			return false;
+		}
+		return super.setContrasenya( contrasenya );
 	}
 }

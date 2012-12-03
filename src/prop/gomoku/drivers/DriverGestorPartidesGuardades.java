@@ -16,7 +16,8 @@ public class DriverGestorPartidesGuardades
 		gestor_partides_guardades = new GestorPartidesGuardades();
 		System.out.println( gestor_partides_guardades.getRuta() );
 
-		PartidaGomoku partida = new PartidaGomoku( new UsuariGomoku( "A", "a" ), new UsuariGomoku( "B", "b" ),
+		UsuariGomoku jugador_principal = new UsuariGomoku( "A", "a" );
+		PartidaGomoku partida = new PartidaGomoku( jugador_principal, jugador_principal, new UsuariGomoku( "B", "b" ),
 				new TaulerGomoku(), "C" );
 		System.out.println( "Partida creada:" );
 		System.out.println( partida );

@@ -126,8 +126,7 @@ public class AdminTools
 			}
 		}
 
-		PartidaGomoku partida = new PartidaGomoku( jugador_negres, jugador_blanques, new TaulerGomoku(), nom_partida );
-		partida.setJugadorPrincipal( jugador_principal );
+		PartidaGomoku partida = new PartidaGomoku( jugador_principal, jugador_negres, jugador_blanques, new TaulerGomoku(), nom_partida );
 		gestor_partides.guardaPartida( partida );
 	}
 

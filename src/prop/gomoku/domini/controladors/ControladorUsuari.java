@@ -3,6 +3,7 @@ package prop.gomoku.domini.controladors;
 import java.io.IOException;
 
 import prop.gomoku.domini.controladors.excepcions.ContrasenyaIncorrecta;
+import prop.gomoku.domini.models.TipusUsuari;
 import prop.gomoku.domini.models.UsuariGomoku;
 import prop.gomoku.gestors.GestorUsuaris;
 import prop.gomoku.gestors.excepcions.UsuariJaExisteix;
@@ -39,5 +40,15 @@ public class ControladorUsuari
 		UsuariGomoku usuari_nou = new UsuariGomoku( nom, contrasenya );
 		gestor_usuaris.guardaNouUsuari( usuari_nou );
 		return usuari_nou;
+	}
+	
+	// TODO Aqui es retornaran els usuaris de diferents tipus
+	public UsuariGomoku carregaUsuariIA(TipusUsuari tipus)
+	{
+		if ((tipus != TipusUsuari.FACIL))
+		{
+			
+		}
+		return null;
 	}
 }

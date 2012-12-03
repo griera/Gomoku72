@@ -6,6 +6,7 @@ import prop.cluster.domini.models.estats.EstatCasella;
 import prop.cluster.domini.models.estats.EstatPartida;
 import prop.gomoku.auxiliars.LecturaBuffers;
 import prop.gomoku.auxiliars.LecturaScanners;
+import prop.gomoku.domini.controladors.ControladorPartida;
 import prop.gomoku.domini.controladors.ControladorPartidaEnJoc;
 import prop.gomoku.domini.controladors.ControladorPartidesGuardades;
 import prop.gomoku.domini.models.PartidaGomoku;
@@ -17,11 +18,7 @@ public class ProgramaPrincipal
 
 	private static void imprimeixBenvinguda()
 	{
-		System.out.println( "/*************************************/" );
-		System.out.println( "/*                                   */" );
-		System.out.println( "/* BENVINGUTS AL JOC DE TAULA GOMOKU */" );
-		System.out.println( "/*                                   */" );
-		System.out.println( "/*************************************/\n" );
+		System.out.println( "BENVINGUTS AL JOC DE TAULA GOMOKU" );
 	}
 
 	private static UsuariGomoku llegirJugador()
@@ -40,84 +37,72 @@ public class ProgramaPrincipal
 		switch ( estat_partida )
 		{
 			case EMPAT:
-				System.out.println( "/********************************/" );
-				System.out.println( "      PARTIDA FINALITZADA         " );
-				System.out.println( "       RESULTAT => EMPAT          " );
-				System.out.println( "/********************************/" );
+				System.out.println( "PARTIDA FINALITZADA: EMPAT" );
 				break;
 
 			default:
-				System.out.println( "/********************************/" );
-				System.out.println( "      PARTIDA FINALITZADA         " );
-				System.out.println( "    RESULTAT => GUANYA " + nom_jugador_actual + "      " );
-				System.out.println( "/********************************/" );
+				System.out.println( "PARTIDA FINALITZADA: GUANYA " + nom_jugador_actual );
 				break;
 		}
-
 	}
 
 	public static PartidaGomoku creaPartida( UsuariGomoku jugador )
 	{
-		System.out.println( jugador.getNom() + ", esta a punt per iniciar una nova partida al joc Gomoku." );
-		System.out.println( "Si us plau, indiqui el seu oponent:\n" );
-		System.out.print( "1.- Jugador maquina\n2.- Jugador huma\nOponent (marqui 1 o 2): " );
+		System.out.println( "Indiqui el seu oponent:\n" );
+		System.out.println( "1.- Jugador maquina" );
+		System.out.println( "2.- Jugador huma" );
 		int tipus_oponent = dada.llegirInt();
 
 		UsuariGomoku oponent = new UsuariGomoku( "CPU", "CPU" );
 		switch ( tipus_oponent )
 		{
 			case 1:
-				System.out.println( "\n" + jugador.getNom() + ", ha seleccionat jugar contra el jugador maquina." );
-				System.out.println( "Aquestes son les dades del jugador maquina:\n" + oponent.toString() );
+				System.out.println( "Dades jugador maquina:\n" + oponent.toString() );
 				break;
 
 			case 2:
-				System.out.println( "\n" + jugador.getNom() + ", ha seleccionat jugar contra un altre jugador huma." );
-				System.out.print( "Si us plau " + jugador.getNom() + ", que el vostre oponent ompli el seguent "
-						+ "formulari de registre al sistema per poder jugar partides\n" );
+				System.out.println( "Registre oponent:" );
 				oponent = llegirJugador();
-				System.out.print( "\nEl registre temporal s'ha efectuat amb èxit. " );
-				System.out.println( "Aquestes son les dades que el seu oponentha proporcionat al sistema:" );
-				System.out.println( oponent.toString() );
+				System.out.println( "Dades oponent humà: " + oponent.toString() );
 				break;
 		}
 
-		System.out.print( "\nSi us plau " + jugador.getNom() + ", indiqui el nom que vol posar a la partida: " );
+		System.out.println( "Nom de la partida: " );
 		LecturaBuffers dada_buffer = new LecturaBuffers();
 		String nom_partida = dada_buffer.llegirString();
-		System.out.println( "\nLa partida que s'esta a punt de disputar s'anomena " + nom_partida + "\n" );
 
-		System.out.println( "\nSi us plau " + jugador.getNom() + ", indiqui amb quines fitxes vol jugar la partida:" );
-		System.out.print( "1.- Fitxes negres\n2.- Fitxes blanques\nColor de les fitxes (marqui 1 o 2): " );
-
+		System.out.println( "Indiqui amb quines fitxes vol jugar la partida:" );
+		System.out.println( "1.- Fitxes negres" );
+		System.out.println( "2.- Fitxes blanques" );
 		int color_fitxes = dada.llegirInt();
-		ControladorPartidaEnJoc controlador_partida;
 
+		ControladorPartida controlador_partida = new ControladorPartida();
+		PartidaGomoku partida_nova = null;
 		switch ( color_fitxes )
 		{
 			case 2:
-				System.out.println( "\nHa seleccionat jugar amb fitxes blanques.\n" );
-				controlador_partida = new ControladorPartidaEnJoc( oponent, jugador, nom_partida );
+				System.out.println( "Ha seleccionat jugar amb fitxes blanques." );
+				partida_nova = controlador_partida.creaNovaPartida( jugador, oponent, jugador, nom_partida );
 				break;
 
 			default:
 				// Inclou case 1
-				System.out.println( "\nHa seleccionat jugar amb fitxes negres.\n" );
-				controlador_partida = new ControladorPartidaEnJoc( jugador, oponent, nom_partida );
+				System.out.println( "Ha seleccionat jugar amb fitxes negres." );
+				partida_nova = controlador_partida.creaNovaPartida( jugador, jugador, oponent, nom_partida );
 				break;
 		}
 
-		return controlador_partida.getPartida();
+		return partida_nova;
 	}
 
 	public static void main( String[] args )
 	{
 		dada = new LecturaScanners();
 		imprimeixBenvinguda();
-		System.out.print( "Si us plau, ompli el seguent formulari de registre al sistema per poder jugar partides\n" );
+		System.out.println( "Registre inicial:" );
 		UsuariGomoku jugador = llegirJugador();
-		System.out.print( "\nEl registre temporal s'ha efectuat amb exit. " );
-		System.out.println( "Aquestes son les dades que ha proporcionat al sistema:\n" + jugador.toString() + "\n" );
+		System.out.println( "El registre temporal s'ha efectuat amb exit. " );
+		System.out.println( "Aquestes son les dades que ha proporcionat al sistema:\n" + jugador.toString() );
 
 		boolean surt_programa = false;
 
@@ -127,40 +112,29 @@ public class ProgramaPrincipal
 			/* Prova càrrega */
 			ControladorPartidesGuardades ctlr_partides_guardades = new ControladorPartidesGuardades();
 			List<PartidaGomoku> partides = ctlr_partides_guardades.carregaPartides( jugador );
-			boolean es_nova_partida = true;
 			PartidaGomoku partida = null;
 			if ( !partides.isEmpty() )
 			{
-				System.out.println( "Ja existeixen partides guardades per aquest usuari" );
+				System.out.println( "Ja existeixen partides guardades per aquest usuari:" );
 				for ( int i = 0; i < partides.size(); i++ )
 				{
-					System.out.println( i + ". " + partides.get( i ).getDataCreacio() );
+					System.out.println( i + ". " + partides.get( i ).getDataCreacio() + " - "
+							+ partides.get( i ).getDataCreacio().toString() );
 				}
 				System.out.println( partides.size() + ". Nova partida" );
 				int opcio = dada.llegirInt();
 				if ( opcio >= partides.size() )
 				{
-					es_nova_partida = true;
+					partida = creaPartida( jugador );
 				}
 				else
 				{
 					partida = partides.get( opcio );
-					es_nova_partida = false;
 				}
 			}
+			/* Final prova càrrega */
 
-			/* End prova càrrega */
-
-			if ( es_nova_partida )
-			{
-				partida = creaPartida( jugador );
-				partida.setJugadorPrincipal( jugador );
-			}
-
-			else
-			{
-				partida.getTauler().pinta();
-			}
+			partida.getTauler().pinta();
 
 			ControladorPartidaEnJoc controlador_partida = new ControladorPartidaEnJoc( partida );
 			EstatPartida estat_partida = EstatPartida.NO_FINALITZADA;
@@ -174,8 +148,8 @@ public class ProgramaPrincipal
 
 				EstatCasella fitxa = controlador_partida.getColorActual();
 
-				System.out.println( "/* TORN " + controlador_partida.getTornActual() + " */" );
-				System.out.println( jugador_actual.getNom() + ", es el seu torn." );
+				System.out.println( "TORN " + controlador_partida.getTornActual() );
+				System.out.println( "És el torn de: " + jugador_actual.getNom() );
 
 				if ( jugador_actual.getNom().equals( "CPU" ) )
 				{
@@ -190,17 +164,18 @@ public class ProgramaPrincipal
 					System.out.println( "Temps que ha tardat " + jugador_actual.getNom() + " en moure: "
 							+ ( ( temps_final - temps_inical ) / 1000000000.0 ) + " segons" );
 				}
-
 				else
 				{
 					System.out.println( "Si us plau, indiqui quin sera el seu proxim moviment (fila (espai) columna):" );
 					fila = dada.llegirInt();
 					columna = dada.llegirInt();
 
+					// -3, -3 guarda la partida
 					if ( fila == -3 && columna == -3 )
 					{
 						controlador_partida.guardaPartida();
 					}
+					// -5, -5 tanca la partida
 					if ( fila == -5 && columna == -5 )
 					{
 						continua = false;
@@ -234,7 +209,7 @@ public class ProgramaPrincipal
 			}
 
 			imprimeixResultat( estat_partida, controlador_partida.getJugadorActual().getNom() );
-			System.out.println( jugador.getNom() + ", vol tornar a jugar una altra partida? [s/n]: " );
+			System.out.println( jugador.getNom() + ", vols tornar a jugar una altra partida? [s/n]: " );
 			surt_programa = ( dada.llegirString().trim().toLowerCase().equals( "s" ) ) ? false : true;
 		}
 	}

@@ -48,21 +48,6 @@ public class ControladorPartidaEnJoc
 	}
 
 	/**
-	 * Constructora on s'indica els atributs desitjats per a iniciar una partida des de zero
-	 * 
-	 * @param jugador_a Usuari que farà de jugador A
-	 * @param jugador_b Usuari que farà de jugador B
-	 * @param nom_partida Nom que se li vol assignar a la nova partida
-	 */
-	public ControladorPartidaEnJoc( UsuariGomoku jugador_a, UsuariGomoku jugador_b, String nom_partida )
-	{
-		this.partida = new PartidaGomoku( jugador_a, jugador_b, new TaulerGomoku(), nom_partida );
-		this.ia = new IAGomoku();
-		this.fila_ult_moviment = 0;
-		this.columna_ult_moviment = 0;
-	}
-
-	/**
 	 * Mètode consultor de la partida
 	 * 
 	 * @return La partida controlada
@@ -187,4 +172,7 @@ public class ControladorPartidaEnJoc
 		gestor.guardaPartida( partida );
 		return false;
 	}
+
+	// TODO
+
 }

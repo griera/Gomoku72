@@ -34,6 +34,12 @@ public class GestorUsuaris
 		}
 		return usuari;
 	}
+	
+	// TODO
+	public UsuariGomoku carregaUsuariConvidat()
+	{
+		return new UsuariGomoku("Convidat", "Convidat");
+	}
 
 	private UsuariGomoku carregaUsuariDeFitxer( String ruta_fitxer ) throws IOException, ClassNotFoundException
 	{

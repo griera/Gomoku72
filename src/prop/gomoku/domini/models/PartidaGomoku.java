@@ -37,8 +37,8 @@ public class PartidaGomoku extends Partida
 	 * @param nom Nom identificatiu de la partida.
 	 * @param finalitzada Indica si la partida ha acabat o encara continua en joc.
 	 */
-	public PartidaGomoku( UsuariGomoku jugador_a, UsuariGomoku jugador_b, TaulerGomoku tauler, int torns_jugats, Date data_creacio,
-			String nom, boolean finalitzada )
+	public PartidaGomoku( UsuariGomoku jugador_principal, UsuariGomoku jugador_a, UsuariGomoku jugador_b,
+			TaulerGomoku tauler, int torns_jugats, Date data_creacio, String nom, boolean finalitzada )
 	{
 		super( jugador_a, jugador_b, tauler, torns_jugats, data_creacio, nom, finalitzada );
 	}
@@ -55,7 +55,8 @@ public class PartidaGomoku extends Partida
 	 * @param tauler Objecte de la classe <code>TaulerGomoku</code> on es juga la partida.
 	 * @param nom Nom identificatiu de la partida.
 	 */
-	public PartidaGomoku( UsuariGomoku jugador_a, UsuariGomoku jugador_b, TaulerGomoku tauler, String nom )
+	public PartidaGomoku( UsuariGomoku jugador_principal, UsuariGomoku jugador_a, UsuariGomoku jugador_b,
+			TaulerGomoku tauler, String nom )
 	{
 		super( jugador_a, jugador_b, tauler, nom );
 	}
@@ -91,18 +92,10 @@ public class PartidaGomoku extends Partida
 	{
 		return (TaulerGomoku) this.tauler;
 	}
-	
+
 	// TODO
 	public UsuariGomoku getJugadorPrincipal()
 	{
 		return this.jugador_principal;
 	}
-	
-	// TODO
-	public boolean setJugadorPrincipal(UsuariGomoku usuari)
-	{
-		this.jugador_principal = usuari;
-		return true;
-	}
-	
 }
