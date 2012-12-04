@@ -45,6 +45,9 @@ public class ControladorPartidaEnJoc
 		this.ia = new IAGomoku();
 		this.fila_ult_moviment = 0;
 		this.columna_ult_moviment = 0;
+		
+		// TODO hauria d'analitzar els jugadors i assignar IAs en conseqüència
+		
 	}
 
 	/**
