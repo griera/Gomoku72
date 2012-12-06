@@ -1,12 +1,10 @@
-package prop.gomoku.domini.controladors;
+package prop.gomoku.domini.controladors.records;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
-import prop.gomoku.domini.models.EstadistiquesPartides;
 import prop.gomoku.domini.models.LlistaRecordsIndividuals;
-import prop.gomoku.domini.models.ResumResultats;
 import prop.gomoku.domini.models.UsuariGomoku;
 import prop.gomoku.gestors.GestorUsuaris;
 
@@ -15,10 +13,10 @@ public class ControladorRecordsGlobals
 {
 	private PriorityQueue<LlistaRecordsIndividuals> llista_records_individuals = new PriorityQueue<LlistaRecordsIndividuals>();
 
-	public ControladorRecordsGlobals()
+	public ControladorRecordsGlobals(CriteriRecords criteri)
 	{
 		this.llista_records_individuals = new PriorityQueue<LlistaRecordsIndividuals>( 5, new ComparadorRecords(
-				Criteri.NUM_VICTORIES_HUMA ) );
+				criteri ) );
 
 		GestorUsuaris gestor_usuaris = new GestorUsuaris();
 		List<UsuariGomoku> llista_usuaris = gestor_usuaris.carregaTots();
@@ -33,17 +31,12 @@ public class ControladorRecordsGlobals
 		return this.llista_records_individuals;
 	}
 
-	private enum Criteri
-	{
-		NUM_VICTORIES_HUMA, NUM_VICTORIES_FACIL, NUM_VICTORIES_MITJA, NUM_VICTORIES_DIFICIL, NUM_EMPATS_HUMA, NUM_EMPATS_FACIL, NUM_EMPATS_MITJA, NUM_EMPATS_DIFICIL, NUM_DERROTES_HUMA, NUM_DERROTES_FACIL, NUM_DERROTES_MITJA, NUM_DERROTES_DIFICIL, PER_VICTORIES_HUMA, PER_VICTORIES_FACIL, PER_VICTORIES_MITJA, PER_VICTORIES_DIFICIL, PER_EMPATS_HUMA, PER_EMPATS_FACIL, PER_EMPATS_MITJA, PER_EMPATS_DIFICIL, PER_DERROTES_HUMA, PER_DERROTES_FACIL, PER_DERROTES_MITJA, PER_DERROTES_DIFICIL
-	};
-
 	private class ComparadorRecords implements Comparator<LlistaRecordsIndividuals>
 	{
 
-		private Criteri criteri;
+		private CriteriRecords criteri;
 
-		public ComparadorRecords( Criteri criteri )
+		public ComparadorRecords( CriteriRecords criteri )
 		{
 			this.criteri = criteri;
 		}
@@ -53,6 +46,8 @@ public class ControladorRecordsGlobals
 		{
 			int num_a = 0;
 			int num_b = 0;
+
+			// Una mica de DRY no aniria malament
 			switch ( this.criteri )
 			{
 				case NUM_VICTORIES_HUMA:
@@ -168,131 +163,13 @@ public class ControladorRecordsGlobals
 		}
 	}
 
-	private enum Dificultat
+	enum Dificultat
 	{
 		HUMA, FACIL, MITJA, DIFICIL
 	};
 
-	private enum Resultat
+	enum Resultat
 	{
 		VICTORIA, EMPAT, DERROTA
-	};
-
-	private static class AccesRecords
-	{
-		public static int getAbsoluts( LlistaRecordsIndividuals llista_records, Dificultat dificultat, Resultat resultat )
-		{
-			EstadistiquesPartides est = llista_records.getStatsPartidaRapida();
-			switch ( resultat )
-			{
-				case VICTORIA:
-				{
-					ResumResultats vict = est.getVictories();
-					switch ( dificultat )
-					{
-						case HUMA:
-							return vict.getNumHumans();
-						case FACIL:
-							return vict.getNumFacils();
-						case MITJA:
-							return vict.getNumMitja();
-						case DIFICIL:
-							return vict.getNumDificils();
-					}
-					break;
-				}
-				case EMPAT:
-				{
-					ResumResultats emp = est.getEmpats();
-					switch ( dificultat )
-					{
-						case HUMA:
-							return emp.getNumHumans();
-						case FACIL:
-							return emp.getNumFacils();
-						case MITJA:
-							return emp.getNumMitja();
-						case DIFICIL:
-							return emp.getNumDificils();
-					}
-					break;
-				}
-				case DERROTA:
-				{
-					ResumResultats der = est.getDerrotes();
-					switch ( dificultat )
-					{
-						case HUMA:
-							return der.getNumHumans();
-						case FACIL:
-							return der.getNumFacils();
-						case MITJA:
-							return der.getNumMitja();
-						case DIFICIL:
-							return der.getNumDificils();
-					}
-					break;
-				}
-			}
-			return 0;
-		}
-
-		public static int getPercentuals( LlistaRecordsIndividuals llista_records, Dificultat dificultat,
-				Resultat resultat )
-		{
-			EstadistiquesPartides est = llista_records.getStatsPartidaRapida();
-			switch ( resultat )
-			{
-				case VICTORIA:
-				{
-					ResumResultats vict = est.getpercentatgevictories();
-					switch ( dificultat )
-					{
-						case HUMA:
-							return vict.getNumHumans();
-						case FACIL:
-							return vict.getNumFacils();
-						case MITJA:
-							return vict.getNumMitja();
-						case DIFICIL:
-							return vict.getNumDificils();
-					}
-					break;
-				}
-				case EMPAT:
-				{
-					ResumResultats emp = est.getpercentatgeempats();
-					switch ( dificultat )
-					{
-						case HUMA:
-							return emp.getNumHumans();
-						case FACIL:
-							return emp.getNumFacils();
-						case MITJA:
-							return emp.getNumMitja();
-						case DIFICIL:
-							return emp.getNumDificils();
-					}
-					break;
-				}
-				case DERROTA:
-				{
-					ResumResultats der = est.getpercentatgederrotes();
-					switch ( dificultat )
-					{
-						case HUMA:
-							return der.getNumHumans();
-						case FACIL:
-							return der.getNumFacils();
-						case MITJA:
-							return der.getNumMitja();
-						case DIFICIL:
-							return der.getNumDificils();
-					}
-					break;
-				}
-			}
-			return 0;
-		}
 	}
 }
