@@ -92,7 +92,7 @@ public class ControladorPartidaEnJoc
 		if (tipus == TipusUsuari.CONVIDAT || tipus == TipusUsuari.HUMA)
 		{
 			// TODO documentar? notificar?
-			throw new IllegalArgumentException("No li toca a una màquina");
+			throw new IllegalArgumentException("No es una màquina");
 		}
 		
 		InteligenciaCPU ia = new InteligenciaCPU( tipus, this.getColorActual() );
@@ -148,5 +148,11 @@ public class ControladorPartidaEnJoc
 	}
 
 	// TODO
-
+	public int[] getUltimMoviment()
+	{
+		int[] coord = new int[2];
+		coord[0] = this.fila_ult_moviment;
+		coord[1] = this.columna_ult_moviment;
+		return coord;
+	}
 }
