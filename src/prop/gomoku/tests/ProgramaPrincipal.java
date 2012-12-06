@@ -10,6 +10,7 @@ import prop.gomoku.domini.controladors.ControladorPartida;
 import prop.gomoku.domini.controladors.ControladorPartidaEnJoc;
 import prop.gomoku.domini.controladors.ControladorPartidesGuardades;
 import prop.gomoku.domini.models.PartidaGomoku;
+import prop.gomoku.domini.models.TipusUsuari;
 import prop.gomoku.domini.models.UsuariGomoku;
 
 public class ProgramaPrincipal
@@ -53,7 +54,7 @@ public class ProgramaPrincipal
 		System.out.println( "2.- Jugador huma" );
 		int tipus_oponent = dada.llegirInt();
 
-		UsuariGomoku oponent = new UsuariGomoku( "CPU", "CPU" );
+		UsuariGomoku oponent = new UsuariGomoku( "CPU", "CPUa", TipusUsuari.MITJA );
 		switch ( tipus_oponent )
 		{
 			case 1:
@@ -131,6 +132,10 @@ public class ProgramaPrincipal
 				{
 					partida = partides.get( opcio );
 				}
+			}
+			else
+			{
+				partida = creaPartida( jugador );
 			}
 			/* Final prova càrrega */
 

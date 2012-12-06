@@ -28,8 +28,10 @@ public class InteligenciaCPU
 		{
 			case FACIL:
 				profunditat = 2;
+				break;
 			case MITJA:
 				profunditat = 3;
+				break;
 			case DIFICIL:
 				profunditat = 4;
 				break;
