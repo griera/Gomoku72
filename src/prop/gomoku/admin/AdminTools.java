@@ -39,32 +39,37 @@ public class AdminTools
 		String contrasenya = lectura.llegirString();
 
 		UsuariGomoku usuari = new UsuariGomoku( nom, contrasenya );
-		
-		System.out.print("Indica el nombre de VICTORIES contra IA: FACILs MITJAnes DIFICILs: ");
+
+		System.out.print( "Indica el nombre de VICTORIES contra IA: FACILs MITJAnes DIFICILs HUMA: " );
+		int vict_huma = lectura.llegirInt();
 		int vict_facil = lectura.llegirInt();
 		int vict_mitja = lectura.llegirInt();
 		int vict_dificil = lectura.llegirInt();
 		usuari.incrementaVictories( 1, vict_facil );
 		usuari.incrementaVictories( 2, vict_mitja );
 		usuari.incrementaVictories( 3, vict_dificil );
-		
-		System.out.print("Indica el nombre de EMPAT contra IA: FACILs MITJAnes DIFICILs: ");
+		usuari.incrementaVictories( 4, vict_huma );
+
+		System.out.print( "Indica el nombre de EMPAT contra IA: FACILs MITJAnes DIFICILs HUMA: " );
+		int empats_huma = lectura.llegirInt();
 		int empats_facil = lectura.llegirInt();
 		int empats_mitja = lectura.llegirInt();
 		int empats_dificil = lectura.llegirInt();
 		usuari.incrementaEmpats( 1, empats_facil );
 		usuari.incrementaEmpats( 2, empats_mitja );
 		usuari.incrementaEmpats( 3, empats_dificil );
+		usuari.incrementaEmpats( 4, empats_huma );
 
-		System.out.print("Indica el nombre de DERROTES contra IA: FACILs MITJAnes DIFICILs: ");
+		System.out.print( "Indica el nombre de DERROTES contra IA: FACILs MITJAnes DIFICILs HUMA: " );
+		int derrotes_huma = lectura.llegirInt();
 		int derrotes_facil = lectura.llegirInt();
 		int derrotes_mitja = lectura.llegirInt();
 		int derrotes_dificil = lectura.llegirInt();
 		usuari.incrementaDerrotes( 1, derrotes_facil );
 		usuari.incrementaDerrotes( 2, derrotes_mitja );
 		usuari.incrementaDerrotes( 3, derrotes_dificil );
+		usuari.incrementaDerrotes( 4, derrotes_huma );
 
-		
 		try
 		{
 			gestor_usuaris.guardaUsuari( usuari );
@@ -73,17 +78,17 @@ public class AdminTools
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		try
-//		{
-//			gestor_usuaris.guardaNouUsuari( usuari );
-//		} catch ( UsuariJaExisteix e )
-//		{
-//			System.out.println( "No s'ha pogut donar d'alta el usuari " + usuari.toString()
-//					+ ", ja existeix un amb aquest nom" );
-//		} catch ( IOException e )
-//		{
-//			System.out.println( "No s'ha pogut donar d'alta - " + usuari.toString() );
-//		}
+		// try
+		// {
+		// gestor_usuaris.guardaNouUsuari( usuari );
+		// } catch ( UsuariJaExisteix e )
+		// {
+		// System.out.println( "No s'ha pogut donar d'alta el usuari " + usuari.toString()
+		// + ", ja existeix un amb aquest nom" );
+		// } catch ( IOException e )
+		// {
+		// System.out.println( "No s'ha pogut donar d'alta - " + usuari.toString() );
+		// }
 
 		System.out.println( "Usuari donat d'alta correctament - " + usuari.toString() );
 		System.out.println();
@@ -160,7 +165,8 @@ public class AdminTools
 			}
 		}
 
-		PartidaGomoku partida = new PartidaGomoku( jugador_principal, jugador_negres, jugador_blanques, new TaulerGomoku(), nom_partida );
+		PartidaGomoku partida = new PartidaGomoku( jugador_principal, jugador_negres, jugador_blanques,
+				new TaulerGomoku(), nom_partida );
 		gestor_partides.guardaPartida( partida );
 	}
 
