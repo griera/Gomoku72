@@ -2,8 +2,9 @@ package prop.gomoku.domini.controladors;
 
 import prop.cluster.domini.models.estats.EstatCasella;
 import prop.cluster.domini.models.estats.EstatPartida;
+import prop.gomoku.domini.models.InteligenciaCPU;
 import prop.gomoku.domini.models.PartidaGomoku;
-import prop.gomoku.domini.models.TaulerGomoku;
+import prop.gomoku.domini.models.TipusUsuari;
 import prop.gomoku.domini.models.UsuariGomoku;
 import prop.gomoku.gestors.GestorPartidesGuardades;
 
@@ -14,17 +15,9 @@ import prop.gomoku.gestors.GestorPartidesGuardades;
 public class ControladorPartidaEnJoc
 {
 	/**
-	 * Indica la profunditat màxima amb la que es cridarà a IAGomoku
-	 */
-	private int profunditat_maxima = 3;
-	/**
 	 * Partida que controlem
 	 */
 	private PartidaGomoku partida;
-	/**
-	 * Serà la classe amb la qual obtindrem els moviments del jugador CPU, si s'escau
-	 */
-	private IAGomoku ia;
 	/**
 	 * Fila de l'últim moviment realitzat a la partida
 	 */
@@ -42,7 +35,6 @@ public class ControladorPartidaEnJoc
 	public ControladorPartidaEnJoc( PartidaGomoku partida )
 	{
 		this.partida = partida;
-		this.ia = new IAGomoku();
 		this.fila_ult_moviment = 0;
 		this.columna_ult_moviment = 0;
 		
@@ -95,37 +87,16 @@ public class ControladorPartidaEnJoc
 	 */
 	public int[] getMovimentMaquina()
 	{
-		int[] moviment_ia = new int[2];
-		int mida = this.getPartida().getTauler().getMida();
-
-		if ( this.getTornActual() == 1 )
+		UsuariGomoku jugador_actual = this.getJugadorActual();
+		TipusUsuari tipus = jugador_actual.getTipus();
+		if (tipus == TipusUsuari.CONVIDAT || tipus == TipusUsuari.HUMA)
 		{
-			moviment_ia[0] = ( mida / 2 );
-			moviment_ia[1] = ( mida / 2 );
+			// TODO documentar? notificar?
+			throw new IllegalArgumentException("No li toca a una màquina");
 		}
-
-		else if ( this.getTornActual() == 2 )
-		{
-			moviment_ia = ia.movimentAdjacentAleatori( this.fila_ult_moviment, this.columna_ult_moviment, mida );
-		}
-
-		else
-		{
-			moviment_ia = this.ia.minimax( this.partida, this.getColorActual(), this.profunditat_maxima );
-		}
-
-		if ( moviment_ia[0] == -1 && moviment_ia[1] == -1 )
-		{
-			System.out.print( this.getJugadorActual().getNom() + "s'ha rendit perque ja ha perdut matematicament." );
-			System.out.println( " Fara un moviment aleatori:" );
-			TaulerGomoku tauler = (TaulerGomoku) this.getPartida().getTauler();
-			moviment_ia = ia.movimentAleatori( tauler );
-		}
-
-		this.fila_ult_moviment = moviment_ia[0];
-		this.columna_ult_moviment = moviment_ia[1];
-
-		return moviment_ia;
+		
+		InteligenciaCPU ia = new InteligenciaCPU( tipus, this.getColorActual() );
+		return ia.getMoviment( this.partida, this.fila_ult_moviment, this.columna_ult_moviment );
 	}
 
 	/**

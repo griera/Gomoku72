@@ -1,6 +1,5 @@
 package prop.gomoku.domini.models;
 
-import prop.cluster.domini.controladors.InteligenciaArtificial;
 import prop.cluster.domini.models.estats.EstatCasella;
 import prop.gomoku.domini.controladors.IAGomoku;
 

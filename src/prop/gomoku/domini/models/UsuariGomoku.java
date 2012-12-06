@@ -37,7 +37,7 @@ public class UsuariGomoku extends Usuari
 		super( nom, contrasenya, nombre_dificultats );
 		if ( !validaContrasenya( contrasenya ) )
 		{
-			throw new IllegalArgumentException( "La contrasenya no pot incloure espais" );
+			throw new IllegalArgumentException( "La contrasenya no pot incloure caracters invalids" );
 		}
 		tipus = TipusUsuari.HUMA;
 	}
@@ -48,7 +48,7 @@ public class UsuariGomoku extends Usuari
 		super( nom, contrasenya, nombre_dificultats );
 		if ( !validaContrasenya( contrasenya ) )
 		{
-			throw new IllegalArgumentException( "Contrasenya conté espais o és massa curta" );
+			throw new IllegalArgumentException( "Contrasenya conté caracters invalids o és massa curta" );
 		}
 		this.tipus = tipus;
 	}
