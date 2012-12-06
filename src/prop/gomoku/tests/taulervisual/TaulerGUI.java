@@ -15,7 +15,6 @@ import prop.cluster.domini.models.estats.EstatPartida;
 import prop.gomoku.domini.controladors.ControladorPartida;
 import prop.gomoku.domini.controladors.ControladorPartidaEnJoc;
 import prop.gomoku.domini.models.PartidaGomoku;
-import prop.gomoku.domini.models.TaulerGomoku;
 import prop.gomoku.domini.models.TipusUsuari;
 import prop.gomoku.domini.models.UsuariGomoku;
 
@@ -26,7 +25,7 @@ public class TaulerGUI extends JPanel
 	 */
 	private static final long serialVersionUID = 599174304255843905L;
 
-	private static int nombre_clics = 0;
+//	private static int nombre_clics = 0;
 	private ImageIcon casella_buida, fitxa_negra, fitxa_blanca, tauler_fons;
 	private boolean tipusTauler;
 	private CasellaGUI[][] caselles;
@@ -173,49 +172,48 @@ public class TaulerGUI extends JPanel
 	private PartidaGomoku partida = ctrl_partida.creaNovaPartida( jugador, jugador, oponent, "demo" );
 	private ControladorPartidaEnJoc ctrl_en_joc = new ControladorPartidaEnJoc( partida );
 	private EstatPartida estat = EstatPartida.NO_FINALITZADA;
-	
+
 	public boolean intentaFerMoviment( int[] coord )
 	{
 		int[] ultim_moviment = ctrl_en_joc.getUltimMoviment();
-		if (estat == EstatPartida.NO_FINALITZADA)
+		if ( estat == EstatPartida.NO_FINALITZADA )
 		{
 			estat = partida.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
-			if (estat != EstatPartida.NO_FINALITZADA)
+			if ( estat != EstatPartida.NO_FINALITZADA )
 			{
-				System.out.println(estat);
+				System.out.println( estat );
 				return false;
 			}
-		}
-		else {
-			System.out.println(estat);
-			return false;
-		}
-		
-		int fila = coord[0];
-		int columna = coord[1];
-		System.out.println( "Clicat: " + fila + " " + columna );
-		if ( ctrl_en_joc.getPartida().getTauler().getEstatCasella( fila, columna ) != EstatCasella.BUIDA )
-		{
-			return false;
 		}
 		else
 		{
-			try
-			{
-				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_A, fila, columna );
-			} catch ( Exception e )
-			{
-				System.out.println( e.getMessage() );
-				return false;
-			}
-			this.pinta( fila, columna, EstatCasella.JUGADOR_A );
+			System.out.println( estat );
+			return false;
+		}
 
+		int fila = coord[0];
+		int columna = coord[1];
+		System.out.println( "Clicat: " + fila + " " + columna );
+
+		try
+		{
+			ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_A, fila, columna );
+		} catch ( Exception e )
+		{
+			System.out.println( e.getMessage() );
+			return false;
+		}
+		this.pinta( fila, columna, EstatCasella.JUGADOR_A );
+
+		estat = partida.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
+
+		if ( estat == EstatPartida.NO_FINALITZADA )
+		{
 			int[] mov_ia = ctrl_en_joc.getMovimentMaquina();
 			ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_B, mov_ia[0], mov_ia[1] );
 			this.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_B );
-
-			return true;
 		}
+		return true;
 	}
 
 }

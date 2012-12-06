@@ -76,8 +76,10 @@ public class PartidaGomoku extends Partida
 			{
 				return EstatPartida.GUANYA_JUGADOR_A;
 			}
-
-			return EstatPartida.GUANYA_JUGADOR_B;
+			else if ( estat == EstatCasella.JUGADOR_B )
+			{
+				return EstatPartida.GUANYA_JUGADOR_B;
+			}
 		}
 
 		else if ( tauler.getTotalFitxes() == tauler.getMida() * tauler.getMida() )
