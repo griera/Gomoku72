@@ -1,20 +1,36 @@
 package prop.gomoku.domini.controladors;
 
 import java.util.Comparator;
+import java.util.List;
 import java.util.PriorityQueue;
 
 import prop.gomoku.domini.models.EstadistiquesPartides;
 import prop.gomoku.domini.models.LlistaRecordsIndividuals;
 import prop.gomoku.domini.models.ResumResultats;
+import prop.gomoku.domini.models.UsuariGomoku;
+import prop.gomoku.gestors.GestorUsuaris;
 
+// The Great TODO
 public class ControladorRecordsGlobals
 {
-	private PriorityQueue<LlistaRecordsIndividuals> llista_victories = new PriorityQueue<LlistaRecordsIndividuals>();
+	private PriorityQueue<LlistaRecordsIndividuals> llista_records_individuals = new PriorityQueue<LlistaRecordsIndividuals>();
 
 	public ControladorRecordsGlobals()
 	{
-		this.llista_victories = new PriorityQueue<LlistaRecordsIndividuals>( 5, new ComparadorRecords(
+		this.llista_records_individuals = new PriorityQueue<LlistaRecordsIndividuals>( 5, new ComparadorRecords(
 				Criteri.NUM_VICTORIES_HUMA ) );
+
+		GestorUsuaris gestor_usuaris = new GestorUsuaris();
+		List<UsuariGomoku> llista_usuaris = gestor_usuaris.carregaTots();
+		for ( UsuariGomoku usuari : llista_usuaris )
+		{
+			llista_records_individuals.add( new LlistaRecordsIndividuals( usuari ) );
+		}
+	}
+
+	public PriorityQueue<LlistaRecordsIndividuals> getRecordsIndividualsOrdenats()
+	{
+		return this.llista_records_individuals;
 	}
 
 	private enum Criteri
@@ -135,11 +151,13 @@ public class ControladorRecordsGlobals
 					break;
 			}
 
-			if ( num_a > num_b )
+			// if ( num_a > num_b )
+			if ( num_a < num_b )
 			{
 				return 1;
 			}
-			else if ( num_a < num_b )
+			// else if ( num_a < num_b )
+			else if ( num_a > num_b )
 			{
 				return -1;
 			}
@@ -147,11 +165,6 @@ public class ControladorRecordsGlobals
 			{
 				return 0;
 			}
-			// TODO Auto-generated method stub
-			// if (record_0.getStatsPartidaRapida().getDerrotes().getNumFacils())
-			// {
-			//
-			// }
 		}
 	}
 
