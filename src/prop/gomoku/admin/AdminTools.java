@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import prop.gomoku.auxiliars.Lectura;
 import prop.gomoku.auxiliars.LecturaScanners;
+import prop.gomoku.domini.controladors.ControladorUsuari;
+import prop.gomoku.domini.controladors.excepcions.ContrasenyaInvalida;
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.TaulerGomoku;
 import prop.gomoku.domini.models.UsuariGomoku;
@@ -16,6 +18,7 @@ public class AdminTools
 {
 	private static Lectura lectura = new LecturaScanners();
 	private static GestorUsuaris gestor_usuaris = new GestorUsuaris();
+	private static ControladorUsuari ctrl_usuari = new ControladorUsuari();
 	private static GestorPartidesGuardades gestor_partides = new GestorPartidesGuardades();
 
 	private static int menuPrincipal()
@@ -38,41 +41,57 @@ public class AdminTools
 		System.out.print( "Contrasenya: " );
 		String contrasenya = lectura.llegirString();
 
-		UsuariGomoku usuari = new UsuariGomoku( nom, contrasenya );
+		UsuariGomoku usuari = null;
+		try
+		{
+			usuari = ctrl_usuari.registraUsuari( nom, contrasenya );
+		} catch ( ContrasenyaInvalida e )
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch ( UsuariJaExisteix e )
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch ( IOException e )
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		System.out.print( "Indica el nombre de VICTORIES contra IA: FACILs MITJAnes DIFICILs HUMA: " );
 		int vict_huma = lectura.llegirInt();
 		int vict_facil = lectura.llegirInt();
 		int vict_mitja = lectura.llegirInt();
 		int vict_dificil = lectura.llegirInt();
-		usuari.incrementaVictories( 1, vict_facil );
-		usuari.incrementaVictories( 2, vict_mitja );
-		usuari.incrementaVictories( 3, vict_dificil );
-		usuari.incrementaVictories( 4, vict_huma );
+		usuari.incrementaVictories( 0, vict_facil );
+		usuari.incrementaVictories( 1, vict_mitja );
+		usuari.incrementaVictories( 2, vict_dificil );
+		usuari.incrementaVictories( 3, vict_huma );
 
 		System.out.print( "Indica el nombre de EMPAT contra IA: FACILs MITJAnes DIFICILs HUMA: " );
 		int empats_huma = lectura.llegirInt();
 		int empats_facil = lectura.llegirInt();
 		int empats_mitja = lectura.llegirInt();
 		int empats_dificil = lectura.llegirInt();
-		usuari.incrementaEmpats( 1, empats_facil );
-		usuari.incrementaEmpats( 2, empats_mitja );
-		usuari.incrementaEmpats( 3, empats_dificil );
-		usuari.incrementaEmpats( 4, empats_huma );
+		usuari.incrementaEmpats( 0, empats_facil );
+		usuari.incrementaEmpats( 1, empats_mitja );
+		usuari.incrementaEmpats( 2, empats_dificil );
+		usuari.incrementaEmpats( 3, empats_huma );
 
 		System.out.print( "Indica el nombre de DERROTES contra IA: FACILs MITJAnes DIFICILs HUMA: " );
 		int derrotes_huma = lectura.llegirInt();
 		int derrotes_facil = lectura.llegirInt();
 		int derrotes_mitja = lectura.llegirInt();
 		int derrotes_dificil = lectura.llegirInt();
-		usuari.incrementaDerrotes( 1, derrotes_facil );
-		usuari.incrementaDerrotes( 2, derrotes_mitja );
-		usuari.incrementaDerrotes( 3, derrotes_dificil );
-		usuari.incrementaDerrotes( 4, derrotes_huma );
+		usuari.incrementaDerrotes( 0, derrotes_facil );
+		usuari.incrementaDerrotes( 1, derrotes_mitja );
+		usuari.incrementaDerrotes( 2, derrotes_dificil );
+		usuari.incrementaDerrotes( 3, derrotes_huma );
 
 		try
 		{
-			gestor_usuaris.guardaUsuari( usuari );
+			ctrl_usuari.actualitzaUsuari( usuari );
 		} catch ( IOException e )
 		{
 			// TODO Auto-generated catch block

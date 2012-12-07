@@ -13,12 +13,12 @@ import javax.swing.JPanel;
 import prop.cluster.domini.models.estats.EstatCasella;
 import prop.cluster.domini.models.estats.EstatPartida;
 import prop.gomoku.domini.controladors.ControladorPartida;
-import prop.gomoku.domini.controladors.ControladorPartidaEnJoc;
+import prop.gomoku.domini.controladors.ControladorPreparacioPartida;
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.TipusUsuari;
 import prop.gomoku.domini.models.UsuariGomoku;
 
-public class TaulerGUI extends JPanel
+public class TaulerGUIEntrenament extends JPanel
 {
 	/**
 	 * ID de serialització
@@ -28,26 +28,26 @@ public class TaulerGUI extends JPanel
 	// private static int nombre_clics = 0;
 	private ImageIcon casella_buida, fitxa_negra, fitxa_blanca, tauler_fons;
 	private boolean tipusTauler;
-	private CasellaGUI[][] caselles;
+	private CasellaGUIEntrenament[][] caselles;
 
-	public TaulerGUI()
+	public TaulerGUIEntrenament()
 	{
 		initComponents();
 	}
 
-	public TaulerGUI( int mida, boolean tipus )
+	public TaulerGUIEntrenament( int mida, boolean tipus )
 	{
 		initComponents();
 		int x, y;
 		setLayout( new GridLayout( mida, mida ) );
 		this.tipusTauler = tipus;
 		this.carregaImatges();
-		this.caselles = new CasellaGUI[mida][mida];
+		this.caselles = new CasellaGUIEntrenament[mida][mida];
 		for ( int i = 0; i < mida; i++ )
 		{
 			for ( int j = 0; j < mida; j++ )
 			{
-				this.caselles[i][j] = new CasellaGUI( this );
+				this.caselles[i][j] = new CasellaGUIEntrenament( this );
 				this.caselles[i][j].setOpaque( false );
 				this.caselles[i][j].setFons( this.casella_buida );
 				x = ( i * 35 ) + 1;
@@ -96,15 +96,15 @@ public class TaulerGUI extends JPanel
 
 	private void carregaImatges()
 	{
-		this.casella_buida = TaulerGUI.carregaFons( "casella_buida.gif" );
-		this.fitxa_negra = TaulerGUI.carregaFons( "fitxa_negra.png" );
-		this.fitxa_blanca = TaulerGUI.carregaFons( "fitxa_blanca.png" );
-		this.tauler_fons = TaulerGUI.carregaFons( "tauler_fons.JPG" );
+		this.casella_buida = TaulerGUIEntrenament.carregaFons( "casella_buida.gif" );
+		this.fitxa_negra = TaulerGUIEntrenament.carregaFons( "fitxa_negra.png" );
+		this.fitxa_blanca = TaulerGUIEntrenament.carregaFons( "fitxa_blanca.png" );
+		this.tauler_fons = TaulerGUIEntrenament.carregaFons( "tauler_fons.JPG" );
 	}
 
 	protected static ImageIcon carregaFons( String ruta )
 	{
-		URL localizacio = TaulerGUI.class.getResource( ruta );
+		URL localizacio = TaulerGUIEntrenament.class.getResource( ruta );
 		if ( localizacio != null )
 		{
 			return new ImageIcon( localizacio );
@@ -116,7 +116,7 @@ public class TaulerGUI extends JPanel
 		}
 	}
 
-	public int[] getCoordenades( CasellaGUI casella )
+	public int[] getCoordenades( CasellaGUIEntrenament casella )
 	{
 		int[] coordenades = new int[2];
 		for ( int i = 0; i < this.caselles.length; i++ )
@@ -133,12 +133,12 @@ public class TaulerGUI extends JPanel
 		return coordenades;
 	}
 
-	public CasellaGUI[][] getCasillas()
+	public CasellaGUIEntrenament[][] getCasillas()
 	{
 		return this.caselles;
 	}
 
-	public void setCasillas( CasellaGUI[][] caselles )
+	public void setCasillas( CasellaGUIEntrenament[][] caselles )
 	{
 		this.caselles = caselles;
 	}
@@ -166,17 +166,16 @@ public class TaulerGUI extends JPanel
 		this.setFons( this.tauler_fons );
 	}
 
-	// TODO
 	private UsuariGomoku jugador = new UsuariGomoku( "nacho", "nacho" );
 	private UsuariGomoku oponent = new UsuariGomoku( "CPU Facil", "cpufacil", TipusUsuari.FACIL );
 	private ControladorPartida ctrl_partida = new ControladorPartida();
 	private PartidaGomoku partida = ctrl_partida.creaNovaPartida( jugador, jugador, oponent, "demo" );
-	private ControladorPartidaEnJoc ctrl_en_joc = new ControladorPartidaEnJoc( partida );
+	private ControladorPreparacioPartida ctrl_prep = new ControladorPreparacioPartida( partida );
 	private EstatPartida estat = EstatPartida.NO_FINALITZADA;
+	private int[] ultim_moviment = { 0, 0 };
 
 	public boolean intentaFerMoviment( int[] coord )
 	{
-		int[] ultim_moviment = ctrl_en_joc.getUltimMoviment();
 		if ( estat == EstatPartida.NO_FINALITZADA )
 		{
 			estat = partida.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
@@ -196,24 +195,16 @@ public class TaulerGUI extends JPanel
 		int columna = coord[1];
 		System.out.println( "Clicat: " + fila + " " + columna );
 
-		try
+//		ctrl_partida.
+		
+		if ( ctrl_prep.mouFitxa( fila, columna ) )
 		{
-			ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_A, fila, columna );
-		} catch ( Exception e )
-		{
-			System.out.println( e.getMessage() );
-			return false;
-		}
-		this.pinta( fila, columna, EstatCasella.JUGADOR_A );
 
-		estat = partida.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
-
-		if ( estat == EstatPartida.NO_FINALITZADA )
-		{
-			int[] mov_ia = ctrl_en_joc.getMovimentMaquina();
-			ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_B, mov_ia[0], mov_ia[1] );
-			this.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_B );
+			this.pinta( fila, columna, EstatCasella.JUGADOR_A );
+			ultim_moviment[0] = fila;
+			ultim_moviment[1] = columna;
 		}
+		
 		return true;
 	}
 

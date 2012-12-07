@@ -16,7 +16,7 @@ public class ControladorUsuari
 	/**
 	 * Clau de 4 caracters utilitzada pel xifrat
 	 */
-	private static final String clau = "`'?¿";
+	private static final String clau = "prop";
 	/**
 	 * Gestor de disc utilitzat per carregar i guardar usuaris
 	 */
@@ -55,6 +55,11 @@ public class ControladorUsuari
 		 * gestor de disc contenen les contrasenyes xifrades */
 		String contrasenya_xifrada = xifraContrasenya( contrasenya );
 
+		// TODO
+		System.out.println( "Cont. proporcionada: " + contrasenya );
+		System.out.println( "Cont. xifrada: " + contrasenya_xifrada );
+		System.out.println( "Cont. bona xifrada: " + usuari.getContrasenya() );
+
 		if ( usuari.getContrasenya().equals( contrasenya_xifrada ) )
 		{
 			return usuari;
@@ -81,9 +86,18 @@ public class ControladorUsuari
 			IOException
 	{
 		String contrasenya_xifrada = xifraContrasenya( contrasenya );
+		// TODO
+		System.out.println( "Cont. xifrada al registre: " + contrasenya_xifrada );
 		UsuariGomoku usuari_nou = new UsuariGomoku( nom, contrasenya_xifrada );
 		gestor_usuaris.guardaNouUsuari( usuari_nou );
 		return usuari_nou;
+	}
+
+	// TODO
+	public boolean actualitzaUsuari( UsuariGomoku usuari ) throws IOException
+	{
+		gestor_usuaris.guardaUsuari( usuari );
+		return true;
 	}
 
 	/**
@@ -98,9 +112,13 @@ public class ControladorUsuari
 	{
 		try
 		{
+			// TODO
+			String contrasenya_xifrada = new Vigenere( contrasenya, clau ).getMissatgeXifrat();
+			System.out.println( "Vigenere: xifrant " + contrasenya + " obtenim " + contrasenya_xifrada );
 			return new Vigenere( contrasenya, clau ).getMissatgeXifrat();
 		} catch ( IndexOutOfBoundsException e )
 		{
+			// TODO
 			throw new ContrasenyaInvalida( "Contrasenya invàlida, no té prous caracters o conté caracters invàlids" );
 		}
 	}

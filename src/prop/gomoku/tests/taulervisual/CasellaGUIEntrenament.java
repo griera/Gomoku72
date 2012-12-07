@@ -8,23 +8,23 @@ import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class CasellaGUI extends JPanel implements MouseListener
+public class CasellaGUIEntrenament extends JPanel implements MouseListener
 {
 	/**
 	 * ID de serialització
 	 */
 	private static final long serialVersionUID = 7545222972515472633L;
 
-	private TaulerGUI tauler;
+	private TaulerGUIEntrenament tauler;
 	private ImageIcon fons;
 	private static int[] casellaMarcada = new int[2];
 
-	public CasellaGUI()
+	public CasellaGUIEntrenament()
 	{
 		// Aquest constructor no es farà servir. Es deixa delcarat per poder crear el bean.
 	}
 
-	public CasellaGUI( TaulerGUI tauler )
+	public CasellaGUIEntrenament( TaulerGUIEntrenament tauler )
 	{
 		initComponents();
 		this.tauler = tauler;
@@ -76,10 +76,10 @@ public class CasellaGUI extends JPanel implements MouseListener
 
 	public void mousePressed( MouseEvent e )
 	{
-		if ( this.tauler.intentaFerMoviment( this.tauler.getCoordenades( (CasellaGUI) e.getComponent() ) ) )
+		if ( this.tauler.intentaFerMoviment( this.tauler.getCoordenades( (CasellaGUIEntrenament) e.getComponent() ) ) )
 		{
 			// TODO hace falta esta llamada?
-//			CasellaGUI.setCasillaMarcada( this.tauler.getCoordenades( (CasellaGUI) e.getComponent() ) );
+			CasellaGUIEntrenament.setCasillaMarcada( this.tauler.getCoordenades( (CasellaGUIEntrenament) e.getComponent() ) );
 		}
 		// TODO
 
@@ -91,12 +91,12 @@ public class CasellaGUI extends JPanel implements MouseListener
 
 	public static int[] getCasillaMarcada()
 	{
-		return CasellaGUI.casellaMarcada;
+		return CasellaGUIEntrenament.casellaMarcada;
 	}
 
 	public static void setCasillaMarcada( int[] casellaMarcada )
 	{
-		CasellaGUI.casellaMarcada = casellaMarcada;
+		CasellaGUIEntrenament.casellaMarcada = casellaMarcada;
 	}
 
 }

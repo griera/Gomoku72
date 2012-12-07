@@ -11,6 +11,7 @@ import prop.cluster.domini.models.estats.EstatPartida;
  * l'optimització de poda alfa-beta. Per a més informació sobre el funcionament de l'algorisme poden consultar aquest <a
  * href=http://www.lsi.upc.edu/~bejar/heuristica/docmin.html>enllaç</a>
  * 
+ * @author Genís Riera Pérez (Grup 7.2, Gomoku)
  */
 public abstract class InteligenciaArtificial
 {
@@ -57,7 +58,6 @@ public abstract class InteligenciaArtificial
 	 *         <em>partida</em>. La posició ve representada per les seves dues coordenades (número de fila i número
 	 *         col·lumna).
 	 */
-
 	public int[] minimax( Partida partida, EstatCasella estat_casella, int profunditat_maxima )
 	{
 		int[] millor_moviment = { -1, -1 };

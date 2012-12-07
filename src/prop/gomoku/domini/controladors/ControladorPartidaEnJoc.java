@@ -2,7 +2,6 @@ package prop.gomoku.domini.controladors;
 
 import prop.cluster.domini.models.estats.EstatCasella;
 import prop.cluster.domini.models.estats.EstatPartida;
-import prop.gomoku.domini.models.InteligenciaCPU;
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.TipusUsuari;
 import prop.gomoku.domini.models.UsuariGomoku;
@@ -27,6 +26,10 @@ public class ControladorPartidaEnJoc
 	 */
 	int columna_ult_moviment;
 
+	// TODO
+	InteligenciaCPU ia_negres;
+	InteligenciaCPU ia_blanques;
+
 	/**
 	 * Constructora on s'indica la partida que volem controlar
 	 * 
@@ -37,9 +40,29 @@ public class ControladorPartidaEnJoc
 		this.partida = partida;
 		this.fila_ult_moviment = 0;
 		this.columna_ult_moviment = 0;
-		
+
 		// TODO hauria d'analitzar els jugadors i assignar IAs en conseqüència
-		
+		TipusUsuari tipus_negres = partida.getJugadorA().getTipus();
+		switch ( tipus_negres )
+		{
+			case CONVIDAT:
+			case HUMA:
+				break;
+			default:
+				ia_negres = new InteligenciaCPU( tipus_negres, EstatCasella.JUGADOR_A );
+				break;
+		}
+		TipusUsuari tipus_blanques = partida.getJugadorA().getTipus();
+		switch ( tipus_blanques )
+		{
+			case CONVIDAT:
+			case HUMA:
+				break;
+			default:
+				ia_negres = new InteligenciaCPU( tipus_blanques, EstatCasella.JUGADOR_B );
+				break;
+		}
+
 	}
 
 	/**
@@ -89,12 +112,12 @@ public class ControladorPartidaEnJoc
 	{
 		UsuariGomoku jugador_actual = this.getJugadorActual();
 		TipusUsuari tipus = jugador_actual.getTipus();
-		if (tipus == TipusUsuari.CONVIDAT || tipus == TipusUsuari.HUMA)
+		if ( tipus == TipusUsuari.CONVIDAT || tipus == TipusUsuari.HUMA )
 		{
 			// TODO documentar? notificar?
-			throw new IllegalArgumentException("No es una màquina");
+			throw new IllegalArgumentException( "No es una màquina" );
 		}
-		
+
 		InteligenciaCPU ia = new InteligenciaCPU( tipus, this.getColorActual() );
 		return ia.getMoviment( this.partida, this.fila_ult_moviment, this.columna_ult_moviment );
 	}

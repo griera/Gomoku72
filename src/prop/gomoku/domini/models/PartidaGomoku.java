@@ -17,6 +17,13 @@ public class PartidaGomoku extends Partida
 	 */
 	private static final long serialVersionUID = -3925242254167360100L;
 
+	// TODO
+	protected UsuariGomoku jugador_a;
+	/**
+	 * Usuari que farà de jugador B
+	 */
+	protected UsuariGomoku jugador_b;
+	
 	/**
 	 * Serveix per identificar l'usuari al qual pertany la partida
 	 */
@@ -41,6 +48,9 @@ public class PartidaGomoku extends Partida
 			TaulerGomoku tauler, int torns_jugats, Date data_creacio, String nom, boolean finalitzada )
 	{
 		super( jugador_a, jugador_b, tauler, torns_jugats, data_creacio, nom, finalitzada );
+		this.jugador_a = jugador_a;
+		this.jugador_b = jugador_b;
+		this.jugador_principal = jugador_principal;
 	}
 
 	/**
@@ -59,6 +69,9 @@ public class PartidaGomoku extends Partida
 			TaulerGomoku tauler, String nom )
 	{
 		super( jugador_a, jugador_b, tauler, nom );
+		this.jugador_a = jugador_a;
+		this.jugador_b = jugador_b;
+		this.jugador_principal = jugador_principal;
 	}
 
 	@Override
@@ -99,5 +112,27 @@ public class PartidaGomoku extends Partida
 	public UsuariGomoku getJugadorPrincipal()
 	{
 		return this.jugador_principal;
+	}
+	
+	@Override
+	public UsuariGomoku getJugadorA()
+	{
+		return this.jugador_a;
+	}
+	
+	@Override
+	public UsuariGomoku getJugadorB()
+	{
+		return this.jugador_b;
+	}
+
+	@Override
+	public String toString()
+	{
+		String text = "[nom: " + this.nom + ", jugador principal: " + this.jugador_principal.getNom() + ", jugador A: "
+				+ this.jugador_a.getNom() + ", jugador B: " + this.jugador_b.getNom() + ", mida tauler: "
+				+ this.tauler.getMida() + ", data creacio: " + this.data_creacio.toString() + ", finalitzada: "
+				+ this.finalitzada + "]";
+		return text;
 	}
 }

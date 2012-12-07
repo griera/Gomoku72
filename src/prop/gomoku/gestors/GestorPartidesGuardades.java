@@ -40,11 +40,12 @@ public class GestorPartidesGuardades
 
 		return ruta_fitxer;
 	}
-	
-	public PartidaGomoku carregaPartida(String identificador )
-	{
-		return null;
-	}
+
+//	public PartidaGomoku carregaPartida( String identificador )
+//	{
+//		// TODO
+//		return null;
+//	}
 
 	public PartidaGomoku carregaPartidaDeFitxer( String ruta_fitxer )
 	{
@@ -91,7 +92,12 @@ public class GestorPartidesGuardades
 		int nombre_fitxers = llista_fitxers.length;
 		for ( int i = 0; i < nombre_fitxers; i++ )
 		{
-			llista_partides.add( this.carregaPartida( ruta_partides_guardades + llista_fitxers[i] ) );
+			PartidaGomoku partida = this.carregaPartidaDeFitxer( ruta_partides_guardades + llista_fitxers[i] );
+			if ( partida == null )
+			{
+				continue;
+			}
+			llista_partides.add( partida );
 
 		}
 		return llista_partides;
@@ -102,9 +108,11 @@ public class GestorPartidesGuardades
 		// TODO
 		List<PartidaGomoku> llista_partides = this.carregaTotes();
 		List<PartidaGomoku> partides_usuari = new ArrayList<PartidaGomoku>();
-		for ( int i = 0; i < llista_partides.size(); i++ )
+		// TODO
+		System.out.println( "Usuari actiu carregant: " + usuari );
+		for ( PartidaGomoku partida : llista_partides )
 		{
-			PartidaGomoku partida = llista_partides.get( i );
+			System.out.println( partida );
 			if ( partida.getJugadorPrincipal().getNom().equals( usuari.getNom() ) )
 			{
 				partides_usuari.add( partida );
