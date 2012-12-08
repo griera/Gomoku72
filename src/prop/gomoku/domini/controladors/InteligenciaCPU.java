@@ -69,7 +69,7 @@ public class InteligenciaCPU
 	 * @param partida Partida a la qual es vol realitzar un moviment
 	 * @param fila_ult_moviment Fila de l'últim moviment d'interès
 	 * @param columna_ult_moviment Columna de l'últim moviment d'interès
-	 * @return
+	 * @return Millor moviment a realitzar segons la implementació de la IA per a cada nivell de dificultat
 	 */
 	public int[] getMoviment( PartidaGomoku partida, int fila_ult_moviment, int columna_ult_moviment )
 	{
@@ -78,6 +78,7 @@ public class InteligenciaCPU
 
 		int torn_actual = partida.getTornsJugats() + 1;
 
+		// TODO moviments incials. Potser aquesta lògica hauria d'estar a les pròpies IAs?
 		if ( torn_actual == 1 )
 		{
 			moviment_ia[0] = ( mida / 2 );
