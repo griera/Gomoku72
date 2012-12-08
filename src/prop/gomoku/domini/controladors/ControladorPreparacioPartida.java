@@ -7,7 +7,7 @@ import prop.gomoku.domini.models.PartidaGomoku;
  * Classe que permet preparar una partida ràpidament, proveïnt una interfície que facilita el posicionament de fitxes en
  * el tauler de la partida
  * 
- * @author Ignacio
+ * @author Mauricio Ignacio Contreras Pinilla
  * 
  */
 public class ControladorPreparacioPartida
@@ -29,7 +29,7 @@ public class ControladorPreparacioPartida
 	public ControladorPreparacioPartida( PartidaGomoku partida )
 	{
 		this.partida = partida;
-		if (partida.getTornsJugats() % 2 == 0)
+		if ( partida.getTornsJugats() % 2 == 0 )
 		{
 			this.color = EstatCasella.JUGADOR_A;
 		}
@@ -61,7 +61,7 @@ public class ControladorPreparacioPartida
 		}
 
 		partida.incrementaTornsJugats( 1 );
-		
+
 		if ( this.color == EstatCasella.JUGADOR_A )
 		{
 			this.color = EstatCasella.JUGADOR_B;
@@ -72,5 +72,23 @@ public class ControladorPreparacioPartida
 		}
 
 		return true;
+	}
+
+	/**
+	 * Mètode que permet consultar el <em>color</em> (és a dir, <em>EstatCasella.JUGADOR_A</em> ó
+	 * <em>EstatCasella.JUGADOR_B</em>) del jugador al que li toca moure
+	 * 
+	 * @return Representació (<em>EstatCasella</em> corresponent) del jugador al que li toca moure
+	 */
+	public EstatCasella getJugadorActual()
+	{
+		if ( ( this.partida.getTornsJugats() + 1 ) % 2 == 0 )
+		{
+			return EstatCasella.JUGADOR_A;
+		}
+		else
+		{
+			return EstatCasella.JUGADOR_B;
+		}
 	}
 }

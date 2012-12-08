@@ -199,8 +199,7 @@ public class TaulerGUIEntrenament extends JPanel
 		
 		if ( ctrl_prep.mouFitxa( fila, columna ) )
 		{
-
-			this.pinta( fila, columna, EstatCasella.JUGADOR_A );
+			this.pinta( fila, columna, ctrl_prep.getJugadorActual() );
 			ultim_moviment[0] = fila;
 			ultim_moviment[1] = columna;
 		}
