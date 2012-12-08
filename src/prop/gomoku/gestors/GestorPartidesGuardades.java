@@ -29,8 +29,7 @@ public class GestorPartidesGuardades
 	private static final String ruta_partides_guardades = System.getProperty( "user.home" ) + "/gomoku/partides/";
 
 	/**
-	 * Mètode per guardar una partida. Està pensat per ús intern (administració de l'aplicació, etc.) i no tant com per
-	 * compsumició final per part dels controladors de domini que s'integraran en la aplicació de cara al usuari
+	 * Mètode per guardar al sistema de fitxers una partida
 	 * 
 	 * @param partida Partida que es vol guardar
 	 * @return Ruta completa del fitxer on s'ha guardat (si no hi ha hagut cap problema) la partida. <em>null</em> si hi

@@ -16,10 +16,16 @@ public class ControladorPartidesGuardades
 		return this.gestor.carregaPartides( usuari );
 	}
 
-	public String guardaPartida( PartidaGomoku partida )
+	public boolean guardaPartida( PartidaGomoku partida )
 	{
 		// TODO
-		// Presuposa que partida conté informació a sobre de l'amo d'aquesta
-		return this.gestor.guardaPartida( partida );
+		if ( this.gestor.guardaPartida( partida ) != null )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 }
