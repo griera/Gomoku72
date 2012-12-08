@@ -5,7 +5,6 @@ import prop.cluster.domini.models.estats.EstatPartida;
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.TipusUsuari;
 import prop.gomoku.domini.models.UsuariGomoku;
-import prop.gomoku.gestors.GestorPartidesGuardades;
 
 /**
  * Controlador de domini encarregat del control de partides en joc. Abstrau les interaccions més comuns que els
@@ -26,8 +25,15 @@ public class ControladorPartidaEnJoc
 	 */
 	int columna_ult_moviment;
 
-	// TODO
+	/**
+	 * Variable que, en cas de ser necessària, s'utilitzarà per al còmput de moviments de la IA jugant amb fitxes negres
+	 */
 	InteligenciaCPU ia_negres;
+
+	/**
+	 * Variable que, en cas de ser necessària, s'utilitzarà per al còmput de moviments de la IA jugant amb fitxes
+	 * blanques
+	 */
 	InteligenciaCPU ia_blanques;
 
 	/**
@@ -41,7 +47,7 @@ public class ControladorPartidaEnJoc
 		this.fila_ult_moviment = 0;
 		this.columna_ult_moviment = 0;
 
-		// TODO hauria d'analitzar els jugadors i assignar IAs en conseqüència
+		// Anàlisi i inicialització de les IAs en cas de ser necessari
 		TipusUsuari tipus_negres = partida.getJugadorA().getTipus();
 		switch ( tipus_negres )
 		{
@@ -107,14 +113,15 @@ public class ControladorPartidaEnJoc
 	 * Mètode consultor del moviment òptim per al jugador màquina (si n'hi ha) a l'actual situació de la partida
 	 * 
 	 * @return Moviment òptim segons l'algorisme que implementa IAGomoku amb <em>rofunditat_maxima</em>
+	 * @throws IllegalArgumentException en cas de demanar un moviment quan la partida està al torn d'un jugador que és
+	 *         humà
 	 */
-	public int[] getMovimentMaquina()
+	public int[] getMovimentMaquina() throws IllegalArgumentException
 	{
 		UsuariGomoku jugador_actual = this.getJugadorActual();
 		TipusUsuari tipus = jugador_actual.getTipus();
 		if ( tipus == TipusUsuari.CONVIDAT || tipus == TipusUsuari.HUMA )
 		{
-			// TODO documentar? notificar?
 			throw new IllegalArgumentException( "No es una màquina" );
 		}
 
@@ -150,7 +157,6 @@ public class ControladorPartidaEnJoc
 	 */
 	public EstatPartida mouFitxa( EstatCasella fitxa, int fila, int columna )
 	{
-		// TODO
 		this.getPartida().getTauler().mouFitxa( fitxa, fila, columna );
 		this.fila_ult_moviment = fila;
 		this.columna_ult_moviment = columna;
@@ -163,14 +169,23 @@ public class ControladorPartidaEnJoc
 		return estat_partida;
 	}
 
+	/**
+	 * Mètode que permet guardar a disc la partida actual en l'estat en que es troba al moment de la crida
+	 * 
+	 * @return <em>true</em> si la partida s'ha guardat amb èxit; <em>false</em> en cas contrari
+	 */
 	public boolean guardaPartida()
 	{
-		GestorPartidesGuardades gestor = new GestorPartidesGuardades();
-		gestor.guardaPartida( partida );
-		return false;
+		ControladorPartidesGuardades ctrl_pg = new ControladorPartidesGuardades();
+		return ctrl_pg.guardaPartida( this.partida );
 	}
 
-	// TODO
+	/**
+	 * Mètode per consultar les coordenades de l'últim moviment realitzat a l'actual partida des de que el controlador
+	 * implícit s'encarrega del seu control
+	 * 
+	 * @return Coordenades de l'últim moviment realitzat des de que s'ha iniciat el control de la partida 
+	 */
 	public int[] getUltimMoviment()
 	{
 		int[] coord = new int[2];
