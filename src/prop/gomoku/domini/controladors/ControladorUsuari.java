@@ -11,6 +11,13 @@ import prop.gomoku.gestors.GestorUsuaris;
 import prop.gomoku.gestors.excepcions.UsuariJaExisteix;
 import prop.gomoku.gestors.excepcions.UsuariNoExisteix;
 
+/**
+ * Controlador de domini dels objectes <em>UsuariGomoku</em>. Ofereix una interfície per a identificar, carregar,
+ * guardar i actualitzar aquests al sistema. També tracta amb el xifrat de les contrasenyes
+ * 
+ * @author Mauricio Ignacio Contreras Pinilla
+ * 
+ */
 public class ControladorUsuari
 {
 	/**
@@ -88,6 +95,7 @@ public class ControladorUsuari
 
 	/**
 	 * Mètode que permet actualitzar un usuari al sistema, és a dir, sobreescriu les seves dades si ja existeixen
+	 * 
 	 * @param usuari Usuari amb les dades que es volen actualitzar
 	 * @return <em>true</em> en cas d'èxit, <em>false</em> en cas contrari
 	 */
