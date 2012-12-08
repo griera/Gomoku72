@@ -10,6 +10,9 @@ import prop.cluster.domini.models.estats.EstatPartida;
  * de creació, però també té un nom assignat per facilitar la seva identificació de cara als usuaris.
  * 
  * Conté informació relativa al nombre de torns jugats i a l'estat de finalització de la partida
+ * 
+ * @author Mauricio Ignacio Contreras Pinilla
+ * 
  */
 public abstract class Partida implements Serializable
 {
