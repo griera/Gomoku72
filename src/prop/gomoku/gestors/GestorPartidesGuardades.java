@@ -138,10 +138,8 @@ public class GestorPartidesGuardades
 	 */
 	public List<PartidaGomoku> carregaPartides( UsuariGomoku usuari )
 	{
-		// TODO
 		List<PartidaGomoku> llista_partides = this.carregaTotes();
 		List<PartidaGomoku> partides_usuari = new ArrayList<PartidaGomoku>();
-		// TODO
 		System.out.println( "Usuari actiu carregant: " + usuari );
 		for ( PartidaGomoku partida : llista_partides )
 		{
