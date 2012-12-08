@@ -9,6 +9,9 @@ import prop.cluster.domini.models.estats.EstatPartida;
 /**
  * Representa una partida al joc de taula Gomoku, on juguen dos usuaris i que es desenvolupa a un tauler del propi joc
  * Gomoku.
+ * 
+ * @author Mauricio Ignacio Contreras Pinilla
+ * 
  */
 public class PartidaGomoku extends Partida
 {
@@ -17,13 +20,16 @@ public class PartidaGomoku extends Partida
 	 */
 	private static final long serialVersionUID = -3925242254167360100L;
 
-	// TODO
-	protected UsuariGomoku jugador_a;
 	/**
-	 * Usuari que farà de jugador B
+	 * UsuariGomoku que farà de jugador A (redeclaració com a UsuariGomoku)
+	 */
+	protected UsuariGomoku jugador_a;
+
+	/**
+	 * UsuariGomoku que farà de jugador B (redeclaració com a UsuariGomoku)
 	 */
 	protected UsuariGomoku jugador_b;
-	
+
 	/**
 	 * Serveix per identificar l'usuari al qual pertany la partida
 	 */
@@ -103,29 +109,47 @@ public class PartidaGomoku extends Partida
 		return EstatPartida.NO_FINALITZADA;
 	}
 
+	/**
+	 * Redefinició del <em>getter</em> de la superclasse per tal d'evitar haver de fer un <em>cast</em> cada cop que
+	 * s'utilitzi aquest mètode per obtenir un TaulerGomoku
+	 */
+	@Override
 	public TaulerGomoku getTauler()
 	{
 		return (TaulerGomoku) this.tauler;
 	}
 
-	// TODO
+	/**
+	 * Mètode per obtenir el jugador principal (amo) de la partida
+	 * 
+	 * @return Usuari al qual aquesta partida pertany
+	 */
 	public UsuariGomoku getJugadorPrincipal()
 	{
 		return this.jugador_principal;
 	}
-	
+
+	/**
+	 * Redefinició del retorn del mètode per tal de treballar amb <em>UsuariGomoku</em>
+	 */
 	@Override
 	public UsuariGomoku getJugadorA()
 	{
 		return this.jugador_a;
 	}
-	
+
+	/**
+	 * Redefinició del retorn del mètode per tal de treballar amb <em>UsuariGomoku</em>
+	 */
 	@Override
 	public UsuariGomoku getJugadorB()
 	{
 		return this.jugador_b;
 	}
 
+	/**
+	 * Redefinició per tal d'imprimir el jugador principal també
+	 */
 	@Override
 	public String toString()
 	{
