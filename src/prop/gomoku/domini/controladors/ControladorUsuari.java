@@ -131,9 +131,10 @@ public class ControladorUsuari
 	 * 
 	 * @param tipus Tipus del usuari a carregar, e.g. <em>TipusUsuari.CONVIDAT</em> o <em>TipusUsuari.FACIL</em>
 	 * @return El usuari del sistema demanat
-	 * @throws IOException Si hi ha algun problema d'accés al sistema de fitxers per tal de carregar algun usuari
+	 * @throws IOException Si hi ha algun problema d'accés al sistema de fitxers per tal de carregar o crear algun
+	 *         usuari
 	 */
-	public UsuariGomoku carregaUsuariSistema( TipusUsuari tipus )
+	public UsuariGomoku carregaUsuariSistema( TipusUsuari tipus ) throws IOException
 	{
 		if ( tipus == TipusUsuari.HUMA )
 		{
@@ -145,19 +146,36 @@ public class ControladorUsuari
 		{
 			case CONVIDAT:
 				// Es tracta d'un usuari nou, no té estadístiques
-				usuari = new UsuariGomoku( "Convidat", "Convidat" );
+				usuari = new UsuariGomoku( "Convidat", "Convidat", TipusUsuari.CONVIDAT );
 				break;
 
 			case FACIL:
-				// TODO
-				break;
-
 			case MITJA:
-				// TODO
-				break;
-
 			case DIFICIL:
-				// TODO
+				// Si hi ha algun problema, és a dir: a efectes pràctics el usuari màquina no existeix, s'ha de crear
+				boolean requereix_creacio = false;
+				try
+				{
+					usuari = gestor_usuaris.carregaUsuariSistema( tipus );
+				} catch ( IllegalArgumentException e )
+				{
+					requereix_creacio = true;
+				} catch ( UsuariNoExisteix e )
+				{
+					requereix_creacio = true;
+				}
+				if ( requereix_creacio )
+				{
+					usuari = new UsuariGomoku( "CPU" + tipus.toString().toUpperCase(), "password", tipus );
+					try
+					{
+						gestor_usuaris.guardaUsuari( usuari );
+					} catch ( IOException e )
+					{
+						throw new IOException( "No s'ha pogut crear el usuari de tipus "
+								+ tipus.toString().toUpperCase() + " al sistema" );
+					}
+				}
 				break;
 
 			default:
