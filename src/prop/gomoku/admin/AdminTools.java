@@ -35,7 +35,7 @@ public class AdminTools
 
 	private static void afegeixUsuari()
 	{
-		System.out.println( "Alta d'usuari al sistema" );
+		System.out.println( "Alta o actualitzacio d'usuari al sistema" );
 		System.out.print( "Nom: " );
 		String nom = lectura.llegirString();
 		System.out.print( "Contrasenya: " );
@@ -89,27 +89,14 @@ public class AdminTools
 		usuari.incrementaDerrotes( 2, derrotes_dificil );
 		usuari.incrementaDerrotes( 3, derrotes_huma );
 
-		try
+		if ( ctrl_usuari.actualitzaUsuari( usuari ) )
 		{
-			ctrl_usuari.actualitzaUsuari( usuari );
-		} catch ( IOException e )
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println( "Usuari donat d'alta/actualitzat correctament - " + usuari.toString() );
 		}
-		// try
-		// {
-		// gestor_usuaris.guardaNouUsuari( usuari );
-		// } catch ( UsuariJaExisteix e )
-		// {
-		// System.out.println( "No s'ha pogut donar d'alta el usuari " + usuari.toString()
-		// + ", ja existeix un amb aquest nom" );
-		// } catch ( IOException e )
-		// {
-		// System.out.println( "No s'ha pogut donar d'alta - " + usuari.toString() );
-		// }
-
-		System.out.println( "Usuari donat d'alta correctament - " + usuari.toString() );
+		else
+		{
+			System.out.println( "No s'ha pogut realitzar l'alta/actualització per " + usuari.toString() );
+		}
 		System.out.println();
 	}
 
