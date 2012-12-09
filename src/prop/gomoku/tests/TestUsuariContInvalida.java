@@ -13,7 +13,7 @@ public class TestUsuariContInvalida
 {
 	public static void main( String[] args )
 	{
-		String nom = "ignacio2";
+		String nom = "ignacio3";
 		String cont = "ignacio2";
 		ControladorUsuari ctrl_usuari = new ControladorUsuari();
 		UsuariGomoku usuari_registrat = null;
