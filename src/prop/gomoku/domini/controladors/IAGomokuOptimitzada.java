@@ -6,7 +6,6 @@ import java.util.PriorityQueue;
 import prop.cluster.domini.models.Partida;
 import prop.cluster.domini.models.estats.EstatCasella;
 import prop.cluster.domini.models.estats.EstatPartida;
-import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.TaulerGomoku;
 
 /**
@@ -33,38 +32,67 @@ public class IAGomokuOptimitzada extends IAGomoku
 {
 	private static final int profunditat_maxima = 4;
 
-	/**
-	 * TODO
-	 * @param partida
-	 * @param estat_casella
-	 * @return
-	 */
-	public int[] computaMoviment( Partida partida, EstatCasella estat_casella )
+	@Override
+	public int[] computaMoviment( Partida partida, EstatCasella estat_casella, int fila_ult_moviment,
+			int columna_ult_moviment )
 	{
-		return minimax( partida, estat_casella, IAGomokuOptimitzada.profunditat_maxima );
+		int[] moviment = new int[2];
+		int torn_actual = partida.getTornsJugats() + 1;
+		int mida = partida.getTauler().getMida();
+
+		// Si s'ha de jugar el primer torn de la partida, aleshores el moviment més òptim és col·locar una fitxa al
+		// centre del tauler
+		if ( torn_actual == 1 )
+		{
+			moviment[0] = ( mida / 2 );
+			moviment[1] = ( mida / 2 );
+		}
+
+		// Si s'ha de jugar el segon torn de la partida, aleshores el moviment més òptim és col·locar una fitxa al
+		// al voltant de la primera fitxa col·locada per l'oponent, de manera aleatòria perquè no hi ha cap costat
+		// adjacent a aquesta a priori més o menys favorable a bloquejar
+		else if ( torn_actual == 2 )
+		{
+			moviment = this.movimentAdjacentAleatori( fila_ult_moviment, columna_ult_moviment, mida );
+		}
+
+		// Per a la resta de casos, cal calcuar el moviment més òptim seguint els algorismes i estratègies implementats
+		else
+		{
+			moviment = this.minimax( partida, estat_casella, IAGomokuOptimitzada.profunditat_maxima );
+		}
+
+		// Si la partida ja l'ha guanyada matemàticament l'oponent, es realitza un moviment aleatori, ja que en aquest
+		// no existeix cap moviment òptim que pugui revocar aquesta situació i evitar la derrota
+		if ( moviment[0] == -1 && moviment[1] == -1 )
+		{
+			moviment = this.movimentAleatori( (TaulerGomoku) partida.getTauler() );
+
+		}
+		return moviment;
 	}
-	
+
 	/**
 	 * Classe privada i interna a la classe <code>IAGomokuOptimitzada</code> que serveix per representar la informació
 	 * necessaria que l'algorisme necessita per poder ordenar els nodes d'un nivell recursiu durant la generació de
 	 * possibles moviment vàlids.
 	 * 
 	 * @author Genís Riera Pérez
-	 *
-	 */	
+	 * 
+	 */
 	private class Informacio
 	{
 		/**
 		 * Indica la valoració d'un cert estat d'un tauler.
 		 */
 		int valor;
-		
+
 		/**
 		 * Indica la fila de l'útlim moviment efectuat sobre el tauler, el qual ha provocat que aquest adquireixi el seu
 		 * estat.
 		 */
 		int fila;
-		
+
 		/**
 		 * Indica la columna de l'útlim moviment efectuat sobre el tauler, el qual ha provocat que aquest adquireixi el
 		 * seu estat.
@@ -89,9 +117,9 @@ public class IAGomokuOptimitzada extends IAGomoku
 	/**
 	 * Classe privada i interna a la classe <code>IAGomokuOptimitzada</code> que proporciona la manera de com comparar
 	 * dos objectes de la classe <code>Informacio</code>, de més prioritari a menys prioritari.
-	 *  
+	 * 
 	 * @author Genís Riera Pérez
-	 *
+	 * 
 	 */
 	private class ComparadorInformacio implements Comparator<Informacio>
 	{
@@ -117,7 +145,7 @@ public class IAGomokuOptimitzada extends IAGomoku
 	 * dos objectes de la classe <code>Informacio</code>, de menys prioritari a més prioritari.
 	 * 
 	 * @author Genís Riera Pérez
-	 *
+	 * 
 	 */
 	private class ComparadorInformacioInvers implements Comparator<Informacio>
 	{
@@ -137,7 +165,7 @@ public class IAGomokuOptimitzada extends IAGomoku
 			return 0;
 		}
 	}
-	
+
 	/**
 	 * Intercanvia l'estat d'una casella ocupada del tauler
 	 * 
@@ -184,12 +212,10 @@ public class IAGomokuOptimitzada extends IAGomoku
 				{
 					inici_fila = true;
 
-					/* 
-					 * El subtauler deixa un marge de dos caselles per tenir en compte les jugades en que es deixa un
+					/* El subtauler deixa un marge de dos caselles per tenir en compte les jugades en que es deixa un
 					 * forat entre formació d'estructures. Si deixant aquest marge sortim dels límits del tauler global,
 					 * vol dir que el límit que s'està calculant coincideix amb el seu homòleg del tauler global (0 o
-					 * mida - 1 segons la coordenada límit a calcular).
-					 */
+					 * mida - 1 segons la coordenada límit a calcular). */
 					limits[0] = ( fila - 2 >= 0 ) ? fila - 2 : 0;
 				}
 
@@ -245,11 +271,9 @@ public class IAGomokuOptimitzada extends IAGomoku
 	 */
 	private int[] actualitzaFocus( int[] limits, int fila, int columna, int mida )
 	{
-		/* 
-		 * Si les coordemades de l'útlim moviment realitzat sobre le tauler global no es troben dins del subtauler
+		/* Si les coordemades de l'útlim moviment realitzat sobre le tauler global no es troben dins del subtauler
 		 * actual, alsehores cal actualitzar el subtauler de forma correcte per encabir el nou focus central de la
-		 * partida. Notar que aquesta actualització sempre farà que el nou subtauler sigui més gran que l'actual.
-		 */
+		 * partida. Notar que aquesta actualització sempre farà que el nou subtauler sigui més gran que l'actual. */
 
 		// Les dues primeres sentències condicionals comproven si s'han d'actualitzar les coordenades referents a la
 		// casella que marca l'escaire superior esquerre del subtauler a actualitzar
@@ -297,31 +321,13 @@ public class IAGomokuOptimitzada extends IAGomoku
 		return limits;
 	}
 
-	/**
-	 * Donada una partida amb una certa situació i la fitxa del jugador que ha de moure durant el torn actual, calcula
-	 * quina és la millor posició del tauler on realitzar el següent moviment, seguint l'algorisme MiniMax. Com que per
-	 * aconseguir aquest càlcul és necessari generar una estructura arbòria on cada nivell representa el pròxim torn i,
-	 * dins d'un mateix nivell, es generen tots els possibles moviments vàlids a realtzar, també cal donar un límit que
-	 * trunqui la cerca, per evitar que el cost temporal de l'algorisme MiniMax augmenti exponencialment.
-	 * <p>
-	 * A part, aquesta versió de l'algorisme MiniMax també incorpora les optimitzacions d'ordenació dels nodes d'un
-	 * mateix nivell per aprofitar la poda alfa-beta implementada, i la centrar la generació de possibles moviments en
-	 * el focus central de la partida, on realment s'estan col·locant dels fitxes dins del tauler per evitar explorar
-	 * aquelles possibilitats que no aporten cap avantatge durant el transcurs de la partida.
-	 * 
-	 * @param partida Objecte de la classe <code>Partida</code> que representa la partida actual en joc.
-	 * @param estat_casella Representa la fitxa del jugador que ha de disputar el torn actual de la partida.
-	 * @param profunditat_maxima Representa el nivell límit en la cerca arbòria del moviment òptim.
-	 * @return La posició òptima on el jugador amb fitxes <em>fitxa_jugador</em> ha de fer el seu moviment el seu torn a
-	 *         <em>partida</em>. La posició ve representada per les seves dues coordenades (número de fila i número
-	 *         columna).
-	 */
-	public int[] minimax( PartidaGomoku partida, EstatCasella estat_casella, int profunditat_maxima )
+	@Override
+	public int[] minimax( Partida partida, EstatCasella estat_casella, int profunditat_maxima )
 	{
 		int[] millor_moviment = { -1, -1 };
 		int maxim_actual;
 		int maxim = Integer.MIN_VALUE;
-		TaulerGomoku tauler = partida.getTauler();
+		TaulerGomoku tauler = (TaulerGomoku) partida.getTauler();
 		int mida = tauler.getMida();
 		int profunditat = 0;
 		EstatCasella fitxa_jugador = EstatCasella.JUGADOR_B;
@@ -330,15 +336,13 @@ public class IAGomokuOptimitzada extends IAGomoku
 			fitxa_jugador = EstatCasella.JUGADOR_A;
 		}
 
-		/* 
-		 * S'instancia el comparador adient per, posteriorment, crear una cua de prioritat, que anirà ordenant els nodes
+		/* S'instancia el comparador adient per, posteriorment, crear una cua de prioritat, que anirà ordenant els nodes
 		 * generats (estats que pren el tauler per a cada possible moviment vàlid) a mesura que es van emmagatzemant
 		 * dins la cua de prioritat. A la cua de prioritat s'emmagatzema la informació relativa al node a avaular amb la
 		 * funció d'avaluació de l'estat del tauler, i la fila i la columna de l'últim moviment que ha generat aquest
 		 * estat. La prioritat l'estableix el comparador, segons si el node actual és de nivell Max o de nivell Min. Com
 		 * que en aquest cas el node és de nivell Max, els elements de la cua de prioritat s'han d'ordenar segons el
-		 * valor que pren l'estat del tauler un cop avaluat amb la funció d'avaluació, de major a menor.
-		 */
+		 * valor que pren l'estat del tauler un cop avaluat amb la funció d'avaluació, de major a menor. */
 		ComparadorInformacio comparador = new ComparadorInformacio();
 		PriorityQueue<Informacio> cua_prioritat = new PriorityQueue<Informacio>( mida * mida, comparador );
 
@@ -366,16 +370,14 @@ public class IAGomokuOptimitzada extends IAGomoku
 			}
 		}
 
-		/* 
-		 * Ara només s'expandeixen aquells estats que, a priori, són més prometedors per aconseguir la victòria. Com que
+		/* Ara només s'expandeixen aquells estats que, a priori, són més prometedors per aconseguir la victòria. Com que
 		 * la cua de prioritat ja té ben ordenats els estats de més a menys prometedors segons el jugador maximitzant
 		 * (el que està conttrolat per aquesta intel·ligència artificial), només cal expandir un quants dels que estan
 		 * al principi de la cua. Fent proves d'execució s'ha definit que un valor prou òptim, tant per cost temporal
 		 * com per bona robustesa decisional de l'algorisme, és de 12. Per tant, només s'expandeixen els 12 estats més
 		 * prometedors a priori. Expandint-los donarà informació sobre si els pronòstics inicials eren certs o, si per
 		 * contra, arribar a aquest estat pot comportar conseqüències nefastes per al jugador maximitzant, com perdre la
-		 * partida.
-		 */
+		 * partida. */
 
 		// Variable que actua com a comptador dels estats emmagatzemats a la cua de prioritat, i que ajuda a truncar les
 		// consultes fins, en aquest cas, als 12 millors estats a priori per la jugador maximitzant
@@ -437,11 +439,11 @@ public class IAGomokuOptimitzada extends IAGomoku
 	 * @return Valor de la millor opció (el més alt) un cop generat tots els possibles moviments pel torn on es troba
 	 *         <em>partida</em>.
 	 */
-	private int valorMax( PartidaGomoku partida, EstatPartida estat_partida, int alfa, int beta,
-			EstatCasella estat_casella, int profunditat, int profunditat_maxima, EstatCasella fitxa_jugador,
-			int[] limits, int ultima_fila, int ultima_columna )
+	private int valorMax( Partida partida, EstatPartida estat_partida, int alfa, int beta, EstatCasella estat_casella,
+			int profunditat, int profunditat_maxima, EstatCasella fitxa_jugador, int[] limits, int ultima_fila,
+			int ultima_columna )
 	{
-		TaulerGomoku tauler = partida.getTauler();
+		TaulerGomoku tauler = (TaulerGomoku) partida.getTauler();
 		if ( profunditat == profunditat_maxima || estat_partida == EstatPartida.GUANYA_JUGADOR_A
 				|| estat_partida == EstatPartida.GUANYA_JUGADOR_B || estat_partida == EstatPartida.EMPAT )
 		{
@@ -451,16 +453,14 @@ public class IAGomokuOptimitzada extends IAGomoku
 		{
 			int mida = tauler.getMida();
 
-			/* 
-			 * S'instancia el comparador adient per, posteriorment, crear una cua de prioritat, que anirà ordenant els
+			/* S'instancia el comparador adient per, posteriorment, crear una cua de prioritat, que anirà ordenant els
 			 * nodes generats (estats que pren el tauler per a cada possible moviment vàlid) a mesura que es van
 			 * emmagatzemant dins la cua de prioritat. A la cua de prioritat s'emmagatzema la informació relativa al
 			 * node a avaular amb la funció d'avaluació de l'estat del tauler, i la fila i la columna de l'últim
 			 * moviment que ha generat aquest estat. La prioritat l'estableix el comparador, segons si el node actual és
 			 * de nivell Max o de nivell Min. Com que en aquest cas el node és de nivell Min, els elements de la cua de
 			 * prioritat s'han d'ordeninar segons el valor que pren l'estat del tauler un cop avaluat amb la funció
-			 * d'avaluació, de menor a major.
-			 */
+			 * d'avaluació, de menor a major. */
 			ComparadorInformacioInvers comparador = new ComparadorInformacioInvers();
 			PriorityQueue<Informacio> cua_prioritats = new PriorityQueue<Informacio>( mida * mida, comparador );
 
@@ -488,16 +488,14 @@ public class IAGomokuOptimitzada extends IAGomoku
 				}
 			}
 
-			/* 
-			 * Ara només s'expandeixen aquells estats que, a priori, són més prometedors per aconseguir la victòria. Com
+			/* Ara només s'expandeixen aquells estats que, a priori, són més prometedors per aconseguir la victòria. Com
 			 * que la cua de prioritat ja té ben ordenats els estats de més a menys prometedors segons el jugador
 			 * miniimitzant (l'oponent del jugador que està conttrolat per aquesta intel·ligència artificial), només cal
 			 * expandir un quants dels que estan al principi de la cua. Fent proves d'execució s'ha definit que un valor
 			 * prou òptim, tant per cost temporal com per bona robustesa decisional de l'algorisme, és de 12. Per tant,
 			 * només s'expandeixen els 12 estats més prometedors a priori. Expandint-los donarà informació sobre si els
 			 * pronòstics inicials eren certs o, si per contra, arribar a aquest estat pot comportar conseqüències
-			 * nefastes per al jugador minimitzant, com perdre la partida.
-			 */
+			 * nefastes per al jugador minimitzant, com perdre la partida. */
 
 			// Variable que actua com a comptador dels estats emmagatzemats a la cua de prioritat, i que ajuda a
 			// truncar les consultes fins, en aquest cas, als 12 millors estats a priori per la jugador minimitzant
@@ -559,11 +557,11 @@ public class IAGomokuOptimitzada extends IAGomoku
 	 * @return Valor de la millor opció (el més alt) un cop generat tots els possibles moviments pel torn on es troba
 	 *         <em>partida</em>.
 	 */
-	private int valorMin( PartidaGomoku partida, EstatPartida estat_partida, int alfa, int beta,
-			EstatCasella estat_casella, int profunditat, int profunditat_maxima, EstatCasella fitxa_jugador,
-			int[] limits, int ultima_fila, int ultima_columna )
+	private int valorMin( Partida partida, EstatPartida estat_partida, int alfa, int beta, EstatCasella estat_casella,
+			int profunditat, int profunditat_maxima, EstatCasella fitxa_jugador, int[] limits, int ultima_fila,
+			int ultima_columna )
 	{
-		TaulerGomoku tauler = partida.getTauler();
+		TaulerGomoku tauler = (TaulerGomoku) partida.getTauler();
 		if ( profunditat == profunditat_maxima || estat_partida == EstatPartida.GUANYA_JUGADOR_A
 				|| estat_partida == EstatPartida.GUANYA_JUGADOR_B || estat_partida == EstatPartida.EMPAT )
 		{
@@ -573,16 +571,14 @@ public class IAGomokuOptimitzada extends IAGomoku
 		{
 			int mida = tauler.getMida();
 
-			/* 
-			 * S'instancia el comparador adient per, posteriorment, crear una cua de prioritat, que anirà ordenant els
+			/* S'instancia el comparador adient per, posteriorment, crear una cua de prioritat, que anirà ordenant els
 			 * nodes generats (estats que pren el tauler per a cada possible moviment vàlid) a mesura que es van
 			 * emmagatzemant dins la cua de prioritat. A la cua de prioritat s'emmagatzema la informació relativa al
 			 * node a avaular amb la funció d'avaluació de l'estat del tauler, i la fila i la columna de l'últim
 			 * moviment que ha generat aquest estat. La prioritat l'estableix el comparador, segons si el node actual és
 			 * de nivell Max o de nivell Min. Com que en aquest cas el node és de nivell Max, els elements de la cua de
 			 * prioritat s'han d'ordenar segons el valor que pren l'estat del tauler un cop avaluat amb la funció
-			 * d'avaluació, de major a menor.
-			 */
+			 * d'avaluació, de major a menor. */
 			ComparadorInformacio comparador = new ComparadorInformacio();
 			PriorityQueue<Informacio> cua_prioritats = new PriorityQueue<Informacio>( mida * mida, comparador );
 
@@ -617,8 +613,7 @@ public class IAGomokuOptimitzada extends IAGomoku
 			 * per cost temporal com per bona robustesa decisional de l'algorisme, és de 12. Per tant, només
 			 * s'expandeixen els 12 estats més prometedors a priori. Expandint-los donarà informació sobre si els
 			 * pronòstics inicials eren certs o, si per contra, arribar a aquest estat pot comportar conseqüències
-			 * nefastes per al jugador maximitzant, com perdre la partida.
-			 */
+			 * nefastes per al jugador maximitzant, com perdre la partida. */
 
 			// Variable que actua com a comptador dels estats emmagatzemats a la cua de prioritat, i que ajuda a
 			// truncar les consultes fins, en aquest cas, als 12 millors estats a priori per la jugador maximitzant

@@ -26,14 +26,52 @@ public class IAGomoku extends InteligenciaArtificial
 	private static final int profunditat_maxima = 3;
 
 	/**
-	 * TODO
-	 * @param partida
-	 * @param estat_casella
-	 * @return
+	 * Donada una partida amb una certa situació i la fitxa del jugador que ha de moure durant el torn actual, calcula
+	 * quina és la millor posició del tauler on realitzar el següent moviment.
+	 * 
+	 * @param partida Objecte de la classe <code>Partida</code> que representa la partida actual en joc.
+	 * @param estat_casella Representa la fitxa del jugador que ha de disputar el torn actual de la partida.
+	 * @return La posició òptima on el jugador amb fitxes <em>fitxa_jugador</em> ha de fer el seu moviment al seu torn a
+	 *         <em>partida</em>. La posició ve representada per les seves dues coordenades (número de fila i número de
+	 *         columna).
 	 */
-	public int[] computaMoviment( Partida partida, EstatCasella estat_casella )
+	public int[] computaMoviment( Partida partida, EstatCasella estat_casella, int fila_ult_moviment,
+			int columna_ult_moviment )
 	{
-		return minimax( partida, estat_casella, IAGomoku.profunditat_maxima );
+		int[] moviment = new int[2];
+		int torn_actual = partida.getTornsJugats() + 1;
+		int mida = partida.getTauler().getMida();
+
+		// Si s'ha de jugar el primer torn de la partida, aleshores el moviment més òptim és col·locar una fitxa al
+		// centre del tauler
+		if ( torn_actual == 1 )
+		{
+			moviment[0] = ( mida / 2 );
+			moviment[1] = ( mida / 2 );
+		}
+
+		// Si s'ha de jugar el segon torn de la partida, aleshores el moviment més òptim és col·locar una fitxa al
+		// al voltant de la primera fitxa col·locada per l'oponent, de manera aleatòria perquè no hi ha cap costat
+		// adjacent a aquesta a priori més o menys favorable a bloquejar
+		else if ( torn_actual == 2 )
+		{
+			moviment = this.movimentAdjacentAleatori( fila_ult_moviment, columna_ult_moviment, mida );
+		}
+
+		// Per a la resta de casos, cal calcuar el moviment més òptim seguint els algorismes i estratègies implementats
+		else
+		{
+			moviment = this.minimax( partida, estat_casella, IAGomoku.profunditat_maxima );
+		}
+
+		// Si la partida ja l'ha guanyada matemàticament l'oponent, es realitza un moviment aleatori, ja que en aquest
+		// no existeix cap moviment òptim que pugui revocar aquesta situació i evitar la derrota
+		if ( moviment[0] == -1 && moviment[1] == -1 )
+		{
+			moviment = this.movimentAleatori( (TaulerGomoku) partida.getTauler() );
+
+		}
+		return moviment;
 	}
 
 	@Override
@@ -664,7 +702,7 @@ public class IAGomoku extends InteligenciaArtificial
 	 * @param fila Índex de la fila a on es vol efectuar el moviment adjacent.
 	 * @param columna Índex de la columna a on es vol efectuar el moviment adjacent.
 	 * @param mida Mida del tauler a on es juga la partida al Gomoku (ha de ser un tauler quadrat, amb el mateix nombre
-	 *        de files que de col·lumnes).
+	 *        de files que de columnes).
 	 * @return Una posició adjacent a la posició dins el taulerindicada per (<em>fila</em>, <em>columna</em>).
 	 */
 	public int[] movimentAdjacentAleatori( int fila, int columna, int mida )

@@ -2,7 +2,6 @@ package prop.gomoku.domini.controladors;
 
 import prop.cluster.domini.models.estats.EstatCasella;
 import prop.gomoku.domini.models.PartidaGomoku;
-import prop.gomoku.domini.models.TaulerGomoku;
 import prop.gomoku.domini.models.TipusUsuari;
 
 /**
@@ -73,34 +72,7 @@ public class InteligenciaCPU
 	 */
 	public int[] getMoviment( PartidaGomoku partida, int fila_ult_moviment, int columna_ult_moviment )
 	{
-		int[] moviment_ia = new int[2];
-		int mida = partida.getTauler().getMida();
-
-		int torn_actual = partida.getTornsJugats() + 1;
-
-		// TODO moviments incials. Potser aquesta lògica hauria d'estar a les pròpies IAs?
-		if ( torn_actual == 1 )
-		{
-			moviment_ia[0] = ( mida / 2 );
-			moviment_ia[1] = ( mida / 2 );
-		}
-
-		else if ( torn_actual == 2 )
-		{
-			moviment_ia = ia.movimentAdjacentAleatori( fila_ult_moviment, columna_ult_moviment, mida );
-		}
-
-		else
-		{
-			moviment_ia = ia.computaMoviment( partida, color );
-		}
-
-		if ( moviment_ia[0] == -1 && moviment_ia[1] == -1 )
-		{
-			TaulerGomoku tauler = partida.getTauler();
-			moviment_ia = ia.movimentAleatori( tauler );
-		}
-		return moviment_ia;
+		return ia.computaMoviment( partida, color, fila_ult_moviment, columna_ult_moviment );
 	}
 
 	/**
