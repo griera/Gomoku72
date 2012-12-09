@@ -21,6 +21,7 @@ public class TestIAGomokuSimple
 		boolean toca_huma = true;
 		while ( true )
 		{
+			partida.getTauler().pinta();
 			if ( toca_huma )
 			{
 				System.out.print( "Coordenades moviment huma: " );
