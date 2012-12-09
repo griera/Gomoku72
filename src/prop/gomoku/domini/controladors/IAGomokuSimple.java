@@ -1,8 +1,8 @@
 package prop.gomoku.domini.controladors;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
-import prop.cluster.domini.models.Partida;
 import prop.cluster.domini.models.estats.EstatCasella;
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.TaulerGomoku;
@@ -42,10 +42,60 @@ public class IAGomokuSimple extends IAGomoku
 		this.actualitzaAnalisi();
 	}
 
+	// TODO documentar
+	private class ComparadorIASimpleJugador implements Comparator<int[]>
+	{
+
+		@Override
+		public int compare( int[] coord_a, int[] coord_b )
+		{
+			int punts_a = analisi_jugador[coord_a[0]][coord_a[1]];
+			int punts_b = analisi_jugador[coord_b[0]][coord_b[1]];
+
+			if ( punts_a < punts_b )
+			{
+				return 1;
+			}
+			else if ( punts_a > punts_b )
+			{
+				return -1;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+	}
+
+	// TODO documentar
+	private class ComparadorIASimpleOponent implements Comparator<int[]>
+	{
+
+		@Override
+		public int compare( int[] coord_a, int[] coord_b )
+		{
+			int punts_a = analisi_oponent[coord_a[0]][coord_a[1]];
+			int punts_b = analisi_oponent[coord_b[0]][coord_b[1]];
+
+			if ( punts_a < punts_b )
+			{
+				return 1;
+			}
+			else if ( punts_a > punts_b )
+			{
+				return -1;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+	}
+
 	private int[] classificaIDecideix()
 	{
-		millors_caselles_jugador = new PriorityQueue<int[]>();
-		millors_caselles_oponent = new PriorityQueue<int[]>();
+		millors_caselles_jugador = new PriorityQueue<int[]>( 20, new ComparadorIASimpleJugador() );
+		millors_caselles_oponent = new PriorityQueue<int[]>( 20, new ComparadorIASimpleOponent() );
 
 		int mida = partida.getTauler().getMida();
 		for ( int i = 0; i < mida; i++ )
@@ -60,7 +110,32 @@ public class IAGomokuSimple extends IAGomoku
 			}
 		}
 
-		return null;
+		int[] casella_jugador = millors_caselles_jugador.poll();
+		while ( !partida.getTauler().esCasellaValida( casella_jugador[0], casella_jugador[1] ) )
+		{
+			casella_jugador = millors_caselles_jugador.poll();
+		}
+		
+		
+		
+
+		int[] casella_oponent = millors_caselles_oponent.poll();
+		while ( !partida.getTauler().esCasellaValida( casella_oponent[0], casella_oponent[1] ) )
+		{
+			casella_oponent = millors_caselles_oponent.poll();
+		}
+
+		int punts_jugador = analisi_jugador[casella_jugador[0]][casella_jugador[1]];
+		int punts_oponent = analisi_oponent[casella_jugador[0]][casella_oponent[1]];
+
+		if ( punts_oponent > punts_jugador )
+		{
+			return casella_oponent;
+		}
+		else
+		{
+			return casella_jugador;
+		}
 	}
 
 	public int[] computaMoviment()

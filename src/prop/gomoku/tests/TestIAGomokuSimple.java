@@ -38,8 +38,16 @@ public class TestIAGomokuSimple
 			}
 			else
 			{
-				simple_b.computaMoviment();
+				int[] moviment = simple_b.computaMoviment();
 				System.out.println(simple_b);
+				System.out.println("Moviment decidit: " + moviment[0] + ", " + moviment[1]);
+				try{
+					partida.getTauler().mouFitxa( EstatCasella.JUGADOR_B, moviment[0], moviment[1] );
+				}
+				catch (Exception e)
+				{
+					System.out.println("Error de decisió de IA");
+				}
 				toca_huma = true;
 			}
 		}
