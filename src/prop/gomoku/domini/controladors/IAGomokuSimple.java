@@ -3,6 +3,7 @@ package prop.gomoku.domini.controladors;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+import prop.cluster.domini.models.Partida;
 import prop.cluster.domini.models.estats.EstatCasella;
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.TaulerGomoku;
@@ -11,8 +12,8 @@ public class IAGomokuSimple extends IAGomoku
 {
 //	private static final int[] puntuacio_jugador = { 0, 8, 7, 6, 5 };
 //	private static final int[] puntuacio_oponent = { 0, 8, 7, 6, 5 };
-	private static final int[] puntuacio_jugador = { 0, 8, 7, 5, 5 };
-	private static final int[] puntuacio_oponent = { 0, 8, 7, 5, 5 };
+	private static final int[] puntuacio_jugador = { 0, 8, 8, 4, 4 };
+	private static final int[] puntuacio_oponent = { 0, 8, 8, 4, 4 };
 	private PartidaGomoku partida;
 	private EstatCasella color;
 	private int[][] analisi;
@@ -108,6 +109,14 @@ public class IAGomokuSimple extends IAGomoku
 		return casella;
 	}
 
+	// TODO Atenció: treballa amb les dades passades a la constructora, s'ignoren aquestes dades
+	@Override
+	public int[] computaMoviment( Partida partida, EstatCasella estat_casella, int fila_ult_moviment,
+			int columna_ult_moviment )
+	{
+		return computaMoviment();
+	}
+	
 	public int[] computaMoviment()
 	{
 		// TODO si recalculem a cada cas?
