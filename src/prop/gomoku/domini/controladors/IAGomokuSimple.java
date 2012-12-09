@@ -9,8 +9,10 @@ import prop.gomoku.domini.models.TaulerGomoku;
 
 public class IAGomokuSimple extends IAGomoku
 {
-	private static final int[] puntuacio_jugador = { 0, 8, 7, 6, 5 };
-	private static final int[] puntuacio_oponent = { 0, 8, 7, 6, 5 };
+//	private static final int[] puntuacio_jugador = { 0, 8, 7, 6, 5 };
+//	private static final int[] puntuacio_oponent = { 0, 8, 7, 6, 5 };
+	private static final int[] puntuacio_jugador = { 0, 8, 7, 5, 5 };
+	private static final int[] puntuacio_oponent = { 0, 8, 7, 5, 5 };
 	private PartidaGomoku partida;
 	private EstatCasella color;
 	private int[][] analisi;
