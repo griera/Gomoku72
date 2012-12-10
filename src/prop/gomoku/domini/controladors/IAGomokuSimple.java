@@ -10,16 +10,17 @@ import prop.gomoku.domini.models.TaulerGomoku;
 
 public class IAGomokuSimple extends IAGomoku
 {
-//	private static final int[] puntuacio_jugador = { 0, 8, 7, 6, 5 };
-//	private static final int[] puntuacio_oponent = { 0, 8, 7, 6, 5 };
-//	Con esto se le gana de manera tonta, pero en el resto de situaciones se defiende relativament bien
-//	private static final int[] puntuacio_jugador = { 0, 15, 7, 3, 2 };
-//	private static final int[] puntuacio_oponent = { 0, 16, 8, 4, 4 };
+	// private static final int[] puntuacio_jugador = { 0, 8, 7, 6, 5 };
+	// private static final int[] puntuacio_oponent = { 0, 8, 7, 6, 5 };
+	// Con esto se le gana de manera tonta, pero en el resto de situaciones se defiende relativament bien
+	// private static final int[] puntuacio_jugador = { 0, 15, 7, 3, 2 };
+	// private static final int[] puntuacio_oponent = { 0, 16, 8, 4, 4 };
 	private static final int[] puntuacio_jugador = { 0, 8, 8, 4, 4 };
 	private static final int[] puntuacio_oponent = { 0, 10, 8, 4, 4 };
 	private PartidaGomoku partida;
 	private EstatCasella color;
-	private int[][] analisi;
+	private int[][] analisi_jugador;
+	private int[][] analisi_oponent;
 	PriorityQueue<int[]> millors_caselles;
 
 	public IAGomokuSimple( PartidaGomoku partida, EstatCasella color )
@@ -34,16 +35,8 @@ public class IAGomokuSimple extends IAGomoku
 		millors_caselles = new PriorityQueue<int[]>();
 
 		int mida = partida.getTauler().getMida();
-		this.analisi = new int[mida][mida];
-
-		for ( int i = 0; i < mida; i++ )
-		{
-			for ( int j = 0; j < mida; j++ )
-			{
-				analisi[i][j] = 0;
-			}
-		}
-		this.actualitzaAnalisi();
+		this.analisi_jugador = new int[mida][mida];
+		this.analisi_oponent = new int[mida][mida];
 	}
 
 	// TODO documentar
@@ -53,8 +46,11 @@ public class IAGomokuSimple extends IAGomoku
 		@Override
 		public int compare( int[] coord_a, int[] coord_b )
 		{
-			int punts_a = analisi[coord_a[0]][coord_a[1]];
-			int punts_b = analisi[coord_b[0]][coord_b[1]];
+			// int punts_a = analisi_jugador[coord_a[0]][coord_a[1]];
+			// int punts_b = analisi_jugador[coord_b[0]][coord_b[1]];
+
+			int punts_a = analisi_jugador[coord_a[0]][coord_a[1]] + analisi_oponent[coord_a[0]][coord_a[1]];
+			int punts_b = analisi_jugador[coord_b[0]][coord_b[1]] + analisi_oponent[coord_b[0]][coord_b[1]];
 
 			if ( punts_a < punts_b )
 			{
@@ -119,7 +115,7 @@ public class IAGomokuSimple extends IAGomoku
 	{
 		return computaMoviment();
 	}
-	
+
 	public int[] computaMoviment()
 	{
 		// TODO si recalculem a cada cas?
@@ -128,11 +124,11 @@ public class IAGomokuSimple extends IAGomoku
 		{
 			for ( int j = 0; j < mida; j++ )
 			{
-				analisi[i][j] = 0;
+				analisi_jugador[i][j] = 0;
+				analisi_oponent[i][j] = 0;
 			}
 		}
 		actualitzaAnalisi();
-		// actualitzaAnalisi();
 		return classificaIDecideix();
 	}
 
@@ -224,7 +220,7 @@ public class IAGomokuSimple extends IAGomoku
 			}
 			case DIAGONAL_ASC:
 				int fitxes_potencials = 0;
-				for ( int i = fila + 5, j = columna - 5; i < fila - 5 && j < columna + 5; i--, j++ )
+				for ( int i = fila + 5, j = columna - 5; i > fila - 5 && j < columna + 5; i--, j++ )
 				{
 					if ( tauler.esCasellaValida( i, j ) )
 					{
@@ -249,7 +245,7 @@ public class IAGomokuSimple extends IAGomoku
 		return false;
 	}
 
-	private void aplicaPuntuacions( int fila, int columna, TaulerGomoku tauler, int[] puntuacio )
+	private void aplicaPuntuacions( int fila, int columna, TaulerGomoku tauler, int[] puntuacio, int[][] analisi )
 	{
 		// TODO llençar illegalargumentexception si es la casella és buida?
 		EstatCasella color_consulta = tauler.getEstatCasella( fila, columna );
@@ -378,7 +374,7 @@ public class IAGomokuSimple extends IAGomoku
 
 			es_util = true;
 			estalvi = 0;
-			for ( int i = fila, j = columna; i > fila - 5 && j < columna + 5 && es_util; i--, j++ )
+			for ( int i = fila, j = columna; i < fila + 5 && j < columna + 5 && es_util; i++, j++ )
 			{
 				if ( tauler.esCasellaValida( i, j ) )
 				{
@@ -398,13 +394,14 @@ public class IAGomokuSimple extends IAGomoku
 					}
 				}
 			}
+
 		}
 
 		if ( potCrearLinia( fila, columna, tauler, Direccio.DIAGONAL_ASC ) )
 		{
 			boolean es_util = true;
 			int estalvi = 0;
-			for ( int i = fila, j = columna; i < fila + 5 && j < columna + 5 && es_util; i++, j++ )
+			for ( int i = fila, j = columna; i > fila - 5 && j < columna + 5 && es_util; i--, j++ )
 			{
 				if ( tauler.esCasellaValida( i, j ) )
 				{
@@ -459,15 +456,18 @@ public class IAGomokuSimple extends IAGomoku
 			case BUIDA:
 				return;
 			default:
+				int[][] analisi_actual;
 				if ( estat == color )
 				{
 					puntuacio = puntuacio_jugador;
+					analisi_actual = analisi_jugador;
 				}
 				else
 				{
 					puntuacio = puntuacio_oponent;
+					analisi_actual = analisi_oponent;
 				}
-				aplicaPuntuacions( fila, columna, tauler, puntuacio );
+				aplicaPuntuacions( fila, columna, tauler, puntuacio, analisi_actual );
 				break;
 		}
 	}
@@ -490,29 +490,53 @@ public class IAGomokuSimple extends IAGomoku
 	public String toString()
 	{
 		String sortida = "Analisi jugador - " + color.toString() + "\n";
-		
-		for (int j = 0; j < analisi[0].length; j++)
+
+		for ( int j = 0; j < analisi_jugador[0].length; j++ )
 		{
-			sortida += "\t " + j + " ";
+			sortida += "\t" + j;
 		}
-		
-		for ( int i = 0; i < analisi.length; i++ )
+		sortida += "\n";
+
+		for ( int i = 0; i < analisi_jugador.length; i++ )
 		{
 			sortida += i + ":\t";
-			for ( int j = 0; j < analisi[0].length; j++ )
+			for ( int j = 0; j < analisi_jugador[0].length; j++ )
 			{
-				if ( analisi[i][j] == 0 )
+				if ( analisi_jugador[i][j] == 0 )
 				{
-					sortida += "\t . ";
+					sortida += ".\t";
 				}
 				else
 				{
-					sortida += "\t " + Integer.toString( analisi[i][j] ) + " ";
+					sortida += Integer.toString( analisi_jugador[i][j] ) + "\t";
+				}
+			}
+			sortida += "\n";
+		}
+
+		sortida += "Analisi oponent\n";
+		for ( int j = 0; j < analisi_oponent[0].length; j++ )
+		{
+			sortida += "\t" + j + " ";
+		}
+		sortida += "\n";
+
+		for ( int i = 0; i < analisi_oponent.length; i++ )
+		{
+			sortida += i + ":\t";
+			for ( int j = 0; j < analisi_oponent[0].length; j++ )
+			{
+				if ( analisi_oponent[i][j] == 0 )
+				{
+					sortida += ".\t";
+				}
+				else
+				{
+					sortida += Integer.toString( analisi_oponent[i][j] ) + "\t";
 				}
 			}
 			sortida += "\n";
 		}
 		return sortida;
-
 	}
 }
