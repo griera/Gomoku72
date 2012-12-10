@@ -3,17 +3,23 @@ package prop.gomoku.presentacio;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
 
+import org.dyno.visual.swing.layouts.Bilateral;
 import org.dyno.visual.swing.layouts.Constraints;
 import org.dyno.visual.swing.layouts.GroupLayout;
 import org.dyno.visual.swing.layouts.Leading;
 import org.dyno.visual.swing.layouts.Trailing;
+
+import prop.gomoku.domini.models.TipusUsuari;
 
 //VS4E -- DO NOT REMOVE THIS LINE!
 public class FrameConfiguracioPartida3 extends JFrame {
@@ -27,8 +33,12 @@ public class FrameConfiguracioPartida3 extends JFrame {
 	private JButton jButton0;
 	private JButton jButton1;
 	private JButton jButton2;
+	private JPanel jPanel0;
+	private JLabel jLabel2;
+	private JLabel jLabel3;
+	private JLabel jLabel4;
+	private JLabel jLabel5;
 	private static final String PREFERRED_LOOK_AND_FEEL = "javax.swing.plaf.metal.MetalLookAndFeel";
-
 	public FrameConfiguracioPartida3() {
 		controlador_presentacio = new ControladorPresentacio();
 		initComponents();
@@ -37,23 +47,59 @@ public class FrameConfiguracioPartida3 extends JFrame {
 	private void initComponents() {
 		setTitle("Gomoku - Configuració de Partida Ràpida");
 		setLayout(new GroupLayout());
-		add(getJLabel0(), new Constraints(new Leading(59, 10, 10), new Leading(
-				20, 10, 10)));
-		add(getJLabel1(), new Constraints(new Leading(25, 10, 10), new Leading(
-				62, 12, 12)));
-		add(getJRadioButton0(), new Constraints(new Leading(25, 12, 12),
-				new Leading(98, 10, 10)));
-		add(getJRadioButton1(), new Constraints(new Leading(25, 12, 12),
-				new Leading(140, 12, 12)));
-		add(getJRadioButton2(), new Constraints(new Leading(25, 12, 12),
-				new Leading(182, 12, 12)));
-		add(getJButton0(), new Constraints(new Trailing(12, 12, 12),
-				new Trailing(12, 12, 12)));
-		add(getJButton1(), new Constraints(new Trailing(105, 12, 12),
-				new Trailing(12, 90, 90)));
-		add(getJButton2(), new Constraints(new Trailing(198, 12, 12),
-				new Trailing(12, 90, 90)));
+		add(getJLabel0(), new Constraints(new Leading(59, 10, 10), new Leading(20, 10, 10)));
+		add(getJLabel1(), new Constraints(new Leading(25, 10, 10), new Leading(62, 12, 12)));
+		add(getJRadioButton0(), new Constraints(new Leading(25, 12, 12), new Leading(98, 10, 10)));
+		add(getJRadioButton1(), new Constraints(new Leading(25, 12, 12), new Leading(140, 12, 12)));
+		add(getJRadioButton2(), new Constraints(new Leading(25, 12, 12), new Leading(182, 12, 12)));
+		add(getJButton0(), new Constraints(new Trailing(12, 12, 12), new Trailing(12, 12, 12)));
+		add(getJButton1(), new Constraints(new Trailing(105, 12, 12), new Trailing(12, 90, 90)));
+		add(getJButton2(), new Constraints(new Trailing(198, 12, 12), new Trailing(12, 90, 90)));
+		add(getJPanel0(), new Constraints(new Bilateral(237, 12, 0), new Leading(90, 100, 50, 50)));
 		setSize(454, 267);
+	}
+
+	private JLabel getJLabel5() {
+		if (jLabel5 == null) {
+			jLabel5 = new JLabel();
+		}
+		return jLabel5;
+	}
+
+	private JLabel getJLabel4() {
+		if (jLabel4 == null) {
+			jLabel4 = new JLabel();
+		}
+		return jLabel4;
+	}
+
+	private JLabel getJLabel3() {
+		if (jLabel3 == null) {
+			jLabel3 = new JLabel();
+			jLabel3.setText("Jugador 2 :");
+		}
+		return jLabel3;
+	}
+
+	private JLabel getJLabel2() {
+		if (jLabel2 == null) {
+			jLabel2 = new JLabel();
+			jLabel2.setText("Jugador 1 :");
+		}
+		return jLabel2;
+	}
+
+	private JPanel getJPanel0() {
+		if (jPanel0 == null) {
+			jPanel0 = new JPanel();
+			jPanel0.setBorder(BorderFactory.createTitledBorder(null, "Jugadors", TitledBorder.LEADING, TitledBorder.DEFAULT_POSITION, null, null));
+			jPanel0.setLayout(new GroupLayout());
+			jPanel0.add(getJLabel2(), new Constraints(new Leading(7, 10, 10), new Leading(12, 12, 12)));
+			jPanel0.add(getJLabel3(), new Constraints(new Leading(7, 12, 12), new Leading(40, 12, 12)));
+			jPanel0.add(getJLabel4(), new Constraints(new Leading(76, 12, 12), new Leading(12, 12, 12)));
+			jPanel0.add(getJLabel5(), new Constraints(new Leading(76, 12, 12), new Leading(40, 12, 12)));
+		}
+		return jPanel0;
 	}
 
 	private JButton getJButton2() {
@@ -183,7 +229,6 @@ public class FrameConfiguracioPartida3 extends JFrame {
 				frame.getContentPane().setPreferredSize(frame.getSize());
 				frame.pack();
 				frame.setLocationRelativeTo(null);
-				frame.setVisible(true);
 			}
 		});
 	}
@@ -224,6 +269,29 @@ public class FrameConfiguracioPartida3 extends JFrame {
 
 	public void setControladorPresentacio(ControladorPresentacio controlador_presentacio) {
 		this.controlador_presentacio = controlador_presentacio;
+	}
+	public void setTipusText(){
+		if(controlador_presentacio.getUsuariActual().getTipus()==controlador_presentacio.getOponentActual().getTipus()){
+			if(controlador_presentacio.getUsuariActual().getTipus()==TipusUsuari.HUMA){
+				jLabel1.setText("Seleccioni el color de les fitxes del jugador 1:");
+			}
+		}
+		else if(controlador_presentacio.getUsuariActual().getTipus()!=TipusUsuari.HUMA) {
+			
+			jLabel1.setText("Seleccioni el color de les fitxes de la màquina1:");
+			}
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+		
+	}
+	
+	public void setNomsusuaris(){
+		jLabel4.setText(controlador_presentacio.getUsuariActual().getNom());
+		jLabel5.setText(controlador_presentacio.getOponentActual().getNom());
+		System.out.println("label4: " + jLabel4.getText()+ "label5 "+ jLabel5.getText());
+		this.setLocationRelativeTo(null);
+		this.setAlwaysOnTop(true);
+		this.setVisible(true);
 	}
 
 }

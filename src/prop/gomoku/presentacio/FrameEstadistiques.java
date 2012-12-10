@@ -28,9 +28,8 @@ public class FrameEstadistiques extends JFrame {
 	}
 
 	private void initComponents() {
-		controlador_presentacio = new ControladorPresentacio();
+		setTitle("Gomoku - Rànquings globals i rècords individuals");
 		setLayout(new GroupLayout());
-		add(getJLabel0(), new Constraints(new Leading(119, 293, 12, 12), new Leading(-40, 147, 10, 10)));
 		add(getJTabbedPane0(), new Constraints(new Leading(29, 560, 10, 10), new Leading(76, 327, 10, 10)));
 		add(getJButton0(), new Constraints(new Trailing(12, 12, 12), new Trailing(12, 135, 415)));
 		setSize(666, 457);

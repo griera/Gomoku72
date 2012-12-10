@@ -161,4 +161,6 @@ public class GestorPartidesGuardades
 	{
 		return ruta_partides_guardades;
 	}
+	
+	// TODO integrar reanomenament i  esborrar
 }

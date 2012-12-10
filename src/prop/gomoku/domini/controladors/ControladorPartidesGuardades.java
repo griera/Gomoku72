@@ -47,4 +47,5 @@ public class ControladorPartidesGuardades
 			return false;
 		}
 	}
+
 }

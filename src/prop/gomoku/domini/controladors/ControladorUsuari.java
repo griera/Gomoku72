@@ -23,7 +23,7 @@ public class ControladorUsuari
 	/**
 	 * Clau de 4 caracters utilitzada pel xifrat
 	 */
-	private static final String clau = "prop";
+	private static final String clau = "_*@p";
 	/**
 	 * Gestor de disc utilitzat per carregar i guardar usuaris
 	 */
@@ -160,10 +160,12 @@ public class ControladorUsuari
 			case MITJA:
 			case DIFICIL:
 				// Si hi ha algun problema, és a dir: a efectes pràctics el usuari màquina no existeix, s'ha de crear
+				
 				boolean requereix_creacio = false;
 				try
 				{
-					usuari = gestor_usuaris.carregaUsuariSistema( tipus );
+					String nom = "CPU" + tipus.toString().toUpperCase();
+					usuari = gestor_usuaris.carregaUsuari( nom );
 				} catch ( IllegalArgumentException e )
 				{
 					requereix_creacio = true;

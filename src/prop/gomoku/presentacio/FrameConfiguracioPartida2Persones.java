@@ -2,11 +2,13 @@ package prop.gomoku.presentacio;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -31,10 +33,10 @@ public class FrameConfiguracioPartida2Persones extends JFrame {
 	private JButton jButton1;
 	private JButton jButton2;
 	private JTextField jTextField0;
-	private JTextField jTextField1;
 	private JLabel jLabel3;
 	private JLabel jLabel2;
 	private JPanel jPanel0;
+	private JPasswordField jPasswordField0;
 	private static final String PREFERRED_LOOK_AND_FEEL = "javax.swing.plaf.metal.MetalLookAndFeel";
 	public FrameConfiguracioPartida2Persones() {
 		controlador_presentacio = new ControladorPresentacio();
@@ -55,6 +57,16 @@ public class FrameConfiguracioPartida2Persones extends JFrame {
 		setSize(454, 376);
 	}
 
+	private JPasswordField getJPasswordField0() {
+		if (jPasswordField0 == null) {
+			jPasswordField0 = new JPasswordField();
+			jPasswordField0.setEchoChar('•');
+			jPasswordField0.setEnabled(false);
+			jPasswordField0.setFocusable(false);
+		}
+		return jPasswordField0;
+	}
+
 	private JPanel getJPanel0() {
 		if (jPanel0 == null) {
 			jPanel0 = new JPanel();
@@ -63,9 +75,9 @@ public class FrameConfiguracioPartida2Persones extends JFrame {
 			jPanel0.setEnabled(false);
 			jPanel0.setLayout(new GroupLayout());
 			jPanel0.add(getJTextField0(), new Constraints(new Trailing(12, 282, 12, 12), new Leading(20, 10, 10)));
-			jPanel0.add(getJTextField1(), new Constraints(new Trailing(12, 282, 12, 12), new Leading(70, 10, 10)));
 			jPanel0.add(getJLabel3(), new Constraints(new Leading(12, 28, 306), new Leading(70, 12, 12)));
 			jPanel0.add(getJLabel2(), new Constraints(new Trailing(312, 12, 12), new Leading(20, 12, 12)));
+			jPanel0.add(getJPasswordField0(), new Constraints(new Trailing(13, 280, 99, 99), new Leading(68, 12, 12)));
 		}
 		return jPanel0;
 	}
@@ -88,15 +100,6 @@ public class FrameConfiguracioPartida2Persones extends JFrame {
 			jLabel3.setFocusable(false);
 		}
 		return jLabel3;
-	}
-
-	private JTextField getJTextField1() {
-		if (jTextField1 == null) {
-			jTextField1 = new JTextField();
-			jTextField1.setFocusable(false);
-			jTextField1.setEnabled(false);
-		}
-		return jTextField1;
 	}
 
 	private JTextField getJTextField0() {
@@ -233,8 +236,8 @@ public class FrameConfiguracioPartida2Persones extends JFrame {
 			jPanel0.setFocusable(true);
 			jTextField0.setEnabled(true);
 			jTextField0.setFocusable(true);
-			jTextField1.setFocusable(true);
-			jTextField1.setEnabled(true);
+			jPasswordField0.setFocusable(true);
+			jPasswordField0.setEnabled(true);
 			jLabel3.setFocusable(true);
 			jLabel3.setEnabled(true);
 			jLabel2.setEnabled(true);
@@ -246,8 +249,8 @@ public class FrameConfiguracioPartida2Persones extends JFrame {
 			jPanel0.setFocusable(false);
 			jTextField0.setEnabled(false);
 			jTextField0.setFocusable(false);
-			jTextField1.setEnabled(false);
-			jTextField1.setFocusable(false);
+			jPasswordField0.setEnabled(false);
+			jPasswordField0.setFocusable(false);
 			jLabel3.setFocusable(false);
 			jLabel3.setEnabled(false);
 			jLabel2.setEnabled(false);
@@ -263,8 +266,8 @@ public class FrameConfiguracioPartida2Persones extends JFrame {
 				jPanel0.setFocusable(false);
 				jTextField0.setEnabled(false);
 				jTextField0.setFocusable(false);
-				jTextField1.setFocusable(false);
-				jTextField1.setEnabled(false);
+				jPasswordField0.setFocusable(false);
+				jPasswordField0.setEnabled(false);
 				jLabel2.setEnabled(false);
 				jLabel2.setFocusable(false);
 				jLabel3.setEnabled(false);
@@ -286,7 +289,12 @@ public class FrameConfiguracioPartida2Persones extends JFrame {
 	private void jButton0MouseMouseClicked(MouseEvent event) {
 		
 		if(jRadioButton0.isSelected()){
-			controlador_presentacio.IdentificarOponent( this, jTextField0.getText(), jTextField1.getText() );
+			String contrasenya = "";
+			char [] contrasenyachar = jPasswordField0.getPassword();
+			for(int iterador=0;iterador<contrasenyachar.length;++iterador){
+				contrasenya+=contrasenyachar[iterador];
+			}
+			controlador_presentacio.IdentificarOponent( this, jTextField0.getText(), contrasenya);
 		}
 		if(jRadioButton1.isSelected()){
 			controlador_presentacio.IdentificarOponent( this, "Convidat", "Convidat");
@@ -299,7 +307,7 @@ public class FrameConfiguracioPartida2Persones extends JFrame {
 	public void NetejaAliesContrasenya()
 	{
 		jTextField0.setText( "" );
-		jTextField1.setText( "" );
+		jPasswordField0.setText( "" );
 		
 	}
 

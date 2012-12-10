@@ -12,8 +12,11 @@ public class IAGomokuSimple extends IAGomoku
 {
 //	private static final int[] puntuacio_jugador = { 0, 8, 7, 6, 5 };
 //	private static final int[] puntuacio_oponent = { 0, 8, 7, 6, 5 };
-	private static final int[] puntuacio_jugador = { 0, 15, 7, 3, 2 };
-	private static final int[] puntuacio_oponent = { 0, 16, 8, 4, 2 };
+//	Con esto se le gana de manera tonta, pero en el resto de situaciones se defiende relativament bien
+//	private static final int[] puntuacio_jugador = { 0, 15, 7, 3, 2 };
+//	private static final int[] puntuacio_oponent = { 0, 16, 8, 4, 4 };
+	private static final int[] puntuacio_jugador = { 0, 8, 8, 4, 4 };
+	private static final int[] puntuacio_oponent = { 0, 10, 8, 4, 4 };
 	private PartidaGomoku partida;
 	private EstatCasella color;
 	private int[][] analisi;

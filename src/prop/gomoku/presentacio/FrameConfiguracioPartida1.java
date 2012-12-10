@@ -208,7 +208,6 @@ public class FrameConfiguracioPartida1 extends JFrame
 			{
 				FrameConfiguracioPartida1 frame = new FrameConfiguracioPartida1();
 				frame.setDefaultCloseOperation( FrameConfiguracioPartida1.EXIT_ON_CLOSE );
-				frame.setTitle( "FrameConfiguracioPartida1" );
 				frame.getContentPane().setPreferredSize( frame.getSize() );
 				frame.pack();
 				frame.setLocationRelativeTo( null );

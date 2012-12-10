@@ -196,5 +196,8 @@ public class FrameIdentificacio extends JFrame
 		
 		return controlador_presentacio.getUsuariActual();
 	}
+	public void netejaContrasenya() {
+		jPasswordField0.setText("");	
+	}
 
 }

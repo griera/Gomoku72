@@ -9,7 +9,6 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import prop.gomoku.domini.models.TipusUsuari;
 import prop.gomoku.domini.models.UsuariGomoku;
 import prop.gomoku.gestors.excepcions.UsuariJaExisteix;
 import prop.gomoku.gestors.excepcions.UsuariNoExisteix;
@@ -50,49 +49,6 @@ public class GestorUsuaris
 			throw new UsuariNoExisteix( "S'ha trobat un possible fitxer, però no és compatible" );
 		}
 		return usuari;
-	}
-
-	/**
-	 * Mètode que permet carregar un usuari del sistema (convidat o algun corresponent a una IA) indicant només el tipus
-	 * d'aquest
-	 * 
-	 * @param tipus Tipus del usuari a carregar
-	 * @return Usuari del sistema indicat, carregat des de disc
-	 * @throws IllegalArgumentException Si el tipus indicat no és correspon a
-	 *         <em>CONVIDAT<em> o a alguna de les dificultats màquina
-	 * @throws UsuariNoExisteix Si no existeix el usuari indicat al sistema de fitxers o és inaccesible
-	 */
-	public UsuariGomoku carregaUsuariSistema( TipusUsuari tipus ) throws IllegalArgumentException, UsuariNoExisteix
-	{
-		String ruta_fitxer = null;
-		UsuariGomoku usuari_sistema = null;
-		switch ( tipus )
-		{
-			case FACIL:
-				ruta_fitxer = "cpu_facil" + extensio;
-				break;
-			case MITJA:
-				ruta_fitxer = "cpu_mitja" + extensio;
-				break;
-			case DIFICIL:
-				ruta_fitxer = "cpu_dificil" + extensio;
-				break;
-			default:
-				throw new IllegalArgumentException( "S'ha de proporcionar un TipusUsuari que representi una CPU" );
-		}
-
-		try
-		{
-			usuari_sistema = carregaUsuariDeFitxer( ruta_fitxer );
-		} catch ( IOException e )
-		{
-			throw new UsuariNoExisteix( "No s'ha pogut accedir a cap fitxer per aquest usuari" );
-		} catch ( ClassNotFoundException e )
-		{
-			throw new UsuariNoExisteix( "S'ha trobat un possible fitxer, però no és compatible" );
-		}
-
-		return usuari_sistema;
 	}
 
 	/**

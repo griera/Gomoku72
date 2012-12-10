@@ -1,10 +1,9 @@
 package prop.gomoku.presentacio;
 
-import prop.gomoku.domini.models.PartidaGomoku;
-
-import java.util.List;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
+import prop.gomoku.domini.controladors.ControladorPartidesGuardades;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,6 +16,8 @@ import javax.swing.UIManager;
 import org.dyno.visual.swing.layouts.Constraints;
 import org.dyno.visual.swing.layouts.GroupLayout;
 import org.dyno.visual.swing.layouts.Leading;
+
+import prop.gomoku.domini.models.PartidaGomoku;
 
 //VS4E -- DO NOT REMOVE THIS LINE!
 public class FrameCarregaPartides extends JFrame
@@ -31,7 +32,6 @@ public class FrameCarregaPartides extends JFrame
 	private JButton jButton2;
 	private JButton jButton3;
 	private DefaultListModel listModel;
-	
 	private static final String PREFERRED_LOOK_AND_FEEL = "javax.swing.plaf.metal.MetalLookAndFeel";
 	public FrameCarregaPartides()
 	{
@@ -70,6 +70,12 @@ public class FrameCarregaPartides extends JFrame
 		if (jButton2 == null) {
 			jButton2 = new JButton();
 			jButton2.setText("Reanomena Partida");
+			jButton2.addMouseListener(new MouseAdapter() {
+	
+				public void mouseClicked(MouseEvent event) {
+					jButton2MouseMouseClicked(event);
+				}
+			});
 		}
 		return jButton2;
 	}
@@ -78,6 +84,12 @@ public class FrameCarregaPartides extends JFrame
 		if (jButton1 == null) {
 			jButton1 = new JButton();
 			jButton1.setText("Esborra Partida");
+			jButton1.addMouseListener(new MouseAdapter() {
+	
+				public void mouseClicked(MouseEvent event) {
+					jButton1MouseMouseClicked(event);
+				}
+			});
 		}
 		return jButton1;
 	}
@@ -176,6 +188,15 @@ public class FrameCarregaPartides extends JFrame
 		this.setLocationRelativeTo( null );
 		this.setVisible( true );
 		
+	}
+
+	private void jButton1MouseMouseClicked(MouseEvent event) {
+	}
+
+	private void jButton2MouseMouseClicked(MouseEvent event) {
+//		jList0. TODO
+		ControladorPartidesGuardades controlador_partida = new ControladorPartidesGuardades();
+//		controlador_partida.
 	}
 
 }

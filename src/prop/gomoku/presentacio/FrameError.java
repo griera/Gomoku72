@@ -30,24 +30,23 @@ public class FrameError extends JFrame {
 		initComponents();
 	}
 	private void initComponents() {
-		missatge = new String();
 		setTitle("Gomoku - Error");
 		setLayout(new GroupLayout());
 		add(getJLabel0(), new Constraints(new Leading(12, 12, 12), new Leading(27, 10, 10)));
-		add(getJButton0(), new Constraints(new Leading(123, 83, 10, 10), new Trailing(12, 40, 12, 12)));
-		setSize(367, 240);
+		add(getJButton0(), new Constraints(new Leading(174, 99, 10, 10), new Trailing(12, 40, 12, 12)));
+		setSize(474, 232);
 	}
-	
 	public void MissatgeActiva(String missatge){
 		jLabel0.setText(missatge);
-		this.setVisible(true);
+		this.setLocationRelativeTo(null);
 		this.setAlwaysOnTop(true);
+		this.setVisible(true);
 	}
 
 	private JButton getJButton0() {
 		if (jButton0 == null) {
 			jButton0 = new JButton();
-			jButton0.setText("Ok");
+			jButton0.setText("Acceptar");
 			jButton0.addMouseListener(new MouseAdapter() {
 	
 				public void mouseClicked(MouseEvent event) {
@@ -92,8 +91,6 @@ public class FrameError extends JFrame {
 				frame.getContentPane().setPreferredSize(frame.getSize());
 				frame.pack();
 				frame.setLocationRelativeTo(null);
-				frame.setVisible(true);
-				frame.setVisible(false);
 			}
 		});
 	}

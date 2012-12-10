@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -16,8 +17,7 @@ import org.dyno.visual.swing.layouts.Leading;
 import org.dyno.visual.swing.layouts.Trailing;
 
 //VS4E -- DO NOT REMOVE THIS LINE!
-public class FrameRegistrar extends JFrame
-{
+public class FrameRegistrar extends JFrame {
 	private ControladorPresentacio controlador_presentacio;
 	private static final long serialVersionUID = 1L;
 	private JButton jButton0;
@@ -25,14 +25,14 @@ public class FrameRegistrar extends JFrame
 	private JLabel jLabel2;
 	private JTextField jTextField0;
 	private JLabel jLabel3;
-	private JTextField jTextField1;
 	private JLabel jLabel4;
-	private JTextField jTextField2;
 	private JLabel jLabel1;
 	private JLabel jLabel0;
+	private JPasswordField jPasswordField0;
+	private JPasswordField jPasswordField1;
 	private static final String PREFERRED_LOOK_AND_FEEL = "javax.swing.plaf.metal.MetalLookAndFeel";
-	public FrameRegistrar()
-	{
+
+	public FrameRegistrar() {
 		controlador_presentacio = new ControladorPresentacio();
 		initComponents();
 	}
@@ -40,17 +40,43 @@ public class FrameRegistrar extends JFrame
 	private void initComponents() {
 		setTitle("Gomoku - Registre de nou usuari");
 		setLayout(new GroupLayout());
-		add(getJButton0(), new Constraints(new Trailing(12, 12, 12), new Trailing(12, 12, 12)));
-		add(getJButton1(), new Constraints(new Trailing(111, 12, 12), new Trailing(12, 12, 12)));
-		add(getJLabel2(), new Constraints(new Leading(12, 12, 12), new Leading(79, 12, 12)));
-		add(getJTextField0(), new Constraints(new Leading(12, 250, 12, 12), new Leading(101, 50, 50)));
-		add(getJLabel3(), new Constraints(new Leading(12, 12, 12), new Leading(133, 12, 12)));
-		add(getJTextField1(), new Constraints(new Leading(12, 250, 12, 12), new Leading(155, 12, 12)));
-		add(getJLabel4(), new Constraints(new Leading(12, 12, 12), new Leading(181, 12, 12)));
-		add(getJTextField2(), new Constraints(new Leading(12, 250, 12, 12), new Trailing(56, 209, 209)));
-		add(getJLabel1(), new Constraints(new Leading(12, 12, 12), new Leading(57, 88, 88)));
-		add(getJLabel0(), new Constraints(new Leading(12, 12, 12), new Leading(17, 10, 10)));
+		add(getJButton0(), new Constraints(new Trailing(12, 12, 12),
+				new Trailing(12, 12, 12)));
+		add(getJButton1(), new Constraints(new Trailing(111, 12, 12),
+				new Trailing(12, 12, 12)));
+		add(getJLabel2(), new Constraints(new Leading(12, 12, 12), new Leading(
+				79, 12, 12)));
+		add(getJTextField0(), new Constraints(new Leading(12, 250, 12, 12),
+				new Leading(101, 50, 50)));
+		add(getJLabel3(), new Constraints(new Leading(12, 12, 12), new Leading(
+				133, 12, 12)));
+		add(getJLabel4(), new Constraints(new Leading(12, 12, 12), new Leading(
+				181, 12, 12)));
+		add(getJLabel1(), new Constraints(new Leading(12, 12, 12), new Leading(
+				57, 88, 88)));
+		add(getJLabel0(), new Constraints(new Leading(12, 12, 12), new Leading(
+				17, 10, 10)));
+		add(getJPasswordField0(), new Constraints(new Leading(12, 250, 12, 12),
+				new Leading(155, 12, 12)));
+		add(getJPasswordField1(), new Constraints(new Leading(12, 250, 12, 12),
+				new Leading(203, 12, 12)));
 		setSize(396, 279);
+	}
+
+	private JPasswordField getJPasswordField1() {
+		if (jPasswordField1 == null) {
+			jPasswordField1 = new JPasswordField();
+			jPasswordField1.setEchoChar('•');
+		}
+		return jPasswordField1;
+	}
+
+	private JPasswordField getJPasswordField0() {
+		if (jPasswordField0 == null) {
+			jPasswordField0 = new JPasswordField();
+			jPasswordField0.setEchoChar('•');
+		}
+		return jPasswordField0;
 	}
 
 	private JLabel getJLabel0() {
@@ -69,26 +95,12 @@ public class FrameRegistrar extends JFrame
 		return jLabel1;
 	}
 
-	private JTextField getJTextField2() {
-		if (jTextField2 == null) {
-			jTextField2 = new JTextField();
-		}
-		return jTextField2;
-	}
-
 	private JLabel getJLabel4() {
 		if (jLabel4 == null) {
 			jLabel4 = new JLabel();
 			jLabel4.setText("Confirma contrasenya:");
 		}
 		return jLabel4;
-	}
-
-	private JTextField getJTextField1() {
-		if (jTextField1 == null) {
-			jTextField1 = new JTextField();
-		}
-		return jTextField1;
 	}
 
 	private JLabel getJLabel3() {
@@ -119,7 +131,7 @@ public class FrameRegistrar extends JFrame
 			jButton1 = new JButton();
 			jButton1.setText("Cancel·lar");
 			jButton1.addMouseListener(new MouseAdapter() {
-	
+
 				public void mouseClicked(MouseEvent event) {
 					jButton1MouseMouseClicked(event);
 				}
@@ -133,7 +145,7 @@ public class FrameRegistrar extends JFrame
 			jButton0 = new JButton();
 			jButton0.setText("Registrar");
 			jButton0.addMouseListener(new MouseAdapter() {
-	
+
 				public void mouseClicked(MouseEvent event) {
 					jButton0MouseMouseClicked(event);
 				}
@@ -142,50 +154,77 @@ public class FrameRegistrar extends JFrame
 		return jButton0;
 	}
 
-	private static void installLnF()
-	{
-		try
-		{
+	private static void installLnF() {
+		try {
 			String lnfClassname = PREFERRED_LOOK_AND_FEEL;
-			if ( lnfClassname == null )
+			if (lnfClassname == null)
 				lnfClassname = UIManager.getCrossPlatformLookAndFeelClassName();
-			UIManager.setLookAndFeel( lnfClassname );
-		} catch ( Exception e )
-		{
-			System.err.println( "Cannot install " + PREFERRED_LOOK_AND_FEEL + " on this platform:" + e.getMessage() );
+			UIManager.setLookAndFeel(lnfClassname);
+		} catch (Exception e) {
+			System.err.println("Cannot install " + PREFERRED_LOOK_AND_FEEL
+					+ " on this platform:" + e.getMessage());
 		}
 	}
 
 	/**
-	 * Main entry of the class.
-	 * Note: This class is only created so that you can easily preview the result at runtime.
-	 * It is not expected to be managed by the designer.
-	 * You can modify it as you like.
+	 * Main entry of the class. Note: This class is only created so that you can
+	 * easily preview the result at runtime. It is not expected to be managed by
+	 * the designer. You can modify it as you like.
 	 */
-	public void main( )
-	{
+	public void main() {
 		installLnF();
-		SwingUtilities.invokeLater( new Runnable()
-		{
-			public void run()
-			{
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
 				FrameRegistrar frame = new FrameRegistrar();
-				frame.setDefaultCloseOperation( FrameRegistrar.EXIT_ON_CLOSE );
-				frame.setTitle( "FrameRegistrar" );
-				frame.getContentPane().setPreferredSize( frame.getSize() );
+				frame.setDefaultCloseOperation(FrameRegistrar.EXIT_ON_CLOSE);
+				frame.setTitle("Gomoku - Registre de nou usuari");
+				frame.getContentPane().setPreferredSize(frame.getSize());
 				frame.pack();
-				frame.setLocationRelativeTo( null );
-				frame.setVisible( true );
+				frame.setLocationRelativeTo(null);
+				frame.setVisible(true);
 			}
-		} );
+		});
 	}
 
 	private void jButton1MouseMouseClicked(MouseEvent event) {
-		controlador_presentacio.sincronitzacioRegistrarBenvingut( this );
+		controlador_presentacio.sincronitzacioRegistrarBenvingut(this);
 	}
 
 	private void jButton0MouseMouseClicked(MouseEvent event) {
-		controlador_presentacio.RegistrarJugador(this, jTextField0.getText(), jTextField1.getText());
+		String password1 = "";
+		String password2 = "";
+		char[] pass1 = jPasswordField0.getPassword();
+		char[] pass2 = jPasswordField1.getPassword();
+		for (int iterador = 0; iterador < pass1.length; ++iterador) {
+			password1 += pass1[iterador];
+			password2 += pass2[iterador];
+		}
+		if (password1.contentEquals(password2)) {
+			if(password1.length()>=4){
+			controlador_presentacio.RegistrarJugador(this,
+					jTextField0.getText(), password1);
+			}
+			else {
+				FrameError error = new FrameError();
+				error.main();
+				error.MissatgeActiva("Si us plau introdueixi una contrasenya de com a mínim 4 caracters");
+			}
+			} 
+		else {
+			FrameError error = new FrameError();
+			error.main();
+			error.MissatgeActiva("Les dues contrasenyes introduides no coincideixen");
+			jPasswordField0.setText("");
+			jPasswordField1.setText("");
+		}
 	}
-
+	public void Netejapasswords (){
+		jPasswordField0.setText("");
+		jPasswordField1.setText("");
+	}
+	public void Netejatot(){
+		jTextField0.setText("");
+		jPasswordField0.setText("");
+		jPasswordField1.setText("");
+	}
 }

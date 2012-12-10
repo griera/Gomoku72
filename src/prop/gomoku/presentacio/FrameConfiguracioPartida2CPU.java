@@ -15,6 +15,8 @@ import org.dyno.visual.swing.layouts.GroupLayout;
 import org.dyno.visual.swing.layouts.Leading;
 import org.dyno.visual.swing.layouts.Trailing;
 
+import prop.gomoku.domini.models.TipusUsuari;
+
 //VS4E -- DO NOT REMOVE THIS LINE!
 public class FrameConfiguracioPartida2CPU extends JFrame
 {
@@ -89,6 +91,12 @@ public class FrameConfiguracioPartida2CPU extends JFrame
 		if (jButton0 == null) {
 			jButton0 = new JButton();
 			jButton0.setText("Següent");
+			jButton0.addMouseListener(new MouseAdapter() {
+	
+				public void mouseClicked(MouseEvent event) {
+					jButton0MouseMouseClicked(event);
+				}
+			});
 		}
 		return jButton0;
 	}
@@ -240,7 +248,7 @@ public class FrameConfiguracioPartida2CPU extends JFrame
 	}
 
 	private void jButton1MouseMouseClicked(MouseEvent event) {
-		controlador_presentacio.sincronitzacioConfiguracio2CPU1( this );
+		controlador_presentacio.sincronitzacioConfiguracio2cpu1( this );
 	}
 
 	private void jButton2MouseMouseClicked(MouseEvent event) {
@@ -330,6 +338,28 @@ public class FrameConfiguracioPartida2CPU extends JFrame
 	{
 		this.controlador_presentacio = controlador_presentacio;
 		
+	}
+
+	public TipusUsuari [] getnivellmaquina() {
+		TipusUsuari [] tipus_usuari= new TipusUsuari[2];
+		if(jRadioButton0.isSelected()) tipus_usuari[0]=TipusUsuari.FACIL;
+		else if(jRadioButton1.isSelected()) tipus_usuari[0]=TipusUsuari.MITJA;
+		else if(jRadioButton2.isSelected()) tipus_usuari[0]=TipusUsuari.DIFICIL;
+		if(jRadioButton3.isSelected()) tipus_usuari[1] = TipusUsuari.FACIL;
+		else if(jRadioButton4.isSelected()) tipus_usuari[1] = TipusUsuari.MITJA;
+		else if(jRadioButton5.isSelected()) tipus_usuari[1] = TipusUsuari.DIFICIL;
+		return tipus_usuari;
+	}
+
+	private void jButton0MouseMouseClicked(MouseEvent event) {
+		if((jRadioButton0.isSelected()|jRadioButton1.isSelected()|jRadioButton2.isSelected())&(jRadioButton3.isSelected()|jRadioButton4.isSelected()|jRadioButton5.isSelected())){
+			controlador_presentacio.sincronitzacioConfiguracio2cpu3(this);
+		}
+		else {
+			FrameError error = new FrameError();
+			error.main();
+			error.MissatgeActiva("Si us plau, seleccioni un nivell de dificultat per a cada jugador màquina");
+		}
 	}
 
 }

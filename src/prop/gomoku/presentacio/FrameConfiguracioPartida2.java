@@ -15,6 +15,8 @@ import org.dyno.visual.swing.layouts.GroupLayout;
 import org.dyno.visual.swing.layouts.Leading;
 import org.dyno.visual.swing.layouts.Trailing;
 
+import prop.gomoku.domini.models.TipusUsuari;
+
 //VS4E -- DO NOT REMOVE THIS LINE!
 public class FrameConfiguracioPartida2 extends JFrame {
 	private ControladorPresentacio controlador_presentacio;
@@ -87,6 +89,12 @@ public class FrameConfiguracioPartida2 extends JFrame {
 		if (jButton0 == null) {
 			jButton0 = new JButton();
 			jButton0.setText("Següent");
+			jButton0.addMouseListener(new MouseAdapter() {
+	
+				public void mouseClicked(MouseEvent event) {
+					jButton0MouseMouseClicked(event);
+				}
+			});
 		}
 		return jButton0;
 	}
@@ -208,6 +216,24 @@ public class FrameConfiguracioPartida2 extends JFrame {
 
 	private void jButton1MouseMouseClicked(MouseEvent event) {
 		controlador_presentacio.sincronitzacioConfiguracio21(this);
+	}
+
+	private void jButton0MouseMouseClicked(MouseEvent event) {
+		controlador_presentacio.sincronitzacioConfiguracio23(this);
+	}
+
+	public TipusUsuari getTipusOponent() {
+		TipusUsuari tipus_maquina = TipusUsuari.FACIL;
+		if(jRadioButton0.isSelected()) {
+			tipus_maquina=TipusUsuari.DIFICIL;
+		}
+		else if(jRadioButton1.isSelected()){
+			tipus_maquina=TipusUsuari.MITJA;
+		}
+		else if(jRadioButton2.isSelected()){
+			tipus_maquina=TipusUsuari.FACIL;
+		}
+		return tipus_maquina;
 	}
 
 
