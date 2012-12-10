@@ -12,8 +12,8 @@ public class IAGomokuSimple extends IAGomoku
 {
 //	private static final int[] puntuacio_jugador = { 0, 8, 7, 6, 5 };
 //	private static final int[] puntuacio_oponent = { 0, 8, 7, 6, 5 };
-	private static final int[] puntuacio_jugador = { 0, 8, 8, 4, 4 };
-	private static final int[] puntuacio_oponent = { 0, 8, 8, 4, 4 };
+	private static final int[] puntuacio_jugador = { 0, 15, 7, 3, 2 };
+	private static final int[] puntuacio_oponent = { 0, 16, 8, 4, 2 };
 	private PartidaGomoku partida;
 	private EstatCasella color;
 	private int[][] analisi;
@@ -243,7 +243,7 @@ public class IAGomokuSimple extends IAGomoku
 		}
 		// TODO
 		System.out.println( "Pot!" + color_fitxa + " " + dir );
-		return true;
+		return false;
 	}
 
 	private void aplicaPuntuacions( int fila, int columna, TaulerGomoku tauler, int[] puntuacio )
@@ -487,17 +487,24 @@ public class IAGomokuSimple extends IAGomoku
 	public String toString()
 	{
 		String sortida = "Analisi jugador - " + color.toString() + "\n";
+		
+		for (int j = 0; j < analisi[0].length; j++)
+		{
+			sortida += "\t " + j + " ";
+		}
+		
 		for ( int i = 0; i < analisi.length; i++ )
 		{
+			sortida += i + ":\t";
 			for ( int j = 0; j < analisi[0].length; j++ )
 			{
 				if ( analisi[i][j] == 0 )
 				{
-					sortida += " . ";
+					sortida += "\t . ";
 				}
 				else
 				{
-					sortida += " " + Integer.toString( analisi[i][j] ) + " ";
+					sortida += "\t " + Integer.toString( analisi[i][j] ) + " ";
 				}
 			}
 			sortida += "\n";
