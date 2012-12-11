@@ -39,7 +39,6 @@ public class IAGomokuOptimitzada extends IAGomoku
 	public int[] computaMoviment( Partida partida, EstatCasella estat_casella, int fila_ult_moviment,
 			int columna_ult_moviment )
 	{
-		System.out.println("XUNGU");
 		int[] moviment = new int[2];
 		int torn_actual = partida.getTornsJugats() + 1;
 		int mida = partida.getTauler().getMida();
