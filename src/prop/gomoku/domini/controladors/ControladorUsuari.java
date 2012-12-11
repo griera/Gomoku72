@@ -2,7 +2,6 @@ package prop.gomoku.domini.controladors;
 
 import java.io.IOException;
 
-import prop.gomoku.auxiliars.Vigenere;
 import prop.gomoku.domini.controladors.excepcions.ContrasenyaIncorrecta;
 import prop.gomoku.domini.controladors.excepcions.ContrasenyaInvalida;
 import prop.gomoku.domini.models.TipusUsuari;

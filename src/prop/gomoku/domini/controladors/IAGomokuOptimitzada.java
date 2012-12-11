@@ -30,6 +30,9 @@ import prop.gomoku.domini.models.TaulerGomoku;
  */
 public class IAGomokuOptimitzada extends IAGomoku
 {
+	/**
+	 * Indica a quin nivell de profunditat tallem l'exploració recursiva de l'arbre de moviments generat
+	 */
 	private static final int profunditat_maxima = 4;
 
 	@Override
