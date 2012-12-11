@@ -1,4 +1,4 @@
-package prop.gomoku.auxiliars;
+package prop.gomoku.domini.controladors;
 
 /**
  * La classe <code>Vigenere</code> permet el xifrat i desxifrat de missatges de text utilitzant l'algorisme criptogràfic
