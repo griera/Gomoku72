@@ -51,9 +51,9 @@ public class ProvaJugadorsMaquina
 	private static UsuariGomoku[] SeleccioJugadors( int num_partides )
 	{
 		System.out.println( "Si us plau, seleccioni quins jugadros maquina desitja enfrontar durant la prova:" );
-		System.out.println( "1.- Jugador maquina facil vs Jugador maquina mitjana" );
-		System.out.println( "2.- Jugador maquina facil vs Jugador maquina dificil" );
-		System.out.println( "3.- Jugador maquina dificil vs Jugador maquina mitjana" );
+		System.out.println( "1.- Jugador maquina TERCERA_ESTRATEGIA vs Jugador maquina PRIMERA_ESTRATEGIA" );
+		System.out.println( "2.- Jugador maquina TERCERA_ESTRATEGIA vs Jugador maquina SEGONA_ESTRATEGIA" );
+		System.out.println( "3.- Jugador maquina SEGONA_ESTRATEGIA vs Jugador maquina PRIMERA_ESTRATEGIA" );
 		System.out.print( "Marqui l'opcio que desitja (1, 2 o 3): " );
 		int opcio = dada.llegirInt();
 
@@ -62,28 +62,28 @@ public class ProvaJugadorsMaquina
 		switch ( opcio )
 		{
 			case 1:
-				maquines[0] = new UsuariGomoku( "MAQUINA_FACIL", "MAQUINA_FACIL", TipusUsuari.FACIL );
-				maquines[1] = new UsuariGomoku( "MAQUINA_MITJA", "MAQUINA_MITJA", TipusUsuari.MITJA );
+				maquines[0] = new UsuariGomoku( "TERCERA_ESTRATEGIA", "MAQUINA3", TipusUsuari.FACIL );
+				maquines[1] = new UsuariGomoku( "PRIMERA_ESTRATEGIA", "MAQUINA1", TipusUsuari.MITJA );
 				break;
 
 			case 2:
-				maquines[0] = new UsuariGomoku( "MAQUINA_FACIL", "MAQUINA_FACIL", TipusUsuari.FACIL );
-				maquines[1] = new UsuariGomoku( "MAQUINA_DIFICIL", "MAQUINA_DIFICIL", TipusUsuari.DIFICIL );
+				maquines[0] = new UsuariGomoku( "TERCERA_ESTRATEGIA", "MAQUINA3", TipusUsuari.FACIL );
+				maquines[1] = new UsuariGomoku( "SEGONA_ESTRATEGIA", "MAQUINA2", TipusUsuari.DIFICIL );
 				break;
 
 			case 3:
-				maquines[0] = new UsuariGomoku( "MAQUINA_DIFICIL", "MAQUINA_DIFICIL", TipusUsuari.DIFICIL );
-				maquines[1] = new UsuariGomoku( "MAQUINA_MITJA", "MAQUINA_MITJA", TipusUsuari.MITJA );
+				maquines[0] = new UsuariGomoku( "SEGONA_ESTRATEGIA", "MAQUINA2", TipusUsuari.DIFICIL );
+				maquines[1] = new UsuariGomoku( "PRIMERA_ESTRATEGIA", "MAQUINA1", TipusUsuari.MITJA );
 				break;
 		}
 
 		System.out.println( "\nAra s'enfrontaran el jugador maquina " + maquines[0].getNom() + " contra "
 				+ maquines[1].getNom() + " durant " + 2 * num_partides + " partides seguides" );
-		System.out.println( "El jugador " + maquines[0].getNom() + " disputara les" + num_partides
+		System.out.println( "El jugador " + maquines[0].getNom() + " disputara les " + num_partides
 				+ " primeres partides amb fitxes de color negre, i les restants amb fitxes blanques" );
-		System.out.println( "El jugador " + maquines[1].getNom() + " disputara les" + num_partides
+		System.out.println( "El jugador " + maquines[1].getNom() + " disputara les " + num_partides
 				+ " primeres partides amb fitxes de color blanc, i les restants amb fitxes negres" );
-		System.out.println( "\n-------------------------------------------------------------------------------\n" );
+		System.out.println( "\n-----------------------------------------------------------------------------------\n" );
 		return maquines;
 	}
 
@@ -96,7 +96,7 @@ public class ProvaJugadorsMaquina
 
 	private static void imprimeixDuracioProva( long temps_prova_fi, long temps_prova_ini, int num_partides )
 	{
-		System.out.println( "La prova ha estat constituida per un total de : " + 2 * num_partides
+		System.out.println( "La prova ha estat constituida per un total de " + 2 * num_partides
 				+ " partides disputades" );
 		System.out.println( "El temps total de duracio de la prova ha estat de "
 				+ ( ( temps_prova_fi - temps_prova_ini ) / 1000000000.0 ) + " segons\n" );
@@ -139,7 +139,8 @@ public class ProvaJugadorsMaquina
 		System.out.println( "La duracio de cada partida es el seguent:" );
 		for ( int k = 0; k < 2 * num_partides; ++k )
 		{
-			System.out.println( "Duracio Partida numero " + ( k + 1 ) + ": " + ( duracio_partida[k] / 1000000000.0 ) );
+			System.out.println( "Duracio Partida numero " + ( k + 1 ) + ": " + ( duracio_partida[k] / 1000000000.0 )
+					+ " segons" );
 		}
 		System.out.println();
 	}

@@ -78,7 +78,8 @@ public class IAGomoku extends InteligenciaArtificial
 	}
 
 	@Override
-	/* Aquesta funció d'avaluació està especialment implementada per al joc de taula Gomoku. Per avaluar un cert estat
+	/* 
+	 * Aquesta funció d'avaluació està especialment implementada per al joc de taula Gomoku. Per avaluar un cert estat
 	 * d'un tauler es basa en el recompte d'estructures potencialment guanyadores que tenen cada jugador.
 	 * 
 	 * Cada estructura està valorada amb una puntuació. Les que més punts tenen són aquelles que estan més a prop de
@@ -110,7 +111,8 @@ public class IAGomoku extends InteligenciaArtificial
 	 * troben just als límits del tauler.
 	 * 
 	 * - Estructura semioberta: Estructura que un dels seus extrems no està bloquejats per cap fitxa de l'oponent ni es
-	 * troba just als límits del tauler. */
+	 * troba just als límits del tauler.
+	 */
 	public int funcioAvaluacio( Tauler tauler, EstatPartida estat_moviment, int profunditat, EstatCasella fitxa_jugador )
 	{
 		if ( estat_moviment == EstatPartida.EMPAT )
@@ -142,7 +144,8 @@ public class IAGomoku extends InteligenciaArtificial
 		{
 			int mida = tauler.getMida();
 
-			/* Array que guarda les diferents puntuacions per a cadascuna de les estructures potencialment guanyadores.
+			/* 
+			 * Array que guarda les diferents puntuacions per a cadascuna de les estructures potencialment guanyadores.
 			 * Les estructures que es tenen en compte per puntuar són les següents (classificades per l'índex de la
 			 * columna del array al qual fan referència):
 			 * 
@@ -176,15 +179,18 @@ public class IAGomoku extends InteligenciaArtificial
 			 * l'estructura).
 			 * 
 			 * 14.- Estructura oberta o semioberta de quatre fitxes quasi seguides (conté una casella buida emmig de
-			 * l'estructura). */
+			 * l'estructura). 
+			 */
 			int[] puntuacions = { Integer.MAX_VALUE, 10000, 10000, 10000, 5000, 1000, 500, 200, 100, 50, 10, 5, 3,
 					5000, 10000 };
 
-			/* Array bidimensional on es guarden totes les estructures potencialment guanyadores que es formen en el
+			/* 
+			 * Array bidimensional on es guarden totes les estructures potencialment guanyadores que es formen en el
 			 * tauler donat. La primera fila conté el recompte de totes les estructures potencialment guanyadores per a
 			 * les fitxes de color negre, i la segona fila conté el mateix recompte però per a les fitxes de color
 			 * blanc. L'ordre en que es guarden és el mateix que l'ordre de les seves puntuacions en el array
-			 * puntuacions. */
+			 * puntuacions.
+			 */
 			int opcions_linia_total[][] = new int[2][15];
 
 			// Variables que guarden la suma total de les puntuacions de totes les estructures potencialment
@@ -201,11 +207,13 @@ public class IAGomoku extends InteligenciaArtificial
 					{
 						EstatCasella estat = tauler.getEstatCasella( fila, columna );
 
-						/* Array bidimensional on es guarden totes les estructures potencialment guanyadores que es
+						/* 
+						 * Array bidimensional on es guarden totes les estructures potencialment guanyadores que es
 						 * formen donada una fitxa col·locada dins del tauler. La primera fila compta totes les
 						 * estructures potencialment guanyadores si la fitxa actual és de color negra, i la segona fila
 						 * ho fa si la fitxa actual és de color blanc. L'ordre en que es guarden les estructuresés el
-						 * mateix que l'ordre de les seves puntuacions en el array puntuacions. */
+						 * mateix que l'ordre de les seves puntuacions en el array puntuacions.
+						 */
 						int[][] opcions_linia = new int[2][15];
 
 						this.computaFila( (TaulerGomoku) tauler, estat, fila, columna, opcions_linia );
@@ -224,10 +232,12 @@ public class IAGomoku extends InteligenciaArtificial
 							}
 						}
 
-						/* Les següents sentències condicionals comproven si s'ha trobat alguna línia de cinc fitxes
+						/* 
+						 * Les següents sentències condicionals comproven si s'ha trobat alguna línia de cinc fitxes
 						 * seguides d'un mateix color (estructura ja guanyadora, l'objectiu del joc Gomoku). En aquest
 						 * cas, es retorna la puntuació màxima segons el color de les fitxes del jugador controlat per
-						 * aquesta intel·ligència artificial. */
+						 * aquesta intel·ligència artificial.
+						 */
 						if ( opcions_linia[0][0] > 0 && fitxa_jugador == EstatCasella.JUGADOR_A )
 						{
 							return Integer.MAX_VALUE;
@@ -248,10 +258,12 @@ public class IAGomoku extends InteligenciaArtificial
 							return Integer.MAX_VALUE;
 						}
 
-						/* Si no hi ha encara cap estructura guanyadora (cap guanyador de la partida), aleshores s'ha de
+						/* 
+						 * Si no hi ha encara cap estructura guanyadora (cap guanyador de la partida), aleshores s'ha de
 						 * calcular la puntuació acumulada per les estructures potencialment guanyadores formades al
 						 * voltant de la fitxa actual (càlcul incremental per cadascun dels jugadors), i sumar-les a les
-						 * variables que acumulen la puntuació total donat un tauler (avaluacio_negre i avaluacio_blanc) */
+						 * variables que acumulen la puntuació total donat un tauler (avaluacio_negre i avaluacio_blanc)
+						 */
 						for ( int i = 0; i < puntuacions.length; ++i )
 						{
 							avaluacio_negre += ( opcions_linia[0][i] * puntuacions[i] );
@@ -264,14 +276,16 @@ public class IAGomoku extends InteligenciaArtificial
 				}
 			}
 
-			/* Les següents sentències condicionals comproven que no hi hagi ja un guanyador matemàtic de la partida
+			/* 
+			 * Les següents sentències condicionals comproven que no hi hagi ja un guanyador matemàtic de la partida
 			 * segons l'estat del tauler donat. Si és aquest cas, cal donar la puntuació màxima en funció del jugador
 			 * controlat per aquesta intel·ligència artificial. Retornarem la màxima puntuació (Integer.MAX_VALUE) si és
 			 * ell el que s'ha assegurat la victòria abans d'hora, i retornarem (Integer.MIN_VALUE) si és el seu oponent
 			 * qui ja té la victòria assegurada.
 			 * 
 			 * Aquesta selecció es basa en les estructures potencialment guanyadores que tenen cadascun dels jugadors en
-			 * el tauler indicat. */
+			 * el tauler indicat. 
+			 */
 
 			if ( fitxa_jugador == EstatCasella.JUGADOR_A )
 			{
@@ -283,9 +297,11 @@ public class IAGomoku extends InteligenciaArtificial
 
 				if ( opcions_linia_total[0][1] > 0 || opcions_linia_total[0][2] > 0 || opcions_linia_total[0][3] > 0 )
 				{
-					/* Restem una unitat al valor màxim dels enters per evitar que, si el jugador controlat per aquesta
+					/* 
+					 * Restem una unitat al valor màxim dels enters per evitar que, si el jugador controlat per aquesta
 					 * intel·ligència artificial ja té la victòria garantida, faci moviments sense lògica fins que el
-					 * seu oponent no intenti contrarestar aquesta situació. */
+					 * seu oponent no intenti contrarestar aquesta situació.
+					 */
 					return Integer.MAX_VALUE - 1;
 				}
 
@@ -306,9 +322,11 @@ public class IAGomoku extends InteligenciaArtificial
 
 				if ( opcions_linia_total[1][1] > 0 || opcions_linia_total[1][2] > 0 || opcions_linia_total[1][3] > 0 )
 				{
-					/* Restem una unitat al valor màxim dels enters per evitar que, si el jugador controlat per aquesta
+					/* 
+					 * Restem una unitat al valor màxim dels enters per evitar que, si el jugador controlat per aquesta
 					 * intel·ligència artificial ja té la victòria garantida, faci moviments sense lògica fins que el
-					 * seu oponent no intenti contrarestar aquesta situació. */
+					 * seu oponent no intenti contrarestar aquesta situació.
+					 */
 					return Integer.MAX_VALUE - 1;
 				}
 
@@ -319,11 +337,13 @@ public class IAGomoku extends InteligenciaArtificial
 				}
 			}
 
-			/* Ja hem recorregut tot el tauler, per tant, ja hem fet totes les avaluacions Ara només cal retornar els
+			/* 
+			 * Ja hem recorregut tot el tauler, per tant, ja hem fet totes les avaluacions Ara només cal retornar els
 			 * resultats obtinguts en funció del color de les fitxes del jugador controlat per aquesta intel·ligència
 			 * artificial. Si té fitxes negres cal retornar la resta entre: avaluació_negre - avaluacio_blanc
 			 * 
-			 * Si, en canvi, si té les fitxes blanques cal retornar: avaluacio_blanc - avaluacio_negre */
+			 * Si, en canvi, si té les fitxes blanques cal retornar: avaluacio_blanc - avaluacio_negre
+			 */
 
 			if ( fitxa_jugador == EstatCasella.JUGADOR_A )
 			{
