@@ -26,7 +26,7 @@ public class GestorPartidesGuardades
 	/**
 	 * Ruta del sistema de fitxers on residiran els fitxers de les partides serialitzades
 	 */
-	private static final String ruta_partides_guardades = System.getProperty( "user.home" ) + "/gomoku/partides/";
+	private static final String ruta_partides_guardades = System.getProperty( "user.home" ) + "/gomoku72/partides/";
 
 	/**
 	 * Mètode per guardar al sistema de fitxers una partida
