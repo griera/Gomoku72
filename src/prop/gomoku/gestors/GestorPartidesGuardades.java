@@ -43,7 +43,7 @@ public class GestorPartidesGuardades
 		String ruta_fitxer = null;
 		try
 		{
-			FileOutputStream fitxer = new FileOutputStream( ruta_fitxer );
+			FileOutputStream fitxer = new FileOutputStream( ruta_partides_guardades + nom_fitxer );
 			ObjectOutputStream sortida = new ObjectOutputStream( fitxer );
 			sortida.writeObject( partida );
 			sortida.close();

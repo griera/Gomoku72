@@ -1,5 +1,6 @@
 package prop.gomoku.domini.controladors.records;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -11,24 +12,37 @@ import prop.gomoku.gestors.GestorUsuaris;
 // The Great TODO
 public class ControladorRecordsGlobals
 {
-	private PriorityQueue<LlistaRecordsIndividuals> llista_records_individuals = new PriorityQueue<LlistaRecordsIndividuals>();
+	private GestorUsuaris gestor_usuaris;
 
-	public ControladorRecordsGlobals(CriteriRecords criteri)
+	public ControladorRecordsGlobals( CriteriRecords criteri )
 	{
-		this.llista_records_individuals = new PriorityQueue<LlistaRecordsIndividuals>( 5, new ComparadorRecords(
-				criteri ) );
+		gestor_usuaris = new GestorUsuaris();
+	}
 
-		GestorUsuaris gestor_usuaris = new GestorUsuaris();
+	public List<String[]> getLlistaRecords( CriteriRecords criteri )
+	{
+		PriorityQueue<LlistaRecordsIndividuals> llista_records_individuals = new PriorityQueue<LlistaRecordsIndividuals>(
+				5, new ComparadorRecords( criteri ) );
+
 		List<UsuariGomoku> llista_usuaris = gestor_usuaris.carregaTots();
 		for ( UsuariGomoku usuari : llista_usuaris )
 		{
 			llista_records_individuals.add( new LlistaRecordsIndividuals( usuari ) );
 		}
-	}
 
-	public PriorityQueue<LlistaRecordsIndividuals> getRecordsIndividualsOrdenats()
-	{
-		return this.llista_records_individuals;
+		List<String[]> llista_dades = new ArrayList<String[]>();
+		int i = 0;
+		while ( i < 5 && !llista_records_individuals.isEmpty() )
+		{
+			String[] dades = new String[2];
+			LlistaRecordsIndividuals record = llista_records_individuals.poll();
+			dades[0] = record.getUsuari().getNom();
+			dades[1] = "" + AccesRecords.get( record, criteri );
+			llista_dades.add( dades );
+			i++;
+		}
+
+		return llista_dades;
 	}
 
 	private class ComparadorRecords implements Comparator<LlistaRecordsIndividuals>
