@@ -3,6 +3,8 @@ package prop.gomoku.domini.controladors;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+import org.junit.experimental.theories.PotentialAssignment;
+
 import prop.cluster.domini.models.Partida;
 import prop.cluster.domini.models.estats.EstatCasella;
 import prop.gomoku.domini.models.PartidaGomoku;
@@ -15,8 +17,11 @@ public class IAGomokuSimple extends IAGomoku
 	// Con esto se le gana de manera tonta, pero en el resto de situaciones se defiende relativament bien
 	// private static final int[] puntuacio_jugador = { 0, 15, 7, 3, 2 };
 	// private static final int[] puntuacio_oponent = { 0, 16, 8, 4, 4 };
-	private static final int[] puntuacio_jugador = { 0, 8, 8, 4, 4 };
-	private static final int[] puntuacio_oponent = { 0, 10, 8, 4, 4 };
+	// private static final int[] puntuacio_jugador = { 0, 8, 8, 4, 4 };
+	// private static final int[] puntuacio_oponent = { 0, 8, 8, 4, 4 };
+	private static final int[] puntuacio_jugador = { 0, 4, 3, 2, 1 };
+	private static final int[] puntuacio_oponent = { 0, 47 , 3, 2, 1 };
+	private static final int factor_potencial = 5;
 	private PartidaGomoku partida;
 	private EstatCasella color;
 	private int[][] analisi_jugador;
@@ -138,6 +143,87 @@ public class IAGomokuSimple extends IAGomoku
 
 	};
 
+	private int comptaPotencialitatLinia( int fila, int columna, TaulerGomoku tauler, Direccio dir )
+	{
+		EstatCasella color_fitxa = tauler.getEstatCasella( fila, columna );
+		int fitxes_color = 0;
+		switch ( dir )
+		{
+			case HORITZONTAL:
+			{
+				for ( int i = fila - 5; i < fila + 5; i++ )
+				{
+					if ( tauler.esCasellaValida( i, columna ) )
+					{
+						EstatCasella color_casella = tauler.getEstatCasella( i, columna );
+						if ( color_casella == color_fitxa )
+						{
+							fitxes_color++;
+						}
+					}
+				}
+				break;
+			}
+			case VERTICAL:
+			{
+				for ( int j = columna - 5; j < columna + 5; j++ )
+				{
+					if ( tauler.esCasellaValida( fila, j ) )
+					{
+						EstatCasella color_casella = tauler.getEstatCasella( fila, j );
+						if ( color_casella == color_fitxa )
+						{
+							fitxes_color++;
+						}
+					}
+				}
+				break;
+			}
+			case DIAGONAL_DESC:
+			{
+				for ( int i = fila - 5, j = columna - 5; i < fila + 5 && j < columna + 5; i++, j++ )
+				{
+					if ( tauler.esCasellaValida( i, j ) )
+					{
+						EstatCasella color_casella = tauler.getEstatCasella( i, j );
+						if ( color_casella == color_fitxa )
+						{
+							fitxes_color++;
+						}
+					}
+				}
+				break;
+			}
+			case DIAGONAL_ASC:
+				for ( int i = fila + 5, j = columna - 5; i > fila - 5 && j < columna + 5; i--, j++ )
+				{
+					if ( tauler.esCasellaValida( i, j ) )
+					{
+						EstatCasella color_casella = tauler.getEstatCasella( i, j );
+						if ( color_casella == color_fitxa )
+						{
+							fitxes_color++;
+						}
+					}
+				}
+		}
+		
+		switch(fitxes_color)
+		{
+			case 0:
+				return 0;
+			case 1:
+				return 10;
+			case 2:
+				return 100;
+			case 3:
+				return 1000;
+			case 4:
+				return 10000;
+		}
+		return fitxes_color;
+	}
+
 	private boolean potCrearLinia( int fila, int columna, TaulerGomoku tauler, Direccio dir )
 	{
 
@@ -251,8 +337,8 @@ public class IAGomokuSimple extends IAGomoku
 		EstatCasella color_consulta = tauler.getEstatCasella( fila, columna );
 		if ( potCrearLinia( fila, columna, tauler, Direccio.HORITZONTAL ) )
 		{
+			int potencial = comptaPotencialitatLinia( fila, columna, tauler, Direccio.HORITZONTAL ) * factor_potencial;
 			boolean es_util = true;
-			int estalvi = 0;
 			for ( int i = fila; i > fila - 5 && es_util; i-- )
 			{
 				if ( tauler.esCasellaValida( i, columna ) )
@@ -262,20 +348,14 @@ public class IAGomokuSimple extends IAGomoku
 					{
 						es_util = false;
 					}
-					else if ( color_iteracio == color_consulta )
-					{
-						estalvi += puntuacio[fila - i];
-					}
 					else
 					{
-						analisi[i][columna] += puntuacio[fila - i] + estalvi;
-						estalvi = 0;
+						analisi[i][columna] += puntuacio[fila - i] + potencial;
 					}
 				}
 			}
 
 			es_util = true;
-			estalvi = 0;
 			for ( int i = fila; i < fila + 5 && es_util; i++ )
 			{
 				if ( tauler.esCasellaValida( i, columna ) )
@@ -285,14 +365,9 @@ public class IAGomokuSimple extends IAGomoku
 					{
 						es_util = false;
 					}
-					else if ( color_iteracio == color_consulta )
-					{
-						estalvi += puntuacio[i - fila];
-					}
 					else
 					{
-						analisi[i][columna] += puntuacio[i - fila] + estalvi;
-						estalvi = 0;
+						analisi[i][columna] += puntuacio[i - fila] + potencial;
 					}
 				}
 			}
@@ -301,7 +376,7 @@ public class IAGomokuSimple extends IAGomoku
 		if ( potCrearLinia( fila, columna, tauler, Direccio.VERTICAL ) )
 		{
 			boolean es_util = true;
-			int estalvi = 0;
+			int potencial = comptaPotencialitatLinia( fila, columna, tauler, Direccio.VERTICAL ) * factor_potencial;
 			for ( int j = columna; j > columna - 5 && es_util; j-- )
 			{
 				if ( tauler.esCasellaValida( fila, j ) )
@@ -311,20 +386,14 @@ public class IAGomokuSimple extends IAGomoku
 					{
 						es_util = false;
 					}
-					else if ( color_iteracio == color_consulta )
-					{
-						estalvi += puntuacio[columna - j];
-					}
 					else
 					{
-						analisi[fila][j] += puntuacio[columna - j] + estalvi;
-						estalvi = 0;
+						analisi[fila][j] += puntuacio[columna - j] + potencial;
 					}
 				}
 			}
 
 			es_util = true;
-			estalvi = 0;
 			for ( int j = columna; j < columna + 5 && es_util; j++ )
 			{
 				if ( tauler.esCasellaValida( fila, j ) )
@@ -334,15 +403,9 @@ public class IAGomokuSimple extends IAGomoku
 					{
 						es_util = false;
 					}
-					else if ( color_iteracio == color_consulta )
-					{
-						estalvi += puntuacio[j - columna];
-					}
 					else
 					{
-						analisi[fila][j] += puntuacio[j - columna] + estalvi;
-						;
-						estalvi = 0;
+						analisi[fila][j] += puntuacio[j - columna] + potencial;
 					}
 				}
 			}
@@ -350,7 +413,7 @@ public class IAGomokuSimple extends IAGomoku
 		if ( potCrearLinia( fila, columna, tauler, Direccio.DIAGONAL_DESC ) )
 		{
 			boolean es_util = true;
-			int estalvi = 0;
+			int potencial = comptaPotencialitatLinia( fila, columna, tauler, Direccio.DIAGONAL_DESC ) * factor_potencial;
 			for ( int i = fila, j = columna; i > fila - 5 && j > columna - 5 && es_util; i--, j-- )
 			{
 				if ( tauler.esCasellaValida( i, j ) )
@@ -360,20 +423,14 @@ public class IAGomokuSimple extends IAGomoku
 					{
 						es_util = false;
 					}
-					else if ( color_iteracio == color_consulta )
-					{
-						estalvi += puntuacio[columna - j];
-					}
 					else
 					{
-						analisi[i][j] += puntuacio[columna - j] + estalvi;
-						estalvi = 0;
+						analisi[i][j] += puntuacio[columna - j] + potencial;
 					}
 				}
 			}
 
 			es_util = true;
-			estalvi = 0;
 			for ( int i = fila, j = columna; i < fila + 5 && j < columna + 5 && es_util; i++, j++ )
 			{
 				if ( tauler.esCasellaValida( i, j ) )
@@ -383,14 +440,9 @@ public class IAGomokuSimple extends IAGomoku
 					{
 						es_util = false;
 					}
-					else if ( color_iteracio == color_consulta )
-					{
-						estalvi += puntuacio[j - columna];
-					}
 					else
 					{
-						analisi[i][j] += puntuacio[j - columna] + estalvi;
-						estalvi = 0;
+						analisi[i][j] += puntuacio[j - columna] + potencial;
 					}
 				}
 			}
@@ -400,7 +452,7 @@ public class IAGomokuSimple extends IAGomoku
 		if ( potCrearLinia( fila, columna, tauler, Direccio.DIAGONAL_ASC ) )
 		{
 			boolean es_util = true;
-			int estalvi = 0;
+			int potencial = comptaPotencialitatLinia( fila, columna, tauler, Direccio.DIAGONAL_ASC ) * factor_potencial;
 			for ( int i = fila, j = columna; i > fila - 5 && j < columna + 5 && es_util; i--, j++ )
 			{
 				if ( tauler.esCasellaValida( i, j ) )
@@ -410,20 +462,14 @@ public class IAGomokuSimple extends IAGomoku
 					{
 						es_util = false;
 					}
-					else if ( color_iteracio == color_consulta )
-					{
-						estalvi += puntuacio[j - columna];
-					}
 					else
 					{
-						analisi[i][j] += puntuacio[j - columna] + estalvi;
-						estalvi = 0;
+						analisi[i][j] += puntuacio[j - columna] + potencial;
 					}
 				}
 			}
 
 			es_util = true;
-			estalvi = 0;
 			for ( int i = fila, j = columna; i < fila + 5 && j > columna - 5 && es_util; i++, j-- )
 			{
 				if ( tauler.esCasellaValida( i, j ) )
@@ -433,13 +479,8 @@ public class IAGomokuSimple extends IAGomoku
 					{
 						es_util = false;
 					}
-					else if ( color_iteracio == color_consulta )
 					{
-						estalvi += puntuacio[columna - j];
-					}
-					{
-						analisi[i][j] += puntuacio[columna - j] + estalvi;
-						estalvi = 0;
+						analisi[i][j] += puntuacio[columna - j] + potencial;
 					}
 				}
 			}
