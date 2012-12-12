@@ -175,12 +175,11 @@ public class FrameMenuPrincipal extends JFrame
 			public void run()
 			{
 				FrameMenuPrincipal frame = new FrameMenuPrincipal();
-				frame.setDefaultCloseOperation( FrameMenuPrincipal.EXIT_ON_CLOSE );
-				frame.setTitle( "FrameMenuPrincipal" );
+				frame.setDefaultCloseOperation( FrameMenuPrincipal.EXIT_ON_CLOSE);
 				frame.getContentPane().setPreferredSize( frame.getSize() );
 				frame.pack();
 				frame.setLocationRelativeTo( null );
-				frame.setVisible( true );
+				frame.setVisible(true);
 			}
 		} );
 	}
@@ -221,5 +220,13 @@ public class FrameMenuPrincipal extends JFrame
 		// TODO
 		System.out.println("Abans d'anar-nos del menu principal: " + this.controlador_presentacio.getUsuariActual());
 		controlador_presentacio.sincronitzacioMenuEstadistiques( this );
+	}
+	public void menuConvidat(){
+		/*jButton1.setEnabled(false);
+		jButton1.setFocusable(false);
+		jButton2.setEnabled(false);
+		jButton2.setFocusable(false);
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);*/
 	}
 }

@@ -116,7 +116,6 @@ public class FrameNovaPartida extends JFrame {
 			public void run() {
 				FrameNovaPartida frame = new FrameNovaPartida();
 				frame.setDefaultCloseOperation(FrameNovaPartida.EXIT_ON_CLOSE);
-				frame.setTitle("FrameNovaPartida");
 				frame.getContentPane().setPreferredSize(frame.getSize());
 				frame.pack();
 				frame.setLocationRelativeTo(null);

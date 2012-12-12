@@ -22,24 +22,36 @@ public class FrameBenvingut extends JFrame
 	private JButton jButton2;
 	private JButton jButton0;
 	private JLabel jLabel0;
+	private JButton jButton3;
 	private static final String PREFERRED_LOOK_AND_FEEL = "javax.swing.plaf.metal.MetalLookAndFeel";
-
 	public FrameBenvingut()
 	{
 		controlador_presentacio = new ControladorPresentacio();
 		initComponents();
 	}
-	private void initComponents()
-	{
-		setTitle( "Gomoku - Benvinguts" );
-		setLayout( new GroupLayout() );
-		add( getJButton2(), new Constraints( new Leading( 109, 12, 12 ), new Leading( 157, 10, 10 ) ) );
-		add( getJButton1(), new Constraints( new Leading( 109, 12, 12 ), new Leading( 113, 12, 12 ) ) );
-		add( getJButton0(), new Constraints( new Leading( 109, 12, 12 ), new Leading( 69, 12, 12 ) ) );
-		add( getJLabel0(), new Constraints( new Leading( 106, 139, 10, 10 ), new Leading( 6, 38, 10, 10 ) ) );
-		setSize( 320, 240 );
+	private void initComponents() {
+		setTitle("Gomoku - Benvinguts");
+		setLayout(new GroupLayout());
+		add(getJButton0(), new Constraints(new Leading(109, 12, 12), new Leading(69, 12, 12)));
+		add(getJLabel0(), new Constraints(new Leading(106, 139, 10, 10), new Leading(6, 38, 10, 10)));
+		add(getJButton3(), new Constraints(new Leading(109, 12, 12), new Leading(113, 12, 12)));
+		add(getJButton1(), new Constraints(new Leading(109, 12, 12), new Leading(157, 12, 12)));
+		add(getJButton2(), new Constraints(new Leading(109, 12, 12), new Leading(201, 12, 12)));
+		setSize(320, 248);
 	}
-
+	private JButton getJButton3() {
+		if (jButton3 == null) {
+			jButton3 = new JButton();
+			jButton3.setText("Entrar com a convidat");
+			jButton3.addMouseListener(new MouseAdapter() {
+	
+				public void mouseClicked(MouseEvent event) {
+					jButton3MouseMouseClicked(event);
+				}
+			});
+		}
+		return jButton3;
+	}
 	private JLabel getJLabel0()
 	{
 		if ( jLabel0 == null )
@@ -153,6 +165,9 @@ public class FrameBenvingut extends JFrame
 	private void jButton1MouseMouseClicked( MouseEvent event )
 	{
 			controlador_presentacio.sincronizacionBenvingutRegistrar( this );		
+	}
+	private void jButton3MouseMouseClicked(MouseEvent event) {
+		controlador_presentacio.sincronitzacioBenvingutMenu(this);
 	}
 
 }

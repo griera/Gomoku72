@@ -34,7 +34,7 @@ public class FrameError extends JFrame {
 		setLayout(new GroupLayout());
 		add(getJLabel0(), new Constraints(new Leading(12, 12, 12), new Leading(27, 10, 10)));
 		add(getJButton0(), new Constraints(new Leading(174, 99, 10, 10), new Trailing(12, 40, 12, 12)));
-		setSize(474, 232);
+		setSize(513, 232);
 	}
 	public void MissatgeActiva(String missatge){
 		jLabel0.setText(missatge);
@@ -87,7 +87,6 @@ public class FrameError extends JFrame {
 			public void run() {
 				FrameError frame = new FrameError();
 				frame.setDefaultCloseOperation(FrameError.EXIT_ON_CLOSE);
-				frame.setTitle("FrameError");
 				frame.getContentPane().setPreferredSize(frame.getSize());
 				frame.pack();
 				frame.setLocationRelativeTo(null);

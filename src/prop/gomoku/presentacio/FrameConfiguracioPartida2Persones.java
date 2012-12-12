@@ -220,7 +220,6 @@ public class FrameConfiguracioPartida2Persones extends JFrame {
 			public void run() {
 				FrameConfiguracioPartida2Persones frame = new FrameConfiguracioPartida2Persones();
 				frame.setDefaultCloseOperation(FrameConfiguracioPartida2Persones.EXIT_ON_CLOSE);
-				frame.setTitle("FrameConfiguracioPartida1");
 				frame.getContentPane().setPreferredSize(frame.getSize());
 				frame.pack();
 				frame.setLocationRelativeTo(null);
@@ -293,6 +292,12 @@ public class FrameConfiguracioPartida2Persones extends JFrame {
 			char [] contrasenyachar = jPasswordField0.getPassword();
 			for(int iterador=0;iterador<contrasenyachar.length;++iterador){
 				contrasenya+=contrasenyachar[iterador];
+			}
+			if(jTextField0.equals(controlador_presentacio.getUsuariActual())){
+				FrameError error = new FrameError();
+				error.main();
+				error.MissatgeActiva("L'usuari introduit esta actualment loguejat en el sistema,introdueixi un usuari diferent, si us plau.");
+				jPasswordField0.setText("");
 			}
 			controlador_presentacio.IdentificarOponent( this, jTextField0.getText(), contrasenya);
 		}

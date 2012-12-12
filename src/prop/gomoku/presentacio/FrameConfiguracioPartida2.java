@@ -180,7 +180,6 @@ public class FrameConfiguracioPartida2 extends JFrame {
 			public void run() {
 				FrameConfiguracioPartida2 frame = new FrameConfiguracioPartida2();
 				frame.setDefaultCloseOperation(FrameConfiguracioPartida2.EXIT_ON_CLOSE);
-				frame.setTitle("FrameConfiguracioPartida1");
 				frame.getContentPane().setPreferredSize(frame.getSize());
 				frame.pack();
 				frame.setLocationRelativeTo(null);

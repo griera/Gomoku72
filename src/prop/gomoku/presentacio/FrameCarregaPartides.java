@@ -3,7 +3,7 @@ package prop.gomoku.presentacio;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
-import prop.gomoku.domini.controladors.ControladorPartidesGuardades;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,6 +17,7 @@ import org.dyno.visual.swing.layouts.Constraints;
 import org.dyno.visual.swing.layouts.GroupLayout;
 import org.dyno.visual.swing.layouts.Leading;
 
+import prop.gomoku.domini.controladors.ControladorPartidesGuardades;
 import prop.gomoku.domini.models.PartidaGomoku;
 
 //VS4E -- DO NOT REMOVE THIS LINE!
@@ -42,20 +43,19 @@ public class FrameCarregaPartides extends JFrame
 	private void initComponents() {
 		setTitle("Gomoku - Gestió de partides guardades");
 		setLayout(new GroupLayout());
-		controlador_presentacio = new ControladorPresentacio();
 		add(getJLabel0(), new Constraints(new Leading(94, 10, 10), new Leading(12, 12, 12)));
 		add(getJButton0(), new Constraints(new Leading(315, 130, 10, 10), new Leading(68, 12, 12)));
 		add(getJButton1(), new Constraints(new Leading(315, 130, 12, 12), new Leading(106, 12, 12)));
 		add(getJButton2(), new Constraints(new Leading(315, 12, 12), new Leading(144, 12, 12)));
 		add(getJScrollPane0(), new Constraints(new Leading(13, 276, 10, 10), new Leading(67, 135, 10, 10)));
-		add(getJButton3(), new Constraints(new Leading(373, 12, 12), new Leading(199, 10, 10)));
-		setSize(464, 240);
+		add(getJButton3(), new Constraints(new Leading(315, 130, 12, 12), new Leading(184, 10, 10)));
+		setSize(503, 253);
 	}
 
 	private JButton getJButton3() {
 		if (jButton3 == null) {
 			jButton3 = new JButton();
-			jButton3.setText("Enrere");
+			jButton3.setText("Menu Principal");
 			jButton3.addMouseListener(new MouseAdapter() {
 	
 				public void mouseClicked(MouseEvent event) {
@@ -156,7 +156,6 @@ public class FrameCarregaPartides extends JFrame
 			{
 				FrameCarregaPartides frame = new FrameCarregaPartides();
 				frame.setDefaultCloseOperation( FrameCarregaPartides.EXIT_ON_CLOSE );
-				frame.setTitle( "FrameCarregaPartides" );
 				frame.getContentPane().setPreferredSize( frame.getSize() );
 				frame.pack();
 				frame.setLocationRelativeTo( null );
@@ -194,9 +193,9 @@ public class FrameCarregaPartides extends JFrame
 	}
 
 	private void jButton2MouseMouseClicked(MouseEvent event) {
-//		jList0. TODO
-		ControladorPartidesGuardades controlador_partida = new ControladorPartidesGuardades();
-//		controlador_partida.
+//		jList0.
+//		ControladorPartida controlador_partida = new ControladorPartidesGuardades();
+//		controlador_partida
 	}
 
 }

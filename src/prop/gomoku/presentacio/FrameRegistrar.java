@@ -199,7 +199,18 @@ public class FrameRegistrar extends JFrame {
 			password1 += pass1[iterador];
 			password2 += pass2[iterador];
 		}
-		if (password1.contentEquals(password2)) {
+		boolean iguals = true;
+		if(password1.length()!=password2.length()){
+			iguals=false;
+		}
+		else {
+			for(int iterador=0;iterador>pass1.length;++iterador){
+				if(pass1[iterador]!=pass2[iterador]){
+					iguals=false;
+				}
+			}
+		}
+		if (iguals) {
 			if(password1.length()>=4){
 			controlador_presentacio.RegistrarJugador(this,
 					jTextField0.getText(), password1);
@@ -208,6 +219,8 @@ public class FrameRegistrar extends JFrame {
 				FrameError error = new FrameError();
 				error.main();
 				error.MissatgeActiva("Si us plau introdueixi una contrasenya de com a mínim 4 caracters");
+				jPasswordField0.setText("");
+				jPasswordField1.setText("");
 			}
 			} 
 		else {

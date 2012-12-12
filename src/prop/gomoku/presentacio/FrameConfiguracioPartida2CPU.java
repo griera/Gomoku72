@@ -238,7 +238,6 @@ public class FrameConfiguracioPartida2CPU extends JFrame
 			{
 				FrameConfiguracioPartida2CPU frame = new FrameConfiguracioPartida2CPU();
 				frame.setDefaultCloseOperation( FrameConfiguracioPartida2CPU.EXIT_ON_CLOSE );
-				frame.setTitle( "FrameConfiguracioPartida2CPU" );
 				frame.getContentPane().setPreferredSize( frame.getSize() );
 				frame.pack();
 				frame.setLocationRelativeTo( null );
