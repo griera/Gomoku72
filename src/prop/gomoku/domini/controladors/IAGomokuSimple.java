@@ -20,7 +20,7 @@ public class IAGomokuSimple extends IAGomoku
 	// private static final int[] puntuacio_jugador = { 0, 8, 8, 4, 4 };
 	// private static final int[] puntuacio_oponent = { 0, 8, 8, 4, 4 };
 	private static final int[] puntuacio_jugador = { 0, 4, 3, 2, 1 };
-	private static final int[] puntuacio_oponent = { 0, 47 , 3, 2, 1 };
+	private static final int[] puntuacio_oponent = { 0, 47, 3, 2, 1 };
 	private static final int factor_potencial = 5;
 	private PartidaGomoku partida;
 	private EstatCasella color;
@@ -28,20 +28,19 @@ public class IAGomokuSimple extends IAGomoku
 	private int[][] analisi_oponent;
 	PriorityQueue<int[]> millors_caselles;
 
-	public IAGomokuSimple( PartidaGomoku partida, EstatCasella color )
+	public IAGomokuSimple( /*PartidaGomoku partida, EstatCasella color*/ )
 	{
-		if ( color == EstatCasella.BUIDA )
-		{
-			throw new IllegalArgumentException( "color ha de representar a un jugador" );
-		}
-		this.partida = partida;
-		this.color = color;
-
-		millors_caselles = new PriorityQueue<int[]>();
-
-		int mida = partida.getTauler().getMida();
-		this.analisi_jugador = new int[mida][mida];
-		this.analisi_oponent = new int[mida][mida];
+		// if ( color == EstatCasella.BUIDA )
+		// {
+		// throw new IllegalArgumentException( "color ha de representar a un jugador" );
+		// }
+		// this.partida = partida;
+		// this.color = color;
+		//
+		// millors_caselles = new PriorityQueue<int[]>();
+		// int mida = partida.getTauler().getMida();
+		// this.analisi_jugador = new int[mida][mida];
+		// this.analisi_oponent = new int[mida][mida];
 	}
 
 	// TODO documentar
@@ -118,6 +117,20 @@ public class IAGomokuSimple extends IAGomoku
 	public int[] computaMoviment( Partida partida, EstatCasella estat_casella, int fila_ult_moviment,
 			int columna_ult_moviment )
 	{
+
+		if ( estat_casella == EstatCasella.BUIDA )
+		{
+			throw new IllegalArgumentException( "color ha de representar a un jugador" );
+		}
+
+		this.partida = (PartidaGomoku) partida;
+		this.color = estat_casella;
+
+		millors_caselles = new PriorityQueue<int[]>();
+		int mida = partida.getTauler().getMida();
+		this.analisi_jugador = new int[mida][mida];
+		this.analisi_oponent = new int[mida][mida];
+
 		return computaMoviment();
 	}
 
@@ -207,8 +220,8 @@ public class IAGomokuSimple extends IAGomoku
 					}
 				}
 		}
-		
-		switch(fitxes_color)
+
+		switch ( fitxes_color )
 		{
 			case 0:
 				return 0;
@@ -413,7 +426,8 @@ public class IAGomokuSimple extends IAGomoku
 		if ( potCrearLinia( fila, columna, tauler, Direccio.DIAGONAL_DESC ) )
 		{
 			boolean es_util = true;
-			int potencial = comptaPotencialitatLinia( fila, columna, tauler, Direccio.DIAGONAL_DESC ) * factor_potencial;
+			int potencial = comptaPotencialitatLinia( fila, columna, tauler, Direccio.DIAGONAL_DESC )
+					* factor_potencial;
 			for ( int i = fila, j = columna; i > fila - 5 && j > columna - 5 && es_util; i--, j-- )
 			{
 				if ( tauler.esCasellaValida( i, j ) )

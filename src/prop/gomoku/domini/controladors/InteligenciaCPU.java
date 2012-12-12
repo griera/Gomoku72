@@ -44,7 +44,7 @@ public class InteligenciaCPU
 		{
 			case FACIL:
 				// TODO no és la que tocaria
-				ia = new IAGomoku();
+				ia = new IAGomokuSimple();
 				break;
 			case MITJA:
 				ia = new IAGomoku();

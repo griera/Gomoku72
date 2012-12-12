@@ -14,7 +14,7 @@ public class TestIAGomokuSimple
 		UsuariGomoku jugador_a = new UsuariGomoku( "A", "passwordA" );
 		UsuariGomoku jugador_b = new UsuariGomoku( "B", "passwordB" );
 		PartidaGomoku partida = new PartidaGomoku( jugador_a, jugador_a, jugador_b, new TaulerGomoku(), "C" );
-		IAGomokuSimple simple_b = new IAGomokuSimple( partida, EstatCasella.JUGADOR_B );
+		IAGomokuSimple simple_b = new IAGomokuSimple();
 
 		LecturaScanners lectura = new LecturaScanners();
 
@@ -39,7 +39,7 @@ public class TestIAGomokuSimple
 			}
 			else
 			{
-				int[] moviment = simple_b.computaMoviment();
+				int[] moviment = simple_b.computaMoviment( partida, EstatCasella.JUGADOR_B, 0, 0 );
 				System.out.println(simple_b);
 				System.out.println("Moviment decidit: " + moviment[0] + ", " + moviment[1]);
 				try{
