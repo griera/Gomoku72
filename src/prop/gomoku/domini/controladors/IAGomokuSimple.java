@@ -117,6 +117,12 @@ public class IAGomokuSimple extends IAGomoku
 	public int[] computaMoviment( Partida partida, EstatCasella estat_casella, int fila_ult_moviment,
 			int columna_ult_moviment )
 	{
+		if (partida.getTornsJugats() == 0)
+		{
+			int[] moviment = {7, 7};
+			return moviment;
+		}
+		
 
 		if ( estat_casella == EstatCasella.BUIDA )
 		{
