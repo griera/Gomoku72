@@ -18,7 +18,7 @@ public class IAGomokuSimple extends IAGomoku
 	// private static final int[] puntuacio_jugador = { 0, 8, 8, 4, 4 };
 	// private static final int[] puntuacio_oponent = { 0, 8, 8, 4, 4 };
 	private static final int[] puntuacio_jugador = { 0, 4, 3, 2, 1 };
-	private static final int[] puntuacio_oponent = { 0, 47, 3, 2, 1 };
+	private static final int[] puntuacio_oponent = { 0, 4, 3, 2, 1 };
 	private static final int factor_potencial = 5;
 	private PartidaGomoku partida;
 	private EstatCasella color;
@@ -258,7 +258,7 @@ public class IAGomokuSimple extends IAGomoku
 				break;
 		}
 
-		return puntuacio;
+		return puntuacio * factor_potencial;
 	}
 
 	private boolean potCrearLinia( int fila, int columna, TaulerGomoku tauler, Direccio dir )
@@ -374,7 +374,7 @@ public class IAGomokuSimple extends IAGomoku
 		EstatCasella color_consulta = tauler.getEstatCasella( fila, columna );
 		if ( potCrearLinia( fila, columna, tauler, Direccio.HORITZONTAL ) )
 		{
-			int potencial = comptaPotencialitatLinia( fila, columna, tauler, Direccio.HORITZONTAL ) * factor_potencial;
+			int potencial = comptaPotencialitatLinia( fila, columna, tauler, Direccio.HORITZONTAL );
 			boolean es_util = true;
 			for ( int i = fila; i > fila - 5 && es_util; i-- )
 			{
@@ -413,7 +413,7 @@ public class IAGomokuSimple extends IAGomoku
 		if ( potCrearLinia( fila, columna, tauler, Direccio.VERTICAL ) )
 		{
 			boolean es_util = true;
-			int potencial = comptaPotencialitatLinia( fila, columna, tauler, Direccio.VERTICAL ) * factor_potencial;
+			int potencial = comptaPotencialitatLinia( fila, columna, tauler, Direccio.VERTICAL );
 			for ( int j = columna; j > columna - 5 && es_util; j-- )
 			{
 				if ( tauler.esCasellaValida( fila, j ) )
@@ -450,8 +450,7 @@ public class IAGomokuSimple extends IAGomoku
 		if ( potCrearLinia( fila, columna, tauler, Direccio.DIAGONAL_DESC ) )
 		{
 			boolean es_util = true;
-			int potencial = comptaPotencialitatLinia( fila, columna, tauler, Direccio.DIAGONAL_DESC )
-					* factor_potencial;
+			int potencial = comptaPotencialitatLinia( fila, columna, tauler, Direccio.DIAGONAL_DESC );
 			for ( int i = fila, j = columna; i > fila - 5 && j > columna - 5 && es_util; i--, j-- )
 			{
 				if ( tauler.esCasellaValida( i, j ) )
@@ -490,7 +489,7 @@ public class IAGomokuSimple extends IAGomoku
 		if ( potCrearLinia( fila, columna, tauler, Direccio.DIAGONAL_ASC ) )
 		{
 			boolean es_util = true;
-			int potencial = comptaPotencialitatLinia( fila, columna, tauler, Direccio.DIAGONAL_ASC ) * factor_potencial;
+			int potencial = comptaPotencialitatLinia( fila, columna, tauler, Direccio.DIAGONAL_ASC );
 			for ( int i = fila, j = columna; i > fila - 5 && j < columna + 5 && es_util; i--, j++ )
 			{
 				if ( tauler.esCasellaValida( i, j ) )
