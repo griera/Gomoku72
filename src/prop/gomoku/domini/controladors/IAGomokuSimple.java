@@ -3,8 +3,6 @@ package prop.gomoku.domini.controladors;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-import org.junit.experimental.theories.PotentialAssignment;
-
 import prop.cluster.domini.models.Partida;
 import prop.cluster.domini.models.estats.EstatCasella;
 import prop.gomoku.domini.models.PartidaGomoku;
@@ -28,7 +26,7 @@ public class IAGomokuSimple extends IAGomoku
 	private int[][] analisi_oponent;
 	PriorityQueue<int[]> millors_caselles;
 
-	public IAGomokuSimple( /*PartidaGomoku partida, EstatCasella color*/ )
+	public IAGomokuSimple( /* PartidaGomoku partida, EstatCasella color */)
 	{
 		// if ( color == EstatCasella.BUIDA )
 		// {
@@ -117,12 +115,11 @@ public class IAGomokuSimple extends IAGomoku
 	public int[] computaMoviment( Partida partida, EstatCasella estat_casella, int fila_ult_moviment,
 			int columna_ult_moviment )
 	{
-		if (partida.getTornsJugats() == 0)
+		if ( partida.getTornsJugats() == 0 )
 		{
-			int[] moviment = {7, 7};
+			int[] moviment = { 7, 7 };
 			return moviment;
 		}
-		
 
 		if ( estat_casella == EstatCasella.BUIDA )
 		{
@@ -227,20 +224,41 @@ public class IAGomokuSimple extends IAGomoku
 				}
 		}
 
+		int puntuacio = 0;
 		switch ( fitxes_color )
 		{
 			case 0:
-				return 0;
+				puntuacio = 0;
+				break;
 			case 1:
-				return 10;
+				puntuacio = 10;
+				break;
 			case 2:
-				return 100;
+				if ( color == EstatCasella.JUGADOR_A && color_fitxa == EstatCasella.JUGADOR_B )
+				{
+					puntuacio = 1000;
+				}
+				else
+				{
+					puntuacio = 100;
+				}
+				break;
 			case 3:
-				return 1000;
+				if ( color == EstatCasella.JUGADOR_A && color_fitxa == EstatCasella.JUGADOR_B )
+				{
+					puntuacio = 10000;
+				}
+				else
+				{
+					puntuacio = 1000;
+				}
+				break;
 			case 4:
-				return 10000;
+				puntuacio = 10000;
+				break;
 		}
-		return fitxes_color;
+
+		return puntuacio;
 	}
 
 	private boolean potCrearLinia( int fila, int columna, TaulerGomoku tauler, Direccio dir )
