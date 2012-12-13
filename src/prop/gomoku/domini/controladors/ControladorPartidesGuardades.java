@@ -47,5 +47,13 @@ public class ControladorPartidesGuardades
 			return false;
 		}
 	}
+	
+	/**
+	 * Mètode per esborrar una partida del sistema ja hi constava
+	 */
+	public boolean esborraPartida(PartidaGomoku partida)
+	{
+		return this.gestor.esborraPartida(partida);
+	}
 
 }
