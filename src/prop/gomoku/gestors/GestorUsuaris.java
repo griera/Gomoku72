@@ -24,7 +24,7 @@ import prop.gomoku.gestors.excepcions.UsuariNoExisteix;
  */
 public class GestorUsuaris
 {
-	private static final String ruta_usuaris = System.getProperty( "user.home" ) + "/gomoku72/usuaris/";
+	private static final String ruta_usuaris = System.getProperty( "user.dir" ) + "/gomoku72/usuaris/";
 	private static final String extensio = ".usr";
 
 	/**
