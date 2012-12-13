@@ -29,6 +29,11 @@ public class GestorPartidesGuardades
 	private static final String ruta_partides_guardades = System.getProperty( "user.dir" ) + "/gomoku72/partides/";
 
 	/**
+	 * Extensió dels fitxers de partida al sistema
+	 */
+	private static final String extensio = ".par";
+
+	/**
 	 * Mètode per guardar al sistema de fitxers una partida
 	 * 
 	 * @param partida Partida que es vol guardar
@@ -38,8 +43,7 @@ public class GestorPartidesGuardades
 	public String guardaPartida( PartidaGomoku partida )
 	{
 		creaArbreDirectoris();
-		String nom_fitxer = partida.getDataCreacio().toString().replace( " ", "" ).replace( ":", "" ).replace( ".", "" )
-				+ ".ser";
+		String nom_fitxer = getNomFitxer( partida );
 		String ruta_fitxer = null;
 		try
 		{
@@ -161,6 +165,28 @@ public class GestorPartidesGuardades
 	{
 		return ruta_partides_guardades;
 	}
-	
-	// TODO integrar reanomenament i  esborrar
+
+	/**
+	 * Mètode per esborrar una partida del sistema només si una còpia d'aquesta amb el mateix identificador de data de
+	 * creació ja existeix a disc i no hi ha cap tipus de problema d'accés
+	 * 
+	 * @param partida Partida que volem eliminar del sistema
+	 * @return <em>true</em> si l'eliminació es realitza amb èxit; <em>false</em> en cas contrari
+	 */
+	public boolean esborraPartida( PartidaGomoku partida )
+	{
+		File fitxer_partida = new File( ruta_partides_guardades + getNomFitxer( partida ) );
+		try
+		{
+			return fitxer_partida.delete();
+		} catch ( SecurityException e )
+		{
+			return false;
+		}
+	}
+
+	private String getNomFitxer( PartidaGomoku partida )
+	{
+		return partida.getDataCreacio().toString().replace( " ", "" ).replace( ":", "" ).replace( ".", "" ) + extensio;
+	}
 }
