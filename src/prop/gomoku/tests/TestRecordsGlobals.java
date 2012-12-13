@@ -9,6 +9,14 @@ public class TestRecordsGlobals
 {
 	public static void main( String[] args )
 	{
+		int cont = 0;
+		for (CriteriRecords criteri : CriteriRecords.values())
+		{
+			cont++;
+			System.out.println(criteri);
+			System.out.println(cont);
+		}
+		
 		ControladorRecordsGlobals ctrl_records = new ControladorRecordsGlobals();
 		for ( CriteriRecords criteri : CriteriRecords.values() )
 		{
