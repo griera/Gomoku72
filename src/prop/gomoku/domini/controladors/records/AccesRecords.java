@@ -8,13 +8,13 @@ import prop.gomoku.domini.models.ResumResultats;
 
 public class AccesRecords
 {
-	public static int get(LlistaRecordsIndividuals llista_records, CriteriRecords criteri)
+	public static int get( LlistaRecordsIndividuals llista_records, CriteriRecords criteri )
 	{
 		Dificultat dificultat;
 		Resultat resultat;
 		boolean percentual;
-		
-		if (criteri.toString().startsWith( "NUM" ))
+
+		if ( criteri.toString().startsWith( "NUM" ) )
 		{
 			percentual = false;
 		}
@@ -22,38 +22,46 @@ public class AccesRecords
 		{
 			percentual = true;
 		}
-		
-		if (criteri.toString().contains( "VICTORIES" ))
+
+		if ( criteri.toString().contains( "VICTORIES" ) )
 		{
 			resultat = Resultat.VICTORIA;
 		}
-		else if (criteri.toString().contains( "EMPATS" ))
+		else if ( criteri.toString().contains( "EMPATS" ) )
 		{
 			resultat = Resultat.EMPAT;
 		}
-		else
+		else if ( criteri.toString().contains( "DERROTES" ) )
 		{
 			resultat = Resultat.DERROTA;
 		}
-	
-		if (criteri.toString().contains( "HUMA" ))
+		else
+		{
+			resultat = Resultat.TOTS;
+		}
+
+		if ( criteri.toString().contains( "HUMA" ) )
 		{
 			dificultat = Dificultat.HUMA;
 		}
-		else if (criteri.toString().contains( "FACIL" ))
+		else if ( criteri.toString().contains( "FACIL" ) )
 		{
 			dificultat = Dificultat.FACIL;
 		}
-		else if (criteri.toString().contains( "MITJA" ))
+		else if ( criteri.toString().contains( "MITJA" ) )
 		{
 			dificultat = Dificultat.MITJA;
 		}
-		else
+		else if ( criteri.toString().contains( "DIFICIL" ) )
 		{
 			dificultat = Dificultat.DIFICIL;
 		}
-		
-		if (percentual)
+		else
+		{
+			dificultat = Dificultat.TOTES;
+		}
+
+		if ( percentual )
 		{
 			return getPercentuals( llista_records, dificultat, resultat );
 		}
@@ -81,6 +89,8 @@ public class AccesRecords
 						return vict.getNumMitja();
 					case DIFICIL:
 						return vict.getNumDificils();
+					case TOTES:
+						return vict.getNumTotal();
 				}
 				break;
 			}
@@ -97,6 +107,8 @@ public class AccesRecords
 						return emp.getNumMitja();
 					case DIFICIL:
 						return emp.getNumDificils();
+					case TOTES:
+						return emp.getNumTotal();
 				}
 				break;
 			}
@@ -113,9 +125,28 @@ public class AccesRecords
 						return der.getNumMitja();
 					case DIFICIL:
 						return der.getNumDificils();
+					case TOTES:
+						return der.getNumTotal();
 				}
 				break;
 			}
+
+			case TOTS:
+				ResumResultats tots = est.getTotalDisputades();
+				switch ( dificultat )
+				{
+					case HUMA:
+						return tots.getNumHumans();
+					case FACIL:
+						return tots.getNumFacils();
+					case MITJA:
+						return tots.getNumMitja();
+					case DIFICIL:
+						return tots.getNumDificils();
+					case TOTES:
+						return tots.getNumTotal();
+				}
+				break;
 		}
 		return 0;
 	}
@@ -138,6 +169,8 @@ public class AccesRecords
 						return vict.getNumMitja();
 					case DIFICIL:
 						return vict.getNumDificils();
+					case TOTES:
+						return vict.getNumTotal();
 				}
 				break;
 			}
@@ -154,6 +187,8 @@ public class AccesRecords
 						return emp.getNumMitja();
 					case DIFICIL:
 						return emp.getNumDificils();
+					case TOTES:
+						return emp.getNumTotal();
 				}
 				break;
 			}
@@ -170,9 +205,28 @@ public class AccesRecords
 						return der.getNumMitja();
 					case DIFICIL:
 						return der.getNumDificils();
+					case TOTES:
+						return der.getNumTotal();
 				}
 				break;
 			}
+			case TOTS:
+				// No té sentit de que es doni aquest cas
+				ResumResultats tots = est.getTotalDisputades();
+				switch ( dificultat )
+				{
+					case HUMA:
+						return tots.getNumHumans();
+					case FACIL:
+						return tots.getNumFacils();
+					case MITJA:
+						return tots.getNumMitja();
+					case DIFICIL:
+						return tots.getNumDificils();
+					case TOTES:
+						return tots.getNumTotal();
+				}
+				break;
 		}
 		return 0;
 	}

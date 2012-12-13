@@ -71,6 +71,7 @@ public class ControladorRecordsGlobals
 				case NUM_VICTORIES_FACIL:
 					num_a = AccesRecords.getAbsoluts( a, Dificultat.FACIL, Resultat.VICTORIA );
 					num_b = AccesRecords.getAbsoluts( b, Dificultat.FACIL, Resultat.VICTORIA );
+					break;
 				case NUM_VICTORIES_MITJA:
 					num_a = AccesRecords.getAbsoluts( a, Dificultat.MITJA, Resultat.VICTORIA );
 					num_b = AccesRecords.getAbsoluts( b, Dificultat.MITJA, Resultat.VICTORIA );
@@ -118,6 +119,7 @@ public class ControladorRecordsGlobals
 				case PER_VICTORIES_FACIL:
 					num_a = AccesRecords.getPercentuals( a, Dificultat.FACIL, Resultat.VICTORIA );
 					num_b = AccesRecords.getPercentuals( b, Dificultat.FACIL, Resultat.VICTORIA );
+					break;
 				case PER_VICTORIES_MITJA:
 					num_a = AccesRecords.getPercentuals( a, Dificultat.MITJA, Resultat.VICTORIA );
 					num_b = AccesRecords.getPercentuals( b, Dificultat.MITJA, Resultat.VICTORIA );
@@ -158,14 +160,57 @@ public class ControladorRecordsGlobals
 					num_a = AccesRecords.getPercentuals( a, Dificultat.DIFICIL, Resultat.DERROTA );
 					num_b = AccesRecords.getPercentuals( b, Dificultat.DIFICIL, Resultat.DERROTA );
 					break;
+				case NUM_VICTORIES_TOTAL:
+					num_a = AccesRecords.getAbsoluts( a, Dificultat.TOTES, Resultat.VICTORIA );
+					num_b = AccesRecords.getAbsoluts( b, Dificultat.TOTES, Resultat.EMPAT );
+					break;
+				case NUM_EMPATS_TOTAL:
+					num_a = AccesRecords.getAbsoluts( a, Dificultat.TOTES, Resultat.EMPAT );
+					num_b = AccesRecords.getAbsoluts( b, Dificultat.TOTES, Resultat.EMPAT );
+					break;
+				case NUM_DERROTES_TOTAL:
+					num_a = AccesRecords.getAbsoluts( a, Dificultat.TOTES, Resultat.DERROTA );
+					num_b = AccesRecords.getAbsoluts( b, Dificultat.TOTES, Resultat.DERROTA );
+					break;
+				case PER_VICTORIES_TOTAL:
+					num_a = AccesRecords.getPercentuals( a, Dificultat.TOTES, Resultat.VICTORIA );
+					num_b = AccesRecords.getPercentuals( b, Dificultat.TOTES, Resultat.EMPAT );
+					break;
+				case PER_EMPATS_TOTAL:
+					num_a = AccesRecords.getPercentuals( a, Dificultat.TOTES, Resultat.EMPAT );
+					num_b = AccesRecords.getPercentuals( b, Dificultat.TOTES, Resultat.EMPAT );
+					break;
+				case PER_DERROTES_TOTAL:
+					num_a = AccesRecords.getPercentuals( a, Dificultat.TOTES, Resultat.DERROTA );
+					num_b = AccesRecords.getPercentuals( b, Dificultat.TOTES, Resultat.DERROTA );
+					break;
+				case NUM_PARTIDES_HUMA:
+					num_a = AccesRecords.getAbsoluts( a, Dificultat.HUMA, Resultat.TOTS );
+					num_b = AccesRecords.getAbsoluts( b, Dificultat.HUMA, Resultat.TOTS );
+					break;
+				case NUM_PARTIDES_FACIL:
+					num_a = AccesRecords.getAbsoluts( a, Dificultat.FACIL, Resultat.TOTS );
+					num_b = AccesRecords.getAbsoluts( b, Dificultat.FACIL, Resultat.TOTS );
+					break;
+				case NUM_PARTIDES_MITJA:
+					num_a = AccesRecords.getAbsoluts( a, Dificultat.MITJA, Resultat.TOTS );
+					num_b = AccesRecords.getAbsoluts( b, Dificultat.MITJA, Resultat.TOTS );
+					break;
+				case NUM_PARTIDES_DIFICIL:
+					num_a = AccesRecords.getAbsoluts( a, Dificultat.DIFICIL, Resultat.TOTS );
+					num_b = AccesRecords.getAbsoluts( b, Dificultat.DIFICIL, Resultat.TOTS );
+					break;
+				case NUM_PARTIDES_TOTAL:
+					num_a = AccesRecords.getAbsoluts( a, Dificultat.TOTES, Resultat.TOTS );
+					num_b = AccesRecords.getAbsoluts( b, Dificultat.TOTES, Resultat.TOTS );
+					break;
+
 			}
 
-			// if ( num_a > num_b )
 			if ( num_a < num_b )
 			{
 				return 1;
 			}
-			// else if ( num_a < num_b )
 			else if ( num_a > num_b )
 			{
 				return -1;
@@ -179,11 +224,11 @@ public class ControladorRecordsGlobals
 
 	enum Dificultat
 	{
-		HUMA, FACIL, MITJA, DIFICIL
+		HUMA, FACIL, MITJA, DIFICIL, TOTES
 	};
 
 	enum Resultat
 	{
-		VICTORIA, EMPAT, DERROTA
+		VICTORIA, EMPAT, DERROTA, TOTS
 	}
 }

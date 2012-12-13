@@ -121,5 +121,25 @@ public enum CriteriRecords
 	/**
 	 * 
 	 */
-	PER_DERROTES_TOTAL
+	PER_DERROTES_TOTAL,
+	/**
+	 * 
+	 */
+	NUM_PARTIDES_HUMA,
+	/**
+	 * 
+	 */
+	NUM_PARTIDES_FACIL,
+	/**
+	 * 
+	 */
+	NUM_PARTIDES_MITJA,
+	/**
+	 * 
+	 */
+	NUM_PARTIDES_DIFICIL,
+	/**
+	 * 
+	 */
+	NUM_PARTIDES_TOTAL,
 };
