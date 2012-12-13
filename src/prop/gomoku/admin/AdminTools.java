@@ -202,7 +202,8 @@ public class AdminTools
 					esborraPartida();
 					break;
 				default:
-					// Inclou case 0
+					// Inclou case 0 i 5
+					surt = true;
 					break;
 			}
 		}
