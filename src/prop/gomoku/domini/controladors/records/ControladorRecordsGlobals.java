@@ -14,7 +14,7 @@ public class ControladorRecordsGlobals
 {
 	private GestorUsuaris gestor_usuaris;
 
-	public ControladorRecordsGlobals( CriteriRecords criteri )
+	public ControladorRecordsGlobals()
 	{
 		gestor_usuaris = new GestorUsuaris();
 	}
