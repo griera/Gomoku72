@@ -3,7 +3,9 @@ package prop.gomoku.tests.taulervisual;
 import java.awt.EventQueue;
 
 import javax.swing.GroupLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.WindowConstants;
 
 import prop.gomoku.domini.models.PartidaGomoku;
@@ -25,6 +27,46 @@ public class ProvaTaulerGUI extends JFrame
 
 	private void initComponents()
 	{
+		this.setTitle( "Gomoku - Partida en joc" );
+
+		JLabel informacio = new JLabel( "INFORMACIO DE LA PARTIDA" );
+		informacio.setBounds( 600, 20, 170, 20 );
+		this.getContentPane().add( informacio );
+
+		//TODO Capturar un String amb el nom del jugador amb fitxes negres
+		JLabel jugador_negre = new JLabel( "Negres: " );
+		jugador_negre.setBounds( 600, 70, 170, 20 );
+		this.getContentPane().add( jugador_negre );
+
+		//TODO Capturar un String amb el nom del jugador amb fitxes blanques
+		JLabel jugador_blanc = new JLabel( "Blanques: " );
+		jugador_blanc.setBounds( 600, 90, 170, 20 );
+		this.getContentPane().add( jugador_blanc );
+
+		//TODO Capturar un String amb el nombre del torn actual
+		JLabel torn_actual = new JLabel( "Torn Actual: " );
+		torn_actual.setBounds( 600, 110, 170, 20 );
+		this.getContentPane().add( torn_actual );
+
+		//TODO Capturar un String amb el nom del jugador que ha de jugar l'actual torn
+		JLabel avis_torn = new JLabel( ", és el seu torn" );
+		avis_torn.setBounds( 600, 150, 170, 20 );
+		this.getContentPane().add( avis_torn );
+
+		JButton boto_guardar = new JButton( "Guardar Partida" );
+		boto_guardar.setBounds( 600, 325, 135, 40 );
+		this.getContentPane().add( boto_guardar );
+
+		JButton boto_sortir = new JButton( "Sortir" );
+		boto_sortir.setBounds( 600, 405, 135, 40 );
+		this.getContentPane().add( boto_sortir );
+
+		JButton avancar_torn = new JButton( "Avançar Torn" );
+		avancar_torn.setBounds( 600, 485, 135, 40 );
+		avancar_torn.setEnabled( false );
+		this.getContentPane().add( avancar_torn );
+
+		
 		tauler=getTauler();
 		GroupLayout taulerLayout = new GroupLayout( tauler );
 		tauler.setLayout( taulerLayout );
@@ -37,11 +79,10 @@ public class ProvaTaulerGUI extends JFrame
 		getContentPane().setLayout( layout );
 		layout.setHorizontalGroup( layout.createParallelGroup( GroupLayout.Alignment.LEADING ).addGroup(
 				layout.createSequentialGroup().addContainerGap().addComponent( tauler, GroupLayout.PREFERRED_SIZE,
-						GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE ).addContainerGap( 176, Short.MAX_VALUE ) ) );
+						GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE ).addContainerGap( 276, Short.MAX_VALUE ) ) );
 		layout.setVerticalGroup( layout.createParallelGroup( GroupLayout.Alignment.LEADING ).addGroup(
 				layout.createSequentialGroup().addComponent( tauler, GroupLayout.PREFERRED_SIZE,
-						GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE ).addContainerGap( 13, Short.MAX_VALUE ) ) );
-		
+						GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE ).addContainerGap( 53, Short.MAX_VALUE ) ) );
 	}
 	
 	private TaulerGUI getTauler(){
@@ -60,7 +101,6 @@ public class ProvaTaulerGUI extends JFrame
 			{
 				ProvaTaulerGUI tauler = new ProvaTaulerGUI();
 				tauler.setDefaultCloseOperation( WindowConstants.EXIT_ON_CLOSE );
-				tauler.pack();
 				tauler.setVisible( false );
 			}
 		} );
@@ -69,9 +109,10 @@ public class ProvaTaulerGUI extends JFrame
 		this.tauler.setPartida( partida );
 	}	
 	public void activa(){
-		
 		this.setSize( 600,600 );
 		this.setLocationRelativeTo( null );
+		this.setResizable( false );
+		this.pack();
 		this.setVisible(true);
 	}
 	public TaulerGUI getTaulerActual(){
