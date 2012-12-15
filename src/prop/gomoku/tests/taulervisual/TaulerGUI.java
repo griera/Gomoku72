@@ -12,11 +12,8 @@ import javax.swing.JPanel;
 
 import prop.cluster.domini.models.estats.EstatCasella;
 import prop.cluster.domini.models.estats.EstatPartida;
-import prop.gomoku.domini.controladors.ControladorPartida;
 import prop.gomoku.domini.controladors.ControladorPartidaEnJoc;
 import prop.gomoku.domini.models.PartidaGomoku;
-import prop.gomoku.domini.models.TipusUsuari;
-import prop.gomoku.domini.models.UsuariGomoku;
 
 public class TaulerGUI extends JPanel
 {
@@ -166,14 +163,9 @@ public class TaulerGUI extends JPanel
 		this.setFons( this.tauler_fons );
 	}
 
-	// TODO
-	private UsuariGomoku jugador = new UsuariGomoku( "nacho", "nacho" );
-	private UsuariGomoku oponent = new UsuariGomoku( "CPU Facil", "cpufacil", TipusUsuari.FACIL );
-	private ControladorPartida ctrl_partida = new ControladorPartida();
-	private PartidaGomoku partida = ctrl_partida.creaNovaPartida( jugador, jugador, oponent, "demo" );
-	private ControladorPartidaEnJoc ctrl_en_joc = new ControladorPartidaEnJoc( partida );
+	private PartidaGomoku partida;
+	private ControladorPartidaEnJoc ctrl_en_joc;
 	private EstatPartida estat = EstatPartida.NO_FINALITZADA;
-
 	public boolean intentaFerMoviment( int[] coord )
 	{
 		int[] ultim_moviment = ctrl_en_joc.getUltimMoviment();
@@ -216,5 +208,10 @@ public class TaulerGUI extends JPanel
 		}
 		return true;
 	}
-
+	public void setPartida(PartidaGomoku partida){
+		this.partida = partida;
+		ctrl_en_joc = new ControladorPartidaEnJoc( this.partida );
+		int [] movs= ctrl_en_joc.getUltimMoviment(); 
+	}
+	
 }

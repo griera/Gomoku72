@@ -79,7 +79,7 @@ public class CasellaGUI extends JPanel implements MouseListener
 		if ( this.tauler.intentaFerMoviment( this.tauler.getCoordenades( (CasellaGUI) e.getComponent() ) ) )
 		{
 			// TODO hace falta esta llamada?
-//			CasellaGUI.setCasillaMarcada( this.tauler.getCoordenades( (CasellaGUI) e.getComponent() ) );
+//	CasellaGUI.setCasillaMarcada( this.tauler.getCoordenades( (CasellaGUI) e.getComponent() ) );
 		}
 		// TODO
 

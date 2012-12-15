@@ -3,25 +3,38 @@ package prop.gomoku.presentacio;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.List;
 
+import prop.cluster.domini.models.estats.EstatCasella;
+import prop.gomoku.domini.controladors.ControladorPartidaEnJoc;
 import prop.gomoku.domini.controladors.ControladorPartidesGuardades;
 import prop.gomoku.domini.controladors.ControladorUsuari;
 import prop.gomoku.domini.controladors.excepcions.ContrasenyaIncorrecta;
 import prop.gomoku.domini.controladors.excepcions.ContrasenyaInvalida;
+import prop.gomoku.domini.controladors.records.AccesRecords;
+import prop.gomoku.domini.controladors.records.ControladorRecordsGlobals;
+import prop.gomoku.domini.controladors.records.ControladorRecordsIndividuals;
+import prop.gomoku.domini.controladors.records.CriteriRecords;
 import prop.gomoku.domini.models.PartidaGomoku;
+import prop.gomoku.domini.models.TaulerGomoku;
 import prop.gomoku.domini.models.TipusUsuari;
 import prop.gomoku.domini.models.UsuariGomoku;
 import prop.gomoku.gestors.excepcions.UsuariJaExisteix;
 import prop.gomoku.gestors.excepcions.UsuariNoExisteix;
+import prop.gomoku.tests.taulervisual.ProvaTaulerGUI;
+import prop.gomoku.tests.taulervisual.TaulerGUI;
 
 public class ControladorPresentacio
 {
-	private FrameEstadistiques frame_estadistiques;
+	private FrameAccedirEstadistiques frame_estadistiques;
 	private FrameConfiguracioPartida2CPU frame_configuracio2cpu;
 	private FrameCarregaPartides frame_carrega_partides;
 	private static UsuariGomoku usuari_actiu;
-	private UsuariGomoku usuari_oponent;
+	private UsuariGomoku jugador_actiu;
+	private UsuariGomoku jugador_oponent;
 	private FrameBenvingut frame_benvingut;
 	private FrameIdentificacio frame_identificacio;
 	private FrameRegistrar frame_registrar;
@@ -32,6 +45,12 @@ public class ControladorPresentacio
 	private FrameConfiguracioPartida2 frame_configuracio2;
 	private FrameConfiguracioPartida3 frame_configuracio3;
 	private FrameConfiguracioPartida2Persones frame_configuracio2persones;
+	private FrameAccedirEstadistiques frame_accedir_estadistiques;
+	private FrameEstadistiquesGlobals frame_estadistiques_globals;
+	private FrameEstadistiquesIndividuals frame_estadistiques_indivuals;
+	private String nomcanvi;
+	private PartidaGomoku partida_en_curs;
+	private ProvaTaulerGUI tauler_partida;
 
 	public void sincronizacionBenvingutIdentificacio( FrameBenvingut frame_benvingut )
 	{
@@ -192,7 +211,8 @@ public class ControladorPresentacio
 		frame_menu_principal.main();
 	}
 
-	public void sincronitzacioCarregaPartidesMenu(FrameCarregaPartides frame_carrega_partides){
+	public void sincronitzacioCarregaPartidesMenu( FrameCarregaPartides frame_carrega_partides )
+	{
 		if ( frame_menu_principal == null )
 		{
 			frame_menu_principal = new FrameMenuPrincipal();
@@ -218,23 +238,21 @@ public class ControladorPresentacio
 			frame_carrega_partides = new FrameCarregaPartides();
 		}
 
-		frame_menu_principal.dispose();
 		frame_carrega_partides.main();
-		frame_carrega_partides.setControladorPresentacio( this );
-		
+
 		// TODO
-		
-		System.out.println("Usuari que vol carregar les partides: " + usuari_actiu);
-		
+
+		System.out.println( "Usuari que vol carregar les partides: " + usuari_actiu );
+
 		ControladorPartidesGuardades ctrl_partides_guardades = new ControladorPartidesGuardades();
 		List<PartidaGomoku> llista_partides = ctrl_partides_guardades.carregaPartides( usuari_actiu );
 		// TODO
-		System.out.println("A punt de mostrar la llista de partides");
-		for (PartidaGomoku partida : llista_partides)
+		System.out.println( "A punt de mostrar la llista de partides" );
+		for ( PartidaGomoku partida : llista_partides )
 		{
-			System.out.println(partida);
+			System.out.println( partida );
 		}
-		frame_carrega_partides.mostraLlistaPartides(llista_partides);
+		frame_carrega_partides.mostraLlistaPartides( llista_partides );
 
 	}
 
@@ -264,10 +282,11 @@ public class ControladorPresentacio
 		}
 		frame_configuracio2cpu.dispose();
 		frame_configuracio3.main();
+		frame_configuracio3.setControladorPresentacio( this );
 		TipusUsuari[] tipus_usuari = frame_configuracio2cpu.getnivellmaquina();
 		try
 		{
-			usuari_actiu=controlador_usuari.carregaUsuariSistema(tipus_usuari[0]);
+			usuari_actiu = controlador_usuari.carregaUsuariSistema( tipus_usuari[0] );
 		} catch ( IOException e )
 		{
 			// TODO Auto-generated catch block
@@ -275,14 +294,17 @@ public class ControladorPresentacio
 		}
 		try
 		{
-			usuari_oponent=controlador_usuari.carregaUsuariSistema(tipus_usuari[1]);
+			jugador_oponent = controlador_usuari.carregaUsuariSistema( tipus_usuari[1] );
 		} catch ( IOException e )
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("Maquina 1:" + usuari_actiu + "Maquina 2:" + jugador_oponent);
 		frame_configuracio3.setTipusText();
+		frame_configuracio3.setNomsusuaris();
 	}
+
 	public void sincronitzacioConfiguracio2cpu1( FrameConfiguracioPartida2CPU frame_configuracio2cpu )
 	{
 		if ( frame_configuracio2cpu == null )
@@ -295,6 +317,45 @@ public class ControladorPresentacio
 		}
 		frame_configuracio2cpu.dispose();
 		frame_configuracio1.main();
+
+	}
+	
+	public void iniciaPartida(FrameConfiguracioPartida3 frame_configuracio3,int color_jugador1){
+			if(frame_configuracio3==null){
+				frame_configuracio3= new FrameConfiguracioPartida3();
+			}
+			if(tauler_partida==null){
+				tauler_partida = new ProvaTaulerGUI();
+			}
+			frame_configuracio3.dispose();
+			int color=color_jugador1;
+			if(color==2){
+				Random aleatori = new Random ();
+				double aleatoridouble = aleatori.nextDouble();
+				if(aleatoridouble>=0.5) color=0;
+				else color=1;
+			}
+			if(color==0){
+				partida_en_curs = new PartidaGomoku(usuari_actiu,usuari_actiu,jugador_oponent,new TaulerGomoku(),"nova_partida");
+			}
+			else {
+				partida_en_curs = new PartidaGomoku(usuari_actiu,jugador_oponent,usuari_actiu,new TaulerGomoku(),"nova_partida");
+			}
+			tauler_partida.main();
+			tauler_partida.setPartida(partida_en_curs);
+			tauler_partida.activa();
+			ControladorPartidaEnJoc controlador_partida_en_joc = new ControladorPartidaEnJoc(partida_en_curs);
+			if(color==1){
+				int[] mov_ia = controlador_partida_en_joc.getMovimentMaquina();
+				controlador_partida_en_joc.mouFitxa( EstatCasella.JUGADOR_A, mov_ia[0], mov_ia[1] );
+				tauler_partida.getTaulerActual().pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_A );
+			}
+			this.juga_partida();
+	}
+
+	private void juga_partida()
+	{
+		
 		
 	}
 
@@ -311,8 +372,9 @@ public class ControladorPresentacio
 		frame_configuracio2persones.dispose();
 		frame_configuracio1.main();
 	}
-	
-	public void sincronitzacioConfiguracio23(FrameConfiguracioPartida2 frame_configuracio2){
+
+	public void sincronitzacioConfiguracio23( FrameConfiguracioPartida2 frame_configuracio2 )
+	{
 		if ( frame_configuracio2 == null )
 		{
 			frame_configuracio2 = new FrameConfiguracioPartida2();
@@ -324,7 +386,7 @@ public class ControladorPresentacio
 		TipusUsuari tipus_oponent = frame_configuracio2.getTipusOponent();
 		try
 		{
-			usuari_oponent = controlador_usuari.carregaUsuariSistema(tipus_oponent);
+			jugador_oponent = controlador_usuari.carregaUsuariSistema( tipus_oponent );
 		} catch ( IOException e )
 		{
 			// TODO Auto-generated catch block
@@ -332,11 +394,75 @@ public class ControladorPresentacio
 		}
 		frame_configuracio2.dispose();
 		// TODO
-		System.out.println(tipus_oponent);
-		System.out.println("user1: "+ usuari_actiu + "oponent: " + usuari_oponent);
-		frame_configuracio3.main();		
+		System.out.println( tipus_oponent );
+		System.out.println( "user1: " + usuari_actiu + "oponent: " + jugador_oponent );
+		frame_configuracio3.main();
+		frame_configuracio3.setControladorPresentacio( this );
 		frame_configuracio3.setTipusText();
 		frame_configuracio3.setNomsusuaris();
+	}
+
+	public void sincronitzacioAccedirEstadistiquesIndividuals( FrameAccedirEstadistiques frame_estadistiques )
+	{
+		if ( frame_estadistiques == null )
+		{
+			frame_estadistiques = new FrameAccedirEstadistiques();
+		}
+		if ( frame_estadistiques_indivuals == null )
+		{
+			frame_estadistiques_indivuals = new FrameEstadistiquesIndividuals();
+		}
+		frame_estadistiques_indivuals.main();
+		System.out.println("Usuari actiu abans de crear els records: " +usuari_actiu);
+		int [] records = new int [35];
+		int i = 0;
+		ControladorRecordsIndividuals records_individuals = new ControladorRecordsIndividuals(usuari_actiu);
+		for(CriteriRecords criteri: CriteriRecords.values() ){
+			records[i] = records_individuals.getLlistaRecords( criteri );			
+			++i;
+		}
+		frame_estadistiques_indivuals.carregaestadistiques(records);
+	}
+//	public void sincronitzacioCanviNom(PartidaGomoku partida){
+//		if(frame_canvi_nom==null){
+//			frame_canvi_nom = new FrameCanviNom();
+//		}
+//		partida_canvi_nom = partida;
+//		frame_canvi_nom.main();
+//		frame_canvi_nom.setControladorPresentacio(this);
+//		
+//		
+//		
+//	}
+//	
+//	public void canvinomiguardat(FrameCanviNom canvi_nom){
+//		partida_canvi_nom.setNom( nomcanvi );
+//		canvi_nom.dispose();
+//		ControladorPartidesGuardades controlador_partides = new ControladorPartidesGuardades();
+//		controlador_partides.guardaPartida( partida_canvi_nom );
+//		frame_carrega_partides.mostraLlistaPartides( controlador_partides.carregaPartides( usuari_actiu ) );
+//	}
+	public void sincronitzacioAccedirEstadistiquesGlobals( FrameAccedirEstadistiques frame_estadistiques )
+	{
+		if ( frame_estadistiques == null )
+		{
+			frame_estadistiques = new FrameAccedirEstadistiques();
+		}
+		if ( frame_estadistiques_globals == null )
+		{
+			frame_estadistiques_globals = new FrameEstadistiquesGlobals();
+		}
+		frame_estadistiques_globals.main();
+		List<List<String[]>> records = new ArrayList<List<String[]>>();
+		List<String[]> recordcriteri;
+		ControladorRecordsGlobals controlador_records_globals = new ControladorRecordsGlobals();
+		for ( CriteriRecords criteri : CriteriRecords.values() )
+		{
+			recordcriteri = ( controlador_records_globals.getLlistaRecords( criteri ) );
+			records.add( recordcriteri );
+		}
+		frame_estadistiques_globals.carregaestadistiques( records );
+
 	}
 
 	public void sincronitzacioConfiguracio31( FrameConfiguracioPartida3 frame_configuracio3 )
@@ -526,18 +652,20 @@ public class ControladorPresentacio
 		boolean excepcio = false;
 		try
 		{
-			if(alies=="Convidat"){
+			if ( alies == "Convidat" )
+			{
 				try
 				{
-					usuari_oponent=controlador_usuari.carregaUsuariSistema(TipusUsuari.CONVIDAT);
+					jugador_oponent = controlador_usuari.carregaUsuariSistema( TipusUsuari.CONVIDAT );
 				} catch ( IOException e )
 				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-			else {
-				usuari_oponent = controlador_usuari.identificaUsuari( alies, contrasenya );
+			else
+			{
+				jugador_oponent = controlador_usuari.identificaUsuari( alies, contrasenya );
 			}
 		} catch ( UsuariNoExisteix e )
 		{
@@ -578,7 +706,7 @@ public class ControladorPresentacio
 			frame_configuracio2persones.dispose();
 			frame_configuracio3.main();
 			frame_configuracio3.setControladorPresentacio( this );
-			System.out.println("usuari_acutal:" + usuari_actiu + "usuari oponent: " + usuari_oponent);
+			System.out.println( "usuari_acutal:" + usuari_actiu + "usuari oponent: " + jugador_oponent );
 			frame_configuracio3.setTipusText();
 			frame_configuracio3.setNomsusuaris();
 		}
@@ -587,19 +715,18 @@ public class ControladorPresentacio
 	public void RegistrarJugador( FrameRegistrar frame_registrar, String nom, String contrasenya )
 	{
 		boolean excepcio = false;
-		
-			try
-			{
-				usuari_actiu = controlador_usuari.registraUsuari( nom, contrasenya );
-			} catch ( ContrasenyaInvalida e )
-			{
-				FrameError contrasenyainvalida= new FrameError();
-				contrasenyainvalida.main();
-				contrasenyainvalida.MissatgeActiva("La contrasenya introduida conte caràcters invalids");
-				frame_registrar.Netejapasswords();
-				excepcio = true;
-			}
-			catch ( IOException e )
+
+		try
+		{
+			usuari_actiu = controlador_usuari.registraUsuari( nom, contrasenya );
+		} catch ( ContrasenyaInvalida e )
+		{
+			FrameError contrasenyainvalida = new FrameError();
+			contrasenyainvalida.main();
+			contrasenyainvalida.MissatgeActiva( "La contrasenya introduida conte caràcters invalids" );
+			frame_registrar.Netejapasswords();
+			excepcio = true;
+		} catch ( IOException e )
 		{
 			excepcio = true;
 			System.out.println( "Fallo de IO" );
@@ -609,11 +736,11 @@ public class ControladorPresentacio
 		{
 			FrameError usuarijaexisteix = new FrameError();
 			usuarijaexisteix.main();
-			usuarijaexisteix.MissatgeActiva("El nom d'usuari introduit ja esta actualment registrat al sistema");
+			usuarijaexisteix.MissatgeActiva( "El nom d'usuari introduit ja esta actualment registrat al sistema" );
 			frame_registrar.Netejatot();
-			excepcio = true;	
+			excepcio = true;
 		}
-	
+
 		if ( excepcio == false )
 		{
 			if ( frame_menu_principal == null )
@@ -637,7 +764,7 @@ public class ControladorPresentacio
 
 	}
 
-	public void sincronitzacioEstadistiquesMenu( FrameEstadistiques frame_estadistiques )
+	public void sincronitzacioEstadistiquesMenu( FrameAccedirEstadistiques frame_estadistiques )
 	{
 		if ( frame_menu_principal == null )
 		{
@@ -645,11 +772,13 @@ public class ControladorPresentacio
 		}
 		if ( frame_estadistiques == null )
 		{
-			frame_estadistiques = new FrameEstadistiques();
+			frame_estadistiques = new FrameAccedirEstadistiques();
 		}
 		frame_estadistiques.dispose();
 		frame_menu_principal.main();
+		frame_menu_principal.setControladorPresentacio( this );
 	}
+
 	public void sincronitzacioBenvingutMenu( FrameBenvingut frame_benvingut )
 	{
 		if ( frame_menu_principal == null )
@@ -662,7 +791,7 @@ public class ControladorPresentacio
 		}
 		try
 		{
-			usuari_actiu=controlador_usuari.carregaUsuariSistema(TipusUsuari.CONVIDAT);
+			usuari_actiu = controlador_usuari.carregaUsuariSistema( TipusUsuari.CONVIDAT );
 		} catch ( IOException e )
 		{
 			// TODO Auto-generated catch block
@@ -670,7 +799,7 @@ public class ControladorPresentacio
 		}
 		frame_benvingut.dispose();
 		frame_menu_principal.main();
-		frame_menu_principal.setControladorPresentacio(this);
+		frame_menu_principal.setControladorPresentacio( this );
 		frame_menu_principal.menuConvidat();
 	}
 
@@ -682,10 +811,11 @@ public class ControladorPresentacio
 		}
 		if ( frame_estadistiques == null )
 		{
-			frame_estadistiques = new FrameEstadistiques();
+			frame_estadistiques = new FrameAccedirEstadistiques();
 		}
 		frame_menu_principal.dispose();
 		frame_estadistiques.main();
+		frame_estadistiques.setControladorPresentacio(this);
 	}
 
 	public ControladorPresentacio()
@@ -700,16 +830,17 @@ public class ControladorPresentacio
 
 	public void setUsuari_oponent( UsuariGomoku usuari_oponent )
 	{
-		this.usuari_oponent = usuari_oponent;
+		this.jugador_oponent = usuari_oponent;
 	}
 
 	public void MostraPDF()
 	{
 		if ( Desktop.isDesktopSupported() )
 		{
+			URL url = ControladorPresentacio.class.getResource( "/prop/gomoku/recursos/Manual_usuari.pdf" );
 			try
 			{
-				File myFile = new File( "D:\\AD.pdf" );
+				File myFile = new File( url.toString().substring( 6 ) );
 				Desktop.getDesktop().open( myFile );
 			} catch ( IOException ex )
 			{
@@ -727,7 +858,13 @@ public class ControladorPresentacio
 	{
 		return new ControladorPartidesGuardades().carregaPartides( usuari_actiu );
 	}
-	public UsuariGomoku getOponentActual(){
-		return usuari_oponent;
+
+	public UsuariGomoku getOponentActual()
+	{
+		return jugador_oponent;
+	}
+	public boolean setCanviNom(String nom){
+		this.nomcanvi=nom;
+		return true;
 	}
 }

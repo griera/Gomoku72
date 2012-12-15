@@ -5,25 +5,22 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 import org.dyno.visual.swing.layouts.Constraints;
 import org.dyno.visual.swing.layouts.GroupLayout;
 import org.dyno.visual.swing.layouts.Leading;
-import org.dyno.visual.swing.layouts.Trailing;
 
 //VS4E -- DO NOT REMOVE THIS LINE!
-public class FrameEstadistiques extends JFrame {
+public class FrameAccedirEstadistiques extends JFrame {
 	private ControladorPresentacio controlador_presentacio;
 	private static final long serialVersionUID = 1L;
-	private JLabel jLabel0;
-	private JTabbedPane jTabbedPane0;
 	private JButton jButton0;
+	private JButton jButton1;
+	private JButton jButton2;
 	private static final String PREFERRED_LOOK_AND_FEEL = "javax.swing.plaf.metal.MetalLookAndFeel";
-	public FrameEstadistiques() {
+	public FrameAccedirEstadistiques() {
 		initComponents();
 	}
 
@@ -31,9 +28,38 @@ public class FrameEstadistiques extends JFrame {
 		controlador_presentacio = new ControladorPresentacio();
 		setTitle("Gomoku - Rànquings globals i rècords individuals");
 		setLayout(new GroupLayout());
-		add(getJTabbedPane0(), new Constraints(new Leading(29, 560, 10, 10), new Leading(76, 327, 10, 10)));
-		add(getJButton0(), new Constraints(new Trailing(12, 12, 12), new Trailing(12, 135, 415)));
-		setSize(666, 457);
+		add(getJButton1(), new Constraints(new Leading(119, 177, 10, 10), new Leading(25, 10, 10)));
+		add(getJButton2(), new Constraints(new Leading(119, 176, 12, 12), new Leading(69, 12, 12)));
+		add(getJButton0(), new Constraints(new Leading(119, 176, 12, 12), new Leading(113, 12, 12)));
+		setSize(414, 188);
+	}
+
+	private JButton getJButton2() {
+		if (jButton2 == null) {
+			jButton2 = new JButton();
+			jButton2.setText("Estadístiques globals");
+			jButton2.addMouseListener(new MouseAdapter() {
+	
+				public void mouseClicked(MouseEvent event) {
+					jButton2MouseMouseClicked(event);
+				}
+			});
+		}
+		return jButton2;
+	}
+
+	private JButton getJButton1() {
+		if (jButton1 == null) {
+			jButton1 = new JButton();
+			jButton1.setText("Estadístiques individuals");
+			jButton1.addMouseListener(new MouseAdapter() {
+	
+				public void mouseClicked(MouseEvent event) {
+					jButton1MouseMouseClicked(event);
+				}
+			});
+		}
+		return jButton1;
 	}
 
 	private JButton getJButton0() {
@@ -48,23 +74,6 @@ public class FrameEstadistiques extends JFrame {
 			});
 		}
 		return jButton0;
-	}
-
-	private JTabbedPane getJTabbedPane0() {
-		if (jTabbedPane0 == null) {
-			jTabbedPane0 = new JTabbedPane();
-			jTabbedPane0.addTab("title", jLabel0);
-			jTabbedPane0.addTab("titulo",jLabel0);
-		}
-		return jTabbedPane0;
-	}
-
-	private JLabel getJLabel0() {
-		if (jLabel0 == null) {
-			jLabel0 = new JLabel();
-			jLabel0.setText("<html><font size=6>Rànquings Globals i Rècords Individuals</font></html>");
-		}
-		return jLabel0;
 	}
 
 	private static void installLnF() {
@@ -89,8 +98,8 @@ public class FrameEstadistiques extends JFrame {
 		installLnF();
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				FrameEstadistiques frame = new FrameEstadistiques();
-				frame.setDefaultCloseOperation(FrameEstadistiques.EXIT_ON_CLOSE);
+				FrameAccedirEstadistiques frame = new FrameAccedirEstadistiques();
+				frame.setDefaultCloseOperation(FrameAccedirEstadistiques.EXIT_ON_CLOSE);
 				frame.getContentPane().setPreferredSize(frame.getSize());
 				frame.pack();
 				frame.setLocationRelativeTo(null);
@@ -101,6 +110,20 @@ public class FrameEstadistiques extends JFrame {
 
 	private void jButton0MouseMouseClicked(MouseEvent event) {
 		controlador_presentacio.sincronitzacioEstadistiquesMenu(this);
+	}
+
+	private void jButton1MouseMouseClicked(MouseEvent event) {
+		controlador_presentacio.sincronitzacioAccedirEstadistiquesIndividuals(this);
+		System.out.println(controlador_presentacio.getUsuariActual());
+	}
+
+	private void jButton2MouseMouseClicked(MouseEvent event) {
+		controlador_presentacio.sincronitzacioAccedirEstadistiquesGlobals(this);
+	}
+
+	public void setControladorPresentacio( ControladorPresentacio controlador_presentacio )
+	{
+		this.controlador_presentacio = controlador_presentacio;
 	}
 
 }

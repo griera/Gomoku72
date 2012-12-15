@@ -12,6 +12,8 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import org.dyno.visual.swing.layouts.Constraints;
 import org.dyno.visual.swing.layouts.GroupLayout;
@@ -30,6 +32,7 @@ public class FrameCarregaPartides extends JFrame
 	private JLabel jLabel0;
 	private JButton jButton0;
 	private JButton jButton1;
+	private List<PartidaGomoku> partides;
 	private JButton jButton2;
 	private JButton jButton3;
 	private DefaultListModel listModel;
@@ -41,6 +44,7 @@ public class FrameCarregaPartides extends JFrame
 	}
 
 	private void initComponents() {
+		controlador_presentacio = new ControladorPresentacio();
 		setTitle("Gomoku - Gestió de partides guardades");
 		setLayout(new GroupLayout());
 		add(getJLabel0(), new Constraints(new Leading(94, 10, 10), new Leading(12, 12, 12)));
@@ -121,8 +125,14 @@ public class FrameCarregaPartides extends JFrame
 	private JList getJList0() {
 		if (jList0 == null) {
 			jList0 = new JList();
-			listModel = new DefaultListModel();
+			DefaultListModel listModel = new DefaultListModel();
 			jList0.setModel(listModel);
+			jList0.addListSelectionListener(new ListSelectionListener() {
+	
+				public void valueChanged(ListSelectionEvent event) {
+					jList0ListSelectionValueChanged(event);
+				}
+			});
 		}
 		return jList0;
 	}
@@ -165,7 +175,7 @@ public class FrameCarregaPartides extends JFrame
 	}
 
 	private void jButton3MouseMouseClicked(MouseEvent event) {
-		controlador_presentacio.sincronitzacioCarregaPartidesMenu(this);
+		this.dispose();
 	}
 
 	public void setControladorPresentacio( ControladorPresentacio controlador_presentacio )
@@ -176,7 +186,9 @@ public class FrameCarregaPartides extends JFrame
 
 	public void mostraLlistaPartides(List<PartidaGomoku> partides)
 	{
+		this.partides=partides;
 		System.out.println("Ensenyo partides. Ho intento");
+		listModel = new DefaultListModel();
 		for (PartidaGomoku partida : partides)
 		{
 			// TODO
@@ -190,12 +202,21 @@ public class FrameCarregaPartides extends JFrame
 	}
 
 	private void jButton1MouseMouseClicked(MouseEvent event) {
+		
 	}
 
 	private void jButton2MouseMouseClicked(MouseEvent event) {
-//		jList0.
-//		ControladorPartida controlador_partida = new ControladorPartidesGuardades();
-//		controlador_partida
+		if(partides!=null){
+			if(jList0.getSelectedIndex()!=-1){
+				PartidaGomoku partida=partides.get( jList0.getSelectedIndex());
+			//	controlador_presentacio.sincronitzacioCanviNom(partida);
+			}
+		}
+	}
+
+	private void jList0ListSelectionValueChanged(ListSelectionEvent event) {
+//		System.out.println(event.getFirstIndex());
+		System.out.println(this.jList0.getSelectedIndex());
 	}
 
 }

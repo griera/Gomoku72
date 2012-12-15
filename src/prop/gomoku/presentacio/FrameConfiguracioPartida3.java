@@ -263,7 +263,11 @@ public class FrameConfiguracioPartida3 extends JFrame {
 	}
 
 	private void jButton0MouseMouseClicked(MouseEvent event) {
-
+		int color = -1;
+		if(jRadioButton0.isSelected()) color=0;
+		else if(jRadioButton1.isSelected()) color=1;
+		else if(jRadioButton2.isSelected()) color = 2;
+		if(color!=-1)controlador_presentacio.iniciaPartida(this,color);
 	}
 
 	public void setControladorPresentacio(ControladorPresentacio controlador_presentacio) {

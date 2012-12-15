@@ -62,24 +62,19 @@ public class FrameBenvingut extends JFrame
 		return jLabel0;
 	}
 
-	private JButton getJButton0()
-	{
-		if ( jButton0 == null )
-		{
+	private JButton getJButton0() {
+		if (jButton0 == null) {
 			jButton0 = new JButton();
-			jButton0.setText( "Identificar" );
-			jButton0.addMouseListener( new MouseAdapter()
-			{
-
-				public void mouseClicked( MouseEvent event )
-				{
-					jButton0MouseMouseClicked( event );
+			jButton0.setText("Identificar");
+			jButton0.addMouseListener(new MouseAdapter() {
+	
+				public void mouseClicked(MouseEvent event) {
+					jButton0MouseMouseClicked(event);
 				}
-			} );
+			});
 		}
 		return jButton0;
 	}
-
 	private JButton getJButton2()
 	{
 		if ( jButton2 == null )

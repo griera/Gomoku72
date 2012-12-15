@@ -195,15 +195,15 @@ public class FrameRegistrar extends JFrame {
 		String password2 = "";
 		char[] pass1 = jPasswordField0.getPassword();
 		char[] pass2 = jPasswordField1.getPassword();
+		boolean iguals=true;
+		if(pass1.length!=pass2.length){
+			iguals=false;
+		}
+		else {
 		for (int iterador = 0; iterador < pass1.length; ++iterador) {
 			password1 += pass1[iterador];
 			password2 += pass2[iterador];
 		}
-		boolean iguals = true;
-		if(password1.length()!=password2.length()){
-			iguals=false;
-		}
-		else {
 			for(int iterador=0;iterador>pass1.length;++iterador){
 				if(pass1[iterador]!=pass2[iterador]){
 					iguals=false;
