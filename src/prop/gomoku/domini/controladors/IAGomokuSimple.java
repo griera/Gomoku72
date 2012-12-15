@@ -17,9 +17,9 @@ public class IAGomokuSimple extends IAGomoku
 	// private static final int[] puntuacio_oponent = { 0, 16, 8, 4, 4 };
 	// private static final int[] puntuacio_jugador = { 0, 8, 8, 4, 4 };
 	// private static final int[] puntuacio_oponent = { 0, 8, 8, 4, 4 };
-	private static final int[] puntuacio_jugador = { 0, 4, 3, 2, 1 };
-	private static final int[] puntuacio_oponent = { 0, 4, 3, 2, 1 };
-	private static final int factor_potencial = 5;
+	private static final int[] puntuacio_jugador = { 0, 4, 3, 2, 2 };
+	private static final int[] puntuacio_oponent = { 0, 4, 3, 2, 2 };
+	private static final int factor = 2;
 	private PartidaGomoku partida;
 	private EstatCasella color;
 	private int[][] analisi_jugador;
@@ -29,17 +29,6 @@ public class IAGomokuSimple extends IAGomoku
 
 	public IAGomokuSimple( /* PartidaGomoku partida, EstatCasella color */)
 	{
-		// if ( color == EstatCasella.BUIDA )
-		// {
-		// throw new IllegalArgumentException( "color ha de representar a un jugador" );
-		// }
-		// this.partida = partida;
-		// this.color = color;
-		//
-		// millors_caselles = new PriorityQueue<int[]>();
-		// int mida = partida.getTauler().getMida();
-		// this.analisi_jugador = new int[mida][mida];
-		// this.analisi_oponent = new int[mida][mida];
 	}
 
 	// TODO documentar
@@ -151,9 +140,9 @@ public class IAGomokuSimple extends IAGomoku
 			}
 		}
 		actualitzaAnalisi();
-		
+
 		ha_computat = true;
-		
+
 		return classificaIDecideix();
 	}
 
@@ -163,366 +152,389 @@ public class IAGomokuSimple extends IAGomoku
 
 	};
 
-	private int comptaPotencialitatLinia( int fila, int columna, TaulerGomoku tauler, Direccio dir )
+	private int[] potCrearLinia( int fila, int columna, TaulerGomoku tauler, Direccio dir )
 	{
+
+		int[] coord = new int[3];
 		EstatCasella color_fitxa = tauler.getEstatCasella( fila, columna );
-		int fitxes_color = 0;
+		// TODO
+		// // // System.out.println( "Mirant si " + color_fitxa + " pot crear linia" );
 		switch ( dir )
 		{
-			case HORITZONTAL:
+			case VERTICAL:
 			{
-				for ( int i = fila - 5; i < fila + 5; i++ )
+				int fitxes_1 = 0;
+				int fitxes_2 = 0;
+
+				boolean valid_1 = true;
+				boolean valid_2 = true;
+
+				int fitxes_color = 0;
+
+				for ( int i = 0; i < 5; i++ )
 				{
-					if ( tauler.esCasellaValida( i, columna ) )
+					int fila_1 = fila + i;
+					int columna_1 = columna;
+
+					int fila_2 = fila - i;
+					int columna_2 = columna;
+
+					if ( tauler.esCasellaValida( fila_1, columna_1 ) && valid_1 )
 					{
-						EstatCasella color_casella = tauler.getEstatCasella( i, columna );
-						if ( color_casella == color_fitxa )
+						EstatCasella color_casella = tauler.getEstatCasella( fila_1, columna_1 );
+						if ( color_casella == color_fitxa || color_casella == EstatCasella.BUIDA )
 						{
-							fitxes_color++;
+							fitxes_1++;
+							if ( color_casella == color_fitxa )
+							{
+								fitxes_color++;
+							}
+						}
+						else
+						{
+							valid_1 = false;
 						}
 					}
+					else
+					{
+						valid_1 = false;
+					}
+					if ( tauler.esCasellaValida( fila_2, columna_2 ) && valid_2 )
+					{
+						EstatCasella color_casella = tauler.getEstatCasella( fila_2, columna_2 );
+						if ( color_casella == color_fitxa || color_casella == EstatCasella.BUIDA )
+						{
+							fitxes_2++;
+							if ( color_casella == color_fitxa )
+							{
+								fitxes_color++;
+							}
+						}
+						else
+						{
+							valid_2 = false;
+						}
+					}
+					else
+					{
+						valid_2 = false;
+					}
+				}
+				if ( fitxes_1 + fitxes_2 >= 5 )
+				{
+					coord[0] = fitxes_1;
+					coord[1] = fitxes_2;
+					coord[2] = fitxes_color;
+				}
+				else
+				{
+					coord = null;
 				}
 				break;
 			}
-			case VERTICAL:
+			case HORITZONTAL:
 			{
-				for ( int j = columna - 5; j < columna + 5; j++ )
+				int fitxes_1 = 0;
+				int fitxes_2 = 0;
+
+				boolean valid_1 = true;
+				boolean valid_2 = true;
+
+				int fitxes_color = 0;
+
+				for ( int i = 0; i < 5; i++ )
 				{
-					if ( tauler.esCasellaValida( fila, j ) )
+					int fila_1 = fila;
+					int columna_1 = columna + i;
+
+					int fila_2 = fila;
+					int columna_2 = columna - i;
+
+					if ( tauler.esCasellaValida( fila_1, columna_1 ) && valid_1 )
 					{
-						EstatCasella color_casella = tauler.getEstatCasella( fila, j );
-						if ( color_casella == color_fitxa )
+						EstatCasella color_casella = tauler.getEstatCasella( fila_1, columna_1 );
+						if ( color_casella == color_fitxa || color_casella == EstatCasella.BUIDA )
 						{
-							fitxes_color++;
+							fitxes_1++;
+							if ( color_casella == color_fitxa )
+							{
+								fitxes_color++;
+							}
+						}
+						else
+						{
+							valid_1 = false;
 						}
 					}
+					else
+					{
+						valid_1 = false;
+					}
+					if ( tauler.esCasellaValida( fila_2, columna_2 ) && valid_2 )
+					{
+						EstatCasella color_casella = tauler.getEstatCasella( fila_2, columna_2 );
+						if ( color_casella == color_fitxa || color_casella == EstatCasella.BUIDA )
+						{
+							fitxes_2++;
+							if ( color_casella == color_fitxa )
+							{
+								fitxes_color++;
+							}
+						}
+						else
+						{
+							valid_2 = false;
+						}
+					}
+					else
+					{
+						valid_2 = false;
+					}
+				}
+				if ( fitxes_1 + fitxes_2 >= 5 )
+				{
+					coord[0] = fitxes_1;
+					coord[1] = fitxes_2;
+					coord[2] = fitxes_color;
+				}
+				else
+				{
+					coord = null;
 				}
 				break;
 			}
 			case DIAGONAL_DESC:
 			{
-				for ( int i = fila - 5, j = columna - 5; i < fila + 5 && j < columna + 5; i++, j++ )
+				int fitxes_1 = 0;
+				int fitxes_2 = 0;
+
+				boolean valid_1 = true;
+				boolean valid_2 = true;
+
+				int fitxes_color = 0;
+
+				for ( int i = 0; i < 5; i++ )
 				{
-					if ( tauler.esCasellaValida( i, j ) )
+					int fila_1 = fila + i;
+					int columna_1 = columna + i;
+
+					int fila_2 = fila - i;
+					int columna_2 = columna - i;
+
+					if ( tauler.esCasellaValida( fila_1, columna_1 ) && valid_1 )
 					{
-						EstatCasella color_casella = tauler.getEstatCasella( i, j );
-						if ( color_casella == color_fitxa )
+						EstatCasella color_casella = tauler.getEstatCasella( fila_1, columna_1 );
+						if ( color_casella == color_fitxa || color_casella == EstatCasella.BUIDA )
 						{
-							fitxes_color++;
+							fitxes_1++;
+							if ( color_casella == color_fitxa )
+							{
+								fitxes_color++;
+							}
+						}
+						else
+						{
+							valid_1 = false;
 						}
 					}
+					else
+					{
+						valid_1 = false;
+					}
+					if ( tauler.esCasellaValida( fila_2, columna_2 ) && valid_2 )
+					{
+						EstatCasella color_casella = tauler.getEstatCasella( fila_2, columna_2 );
+						if ( color_casella == color_fitxa || color_casella == EstatCasella.BUIDA )
+						{
+							fitxes_2++;
+							if ( color_casella == color_fitxa )
+							{
+								fitxes_color++;
+							}
+						}
+						else
+						{
+							valid_2 = false;
+						}
+					}
+					else
+					{
+						valid_2 = false;
+					}
+				}
+				if ( fitxes_1 + fitxes_2 >= 5 )
+				{
+					coord[0] = fitxes_1;
+					coord[1] = fitxes_2;
+					coord[2] = fitxes_color;
+				}
+				else
+				{
+					coord = null;
 				}
 				break;
 			}
 			case DIAGONAL_ASC:
-				for ( int i = fila + 5, j = columna - 5; i > fila - 5 && j < columna + 5; i--, j++ )
+			{
+				int fitxes_1 = 0;
+				int fitxes_2 = 0;
+
+				boolean valid_1 = true;
+				boolean valid_2 = true;
+
+				int fitxes_color = 0;
+
+				for ( int i = 0; i < 5; i++ )
 				{
-					if ( tauler.esCasellaValida( i, j ) )
+					int fila_1 = fila - i;
+					int columna_1 = columna + i;
+
+					int fila_2 = fila + i;
+					int columna_2 = columna - i;
+
+					if ( tauler.esCasellaValida( fila_1, columna_1 ) && valid_1 )
 					{
-						EstatCasella color_casella = tauler.getEstatCasella( i, j );
-						if ( color_casella == color_fitxa )
+						EstatCasella color_casella = tauler.getEstatCasella( fila_1, columna_1 );
+						if ( color_casella == color_fitxa || color_casella == EstatCasella.BUIDA )
 						{
-							fitxes_color++;
+							fitxes_1++;
+							if ( color_casella == color_fitxa )
+							{
+								fitxes_color++;
+							}
+						}
+						else
+						{
+							valid_1 = false;
 						}
 					}
+					else
+					{
+						valid_1 = false;
+					}
+					if ( tauler.esCasellaValida( fila_2, columna_2 ) && valid_2 )
+					{
+						EstatCasella color_casella = tauler.getEstatCasella( fila_2, columna_2 );
+						if ( color_casella == color_fitxa || color_casella == EstatCasella.BUIDA )
+						{
+							fitxes_2++;
+							if ( color_casella == color_fitxa )
+							{
+								fitxes_color++;
+							}
+						}
+						else
+						{
+							valid_2 = false;
+						}
+					}
+					else
+					{
+						valid_2 = false;
+					}
 				}
-		}
-
-		int puntuacio = 0;
-		switch ( fitxes_color )
-		{
-			case 0:
-				puntuacio = 0;
-				break;
-			case 1:
-				puntuacio = 10;
-				break;
-			case 2:
-				if ( color == EstatCasella.JUGADOR_A && color_fitxa == EstatCasella.JUGADOR_B )
+				if ( fitxes_1 + fitxes_2 >= 5 )
 				{
-					puntuacio = 1000;
+					coord[0] = fitxes_1;
+					coord[1] = fitxes_2;
+					coord[2] = fitxes_color;
 				}
 				else
 				{
-					puntuacio = 100;
+					coord = null;
 				}
 				break;
-			case 3:
-				if ( color == EstatCasella.JUGADOR_A && color_fitxa == EstatCasella.JUGADOR_B )
-				{
-					puntuacio = 10000;
-				}
-				else
-				{
-					puntuacio = 1000;
-				}
-				break;
-			case 4:
-				puntuacio = 10000;
-				break;
+			}
 		}
 
-		return puntuacio * factor_potencial;
-	}
-
-	private boolean potCrearLinia( int fila, int columna, TaulerGomoku tauler, Direccio dir )
-	{
-
-		EstatCasella color_fitxa = tauler.getEstatCasella( fila, columna );
-		// TODO
-		System.out.println( "Mirant si " + color_fitxa + " pot crear linia" );
-		switch ( dir )
+		if ( coord != null )
 		{
-			case HORITZONTAL:
+			if ( color != color_fitxa )
 			{
-				int fitxes_potencials = 0;
-				for ( int i = fila - 5; i < fila + 5; i++ )
-				{
-					if ( tauler.esCasellaValida( i, columna ) )
-					{
-						EstatCasella color_casella = tauler.getEstatCasella( i, columna );
-						if ( color_casella == color_fitxa || color_casella == EstatCasella.BUIDA )
-						{
-							fitxes_potencials++;
-							if ( fitxes_potencials >= 5 )
-							{
-								return true;
-							}
-						}
-						else
-						{
-							fitxes_potencials = 0;
-						}
-					}
-				}
-				break;
+				coord[2] *= 20;
 			}
-			case VERTICAL:
+			else
 			{
-				int fitxes_potencials = 0;
-				for ( int j = columna - 5; j < columna + 5; j++ )
-				{
-					if ( tauler.esCasellaValida( fila, j ) )
-					{
-						EstatCasella color_casella = tauler.getEstatCasella( fila, j );
-						if ( color_casella == color_fitxa || color_casella == EstatCasella.BUIDA )
-						{
-							fitxes_potencials++;
-							if ( fitxes_potencials >= 5 )
-							{
-								return true;
-							}
-						}
-						else
-						{
-							fitxes_potencials = 0;
-						}
-					}
-				}
-				break;
+				coord[2] *= 10;
 			}
-			case DIAGONAL_DESC:
-			{
-				int fitxes_potencials = 0;
-				for ( int i = fila - 5, j = columna - 5; i < fila + 5 && j < columna + 5; i++, j++ )
-				{
-					if ( tauler.esCasellaValida( i, j ) )
-					{
-						EstatCasella color_casella = tauler.getEstatCasella( i, j );
-						if ( color_casella == color_fitxa || color_casella == EstatCasella.BUIDA )
-						{
-							fitxes_potencials++;
-							if ( fitxes_potencials >= 5 )
-							{
-								return true;
-							}
-						}
-						else
-						{
-							fitxes_potencials = 0;
-						}
-					}
-				}
-				break;
-			}
-			case DIAGONAL_ASC:
-				int fitxes_potencials = 0;
-				for ( int i = fila + 5, j = columna - 5; i > fila - 5 && j < columna + 5; i--, j++ )
-				{
-					if ( tauler.esCasellaValida( i, j ) )
-					{
-						EstatCasella color_casella = tauler.getEstatCasella( i, j );
-						if ( color_casella == color_fitxa || color_casella == EstatCasella.BUIDA )
-						{
-							fitxes_potencials++;
-							if ( fitxes_potencials >= 5 )
-							{
-								return true;
-							}
-						}
-						else
-						{
-							fitxes_potencials = 0;
-						}
-					}
-				}
 		}
+		return coord;
 		// TODO
-		System.out.println( "Pot!" + color_fitxa + " " + dir );
-		return false;
+		// // System.out.println( "Pot!" + color_fitxa + " " + dir );
 	}
 
 	private void aplicaPuntuacions( int fila, int columna, TaulerGomoku tauler, int[] puntuacio, int[][] analisi )
 	{
 		// TODO llençar illegalargumentexception si es la casella és buida?
-		EstatCasella color_consulta = tauler.getEstatCasella( fila, columna );
-		if ( potCrearLinia( fila, columna, tauler, Direccio.HORITZONTAL ) )
+		// EstatCasella color_consulta = tauler.getEstatCasella( fila, columna );
+		int[] limits = potCrearLinia( fila, columna, tauler, Direccio.VERTICAL );
+		if ( limits != null )
 		{
-			int potencial = comptaPotencialitatLinia( fila, columna, tauler, Direccio.HORITZONTAL );
-			boolean es_util = true;
-			for ( int i = fila; i > fila - 5 && es_util; i-- )
+			int potencial = limits[2];
+			for ( int i = fila; i > fila - limits[1]; i-- )
 			{
 				if ( tauler.esCasellaValida( i, columna ) )
 				{
-					EstatCasella color_iteracio = tauler.getEstatCasella( i, columna );
-					if ( color_iteracio != color_consulta && color_iteracio != EstatCasella.BUIDA )
-					{
-						es_util = false;
-					}
-					else
-					{
-						analisi[i][columna] += puntuacio[fila - i] + potencial;
-					}
+					analisi[i][columna] += puntuacio[fila - i] + potencial;
 				}
 			}
 
-			es_util = true;
-			for ( int i = fila; i < fila + 5 && es_util; i++ )
+			for ( int i = fila; i < fila + limits[0]; i++ )
 			{
-				if ( tauler.esCasellaValida( i, columna ) )
-				{
-					EstatCasella color_iteracio = tauler.getEstatCasella( i, columna );
-					if ( color_iteracio != color_consulta && color_iteracio != EstatCasella.BUIDA )
-					{
-						es_util = false;
-					}
-					else
-					{
-						analisi[i][columna] += puntuacio[i - fila] + potencial;
-					}
-				}
+				analisi[i][columna] += puntuacio[i - fila] + potencial;
 			}
 		}
 
-		if ( potCrearLinia( fila, columna, tauler, Direccio.VERTICAL ) )
+		limits = potCrearLinia( fila, columna, tauler, Direccio.HORITZONTAL );
+		if ( limits != null )
 		{
-			boolean es_util = true;
-			int potencial = comptaPotencialitatLinia( fila, columna, tauler, Direccio.VERTICAL );
-			for ( int j = columna; j > columna - 5 && es_util; j-- )
+			int potencial = limits[2];
+			for ( int j = columna; j > columna - limits[1]; j-- )
 			{
-				if ( tauler.esCasellaValida( fila, j ) )
-				{
-					EstatCasella color_iteracio = tauler.getEstatCasella( fila, j );
-					if ( color_iteracio != color_consulta && color_iteracio != EstatCasella.BUIDA )
-					{
-						es_util = false;
-					}
-					else
-					{
-						analisi[fila][j] += puntuacio[columna - j] + potencial;
-					}
-				}
+				analisi[fila][j] += puntuacio[columna - j] + potencial;
 			}
 
-			es_util = true;
-			for ( int j = columna; j < columna + 5 && es_util; j++ )
+			for ( int j = columna; j < columna + limits[0]; j++ )
 			{
-				if ( tauler.esCasellaValida( fila, j ) )
-				{
-					EstatCasella color_iteracio = tauler.getEstatCasella( fila, j );
-					if ( color_iteracio != color_consulta && color_iteracio != EstatCasella.BUIDA )
-					{
-						es_util = false;
-					}
-					else
-					{
-						analisi[fila][j] += puntuacio[j - columna] + potencial;
-					}
-				}
+				analisi[fila][j] += puntuacio[j - columna] + potencial;
 			}
 		}
-		if ( potCrearLinia( fila, columna, tauler, Direccio.DIAGONAL_DESC ) )
+		limits = potCrearLinia( fila, columna, tauler, Direccio.DIAGONAL_DESC );
+		if ( limits != null )
 		{
-			boolean es_util = true;
-			int potencial = comptaPotencialitatLinia( fila, columna, tauler, Direccio.DIAGONAL_DESC );
-			for ( int i = fila, j = columna; i > fila - 5 && j > columna - 5 && es_util; i--, j-- )
+			int potencial = limits[2];
+			for ( int i = fila, j = columna; i > fila - limits[1] && j > columna - limits[1]; i--, j-- )
 			{
-				if ( tauler.esCasellaValida( i, j ) )
-				{
-					EstatCasella color_iteracio = tauler.getEstatCasella( i, j );
-					if ( color_iteracio != color_consulta && color_iteracio != EstatCasella.BUIDA )
-					{
-						es_util = false;
-					}
-					else
-					{
-						analisi[i][j] += puntuacio[columna - j] + potencial;
-					}
-				}
+				analisi[i][j] += puntuacio[columna - j] + potencial;
 			}
 
-			es_util = true;
-			for ( int i = fila, j = columna; i < fila + 5 && j < columna + 5 && es_util; i++, j++ )
+			for ( int i = fila, j = columna; i < fila + limits[0] && j < columna + limits[0]; i++, j++ )
 			{
 				if ( tauler.esCasellaValida( i, j ) )
 				{
-					EstatCasella color_iteracio = tauler.getEstatCasella( i, j );
-					if ( color_iteracio != color_consulta && color_iteracio != EstatCasella.BUIDA )
-					{
-						es_util = false;
-					}
-					else
-					{
-						analisi[i][j] += puntuacio[j - columna] + potencial;
-					}
+					analisi[i][j] += puntuacio[j - columna] + potencial;
 				}
 			}
 
 		}
 
-		if ( potCrearLinia( fila, columna, tauler, Direccio.DIAGONAL_ASC ) )
+		limits = potCrearLinia( fila, columna, tauler, Direccio.DIAGONAL_ASC );
+		if ( limits != null )
 		{
-			boolean es_util = true;
-			int potencial = comptaPotencialitatLinia( fila, columna, tauler, Direccio.DIAGONAL_ASC );
-			for ( int i = fila, j = columna; i > fila - 5 && j < columna + 5 && es_util; i--, j++ )
+			int potencial = limits[2];
+			for ( int i = fila, j = columna; i > fila - limits[0] && j < columna + limits[0]; i--, j++ )
 			{
 				if ( tauler.esCasellaValida( i, j ) )
 				{
-					EstatCasella color_iteracio = tauler.getEstatCasella( i, j );
-					if ( color_iteracio != color_consulta && color_iteracio != EstatCasella.BUIDA )
-					{
-						es_util = false;
-					}
-					else
-					{
-						analisi[i][j] += puntuacio[j - columna] + potencial;
-					}
+					analisi[i][j] += puntuacio[j - columna] + potencial;
 				}
 			}
 
-			es_util = true;
-			for ( int i = fila, j = columna; i < fila + 5 && j > columna - 5 && es_util; i++, j-- )
+			for ( int i = fila, j = columna; i < fila + limits[1] && j > columna - limits[1]; i++, j-- )
 			{
 				if ( tauler.esCasellaValida( i, j ) )
 				{
-					EstatCasella color_iteracio = tauler.getEstatCasella( i, j );
-					if ( color_iteracio != color_consulta && color_iteracio != EstatCasella.BUIDA )
-					{
-						es_util = false;
-					}
-					{
-						analisi[i][j] += puntuacio[columna - j] + potencial;
-					}
+					analisi[i][j] += puntuacio[columna - j] + potencial;
 				}
 			}
 		}
@@ -571,7 +583,7 @@ public class IAGomokuSimple extends IAGomoku
 	@Override
 	public String toString()
 	{
-		if (! ha_computat)
+		if ( !ha_computat )
 		{
 			return "Encara no ha computat cap moviment";
 		}
