@@ -118,4 +118,10 @@ public class ProvaTaulerGUI extends JFrame
 	public TaulerGUI getTaulerActual(){
 		return tauler;
 	}
+
+	public void preparaPartida()
+	{
+		
+	}
 }
+

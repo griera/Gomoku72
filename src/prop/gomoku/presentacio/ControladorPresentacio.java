@@ -344,19 +344,18 @@ public class ControladorPresentacio
 			tauler_partida.main();
 			tauler_partida.setPartida(partida_en_curs);
 			tauler_partida.activa();
-			ControladorPartidaEnJoc controlador_partida_en_joc = new ControladorPartidaEnJoc(partida_en_curs);
-			if(color==1){
-				int[] mov_ia = controlador_partida_en_joc.getMovimentMaquina();
-				controlador_partida_en_joc.mouFitxa( EstatCasella.JUGADOR_A, mov_ia[0], mov_ia[1] );
-				tauler_partida.getTaulerActual().pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_A );
-			}
-			this.juga_partida();
+			tauler_partida.preparaPartida();
+			this.juga_partida(tauler_partida);
 	}
 
-	private void juga_partida()
+	private void juga_partida(ProvaTaulerGUI tauler_partida)
 	{
-		
-		
+		ControladorPartidaEnJoc controlador_partida_en_joc = new ControladorPartidaEnJoc(partida_en_curs);
+		if(partida_en_curs.getJugadorA().getTipus()!=TipusUsuari.HUMA){ // negres maquina
+			int[] mov_ia = controlador_partida_en_joc.getMovimentMaquina();
+			controlador_partida_en_joc.mouFitxa( EstatCasella.JUGADOR_A, mov_ia[0], mov_ia[1] );
+			tauler_partida.getTaulerActual().pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_A );
+		}
 	}
 
 	public void sincronitzacioConfiguracio2persones1( FrameConfiguracioPartida2Persones frame_configuracio2persones )

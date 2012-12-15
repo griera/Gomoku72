@@ -14,6 +14,7 @@ import prop.cluster.domini.models.estats.EstatCasella;
 import prop.cluster.domini.models.estats.EstatPartida;
 import prop.gomoku.domini.controladors.ControladorPartidaEnJoc;
 import prop.gomoku.domini.models.PartidaGomoku;
+import prop.gomoku.domini.models.TipusUsuari;
 
 public class TaulerGUI extends JPanel
 {
@@ -187,31 +188,52 @@ public class TaulerGUI extends JPanel
 		int fila = coord[0];
 		int columna = coord[1];
 		System.out.println( "Clicat: " + fila + " " + columna );
-
-		try
-		{
-			ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_A, fila, columna );
-		} catch ( Exception e )
-		{
-			System.out.println( e.getMessage() );
-			return false;
+		if(partida.getTornsJugats()%2==0){
+			try
+			{
+				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_A, fila, columna );
+			} catch ( Exception e )
+			{
+				System.out.println( e.getMessage() );
+				return false;
+			}
+			this.pinta( fila, columna, EstatCasella.JUGADOR_A );
+			if ( estat == EstatPartida.NO_FINALITZADA && partida.getJugadorB().getTipus()!=TipusUsuari.HUMA )
+			{
+				int[] mov_ia = ctrl_en_joc.getMovimentMaquina();
+				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_B, mov_ia[0], mov_ia[1] );
+				this.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_B );
+			}
 		}
-		this.pinta( fila, columna, EstatCasella.JUGADOR_A );
-
-		estat = partida.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
-
-		if ( estat == EstatPartida.NO_FINALITZADA )
-		{
-			int[] mov_ia = ctrl_en_joc.getMovimentMaquina();
-			ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_B, mov_ia[0], mov_ia[1] );
-			this.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_B );
+		else {
+			try
+			{
+				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_B, fila, columna );
+			} catch ( Exception e )
+			{
+				System.out.println( e.getMessage() );
+				return false;
+			}
+			this.pinta( fila, columna, EstatCasella.JUGADOR_B );
+			if ( estat == EstatPartida.NO_FINALITZADA && partida.getJugadorA().getTipus()!=TipusUsuari.HUMA )
+			{
+				int[] mov_ia = ctrl_en_joc.getMovimentMaquina();
+				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_A, mov_ia[0], mov_ia[1] );
+				this.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_A );
+			}
 		}
+		estat = partida.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );	
 		return true;
 	}
 	public void setPartida(PartidaGomoku partida){
 		this.partida = partida;
 		ctrl_en_joc = new ControladorPartidaEnJoc( this.partida );
 		int [] movs= ctrl_en_joc.getUltimMoviment(); 
+	}
+
+	public PartidaGomoku getPartida()
+	{
+		return partida;
 	}
 	
 }
