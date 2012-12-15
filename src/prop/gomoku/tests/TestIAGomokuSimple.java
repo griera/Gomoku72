@@ -31,6 +31,7 @@ public class TestIAGomokuSimple
 				try
 				{
 					partida.getTauler().mouFitxa( EstatCasella.JUGADOR_A, fila, columna );
+					partida.incrementaTornsJugats( 1 );
 					toca_huma = false;
 				} catch ( Exception e )
 				{
@@ -44,9 +45,11 @@ public class TestIAGomokuSimple
 				System.out.println("Moviment decidit: " + moviment[0] + ", " + moviment[1]);
 				try{
 					partida.getTauler().mouFitxa( EstatCasella.JUGADOR_B, moviment[0], moviment[1] );
+					partida.incrementaTornsJugats( 1 );
 				}
 				catch (Exception e)
 				{
+					e.printStackTrace();
 					System.out.println("Error de decisió de IA");
 				}
 				toca_huma = true;

@@ -25,6 +25,7 @@ public class IAGomokuSimple extends IAGomoku
 	private int[][] analisi_jugador;
 	private int[][] analisi_oponent;
 	PriorityQueue<int[]> millors_caselles;
+	boolean ha_computat = false;
 
 	public IAGomokuSimple( /* PartidaGomoku partida, EstatCasella color */)
 	{
@@ -150,6 +151,9 @@ public class IAGomokuSimple extends IAGomoku
 			}
 		}
 		actualitzaAnalisi();
+		
+		ha_computat = true;
+		
 		return classificaIDecideix();
 	}
 
@@ -567,6 +571,10 @@ public class IAGomokuSimple extends IAGomoku
 	@Override
 	public String toString()
 	{
+		if (! ha_computat)
+		{
+			return "Encara no ha computat cap moviment";
+		}
 		String sortida = "Analisi jugador - " + color.toString() + "\n";
 
 		for ( int j = 0; j < analisi_jugador[0].length; j++ )
