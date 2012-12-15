@@ -125,11 +125,18 @@ public class FrameEstadistiquesIndividuals extends JFrame
 	public void carregaestadistiques(int[] records){
 		int i = 0;
 		listmodel = new DefaultListModel();
+		int j = 0;
 		for (CriteriRecords criteri : CriteriRecords.values())
 		{
 			// TODO   tractament dels titols adequats
 			int record_criteri = records[i];
 				String dades = "";
+				
+				if(i%5==0 && i!=0){
+					listmodel.add(j," ");
+					j++;
+				}
+				
 				dades+=criteri.toString();
 				int espais = 30-dades.length();
 				System.out.println(espais);
@@ -143,12 +150,10 @@ public class FrameEstadistiquesIndividuals extends JFrame
 				String html1 = "<html><font face=\"Monospace\">";
 				String html2 = "</font></html>";
 				dades=html1+dades+html2;
-				listmodel.add( i, dades );
-				if(i%5==0 && i!=0){
-					listmodel.add(i," ");
-					++i;
-				}
-				else i++;
+				listmodel.add( j, dades );
+				i++;
+				j++;
+				
 		}
 		jList0.setModel( listmodel );
 		this.setLocationRelativeTo( null );
