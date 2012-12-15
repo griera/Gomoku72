@@ -191,29 +191,27 @@ public class FrameRegistrar extends JFrame {
 	}
 
 	private void jButton0MouseMouseClicked(MouseEvent event) {
-		String password1 = "";
-		String password2 = "";
 		char[] pass1 = jPasswordField0.getPassword();
+		String pass = "";
 		char[] pass2 = jPasswordField1.getPassword();
 		boolean iguals=true;
 		if(pass1.length!=pass2.length){
 			iguals=false;
 		}
 		else {
-		for (int iterador = 0; iterador < pass1.length; ++iterador) {
-			password1 += pass1[iterador];
-			password2 += pass2[iterador];
-		}
-			for(int iterador=0;iterador>pass1.length;++iterador){
-				if(pass1[iterador]!=pass2[iterador]){
+			for(int i=0; i<pass1.length;++i){
+				if(pass1[i]!=pass2[i]){
 					iguals=false;
+				}
+				else {
+					pass+=pass1[i];
 				}
 			}
 		}
 		if (iguals) {
-			if(password1.length()>=4){
+			if(pass1.length>=4){
 			controlador_presentacio.RegistrarJugador(this,
-					jTextField0.getText(), password1);
+					jTextField0.getText(),pass );
 			}
 			else {
 				FrameError error = new FrameError();

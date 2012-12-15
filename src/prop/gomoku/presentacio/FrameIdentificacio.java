@@ -185,12 +185,12 @@ public class FrameIdentificacio extends JFrame
 		controlador_presentacio.sincronitzacioIdentificacioBenvingut(this);
 	}
 	private void jButton1MouseMouseClicked(MouseEvent event) {
-		String contrasenyastring="";
 		char [] contrasenyaarray=jPasswordField0.getPassword();
-		for(int iterador=0;iterador<contrasenyaarray.length;++iterador){
-			contrasenyastring+=contrasenyaarray[iterador];
-		}	
-		controlador_presentacio.Identificarse(this,jTextField0.getText(),contrasenyastring);
+		String pass = "";
+		for(int i=0; i< contrasenyaarray.length; ++i){
+			pass+=contrasenyaarray[i];
+		}
+		controlador_presentacio.Identificarse(this,jTextField0.getText(),pass);
 	}
 	public UsuariGomoku getUsuariActual() {
 		

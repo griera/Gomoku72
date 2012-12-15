@@ -147,8 +147,12 @@ public class FrameEstadistiquesGlobals extends JFrame
 					dades+="&nbsp;";
 					System.out.print(" ,"+ k);
 				}
+
 				System.out.println();
 				dades+=record[1];
+				if(criteri.toString().contains( "PER" ) ){
+					dades+="%";
+				}
 				String html1 = "<html><font face=\"Monospace\">";
 				String html2 = "</font></html>";
 				dades=html1+dades+html2;

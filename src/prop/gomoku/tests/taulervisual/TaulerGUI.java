@@ -15,6 +15,7 @@ import prop.cluster.domini.models.estats.EstatPartida;
 import prop.gomoku.domini.controladors.ControladorPartidaEnJoc;
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.TipusUsuari;
+import prop.gomoku.presentacio.ControladorPresentacio;
 
 public class TaulerGUI extends JPanel
 {
@@ -27,6 +28,7 @@ public class TaulerGUI extends JPanel
 	private ImageIcon casella_buida, fitxa_negra, fitxa_blanca, tauler_fons;
 	private boolean tipusTauler;
 	private CasellaGUI[][] caselles;
+	private ControladorPresentacio controlador_presentacio;
 
 	public TaulerGUI()
 	{
@@ -167,73 +169,50 @@ public class TaulerGUI extends JPanel
 	private PartidaGomoku partida;
 	private ControladorPartidaEnJoc ctrl_en_joc;
 	private EstatPartida estat = EstatPartida.NO_FINALITZADA;
+	
 	public boolean intentaFerMoviment( int[] coord )
 	{
-		int[] ultim_moviment = ctrl_en_joc.getUltimMoviment();
-		if ( estat == EstatPartida.NO_FINALITZADA )
-		{
-			estat = partida.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
-			if ( estat != EstatPartida.NO_FINALITZADA )
-			{
-				System.out.println( estat );
-				return false;
-			}
-		}
-		else
-		{
-			System.out.println( estat );
-			return false;
-		}
-
-		int fila = coord[0];
-		int columna = coord[1];
-		System.out.println( "Clicat: " + fila + " " + columna );
-		if(partida.getTornsJugats()%2==0){
-			try
-			{
-				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_A, fila, columna );
-			} catch ( Exception e )
-			{
-				System.out.println( e.getMessage() );
-				return false;
-			}
-			this.pinta( fila, columna, EstatCasella.JUGADOR_A );
-			if ( estat == EstatPartida.NO_FINALITZADA && partida.getJugadorB().getTipus()!=TipusUsuari.HUMA )
-			{
-				int[] mov_ia = ctrl_en_joc.getMovimentMaquina();
-				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_B, mov_ia[0], mov_ia[1] );
-				this.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_B );
-			}
-		}
-		else {
-			try
-			{
-				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_B, fila, columna );
-			} catch ( Exception e )
-			{
-				System.out.println( e.getMessage() );
-				return false;
-			}
-			this.pinta( fila, columna, EstatCasella.JUGADOR_B );
-			if ( estat == EstatPartida.NO_FINALITZADA && partida.getJugadorA().getTipus()!=TipusUsuari.HUMA )
-			{
-				int[] mov_ia = ctrl_en_joc.getMovimentMaquina();
-				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_A, mov_ia[0], mov_ia[1] );
-				this.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_A );
-			}
-		}
-		estat = partida.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );	
-		return true;
+		boolean moviment= controlador_presentacio.ferMoviment(coord);
+		return moviment;
 	}
 	public void setPartida(PartidaGomoku partida){
 		this.partida = partida;
 		ctrl_en_joc = new ControladorPartidaEnJoc( this.partida );
-		int [] movs= ctrl_en_joc.getUltimMoviment(); 
+	}
+	
+	public boolean juga_maquines(){
+		int[] ultim_moviment;
+		int[] mov_ia;
+		if(estat == EstatPartida.NO_FINALITZADA){		
+			ultim_moviment = ctrl_en_joc.getUltimMoviment();
+				mov_ia = ctrl_en_joc.getMovimentMaquina();
+				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_A, mov_ia[0], mov_ia[1] );
+				this.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_A );
+				estat = partida.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
+		}
+				if( estat== EstatPartida.NO_FINALITZADA){
+					ultim_moviment = ctrl_en_joc.getUltimMoviment();
+					mov_ia = ctrl_en_joc.getMovimentMaquina();
+					ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_B, mov_ia[0], mov_ia[1] );
+					this.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_B );
+					estat = partida.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
+				}
+			return true;
 	}
 
 	public PartidaGomoku getPartida()
 	{
 		return partida;
+	}
+	public void setControladorPresentacio(ControladorPresentacio controlador_presentacio){
+		this.controlador_presentacio=controlador_presentacio;
+	}
+
+	public void bloquejacasella( int i, int j )
+	{
+		this.caselles[i][j].setEnabled( false );
+		System.out.println(caselles[i][j].isEnabled());
+		this.caselles[i][j].setFocusable(false);
 	}
 	
 }

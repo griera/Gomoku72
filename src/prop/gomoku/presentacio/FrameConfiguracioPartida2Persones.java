@@ -288,18 +288,30 @@ public class FrameConfiguracioPartida2Persones extends JFrame {
 	private void jButton0MouseMouseClicked(MouseEvent event) {
 		
 		if(jRadioButton0.isSelected()){
-			String contrasenya = "";
 			char [] contrasenyachar = jPasswordField0.getPassword();
-			for(int iterador=0;iterador<contrasenyachar.length;++iterador){
-				contrasenya+=contrasenyachar[iterador];
+			String pass = "";
+			char [] nomactual = controlador_presentacio.getUsuariActual().getNom().toCharArray();
+			char [] nomintent = jTextField0.getText().toCharArray();
+			boolean iguals = true;
+			if(nomactual.length!=nomintent.length) iguals=false;
+			else {
+				for(int i =0; i<nomactual.length;++i){
+					if(nomactual[i]!=nomintent[i]) {iguals=false;}
+				}
 			}
-			if(jTextField0.equals(controlador_presentacio.getUsuariActual())){
+			if(iguals){
+
 				FrameError error = new FrameError();
 				error.main();
 				error.MissatgeActiva("L'usuari introduit esta actualment loguejat en el sistema,introdueixi un usuari diferent, si us plau.");
 				jPasswordField0.setText("");
 			}
-			controlador_presentacio.IdentificarOponent( this, jTextField0.getText(), contrasenya);
+			else{
+				for(int i=0; i<contrasenyachar.length;++i){
+					pass+=contrasenyachar[i];
+				}
+				controlador_presentacio.IdentificarOponent( this, jTextField0.getText(),pass );
+			}
 		}
 		if(jRadioButton1.isSelected()){
 			controlador_presentacio.IdentificarOponent( this, "Convidat", "Convidat");
@@ -314,6 +326,9 @@ public class FrameConfiguracioPartida2Persones extends JFrame {
 		jTextField0.setText( "" );
 		jPasswordField0.setText( "" );
 		
+	}
+	public void NetejaContrasenya(){
+		jPasswordField0.setText("");
 	}
 
 

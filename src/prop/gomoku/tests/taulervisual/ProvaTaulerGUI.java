@@ -1,6 +1,9 @@
 package prop.gomoku.tests.taulervisual;
 
 import java.awt.EventQueue;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -8,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.WindowConstants;
 
+import prop.cluster.domini.models.estats.EstatCasella;
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.presentacio.ControladorPresentacio;
 
@@ -55,17 +59,31 @@ public class ProvaTaulerGUI extends JFrame
 
 		JButton boto_guardar = new JButton( "Guardar Partida" );
 		boto_guardar.setBounds( 600, 325, 135, 40 );
+		boto_guardar.addMouseListener( new MouseAdapter(){
+			public void mouseClicked(MouseEvent event){
+				botoguardarMouseMouseClicked( event );
+			}
+		});
 		this.getContentPane().add( boto_guardar );
 
 		JButton boto_sortir = new JButton( "Sortir" );
 		boto_sortir.setBounds( 600, 405, 135, 40 );
+		boto_sortir.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent event){
+				boto_sortirMouseMouseClicked(event);
+			}
+		});
 		this.getContentPane().add( boto_sortir );
 
 		JButton avancar_torn = new JButton( "Avançar Torn" );
 		avancar_torn.setBounds( 600, 485, 135, 40 );
-		avancar_torn.setEnabled( false );
+		avancar_torn.setEnabled( true);
+		avancar_torn.addMouseListener( new MouseAdapter() {
+			public void mouseClicked(MouseEvent event) {
+				avancar_tornMouseMouseClicked(event);
+			}
+		});
 		this.getContentPane().add( avancar_torn );
-
 		
 		tauler=getTauler();
 		GroupLayout taulerLayout = new GroupLayout( tauler );
@@ -84,7 +102,17 @@ public class ProvaTaulerGUI extends JFrame
 				layout.createSequentialGroup().addComponent( tauler, GroupLayout.PREFERRED_SIZE,
 						GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE ).addContainerGap( 53, Short.MAX_VALUE ) ) );
 	}
-	
+				private void avancar_tornMouseMouseClicked( MouseEvent event )
+				{
+					controlador_presentacio.juga_maquines();	
+				}
+				private void botoguardarMouseMouseClicked( MouseEvent event )
+				{
+					controlador_presentacio.guardaPartida(tauler.getPartida());
+				}
+				private void boto_sortirMouseMouseClicked(MouseEvent event){
+					controlador_presentacio.sincronitzacioPartidaMenu( this );
+				}
 	private TaulerGUI getTauler(){
 		TaulerGUI taulernou = null;
 		if(this.tauler==null){
@@ -119,9 +147,36 @@ public class ProvaTaulerGUI extends JFrame
 		return tauler;
 	}
 
-	public void preparaPartida()
+	public void pinta( int i, int j, EstatCasella color )
 	{
+		tauler.pinta( i, j, color );
+	}
+
+	public void setControladorPresentacio( ControladorPresentacio controlador_presentacio )
+	{
+		this.controlador_presentacio=controlador_presentacio;		
+	}
+	public void setControladorPresentacioTauler(ControladorPresentacio controlador_presentacio){
+		this.tauler.setControladorPresentacio( controlador_presentacio );
+	}
+
+	public void pinta()
+	{
+		for(int i=0; i<controlador_presentacio.getPartidaactual().getTauler().getMida(); ++i){
+			for(int j=0; j<controlador_presentacio.getPartidaactual().getTauler().getMida(); ++j){
+				tauler.pinta(i,j,controlador_presentacio.getPartidaactual().getTauler().getEstatCasella( i, j ));
+			}
+		}
 		
+	}
+
+	public void bloquejaTauler()
+	{
+		for(int i=0; i<controlador_presentacio.getPartidaactual().getTauler().getMida(); ++i){
+			for(int j=0; j<controlador_presentacio.getPartidaactual().getTauler().getMida(); ++j){
+					tauler.bloquejacasella(i,j);
+			}
+		}
 	}
 }
 

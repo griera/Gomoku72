@@ -166,6 +166,10 @@ public class ControladorPartidaEnJoc
 		{
 			this.partida.incrementaTornsJugats( 1 );
 		}
+		else
+		{
+			this.partida.setFinalitzada( true );
+		}
 		return estat_partida;
 	}
 

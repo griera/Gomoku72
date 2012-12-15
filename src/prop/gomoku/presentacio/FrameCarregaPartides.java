@@ -19,7 +19,6 @@ import org.dyno.visual.swing.layouts.Constraints;
 import org.dyno.visual.swing.layouts.GroupLayout;
 import org.dyno.visual.swing.layouts.Leading;
 
-import prop.gomoku.domini.controladors.ControladorPartidesGuardades;
 import prop.gomoku.domini.models.PartidaGomoku;
 
 //VS4E -- DO NOT REMOVE THIS LINE!
@@ -102,6 +101,12 @@ public class FrameCarregaPartides extends JFrame
 		if (jButton0 == null) {
 			jButton0 = new JButton();
 			jButton0.setText("Carrega Partida");
+			jButton0.addMouseListener(new MouseAdapter() {
+	
+				public void mouseClicked(MouseEvent event) {
+					jButton0MouseMouseClicked(event);
+				}
+			});
 		}
 		return jButton0;
 	}
@@ -217,6 +222,11 @@ public class FrameCarregaPartides extends JFrame
 	private void jList0ListSelectionValueChanged(ListSelectionEvent event) {
 //		System.out.println(event.getFirstIndex());
 		System.out.println(this.jList0.getSelectedIndex());
+	}
+
+	private void jButton0MouseMouseClicked(MouseEvent event) {
+		PartidaGomoku partida=partides.get(jList0.getSelectedIndex());
+		controlador_presentacio.carrega_partida(this,partida);
 	}
 
 }

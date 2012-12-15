@@ -289,7 +289,7 @@ public class FrameConfiguracioPartida3 extends JFrame {
 	}
 	
 	public void setNomsusuaris(){
-		jLabel4.setText(controlador_presentacio.getUsuariActual().getNom());
+		jLabel4.setText(controlador_presentacio.getJugadorActual().getNom());
 		jLabel5.setText(controlador_presentacio.getOponentActual().getNom());
 		System.out.println("label4: " + jLabel4.getText()+ "label5 "+ jLabel5.getText());
 		this.setLocationRelativeTo(null);
