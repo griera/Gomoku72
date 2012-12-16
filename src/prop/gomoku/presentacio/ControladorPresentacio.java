@@ -54,9 +54,6 @@ public class ControladorPresentacio
 	private ProvaTaulerGUIEntrenament tauler_entrenament;
 	private ControladorPartidaEnJoc ctrl_en_joc;
 	private static boolean entrenament;
-	private boolean dades_guardades;
-	// TODO
-	private ControladorPreparacioPartida ctrl_preparacio;
 
 	public void sincronizacionBenvingutIdentificacio( FrameBenvingut frame_benvingut )
 	{
@@ -479,10 +476,7 @@ public class ControladorPresentacio
 
 			}
 		}
-		// TODO
-		// controlador_usuari.actualitzaUsuari( jugador_actiu );
-		// controlador_usuari.actualitzaUsuari( jugador_oponent );
-		dades_guardades = true;
+		ctrl_en_joc.actualitzaDadesFinalPartida();
 	}
 
 	public void sincronitzacioConfiguracio2persones1( FrameConfiguracioPartida2Persones frame_configuracio2persones )
@@ -523,7 +517,7 @@ public class ControladorPresentacio
 		// TODO
 		System.out.println( tipus_oponent );
 		System.out.println( "user1: " + jugador_actiu + "oponent: " + jugador_oponent );
-		System.out.println( "Entrenament: " + this.entrenament );
+		System.out.println( "Entrenament: " + entrenament );
 		frame_configuracio3.main();
 		frame_configuracio3.setControladorPresentacio( this );
 		frame_configuracio3.setTipusText();
