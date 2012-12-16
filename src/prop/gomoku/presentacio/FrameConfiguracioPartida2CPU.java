@@ -41,6 +41,7 @@ public class FrameConfiguracioPartida2CPU extends JFrame
 	}
 
 	private void initComponents() {
+		controlador_presentacio = new ControladorPresentacio();
 		setTitle("Gomoku- Configuració de partida ràpida");
 		setLayout(new GroupLayout());
 		add(getJLabel0(), new Constraints(new Leading(53, 10, 10), new Leading(12, 12, 12)));
