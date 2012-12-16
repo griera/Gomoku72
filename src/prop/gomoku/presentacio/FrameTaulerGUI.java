@@ -35,22 +35,18 @@ public class FrameTaulerGUI extends JFrame
 		informacio.setBounds( 600, 20, 170, 20 );
 		this.getContentPane().add( informacio );
 
-		// TODO Capturar un String amb el nom del jugador amb fitxes negres
 		JLabel jugador_negre = new JLabel( "Negres: " );
 		jugador_negre.setBounds( 600, 70, 170, 20 );
 		this.getContentPane().add( jugador_negre );
 
-		// TODO Capturar un String amb el nom del jugador amb fitxes blanques
 		JLabel jugador_blanc = new JLabel( "Blanques: " );
 		jugador_blanc.setBounds( 600, 90, 170, 20 );
 		this.getContentPane().add( jugador_blanc );
 
-		// TODO Capturar un String amb el nombre del torn actual
 		JLabel torn_actual = new JLabel( "Torn Actual: " );
 		torn_actual.setBounds( 600, 110, 170, 20 );
 		this.getContentPane().add( torn_actual );
 
-		// TODO Capturar un String amb el nom del jugador que ha de jugar l'actual torn
 		JLabel avis_torn = new JLabel( ", és el seu torn" );
 		avis_torn.setBounds( 600, 150, 170, 20 );
 		this.getContentPane().add( avis_torn );
@@ -181,9 +177,10 @@ public class FrameTaulerGUI extends JFrame
 
 	public void pinta()
 	{
-		for ( int i = 0; i < controlador_presentacio.getPartidaactual().getTauler().getMida(); ++i )
+		int mida = this.controlador_presentacio.getPartidaactual().getTauler().getMida();
+		for ( int i = 0; i < mida; ++i )
 		{
-			for ( int j = 0; j < controlador_presentacio.getPartidaactual().getTauler().getMida(); ++j )
+			for ( int j = 0; j < mida; ++j )
 			{
 				tauler.pinta( i, j, controlador_presentacio.getPartidaactual().getTauler().getEstatCasella( i, j ) );
 			}
@@ -193,9 +190,10 @@ public class FrameTaulerGUI extends JFrame
 
 	public void bloquejaTauler()
 	{
-		for ( int i = 0; i < controlador_presentacio.getPartidaactual().getTauler().getMida(); ++i )
+		int mida = this.controlador_presentacio.getPartidaactual().getTauler().getMida();
+		for ( int i = 0; i < mida; ++i )
 		{
-			for ( int j = 0; j < controlador_presentacio.getPartidaactual().getTauler().getMida(); ++j )
+			for ( int j = 0; j < mida; ++j )
 			{
 				tauler.bloquejacasella( i, j );
 			}
@@ -209,10 +207,12 @@ public class FrameTaulerGUI extends JFrame
 
 	public void actualitzaDades()
 	{
-		JLabel etiq_negres = (JLabel) this.getContentPane().getComponent( 1 );
-		etiq_negres.setText( "Negres: " + controlador_presentacio.getPartidaactual().getJugadorA().getNom() );
-		JLabel etiq_blanques = (JLabel) this.getContentPane().getComponent( 2 );
-		etiq_blanques.setText( "Blanques: " + controlador_presentacio.getPartidaactual().getJugadorB().getNom() );
+		JLabel etiqueta_negres = (JLabel) this.getContentPane().getComponent( 1 );
+		etiqueta_negres.setText( "Negres: " + controlador_presentacio.getPartidaactual().getJugadorA().getNom() );
+		
+		JLabel etiqueta_blanques = (JLabel) this.getContentPane().getComponent( 2 );
+		etiqueta_blanques.setText( "Blanques: " + controlador_presentacio.getPartidaactual().getJugadorB().getNom() );
+		
 		JLabel torn_actual = (JLabel) this.getContentPane().getComponent( 3 );
 		torn_actual.setText( "Torn actual: " + ( controlador_presentacio.getPartidaactual().getTornsJugats() + 1 ) );
 
