@@ -146,7 +146,6 @@ public class ControladorPartidaEnJoc
 		}
 	}
 
-	// TODO completar informació del que fa aquesta classe
 	/**
 	 * Mètode per a moure una fitxa a la partida. Avança el nombre de torns jugats en conseqüència i comprova l'estat de
 	 * la partida com a resultat del moviment
@@ -171,30 +170,50 @@ public class ControladorPartidaEnJoc
 		{
 			// Es realitzen les gestions de finalització de partida
 			this.partida.setFinalitzada( true );
-
-			UsuariGomoku jugador_a = this.partida.getJugadorA();
-			UsuariGomoku jugador_b = this.partida.getJugadorB();
-
-			if ( estat_partida == EstatPartida.EMPAT )
-			{
-				jugador_a.incrementaEmpats( jugador_b.getTipus() );
-				jugador_b.incrementaEmpats( jugador_a.getTipus() );
-			}
-			else if ( estat_partida == EstatPartida.GUANYA_JUGADOR_A )
-			{
-				jugador_a.incrementaVictories( jugador_b.getTipus() );
-				jugador_b.incrementaDerrotes( jugador_a.getTipus() );
-			}
-			else if ( estat_partida == EstatPartida.GUANYA_JUGADOR_B )
-			{
-				jugador_a.incrementaDerrotes( jugador_b.getTipus() );
-				jugador_b.incrementaVictories( jugador_a.getTipus() );
-			}
-
-			actualitzaUsuarisNoConvidats();
-
 		}
 		return estat_partida;
+	}
+
+	/**
+	 * Mètode que actualitza les dades dels jugadors (objectes en memòria i disc) que han participat a la partida (a
+	 * disc només en cas de no ser convidats) només si la partida ha estat finalitzada
+	 * 
+	 * @return <em>true</em> en cas d'èxit; <em>false</em> en cas contrari (la partida no ha estat finalitzada o hi ha
+	 *         hagut algun problema extern a l'hora d'actualitzar a disc
+	 */
+	public boolean actualitzaDadesFinalPartida()
+	{
+		if ( !partida.estaFinalitzada() )
+		{
+			return false;
+		}
+
+		UsuariGomoku jugador_a = this.partida.getJugadorA();
+		UsuariGomoku jugador_b = this.partida.getJugadorB();
+
+		EstatPartida estat_partida = partida.comprovaEstatPartida( fila_ult_moviment, columna_ult_moviment );
+
+		if ( estat_partida == EstatPartida.EMPAT )
+		{
+			jugador_a.incrementaEmpats( jugador_b.getTipus() );
+			jugador_b.incrementaEmpats( jugador_a.getTipus() );
+		}
+		else if ( estat_partida == EstatPartida.GUANYA_JUGADOR_A )
+		{
+			jugador_a.incrementaVictories( jugador_b.getTipus() );
+			jugador_b.incrementaDerrotes( jugador_a.getTipus() );
+		}
+		else if ( estat_partida == EstatPartida.GUANYA_JUGADOR_B )
+		{
+			jugador_a.incrementaDerrotes( jugador_b.getTipus() );
+			jugador_b.incrementaVictories( jugador_a.getTipus() );
+		}
+		else
+		{
+			// Si no és un estat de finalització alguna cosa inesperada ha passat
+			return false;
+		}
+		return actualitzaUsuarisNoConvidats();
 	}
 
 	/**
