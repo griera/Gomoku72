@@ -432,14 +432,14 @@ public class ControladorPresentacio
 			tauler_partida.getTaulerActual().pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_B );
 			estat = partida_en_curs.comprovaEstatPartida( mov_ia[0], mov_ia[1] );
 		}
-		
+
 	}
 
 	public void fi_partida()
 	{
-		System.out.println(estat);
+		System.out.println( estat );
 		System.out.println( "Entro a fi partida" );
-		System.out.println(partida_en_curs);
+		System.out.println( partida_en_curs );
 		FrameError endgame = new FrameError();
 		endgame.main();
 		if ( estat == EstatPartida.EMPAT )
@@ -552,11 +552,11 @@ public class ControladorPresentacio
 	// partida_canvi_nom = partida;
 	// frame_canvi_nom.main();
 	// frame_canvi_nom.setControladorPresentacio(this);
-	//		
-	//		
-	//		
+	//
+	//
+	//
 	// }
-	//	
+	//
 	// public void canvinomiguardat(FrameCanviNom canvi_nom){
 	// partida_canvi_nom.setNom( nomcanvi );
 	// canvi_nom.dispose();
@@ -1009,7 +1009,7 @@ public class ControladorPresentacio
 				|| partida_en_curs.getJugadorB().getTipus() == TipusUsuari.HUMA
 				|| partida_en_curs.getJugadorB().getTipus() == TipusUsuari.CONVIDAT )
 			return;
-		
+
 		int[] ultim_moviment;
 		int[] mov_ia;
 		boolean finalitzada;
@@ -1022,7 +1022,7 @@ public class ControladorPresentacio
 				tauler_partida.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_A );
 				ultim_moviment = ctrl_en_joc.getUltimMoviment();
 				estat = partida_en_curs.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
-				System.out.println(estat);
+				System.out.println( estat );
 				finalitzada = partida_en_curs.estaFinalitzada();
 				if ( finalitzada )
 				{
@@ -1030,13 +1030,13 @@ public class ControladorPresentacio
 				}
 			}
 			if ( estat == EstatPartida.NO_FINALITZADA )
-			{			
+			{
 				mov_ia = ctrl_en_joc.getMovimentMaquina();
 				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_B, mov_ia[0], mov_ia[1] );
 				tauler_partida.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_B );
 				ultim_moviment = ctrl_en_joc.getUltimMoviment();
 				estat = partida_en_curs.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
-				System.out.println(estat);
+				System.out.println( estat );
 				finalitzada = partida_en_curs.estaFinalitzada();
 				if ( finalitzada )
 				{
@@ -1047,13 +1047,13 @@ public class ControladorPresentacio
 		else
 		{
 			if ( estat == EstatPartida.NO_FINALITZADA )
-			{				
+			{
 				mov_ia = ctrl_en_joc.getMovimentMaquina();
 				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_B, mov_ia[0], mov_ia[1] );
 				tauler_partida.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_B );
 				ultim_moviment = ctrl_en_joc.getUltimMoviment();
 				estat = partida_en_curs.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
-				System.out.println(estat);
+				System.out.println( estat );
 				finalitzada = partida_en_curs.estaFinalitzada();
 				if ( finalitzada )
 				{
@@ -1067,7 +1067,7 @@ public class ControladorPresentacio
 				tauler_partida.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_A );
 				ultim_moviment = ctrl_en_joc.getUltimMoviment();
 				estat = partida_en_curs.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
-				System.out.println(estat);
+				System.out.println( estat );
 				finalitzada = partida_en_curs.estaFinalitzada();
 				if ( finalitzada )
 				{
@@ -1301,5 +1301,20 @@ public class ControladorPresentacio
 		partides.esborraPartida( partida );
 		List<PartidaGomoku> partides_actualitzades = partides.carregaPartides( usuari_actiu );
 		frame_carrega_partides.mostraLlistaPartides( partides_actualitzades );
+	}
+
+	public void sincronitzacioEntrenamentMenu( FrameTaulerGUIEntrenament frameTaulerGUIEntrenament )
+	{
+		if ( frameTaulerGUIEntrenament == null )
+		{
+			frameTaulerGUIEntrenament = new FrameTaulerGUIEntrenament();
+		}
+		if ( frame_menu_principal == null )
+		{
+			frame_menu_principal = new FrameMenuPrincipal();
+		}
+		frameTaulerGUIEntrenament.dispose();
+		frame_menu_principal.main();
+		frame_menu_principal.setControladorPresentacio( this );
 	}
 }

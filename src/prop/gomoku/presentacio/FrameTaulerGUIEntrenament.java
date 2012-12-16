@@ -95,7 +95,7 @@ public class FrameTaulerGUIEntrenament extends JFrame
 					controlador_presentacio.sincroEntrenamentPartida(this);
 				}
 				private void boto_sortirMouseMouseClicked(MouseEvent event){
-					//controlador_presentacio.sincronitzacioPartidaMenu( this );
+					controlador_presentacio.sincronitzacioEntrenamentMenu( this );
 				}
 	private TaulerGUI getTauler(){
 		TaulerGUI taulernou = null;
