@@ -394,7 +394,7 @@ public class IAGomokuSimple2 extends IAGomoku
 					}
 					else
 					{
-						analisi[i][columna] += puntuacio[fila - i] * potencial;
+						analisi[i][columna] += puntuacio[fila - i] + potencial;
 					}
 				}
 			}
@@ -411,7 +411,7 @@ public class IAGomokuSimple2 extends IAGomoku
 					}
 					else
 					{
-						analisi[i][columna] += puntuacio[i - fila] * potencial;
+						analisi[i][columna] += puntuacio[i - fila] + potencial;
 					}
 				}
 			}
@@ -432,7 +432,7 @@ public class IAGomokuSimple2 extends IAGomoku
 					}
 					else
 					{
-						analisi[fila][j] += puntuacio[columna - j] * potencial;
+						analisi[fila][j] += puntuacio[columna - j] + potencial;
 					}
 				}
 			}
@@ -449,7 +449,7 @@ public class IAGomokuSimple2 extends IAGomoku
 					}
 					else
 					{
-						analisi[fila][j] += puntuacio[j - columna] * potencial;
+						analisi[fila][j] += puntuacio[j - columna] + potencial;
 					}
 				}
 			}
@@ -469,7 +469,7 @@ public class IAGomokuSimple2 extends IAGomoku
 					}
 					else
 					{
-						analisi[i][j] += puntuacio[columna - j] * potencial;
+						analisi[i][j] += puntuacio[columna - j] + potencial;
 					}
 				}
 			}
@@ -486,7 +486,7 @@ public class IAGomokuSimple2 extends IAGomoku
 					}
 					else
 					{
-						analisi[i][j] += puntuacio[j - columna] * potencial;
+						analisi[i][j] += puntuacio[j - columna] + potencial;
 					}
 				}
 			}
@@ -508,7 +508,7 @@ public class IAGomokuSimple2 extends IAGomoku
 					}
 					else
 					{
-						analisi[i][j] += puntuacio[j - columna] * potencial;
+						analisi[i][j] += puntuacio[j - columna] + potencial;
 					}
 				}
 			}
@@ -524,7 +524,7 @@ public class IAGomokuSimple2 extends IAGomoku
 						es_util = false;
 					}
 					{
-						analisi[i][j] += puntuacio[columna - j] * potencial;
+						analisi[i][j] += puntuacio[columna - j] + potencial;
 					}
 				}
 			}
