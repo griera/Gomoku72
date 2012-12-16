@@ -39,10 +39,10 @@ public class FrameEstadistiquesGlobals extends JFrame
 	private void initComponents() {
 		setTitle("Gomoku - Estadistiques Globals");
 		setLayout(new GroupLayout());
-		add(getJLabel0(), new Constraints(new Leading(241, 10, 10), new Leading(25, 10, 10)));
-		add(getJScrollPane0(), new Constraints(new Leading(47, 585, 10, 10), new Leading(76, 372, 10, 10)));
-		add(getJButton0(), new Constraints(new Leading(638, 101, 12, 12), new Leading(248, 35, 10, 10)));
-		setSize(751, 508);
+		add(getJScrollPane0(), new Constraints(new Leading(47, 473, 10, 10), new Leading(76, 372, 10, 10)));
+		add(getJButton0(), new Constraints(new Leading(372, 148, 12, 12), new Leading(460, 35, 12, 12)));
+		add(getJLabel0(), new Constraints(new Leading(189, 12, 12), new Leading(26, 10, 10)));
+		setSize(562, 507);
 	}
 
 	private JButton getJButton0() {
@@ -119,6 +119,7 @@ public class FrameEstadistiquesGlobals extends JFrame
 				frame.pack();
 				frame.setLocationRelativeTo( null );
 				frame.setVisible( false );
+				frame.setResizable( false );
 			}
 		} );
 	}

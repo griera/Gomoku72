@@ -41,7 +41,6 @@ public class FrameConfiguracioPartida2CPU extends JFrame
 	}
 
 	private void initComponents() {
-		controlador_presentacio = new ControladorPresentacio();
 		setTitle("Gomoku- Configuració de partida ràpida");
 		setLayout(new GroupLayout());
 		add(getJLabel0(), new Constraints(new Leading(53, 10, 10), new Leading(12, 12, 12)));
@@ -53,10 +52,10 @@ public class FrameConfiguracioPartida2CPU extends JFrame
 		add(getJRadioButton3(), new Constraints(new Leading(26, 12, 12), new Leading(166, 12, 12)));
 		add(getJRadioButton4(), new Constraints(new Leading(95, 12, 12), new Leading(166, 12, 12)));
 		add(getJRadioButton5(), new Constraints(new Leading(165, 12, 12), new Leading(166, 12, 12)));
-		add(getJButton0(), new Constraints(new Trailing(12, 12, 12), new Leading(202, 12, 12)));
-		add(getJButton1(), new Constraints(new Trailing(111, 12, 12), new Leading(202, 12, 12)));
-		add(getJButton2(), new Constraints(new Trailing(201, 12, 12), new Trailing(12, 202, 202)));
-		setSize(402, 240);
+		add(getJButton0(), new Constraints(new Trailing(12, 12, 12), new Trailing(12, 48, 48)));
+		add(getJButton2(), new Constraints(new Leading(26, 105, 105), new Trailing(12, 198, 198)));
+		add(getJButton1(), new Constraints(new Trailing(99, 156, 156), new Trailing(12, 160, 160)));
+		setSize(402, 255);
 	}
 
 	private JButton getJButton2() {
@@ -242,6 +241,7 @@ public class FrameConfiguracioPartida2CPU extends JFrame
 				frame.pack();
 				frame.setLocationRelativeTo( null );
 				frame.setVisible( true );
+				frame.setResizable( false );
 			}
 		} );
 	}

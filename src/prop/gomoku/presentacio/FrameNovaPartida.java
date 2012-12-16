@@ -12,7 +12,6 @@ import javax.swing.UIManager;
 import org.dyno.visual.swing.layouts.Constraints;
 import org.dyno.visual.swing.layouts.GroupLayout;
 import org.dyno.visual.swing.layouts.Leading;
-import org.dyno.visual.swing.layouts.Trailing;
 
 //VS4E -- DO NOT REMOVE THIS LINE!
 public class FrameNovaPartida extends JFrame {
@@ -32,12 +31,12 @@ public class FrameNovaPartida extends JFrame {
 	private void initComponents() {
 		setTitle("Gomoku - Nova Partida");
 		setLayout(new GroupLayout());
-		add(getJLabel0(), new Constraints(new Leading(20, 10, 10), new Leading(12, 12, 12)));
-		add(getJLabel1(), new Constraints(new Leading(20, 12, 12), new Leading(42, 12, 12)));
-		add(getJButton0(), new Constraints(new Leading(20, 124, 10, 10), new Leading(73, 37, 10, 10)));
-		add(getJButton1(), new Constraints(new Leading(20, 124, 12, 12), new Leading(140, 38, 10, 10)));
-		add(getJButton2(), new Constraints(new Trailing(12, 12, 12), new Trailing(12, 70, 70)));
-		setSize(410, 240);
+		add(getJLabel1(), new Constraints(new Leading(20, 12, 12), new Leading(54, 12, 12)));
+		add(getJLabel0(), new Constraints(new Leading(76, 12, 12), new Leading(12, 12, 12)));
+		add(getJButton2(), new Constraints(new Leading(236, 85, 10, 10), new Leading(244, 27, 10, 10)));
+		add(getJButton0(), new Constraints(new Leading(85, 185, 10, 10), new Leading(95, 37, 10, 10)));
+		add(getJButton1(), new Constraints(new Leading(84, 186, 12, 12), new Leading(167, 38, 10, 10)));
+		setSize(339, 289);
 	}
 
 	private JButton getJButton2() {
@@ -126,6 +125,7 @@ public class FrameNovaPartida extends JFrame {
 				frame.pack();
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
+				frame.setResizable( false );
 			}
 		});
 	}

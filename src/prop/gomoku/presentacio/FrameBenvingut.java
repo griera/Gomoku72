@@ -32,12 +32,12 @@ public class FrameBenvingut extends JFrame
 	private void initComponents() {
 		setTitle("Gomoku - Benvinguts");
 		setLayout(new GroupLayout());
-		add(getJButton0(), new Constraints(new Leading(109, 12, 12), new Leading(69, 12, 12)));
-		add(getJLabel0(), new Constraints(new Leading(106, 139, 10, 10), new Leading(6, 38, 10, 10)));
-		add(getJButton3(), new Constraints(new Leading(109, 12, 12), new Leading(113, 12, 12)));
-		add(getJButton1(), new Constraints(new Leading(109, 12, 12), new Leading(157, 12, 12)));
-		add(getJButton2(), new Constraints(new Leading(109, 12, 12), new Leading(201, 12, 12)));
-		setSize(320, 248);
+		add(getJButton0(), new Constraints(new Leading(70, 158, 10, 10), new Leading(62, 12, 12)));
+		add(getJButton3(), new Constraints(new Leading(70, 12, 12), new Leading(100, 12, 12)));
+		add(getJButton1(), new Constraints(new Leading(70, 158, 12, 12), new Leading(138, 12, 12)));
+		add(getJButton2(), new Constraints(new Leading(70, 158, 12, 12), new Leading(176, 12, 12)));
+		add(getJLabel0(), new Constraints(new Leading(92, 139, 10, 10), new Leading(8, 38, 10, 10)));
+		setSize(310, 242);
 	}
 	private JButton getJButton3() {
 		if (jButton3 == null) {
@@ -52,16 +52,13 @@ public class FrameBenvingut extends JFrame
 		}
 		return jButton3;
 	}
-	private JLabel getJLabel0()
-	{
-		if ( jLabel0 == null )
-		{
+	private JLabel getJLabel0() {
+		if (jLabel0 == null) {
 			jLabel0 = new JLabel();
-			jLabel0.setText( "<html><FONT SIZE = 5>GOMOKU</FONT></html>" );
+			jLabel0.setText("<html><FONT SIZE = 5>GOMOKU72</FONT></html>");
 		}
 		return jLabel0;
 	}
-
 	private JButton getJButton0() {
 		if (jButton0 == null) {
 			jButton0 = new JButton();
@@ -143,6 +140,7 @@ public class FrameBenvingut extends JFrame
 				frame.pack();
 				frame.setLocationRelativeTo( null );
 				frame.setVisible( true );
+				frame.setResizable( false );
 			}
 		} );
 	}

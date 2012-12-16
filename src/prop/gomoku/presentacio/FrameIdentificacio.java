@@ -1,7 +1,7 @@
 package prop.gomoku.presentacio;
-import prop.gomoku.domini.models.UsuariGomoku;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,7 +14,8 @@ import javax.swing.UIManager;
 import org.dyno.visual.swing.layouts.Constraints;
 import org.dyno.visual.swing.layouts.GroupLayout;
 import org.dyno.visual.swing.layouts.Leading;
-import org.dyno.visual.swing.layouts.Trailing;
+
+import prop.gomoku.domini.models.UsuariGomoku;
 
 //VS4E -- DO NOT REMOVE THIS LINE!
 public class FrameIdentificacio extends JFrame
@@ -41,17 +42,17 @@ public class FrameIdentificacio extends JFrame
 	private void initComponents() {
 		setTitle("Gomoku - Identificació");
 		setLayout(new GroupLayout());
-		add(getJLabel2(), new Constraints(new Leading(8, 125, 10, 10), new Leading(7, 26, 12, 12)));
-		add(getJButton1(), new Constraints(new Trailing(12, 82, 12, 12), new Leading(238, 12, 12)));
-		add(getJButton0(), new Constraints(new Leading(195, 93, 106), new Leading(238, 12, 12)));
-		add(getJLabel0(), new Constraints(new Leading(12, 87, 12, 12), new Leading(166, 12, 12)));
-		add(getJLabel1(), new Constraints(new Leading(12, 12, 12), new Leading(92, 12, 12)));
-		add(getJLabel3(), new Constraints(new Leading(11, 12, 12), new Leading(36, 10, 10)));
-		add(getJLabel4(), new Constraints(new Leading(12, 12, 12), new Leading(64, 12, 12)));
-		add(getJTextField0(), new Constraints(new Leading(11, 192, 12, 12), new Leading(126, 12, 12)));
-		add(getJPasswordField0(), new Constraints(new Leading(11, 192, 12, 12), new Leading(200, 12, 12)));
+		add(getJButton1(), new Constraints(new Leading(239, 82, 12, 12), new Leading(234, 10, 10)));
+		add(getJButton0(), new Constraints(new Leading(137, 10, 10), new Leading(234, 10, 10)));
+		add(getJLabel2(), new Constraints(new Leading(111, 125, 12, 12), new Leading(9, 26, 10, 10)));
+		add(getJLabel1(), new Constraints(new Leading(26, 10, 10), new Leading(104, 10, 10)));
+		add(getJLabel3(), new Constraints(new Leading(22, 10, 10), new Leading(51, 10, 10)));
+		add(getJLabel0(), new Constraints(new Leading(25, 87, 12, 12), new Leading(164, 10, 10)));
+		add(getJPasswordField0(), new Constraints(new Leading(25, 296, 12, 12), new Leading(179, 12, 12)));
+		add(getJTextField0(), new Constraints(new Leading(25, 296, 12, 12), new Leading(121, 10, 10)));
+		add(getJLabel4(), new Constraints(new Leading(22, 12, 12), new Leading(70, 12, 12)));
 		setJMenuBar(getJMenuBar0());
-		setSize(389, 279);
+		setSize(350, 285);
 	}
 	private JPasswordField getJPasswordField0() {
 		if (jPasswordField0 == null) {
@@ -171,6 +172,7 @@ public class FrameIdentificacio extends JFrame
 				frame.pack();
 				frame.setLocationRelativeTo( null );
 				frame.setVisible( true );
+				frame.setResizable( false );
 			}
 		} );
 	}

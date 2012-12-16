@@ -13,7 +13,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
-import org.dyno.visual.swing.layouts.Bilateral;
 import org.dyno.visual.swing.layouts.Constraints;
 import org.dyno.visual.swing.layouts.GroupLayout;
 import org.dyno.visual.swing.layouts.Leading;
@@ -54,8 +53,8 @@ public class FrameConfiguracioPartida3 extends JFrame {
 		add(getJRadioButton2(), new Constraints(new Leading(25, 12, 12), new Leading(182, 12, 12)));
 		add(getJButton0(), new Constraints(new Trailing(12, 12, 12), new Trailing(12, 12, 12)));
 		add(getJButton1(), new Constraints(new Trailing(105, 12, 12), new Trailing(12, 90, 90)));
-		add(getJButton2(), new Constraints(new Trailing(198, 12, 12), new Trailing(12, 90, 90)));
-		add(getJPanel0(), new Constraints(new Bilateral(237, 12, 0), new Leading(90, 100, 50, 50)));
+		add(getJButton2(), new Constraints(new Leading(25, 189, 189), new Trailing(12, 214, 214)));
+		add(getJPanel0(), new Constraints(new Trailing(12, 205, 102, 102), new Leading(98, 100, 50, 50)));
 		setSize(454, 267);
 	}
 
@@ -228,6 +227,7 @@ public class FrameConfiguracioPartida3 extends JFrame {
 				frame.getContentPane().setPreferredSize(frame.getSize());
 				frame.pack();
 				frame.setLocationRelativeTo(null);
+				frame.setResizable( false );
 			}
 		});
 	}

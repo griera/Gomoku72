@@ -31,7 +31,6 @@ public class FrameRegistrar extends JFrame {
 	private JPasswordField jPasswordField0;
 	private JPasswordField jPasswordField1;
 	private static final String PREFERRED_LOOK_AND_FEEL = "javax.swing.plaf.metal.MetalLookAndFeel";
-
 	public FrameRegistrar() {
 		controlador_presentacio = new ControladorPresentacio();
 		initComponents();
@@ -40,27 +39,17 @@ public class FrameRegistrar extends JFrame {
 	private void initComponents() {
 		setTitle("Gomoku - Registre de nou usuari");
 		setLayout(new GroupLayout());
-		add(getJButton0(), new Constraints(new Trailing(12, 12, 12),
-				new Trailing(12, 12, 12)));
-		add(getJButton1(), new Constraints(new Trailing(111, 12, 12),
-				new Trailing(12, 12, 12)));
-		add(getJLabel2(), new Constraints(new Leading(12, 12, 12), new Leading(
-				79, 12, 12)));
-		add(getJTextField0(), new Constraints(new Leading(12, 250, 12, 12),
-				new Leading(101, 50, 50)));
-		add(getJLabel3(), new Constraints(new Leading(12, 12, 12), new Leading(
-				133, 12, 12)));
-		add(getJLabel4(), new Constraints(new Leading(12, 12, 12), new Leading(
-				181, 12, 12)));
-		add(getJLabel1(), new Constraints(new Leading(12, 12, 12), new Leading(
-				57, 88, 88)));
-		add(getJLabel0(), new Constraints(new Leading(12, 12, 12), new Leading(
-				17, 10, 10)));
-		add(getJPasswordField0(), new Constraints(new Leading(12, 250, 12, 12),
-				new Leading(155, 12, 12)));
-		add(getJPasswordField1(), new Constraints(new Leading(12, 250, 12, 12),
-				new Leading(203, 12, 12)));
-		setSize(396, 279);
+		add(getJLabel2(), new Constraints(new Leading(19, 10, 10), new Leading(79, 10, 10)));
+		add(getJLabel3(), new Constraints(new Leading(19, 10, 10), new Leading(133, 10, 10)));
+		add(getJLabel4(), new Constraints(new Leading(19, 10, 10), new Leading(181, 10, 10)));
+		add(getJLabel1(), new Constraints(new Leading(19, 10, 10), new Leading(57, 12, 12)));
+		add(getJTextField0(), new Constraints(new Leading(19, 356, 10, 10), new Leading(101, 12, 12)));
+		add(getJPasswordField0(), new Constraints(new Leading(19, 356, 10, 10), new Leading(155, 12, 12)));
+		add(getJPasswordField1(), new Constraints(new Leading(19, 356, 10, 10), new Leading(203, 12, 12)));
+		add(getJButton0(), new Constraints(new Leading(288, 10, 10), new Trailing(12, 235, 235)));
+		add(getJButton1(), new Constraints(new Leading(185, 10, 10), new Trailing(12, 235, 235)));
+		add(getJLabel0(), new Constraints(new Leading(93, 10, 10), new Leading(21, 50, 50)));
+		setSize(396, 289);
 	}
 
 	private JPasswordField getJPasswordField1() {
@@ -182,6 +171,7 @@ public class FrameRegistrar extends JFrame {
 				frame.pack();
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
+				frame.setResizable( false );
 			}
 		});
 	}

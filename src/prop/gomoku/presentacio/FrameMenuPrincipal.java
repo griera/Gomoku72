@@ -27,24 +27,21 @@ public class FrameMenuPrincipal extends JFrame
 	private JButton jButton3;
 	private JButton jButton4;
 	private static final String PREFERRED_LOOK_AND_FEEL = "javax.swing.plaf.metal.MetalLookAndFeel";
-
 	public FrameMenuPrincipal()
 	{
 		initComponents();
 	}
 
-	private void initComponents()
-	{
-		setTitle( "Gomoku - Menú Principal" );
-		setLayout( new GroupLayout() );
-		controlador_presentacio = new ControladorPresentacio();
-		add( getJButton0(), new Constraints( new Leading( 143, 12, 12 ), new Leading( 68, 10, 10 ) ) );
-		add( getJButton1(), new Constraints( new Leading( 143, 12, 12 ), new Leading( 112, 12, 12 ) ) );
-		add( getJButton2(), new Constraints( new Leading( 143, 12, 12 ), new Leading( 156, 12, 12 ) ) );
-		add( getJButton3(), new Constraints( new Leading( 143, 12, 12 ), new Leading( 200, 12, 12 ) ) );
-		add( getJButton4(), new Constraints( new Leading( 143, 12, 12 ), new Leading( 244, 12, 12 ) ) );
-		add( getJLabel0(), new Constraints( new Leading( 143, 12, 12 ), new Leading( 22, 10, 10 ) ) );
-		setSize( 400, 350 );
+	private void initComponents() {
+		setTitle("Gomoku - Menú Principal");
+		setLayout(new GroupLayout());
+		add(getJLabel0(), new Constraints(new Leading(135, 10, 10), new Leading(44, 10, 10)));
+		add(getJButton2(), new Constraints(new Leading(127, 10, 10), new Leading(180, 10, 10)));
+		add(getJButton4(), new Constraints(new Leading(127, 150, 10, 10), new Leading(268, 10, 10)));
+		add(getJButton0(), new Constraints(new Leading(127, 150, 10, 10), new Leading(92, 10, 10)));
+		add(getJButton1(), new Constraints(new Leading(127, 150, 10, 10), new Leading(136, 10, 10)));
+		add(getJButton3(), new Constraints(new Leading(127, 150, 10, 10), new Leading(224, 10, 10)));
+		setSize(400, 350);
 	}
 
 	private JButton getJButton4()
@@ -180,6 +177,7 @@ public class FrameMenuPrincipal extends JFrame
 				frame.pack();
 				frame.setLocationRelativeTo( null );
 				frame.setVisible(true);
+				frame.setResizable( false );
 			}
 		} );
 	}

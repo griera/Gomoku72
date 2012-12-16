@@ -38,23 +38,15 @@ public class FrameConfiguracioPartida2 extends JFrame {
 	private void initComponents() {
 		setTitle("Gomoku - Configuració de Partida Ràpida");
 		setLayout(new GroupLayout());
-		add(getJLabel0(), new Constraints(new Leading(59, 10, 10), new Leading(
-				20, 10, 10)));
-		add(getJLabel1(), new Constraints(new Leading(25, 10, 10), new Leading(
-				62, 12, 12)));
-		add(getJRadioButton0(), new Constraints(new Leading(25, 12, 12),
-				new Leading(98, 10, 10)));
-		add(getJRadioButton1(), new Constraints(new Leading(25, 12, 12),
-				new Leading(140, 12, 12)));
-		add(getJRadioButton2(), new Constraints(new Leading(25, 12, 12),
-				new Leading(182, 12, 12)));
-		add(getJButton0(), new Constraints(new Trailing(12, 12, 12),
-				new Trailing(12, 12, 12)));
-		add(getJButton1(), new Constraints(new Trailing(105, 12, 12),
-				new Trailing(12, 90, 90)));
-		add(getJButton2(), new Constraints(new Trailing(198, 12, 12),
-				new Trailing(12, 90, 90)));
-		setSize(454, 267);
+		add(getJLabel0(), new Constraints(new Leading(59, 10, 10), new Leading(20, 10, 10)));
+		add(getJLabel1(), new Constraints(new Leading(25, 10, 10), new Leading(62, 12, 12)));
+		add(getJRadioButton0(), new Constraints(new Leading(25, 12, 12), new Leading(98, 10, 10)));
+		add(getJRadioButton1(), new Constraints(new Leading(25, 12, 12), new Leading(140, 12, 12)));
+		add(getJRadioButton2(), new Constraints(new Leading(25, 12, 12), new Leading(182, 12, 12)));
+		add(getJButton2(), new Constraints(new Leading(25, 189, 189), new Trailing(12, 214, 214)));
+		add(getJButton0(), new Constraints(new Leading(342, 10, 10), new Trailing(12, 12, 12)));
+		add(getJButton1(), new Constraints(new Leading(258, 10, 10), new Trailing(12, 90, 90)));
+		setSize(436, 267);
 	}
 
 	private JButton getJButton2() {
@@ -184,6 +176,7 @@ public class FrameConfiguracioPartida2 extends JFrame {
 				frame.pack();
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
+				frame.setResizable( false );
 			}
 		});
 	}

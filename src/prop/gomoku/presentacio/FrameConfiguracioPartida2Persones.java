@@ -48,13 +48,13 @@ public class FrameConfiguracioPartida2Persones extends JFrame {
 		setLayout(new GroupLayout());
 		add(getJLabel0(), new Constraints(new Leading(59, 10, 10), new Leading(20, 10, 10)));
 		add(getJLabel1(), new Constraints(new Leading(25, 10, 10), new Leading(62, 12, 12)));
-		add(getJRadioButton0(), new Constraints(new Leading(25, 12, 12), new Leading(98, 10, 10)));
-		add(getJRadioButton1(), new Constraints(new Leading(25, 12, 12), new Leading(140, 12, 12)));
 		add(getJButton0(), new Constraints(new Trailing(12, 12, 12), new Trailing(12, 12, 12)));
 		add(getJButton1(), new Constraints(new Trailing(105, 12, 12), new Trailing(12, 90, 90)));
-		add(getJButton2(), new Constraints(new Trailing(198, 12, 12), new Trailing(12, 90, 90)));
 		add(getJPanel0(), new Constraints(new Bilateral(40, 12, 0), new Leading(176, 140, 10, 10)));
-		setSize(454, 376);
+		add(getJButton2(), new Constraints(new Leading(25, 189, 189), new Trailing(12, 314, 328)));
+		add(getJRadioButton0(), new Constraints(new Leading(40, 8, 8), new Leading(142, 46, 46)));
+		add(getJRadioButton1(), new Constraints(new Leading(40, 8, 8), new Leading(100, 10, 10)));
+		setSize(447, 376);
 	}
 
 	private JPasswordField getJPasswordField0() {
@@ -224,6 +224,7 @@ public class FrameConfiguracioPartida2Persones extends JFrame {
 				frame.pack();
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
+				frame.setResizable( false );
 			}
 		});
 	}

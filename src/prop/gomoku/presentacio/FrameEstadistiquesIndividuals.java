@@ -2,7 +2,6 @@ package prop.gomoku.presentacio;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -35,13 +34,12 @@ public class FrameEstadistiquesIndividuals extends JFrame
 	}
 
 	private void initComponents() {
-		new ControladorPresentacio();
 		setTitle("Gomoku - Estadistiques Individuals");
 		setLayout(new GroupLayout());
-		add(getJLabel0(), new Constraints(new Leading(241, 10, 10), new Leading(25, 10, 10)));
-		add(getJScrollPane0(), new Constraints(new Leading(47, 585, 10, 10), new Leading(76, 372, 10, 10)));
-		add(getJButton0(), new Constraints(new Leading(638, 101, 12, 12), new Leading(248, 35, 10, 10)));
-		setSize(751, 508);
+		add(getJScrollPane0(), new Constraints(new Leading(47, 465, 10, 10), new Leading(76, 372, 10, 10)));
+		add(getJButton0(), new Constraints(new Leading(411, 101, 12, 12), new Leading(456, 35, 10, 10)));
+		add(getJLabel0(), new Constraints(new Leading(170, 12, 12), new Leading(26, 10, 10)));
+		setSize(556, 508);
 	}
 
 	private JButton getJButton0() {
@@ -158,6 +156,7 @@ public class FrameEstadistiquesIndividuals extends JFrame
 		jList0.setModel( listmodel );
 		this.setLocationRelativeTo( null );
 		this.setVisible( true );
+		this.setResizable( false );
 	}
 
 	private void jButton0MouseMouseClicked(MouseEvent event) {

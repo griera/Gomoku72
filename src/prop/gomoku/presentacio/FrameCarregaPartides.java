@@ -49,13 +49,13 @@ public class FrameCarregaPartides extends JFrame
 		setTitle("Gomoku - Gestió de partides guardades");
 		setLayout(new GroupLayout());
 		add(getJLabel0(), new Constraints(new Leading(94, 10, 10), new Leading(12, 12, 12)));
-		add(getJButton0(), new Constraints(new Leading(315, 130, 10, 10), new Leading(68, 12, 12)));
-		add(getJButton1(), new Constraints(new Leading(315, 130, 12, 12), new Leading(106, 12, 12)));
 		add(getJButton2(), new Constraints(new Leading(315, 12, 12), new Leading(144, 12, 12)));
-		add(getJScrollPane0(), new Constraints(new Leading(13, 276, 10, 10), new Leading(67, 135, 10, 10)));
-		add(getJButton3(), new Constraints(new Leading(315, 130, 12, 12), new Leading(184, 10, 10)));
-		add(getJLabel1(), new Constraints(new Leading(13, 12, 12), new Leading(216, 12, 12)));
-		add(getJTextField0(), new Constraints(new Leading(89, 149, 10, 10), new Leading(216, 12, 12)));
+		add(getJButton1(), new Constraints(new Leading(315, 146, 12, 12), new Leading(106, 12, 12)));
+		add(getJButton0(), new Constraints(new Leading(315, 146, 12, 12), new Leading(68, 12, 12)));
+		add(getJButton3(), new Constraints(new Leading(315, 146, 12, 12), new Leading(184, 10, 10)));
+		add(getJScrollPane0(), new Constraints(new Leading(13, 276, 10, 10), new Leading(67, 143, 12, 12)));
+		add(getJLabel1(), new Constraints(new Leading(12, 12, 12), new Leading(228, 12, 12)));
+		add(getJTextField0(), new Constraints(new Leading(90, 199, 12, 12), new Leading(228, 12, 12)));
 		setSize(519, 279);
 	}
 
@@ -220,6 +220,7 @@ public class FrameCarregaPartides extends JFrame
 				frame.pack();
 				frame.setLocationRelativeTo( null );
 				frame.setVisible( false );
+				frame.setResizable( false );
 			}
 		} );
 	}
