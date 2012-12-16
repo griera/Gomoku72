@@ -267,7 +267,13 @@ public class FrameConfiguracioPartida3 extends JFrame {
 		if(jRadioButton0.isSelected()) color=0;
 		else if(jRadioButton1.isSelected()) color=1;
 		else if(jRadioButton2.isSelected()) color = 2;
-		if(color!=-1)controlador_presentacio.iniciaPartida(this,color);
+		System.out.println(controlador_presentacio.getEntrenament());
+		// TODO
+		//controlador_presentacio.setentrenament( true );
+		if(color!=-1 && controlador_presentacio.getEntrenament()==false)controlador_presentacio.iniciaPartida(this,color);
+		else if(color!=-1){
+			controlador_presentacio.iniciaEntrenament( this, color );
+		}
 	}
 
 	public void setControladorPresentacio(ControladorPresentacio controlador_presentacio) {

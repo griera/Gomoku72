@@ -256,6 +256,7 @@ public class FrameConfiguracioPartida1 extends JFrame
 
 	private void jButton0MouseMouseClicked( MouseEvent event )
 	{
+		System.out.println("Entrenament :" + controlador_presentacio.getEntrenament());
 		if ( jRadioButton0.isSelected() )
 		{
 			controlador_presentacio.sincronitzacioConfiguracio12( this );
@@ -273,6 +274,11 @@ public class FrameConfiguracioPartida1 extends JFrame
 	public void setControladorPresentacio( ControladorPresentacio controlador_presentacio )
 	{
 		this.controlador_presentacio = controlador_presentacio;
+	}
+
+	public ControladorPresentacio getcontroladorPresentacio()
+	{
+		return controlador_presentacio;
 	}
 
 }

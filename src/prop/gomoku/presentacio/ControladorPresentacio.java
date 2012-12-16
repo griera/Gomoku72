@@ -12,6 +12,7 @@ import prop.cluster.domini.models.estats.EstatCasella;
 import prop.cluster.domini.models.estats.EstatPartida;
 import prop.gomoku.domini.controladors.ControladorPartidaEnJoc;
 import prop.gomoku.domini.controladors.ControladorPartidesGuardades;
+import prop.gomoku.domini.controladors.ControladorPreparacioPartida;
 import prop.gomoku.domini.controladors.ControladorUsuari;
 import prop.gomoku.domini.controladors.excepcions.ContrasenyaIncorrecta;
 import prop.gomoku.domini.controladors.excepcions.ContrasenyaInvalida;
@@ -25,6 +26,7 @@ import prop.gomoku.domini.models.UsuariGomoku;
 import prop.gomoku.gestors.excepcions.UsuariJaExisteix;
 import prop.gomoku.gestors.excepcions.UsuariNoExisteix;
 import prop.gomoku.tests.taulervisual.ProvaTaulerGUI;
+import prop.gomoku.tests.taulervisual.ProvaTaulerGUIEntrenament;
 
 public class ControladorPresentacio
 {
@@ -49,7 +51,12 @@ public class ControladorPresentacio
 	private PartidaGomoku partida_en_curs;
 	private ProvaTaulerGUI tauler_partida;
 	private EstatPartida estat;
+	private ProvaTaulerGUIEntrenament tauler_entrenament;
 	private ControladorPartidaEnJoc ctrl_en_joc;
+	private static boolean entrenament;
+	private boolean dades_guardades;
+	// TODO
+	private ControladorPreparacioPartida ctrl_preparacio;
 
 	public void sincronizacionBenvingutIdentificacio( FrameBenvingut frame_benvingut )
 	{
@@ -121,6 +128,9 @@ public class ControladorPresentacio
 		frame_nova_partida.dispose();
 		frame_configuracio1.main();
 		frame_configuracio1.setControladorPresentacio( this );
+		System.out.println( "Entrenament :" + frame_configuracio1.getcontroladorPresentacio().getEntrenament() );
+		System.out.println( "Es el mateix controlador pres. = "
+				+ ( this == frame_configuracio1.getcontroladorPresentacio() ) );
 	}
 
 	public void sincronitzacioConfiguracioNovaPartida( FrameConfiguracioPartida1 frame_configuracio1 )
@@ -236,21 +246,19 @@ public class ControladorPresentacio
 		{
 			frame_carrega_partides = new FrameCarregaPartides();
 		}
-
+		frame_menu_principal.dispose();
 		frame_carrega_partides.main();
-
-		// TODO
 
 		System.out.println( "Usuari que vol carregar les partides: " + usuari_actiu );
 
 		ControladorPartidesGuardades ctrl_partides_guardades = new ControladorPartidesGuardades();
 		List<PartidaGomoku> llista_partides = ctrl_partides_guardades.carregaPartides( usuari_actiu );
-		// TODO
 		System.out.println( "A punt de mostrar la llista de partides" );
 		for ( PartidaGomoku partida : llista_partides )
 		{
 			System.out.println( partida );
 		}
+		frame_carrega_partides.setControladorPresentacio( this );
 		frame_carrega_partides.mostraLlistaPartides( llista_partides );
 
 	}
@@ -299,7 +307,7 @@ public class ControladorPresentacio
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Maquina 1:" + usuari_actiu + "Maquina 2:" + jugador_oponent);
+		System.out.println( "Maquina 1:" + usuari_actiu + "Maquina 2:" + jugador_oponent );
 		frame_configuracio3.setTipusText();
 		frame_configuracio3.setNomsusuaris();
 	}
@@ -318,74 +326,163 @@ public class ControladorPresentacio
 		frame_configuracio1.main();
 
 	}
-	
-	public void iniciaPartida(FrameConfiguracioPartida3 frame_configuracio3,int color_jugador1){
-			if(frame_configuracio3==null){
-				frame_configuracio3= new FrameConfiguracioPartida3();
-			}
-			if(tauler_partida==null){
-				tauler_partida = new ProvaTaulerGUI();
-			}
-			frame_configuracio3.dispose();
-			int color=color_jugador1;
-			if(color==2){
-				Random aleatori = new Random ();
-				double aleatoridouble = aleatori.nextDouble();
-				if(aleatoridouble>=0.5) color=0;
-				else color=1;
-			}
-			if(color==0){
-				partida_en_curs = new PartidaGomoku(usuari_actiu,jugador_actiu,jugador_oponent,new TaulerGomoku(),"nova_partida");
-			}
-			else {
-				partida_en_curs = new PartidaGomoku(usuari_actiu,jugador_oponent,jugador_actiu,new TaulerGomoku(),"nova_partida");
-			}
-			System.out.println(partida_en_curs);
-			tauler_partida.main();
-			tauler_partida.setPartida(partida_en_curs);
-			tauler_partida.activa();
-			tauler_partida.setControladorPresentacioTauler( this );
-			tauler_partida.setControladorPresentacio(this);
-			estat=EstatPartida.NO_FINALITZADA;
-			if((partida_en_curs.getJugadorA().getTipus()!=TipusUsuari.HUMA&&partida_en_curs.getJugadorA().getTipus()!=TipusUsuari.CONVIDAT)&&(partida_en_curs.getJugadorB().getTipus()!=TipusUsuari.HUMA&&partida_en_curs.getJugadorB().getTipus()!=TipusUsuari.CONVIDAT)){
-				tauler_partida.bloquejaTauler();
-			}
-			this.juga_partida(tauler_partida);
+
+	public void iniciaEntrenament( FrameConfiguracioPartida3 frame_configuracio3, int color_jugador1 )
+	{
+		if ( frame_configuracio3 == null )
+		{
+			frame_configuracio3 = new FrameConfiguracioPartida3();
+		}
+		if ( tauler_entrenament == null )
+		{
+			tauler_entrenament = new ProvaTaulerGUIEntrenament();
+		}
+		frame_configuracio3.dispose();
+		int color = color_jugador1;
+		if ( color == 2 )
+		{
+			Random aleatori = new Random();
+			double aleatoridouble = aleatori.nextDouble();
+			if ( aleatoridouble >= 0.5 )
+				color = 0;
+			else
+				color = 1;
+		}
+		if ( color == 0 )
+		{
+			partida_en_curs = new PartidaGomoku( usuari_actiu, jugador_actiu, jugador_oponent, new TaulerGomoku(),
+					"nova_partida" );
+		}
+		else
+		{
+			partida_en_curs = new PartidaGomoku( usuari_actiu, jugador_oponent, jugador_actiu, new TaulerGomoku(),
+					"nova_partida" );
+		}
+		System.out.println( partida_en_curs );
+		tauler_entrenament.main();
+		tauler_entrenament.setPartida( partida_en_curs );
+		tauler_entrenament.activa();
+		tauler_entrenament.setControladorPresentacioTauler( this );
+		tauler_entrenament.setControladorPresentacio( this );
+		estat = EstatPartida.NO_FINALITZADA;
+		this.juga_partida( tauler_partida );
 	}
 
-	private void juga_partida(ProvaTaulerGUI tauler_partida)
+	public void iniciaPartida( FrameConfiguracioPartida3 frame_configuracio3, int color_jugador1 )
 	{
-		System.out.println("La partida acaba de començar, si la maquina es negres moura");
-		ctrl_en_joc = new ControladorPartidaEnJoc(partida_en_curs);
-		if(partida_en_curs.getTornsJugats()==0&&partida_en_curs.getJugadorA().getTipus()!=TipusUsuari.HUMA && partida_en_curs.getJugadorB().getTipus()==TipusUsuari.HUMA||partida_en_curs.getJugadorB().getTipus()==TipusUsuari.CONVIDAT){ // negres maquina
+		if ( frame_configuracio3 == null )
+		{
+			frame_configuracio3 = new FrameConfiguracioPartida3();
+		}
+		if ( tauler_partida == null )
+		{
+			tauler_partida = new ProvaTaulerGUI();
+		}
+		frame_configuracio3.dispose();
+		int color = color_jugador1;
+		if ( color == 2 )
+		{
+			Random aleatori = new Random();
+			double aleatoridouble = aleatori.nextDouble();
+			if ( aleatoridouble >= 0.5 )
+				color = 0;
+			else
+				color = 1;
+		}
+		if ( color == 0 )
+		{
+			partida_en_curs = new PartidaGomoku( usuari_actiu, jugador_actiu, jugador_oponent, new TaulerGomoku(),
+					"nova_partida" );
+		}
+		else
+		{
+			partida_en_curs = new PartidaGomoku( usuari_actiu, jugador_oponent, jugador_actiu, new TaulerGomoku(),
+					"nova_partida" );
+		}
+		System.out.println( partida_en_curs );
+		tauler_partida.main();
+		tauler_partida.setPartida( partida_en_curs );
+		tauler_partida.activa();
+		tauler_partida.setControladorPresentacioTauler( this );
+		tauler_partida.setControladorPresentacio( this );
+		estat = EstatPartida.NO_FINALITZADA;
+		if ( ( partida_en_curs.getJugadorA().getTipus() != TipusUsuari.HUMA && partida_en_curs.getJugadorA().getTipus() != TipusUsuari.CONVIDAT )
+				&& ( partida_en_curs.getJugadorB().getTipus() != TipusUsuari.HUMA && partida_en_curs.getJugadorB()
+						.getTipus() != TipusUsuari.CONVIDAT ) )
+		{
+			tauler_partida.bloquejaTauler();
+		}
+		juga_partida( tauler_partida );
+	}
+
+	private void juga_partida( ProvaTaulerGUI tauler_partida )
+	{
+		System.out.println( "La partida acaba de començar, si la maquina es negres moura" );
+		ctrl_en_joc = new ControladorPartidaEnJoc( partida_en_curs );
+		if ( ( partida_en_curs.getJugadorA().getTipus() != TipusUsuari.HUMA
+				&& partida_en_curs.getJugadorA().getTipus() != TipusUsuari.CONVIDAT && partida_en_curs.getTornsJugats() % 2 == 0 )
+				&& entrenament == false )
+		{ // negres maquina
 			int[] mov_ia = ctrl_en_joc.getMovimentMaquina();
 			ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_A, mov_ia[0], mov_ia[1] );
 			tauler_partida.getTaulerActual().pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_A );
+			estat = partida_en_curs.comprovaEstatPartida( mov_ia[0], mov_ia[1] );
 		}
+		else if ( ( partida_en_curs.getJugadorB().getTipus() != TipusUsuari.HUMA
+				&& partida_en_curs.getJugadorB().getTipus() != TipusUsuari.CONVIDAT && partida_en_curs.getTornsJugats() % 2 == 1 )
+				&& entrenament == false )
+		{ // blanques maquina
+			int[] mov_ia = ctrl_en_joc.getMovimentMaquina();
+			ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_B, mov_ia[0], mov_ia[1] );
+			tauler_partida.getTaulerActual().pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_B );
+			estat = partida_en_curs.comprovaEstatPartida( mov_ia[0], mov_ia[1] );
+		}
+		
 	}
-	
-	public void fi_partida() {
+
+	public void fi_partida()
+	{
+		System.out.println(estat);
+		System.out.println( "Entro a fi partida" );
+		System.out.println(partida_en_curs);
 		FrameError endgame = new FrameError();
 		endgame.main();
-		if(estat==EstatPartida.EMPAT){
+		if ( estat == EstatPartida.EMPAT )
+		{
 			endgame.MissatgeActiva( "La partida ha acabat en un empat" );
 		}
-		else if(estat==EstatPartida.GUANYA_JUGADOR_A){
-			if(partida_en_curs.getJugadorA().getTipus()==TipusUsuari.HUMA||partida_en_curs.getJugadorA().getTipus()==TipusUsuari.CONVIDAT){
-				endgame.MissatgeActiva( "El jugador "+ partida_en_curs.getJugadorA().getNom()+ " guanya la partida, enhorabona!" );
+		else if ( estat == EstatPartida.GUANYA_JUGADOR_A )
+		{
+			if ( partida_en_curs.getJugadorA().getTipus() == TipusUsuari.HUMA
+					|| partida_en_curs.getJugadorA().getTipus() == TipusUsuari.CONVIDAT )
+			{
+				endgame.MissatgeActiva( "El jugador " + partida_en_curs.getJugadorA().getNom()
+						+ " guanya la partida, enhorabona!" );
 			}
-			else {
-				endgame.MissatgeActiva( partida_en_curs.getJugadorA().getNom()+ " es el guanyador de la partida, més sort la proxima partida" );
-			}
-		}
-		else {
-			if(partida_en_curs.getJugadorB().getTipus()==TipusUsuari.HUMA||partida_en_curs.getJugadorB().getTipus()==TipusUsuari.CONVIDAT){
-				endgame.MissatgeActiva( "El jugador "+ partida_en_curs.getJugadorB().getNom()+ " guanya la partida, enhorabona!" );
-			}
-			else {
-				endgame.MissatgeActiva( partida_en_curs.getJugadorB().getNom()+ " es el guanyador de la partida, més sort la proxima partida" );
+			else
+			{
+				endgame.MissatgeActiva( partida_en_curs.getJugadorA().getNom() + " es el guanyador de la partida" );
 			}
 		}
+		else
+		{
+			if ( partida_en_curs.getJugadorB().getTipus() == TipusUsuari.HUMA
+					|| partida_en_curs.getJugadorB().getTipus() == TipusUsuari.CONVIDAT )
+			{
+				endgame.MissatgeActiva( "El jugador " + partida_en_curs.getJugadorB().getNom()
+						+ " guanya la partida, enhorabona!" );
+
+			}
+			else
+			{
+				endgame.MissatgeActiva( partida_en_curs.getJugadorB().getNom() + " es el guanyador de la partida" );
+
+			}
+		}
+		// TODO
+		// controlador_usuari.actualitzaUsuari( jugador_actiu );
+		// controlador_usuari.actualitzaUsuari( jugador_oponent );
+		dades_guardades = true;
 	}
 
 	public void sincronitzacioConfiguracio2persones1( FrameConfiguracioPartida2Persones frame_configuracio2persones )
@@ -426,6 +523,7 @@ public class ControladorPresentacio
 		// TODO
 		System.out.println( tipus_oponent );
 		System.out.println( "user1: " + jugador_actiu + "oponent: " + jugador_oponent );
+		System.out.println( "Entrenament: " + this.entrenament );
 		frame_configuracio3.main();
 		frame_configuracio3.setControladorPresentacio( this );
 		frame_configuracio3.setTipusText();
@@ -443,35 +541,37 @@ public class ControladorPresentacio
 			frame_estadistiques_indivuals = new FrameEstadistiquesIndividuals();
 		}
 		frame_estadistiques_indivuals.main();
-		System.out.println("Usuari actiu abans de crear els records: " +usuari_actiu);
-		int [] records = new int [35];
+		System.out.println( "Usuari actiu abans de crear els records: " + usuari_actiu );
+		int[] records = new int[35];
 		int i = 0;
-		ControladorRecordsIndividuals records_individuals = new ControladorRecordsIndividuals(usuari_actiu);
-		for(CriteriRecords criteri: CriteriRecords.values() ){
-			records[i] = records_individuals.getLlistaRecords( criteri );			
+		ControladorRecordsIndividuals records_individuals = new ControladorRecordsIndividuals( usuari_actiu );
+		for ( CriteriRecords criteri : CriteriRecords.values() )
+		{
+			records[i] = records_individuals.getLlistaRecords( criteri );
 			++i;
 		}
-		frame_estadistiques_indivuals.carregaestadistiques(records);
+		frame_estadistiques_indivuals.carregaestadistiques( records );
 	}
-//	public void sincronitzacioCanviNom(PartidaGomoku partida){
-//		if(frame_canvi_nom==null){
-//			frame_canvi_nom = new FrameCanviNom();
-//		}
-//		partida_canvi_nom = partida;
-//		frame_canvi_nom.main();
-//		frame_canvi_nom.setControladorPresentacio(this);
-//		
-//		
-//		
-//	}
-//	
-//	public void canvinomiguardat(FrameCanviNom canvi_nom){
-//		partida_canvi_nom.setNom( nomcanvi );
-//		canvi_nom.dispose();
-//		ControladorPartidesGuardades controlador_partides = new ControladorPartidesGuardades();
-//		controlador_partides.guardaPartida( partida_canvi_nom );
-//		frame_carrega_partides.mostraLlistaPartides( controlador_partides.carregaPartides( usuari_actiu ) );
-//	}
+
+	// public void sincronitzacioCanviNom(PartidaGomoku partida){
+	// if(frame_canvi_nom==null){
+	// frame_canvi_nom = new FrameCanviNom();
+	// }
+	// partida_canvi_nom = partida;
+	// frame_canvi_nom.main();
+	// frame_canvi_nom.setControladorPresentacio(this);
+	//		
+	//		
+	//		
+	// }
+	//	
+	// public void canvinomiguardat(FrameCanviNom canvi_nom){
+	// partida_canvi_nom.setNom( nomcanvi );
+	// canvi_nom.dispose();
+	// ControladorPartidesGuardades controlador_partides = new ControladorPartidesGuardades();
+	// controlador_partides.guardaPartida( partida_canvi_nom );
+	// frame_carrega_partides.mostraLlistaPartides( controlador_partides.carregaPartides( usuari_actiu ) );
+	// }
 	public void sincronitzacioAccedirEstadistiquesGlobals( FrameAccedirEstadistiques frame_estadistiques )
 	{
 		if ( frame_estadistiques == null )
@@ -511,7 +611,7 @@ public class ControladorPresentacio
 
 	public void sincronitzacioConfiguracio2Persones3( FrameConfiguracioPartida2Persones frame_configuracio2persones )
 	{
-		jugador_actiu=usuari_actiu;
+		jugador_actiu = usuari_actiu;
 		if ( frame_configuracio3 == null )
 		{
 			frame_configuracio3 = new FrameConfiguracioPartida3();
@@ -521,9 +621,9 @@ public class ControladorPresentacio
 			frame_configuracio2persones = new FrameConfiguracioPartida2Persones();
 		}
 		frame_configuracio2persones.dispose();
-		
 		frame_configuracio3.main();
 		frame_configuracio3.setNomsusuaris();
+		frame_configuracio3.setControladorPresentacio( this );
 	}
 
 	public void sincronitzacioConfiguracio12( FrameConfiguracioPartida1 frame_configuracio1 )
@@ -536,9 +636,10 @@ public class ControladorPresentacio
 		{
 			frame_configuracio1 = new FrameConfiguracioPartida1();
 		}
+		jugador_actiu = usuari_actiu;
 		frame_configuracio1.dispose();
 		frame_configuracio2.main();
-		jugador_actiu = usuari_actiu;
+		frame_configuracio2.setControladorPresentacio( this );
 	}
 
 	public void sincronitzacioConfiguracio12CPU( FrameConfiguracioPartida1 frame_configuracio1 )
@@ -623,7 +724,7 @@ public class ControladorPresentacio
 
 	public void Identificarse( FrameIdentificacio frame_identificacio, String alies, String contrasenya )
 	{
-		System.out.println("contrasenya : "+ contrasenya);
+		System.out.println( "contrasenya : " + contrasenya );
 		boolean excepcio = false;
 		try
 		{
@@ -686,7 +787,7 @@ public class ControladorPresentacio
 	public void IdentificarOponent( FrameConfiguracioPartida2Persones frame_configuracio2persones, String alies,
 			String contrasenya )
 	{
-		jugador_actiu=usuari_actiu;
+		jugador_actiu = usuari_actiu;
 		boolean excepcio = false;
 		try
 		{
@@ -730,7 +831,7 @@ public class ControladorPresentacio
 			frame_configuracio2persones.NetejaContrasenya();
 			FrameError frame_error = new FrameError();
 			frame_error.main();
-			excepcio=true;
+			excepcio = true;
 			frame_error.MissatgeActiva( "La contrasenya introduida conte caràcters invalids" );
 			frame_configuracio2persones.NetejaContrasenya();
 		}
@@ -855,7 +956,7 @@ public class ControladorPresentacio
 		}
 		frame_menu_principal.dispose();
 		frame_estadistiques.main();
-		frame_estadistiques.setControladorPresentacio(this);
+		frame_estadistiques.setControladorPresentacio( this );
 	}
 
 	public ControladorPresentacio()
@@ -903,149 +1004,310 @@ public class ControladorPresentacio
 	{
 		return jugador_oponent;
 	}
-	public boolean setCanviNom(String nom){
+
+	public boolean setCanviNom( String nom )
+	{
 		return true;
 	}
 
 	public void juga_maquines()
 	{
+		if ( partida_en_curs.getJugadorA().getTipus() == TipusUsuari.HUMA
+				|| partida_en_curs.getJugadorA().getTipus() == TipusUsuari.CONVIDAT
+				|| partida_en_curs.getJugadorB().getTipus() == TipusUsuari.HUMA
+				|| partida_en_curs.getJugadorB().getTipus() == TipusUsuari.CONVIDAT )
+			return;
+		
 		int[] ultim_moviment;
 		int[] mov_ia;
-		if(estat == EstatPartida.NO_FINALITZADA){		
-			ultim_moviment = ctrl_en_joc.getUltimMoviment();
+		boolean finalitzada;
+		if ( partida_en_curs.getTornsJugats() % 2 == 0 )
+		{
+			if ( estat == EstatPartida.NO_FINALITZADA )
+			{
 				mov_ia = ctrl_en_joc.getMovimentMaquina();
 				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_A, mov_ia[0], mov_ia[1] );
 				tauler_partida.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_A );
+				ultim_moviment = ctrl_en_joc.getUltimMoviment();
 				estat = partida_en_curs.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
-		}
-				if( estat== EstatPartida.NO_FINALITZADA){
-					ultim_moviment = ctrl_en_joc.getUltimMoviment();
-					mov_ia = ctrl_en_joc.getMovimentMaquina();
-					ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_B, mov_ia[0], mov_ia[1] );
-					tauler_partida.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_B );
-					estat = partida_en_curs.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
+				System.out.println(estat);
+				finalitzada = partida_en_curs.estaFinalitzada();
+				if ( finalitzada )
+				{
+					fi_partida();
 				}
+			}
+			if ( estat == EstatPartida.NO_FINALITZADA )
+			{			
+				mov_ia = ctrl_en_joc.getMovimentMaquina();
+				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_B, mov_ia[0], mov_ia[1] );
+				tauler_partida.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_B );
+				ultim_moviment = ctrl_en_joc.getUltimMoviment();
+				estat = partida_en_curs.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
+				System.out.println(estat);
+				finalitzada = partida_en_curs.estaFinalitzada();
+				if ( finalitzada )
+				{
+					fi_partida();
+				}
+			}
+		}
+		else
+		{
+			if ( estat == EstatPartida.NO_FINALITZADA )
+			{				
+				mov_ia = ctrl_en_joc.getMovimentMaquina();
+				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_B, mov_ia[0], mov_ia[1] );
+				tauler_partida.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_B );
+				ultim_moviment = ctrl_en_joc.getUltimMoviment();
+				estat = partida_en_curs.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
+				System.out.println(estat);
+				finalitzada = partida_en_curs.estaFinalitzada();
+				if ( finalitzada )
+				{
+					fi_partida();
+				}
+			}
+			if ( estat == EstatPartida.NO_FINALITZADA )
+			{
+				mov_ia = ctrl_en_joc.getMovimentMaquina();
+				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_A, mov_ia[0], mov_ia[1] );
+				tauler_partida.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_A );
+				ultim_moviment = ctrl_en_joc.getUltimMoviment();
+				estat = partida_en_curs.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
+				System.out.println(estat);
+				finalitzada = partida_en_curs.estaFinalitzada();
+				if ( finalitzada )
+				{
+					fi_partida();
+				}
+			}
+
+		}
 	}
 
 	public UsuariGomoku getJugadorActual()
 	{
-		// TODO Auto-generated method stub
 		return jugador_actiu;
 	}
 
 	public boolean ferMoviment( int[] coord )
 	{
-		if((partida_en_curs.getJugadorA().getTipus()==TipusUsuari.HUMA||partida_en_curs.getJugadorA().getTipus()==TipusUsuari.CONVIDAT)||(partida_en_curs.getJugadorB().getTipus()==TipusUsuari.HUMA||partida_en_curs.getJugadorB().getTipus()==TipusUsuari.CONVIDAT)){
-		int[] ultim_moviment;
-		if ( estat == EstatPartida.NO_FINALITZADA )
+		if ( partida_en_curs.estaFinalitzada() )
+			return false;
+		if ( entrenament
+				|| ( partida_en_curs.getJugadorA().getTipus() == TipusUsuari.HUMA || partida_en_curs.getJugadorA()
+						.getTipus() == TipusUsuari.CONVIDAT )
+				|| ( partida_en_curs.getJugadorB().getTipus() == TipusUsuari.HUMA || partida_en_curs.getJugadorB()
+						.getTipus() == TipusUsuari.CONVIDAT ) )
 		{
+			int[] ultim_moviment;
+			if ( estat == EstatPartida.NO_FINALITZADA )
+			{
+				ultim_moviment = ctrl_en_joc.getUltimMoviment();
+				estat = partida_en_curs.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
+				if ( estat != EstatPartida.NO_FINALITZADA )
+				{
+					System.out.println( estat );
+					return false;
+				}
+			}
+			int fila = coord[0];
+			int columna = coord[1];
+			System.out.println( "Clicat: " + fila + " " + columna );
+			if ( partida_en_curs.getTornsJugats() % 2 == 0 )
+			{
+				try
+				{
+					ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_A, fila, columna ); // es mouen negres
+				} catch ( Exception e )
+				{
+					System.out.println( e.getMessage() );
+					if ( estat != EstatPartida.NO_FINALITZADA )
+					{
+						if ( entrenament == false )
+						{
+							fi_partida();
+						}
+					}
+					return false;
+				}
+				if ( entrenament )
+				{
+					tauler_entrenament.pinta( fila, columna, EstatCasella.JUGADOR_A );
+				}
+				else
+				{
+					tauler_partida.pinta( fila, columna, EstatCasella.JUGADOR_A );
+				}
+				if ( estat == EstatPartida.NO_FINALITZADA
+						&& partida_en_curs.getJugadorB().getTipus() != TipusUsuari.CONVIDAT
+						&& partida_en_curs.getJugadorB().getTipus() != TipusUsuari.HUMA && entrenament == false )
+				{
+					int[] mov_ia = ctrl_en_joc.getMovimentMaquina();
+					ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_B, mov_ia[0], mov_ia[1] );
+					tauler_partida.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_B );
+				}
+				else if ( estat != EstatPartida.NO_FINALITZADA )
+				{
+					// fi_partida();
+				}
+			}
+			else
+			{
+				try
+				{
+					ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_B, fila, columna );
+				} catch ( Exception e )
+				{
+					System.out.println( e.getMessage() );
+					if ( estat != EstatPartida.NO_FINALITZADA )
+					{
+						if ( entrenament == false )
+						{
+							fi_partida();
+						}
+					}
+					return false;
+				}
+				if ( entrenament )
+				{
+					tauler_entrenament.pinta( fila, columna, EstatCasella.JUGADOR_B );
+				}
+				else
+				{
+					tauler_partida.pinta( fila, columna, EstatCasella.JUGADOR_B );
+				}
+				if ( estat == EstatPartida.NO_FINALITZADA
+						&& partida_en_curs.getJugadorA().getTipus() != TipusUsuari.CONVIDAT
+						&& partida_en_curs.getJugadorA().getTipus() != TipusUsuari.HUMA && entrenament == false )
+				{
+					int[] mov_ia = ctrl_en_joc.getMovimentMaquina();
+					ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_A, mov_ia[0], mov_ia[1] );
+					tauler_partida.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_A );
+				}
+				else if ( estat != EstatPartida.NO_FINALITZADA )
+				{
+					// fi_partida();
+				}
+			}
 			ultim_moviment = ctrl_en_joc.getUltimMoviment();
 			estat = partida_en_curs.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
-			if ( estat != EstatPartida.NO_FINALITZADA )
-			{
-				System.out.println( estat );
-				return false;
-			}
 		}
-		else
+		if ( estat != EstatPartida.NO_FINALITZADA )
 		{
-			//fi_partida();
-			return false;
-		}
-
-		int fila = coord[0];
-		int columna = coord[1];
-		System.out.println( "Clicat: " + fila + " " + columna );
-		// part de la IA
-		if(partida_en_curs.getTornsJugats()%2==0){ // IA negres
-			try
+			if ( entrenament == false )
 			{
-				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_A, fila, columna );
-			} catch ( Exception e )
-			{
-				System.out.println( e.getMessage() );
-				return false;
+				fi_partida();
 			}
-			tauler_partida.pinta( fila, columna, EstatCasella.JUGADOR_A );
-			if ( estat == EstatPartida.NO_FINALITZADA && partida_en_curs.getJugadorB().getTipus()!=TipusUsuari.HUMA )
-			{
-				int[] mov_ia = ctrl_en_joc.getMovimentMaquina();
-				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_B, mov_ia[0], mov_ia[1] );
-				tauler_partida.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_B );
-			}
-			else if(estat != EstatPartida.NO_FINALITZADA){
-				//fi_partida();
-			}
-		}
-		else {  // IA blanques
-			try
-			{
-				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_B, fila, columna );
-			} catch ( Exception e )
-			{
-				System.out.println( e.getMessage() );
-				return false;
-			}
-			tauler_partida.pinta( fila, columna, EstatCasella.JUGADOR_B );
-			if ( estat == EstatPartida.NO_FINALITZADA && partida_en_curs.getJugadorA().getTipus()!=TipusUsuari.HUMA )
-			{
-				int[] mov_ia = ctrl_en_joc.getMovimentMaquina();
-				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_A, mov_ia[0], mov_ia[1] );
-				tauler_partida.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_A );
-			}
-			else if( estat != EstatPartida.NO_FINALITZADA){
-				//fi_partida();
-			}
-		}
-		estat = partida_en_curs.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );		
-		}
-		if( estat != EstatPartida.NO_FINALITZADA){
-			fi_partida();
 		}
 		return true;
 	}
 
 	public void guardaPartida( PartidaGomoku partida )
 	{
-		ControladorPartidesGuardades controlador_partides = new ControladorPartidesGuardades();
-		controlador_partides.guardaPartida( partida );
-		System.out.println("Partida Guardada satisfactoriament");
-		System.out.println("Partida : " + partida);
+		if ( partida.getJugadorPrincipal().getTipus() == TipusUsuari.CONVIDAT )
+		{
+			FrameError noesguarda = new FrameError();
+			noesguarda.main();
+			noesguarda
+					.MissatgeActiva( "Els usuaris Convidats no poden guardar partides, registris al sistema per a accedir a aquesta funcionalitat" );
+		}
+		else
+		{
+			ControladorPartidesGuardades controlador_partides = new ControladorPartidesGuardades();
+			controlador_partides.guardaPartida( partida );
+		}
 	}
 
 	public void carrega_partida( FrameCarregaPartides frame_carrega_partides, PartidaGomoku partida )
 	{
-			if(tauler_partida==null){
-				tauler_partida = new ProvaTaulerGUI();
-			}
-			frame_carrega_partides.dispose();
-			if(partida.estaFinalitzada()) estat=EstatPartida.GUANYA_JUGADOR_A;
-			else estat=EstatPartida.NO_FINALITZADA;
-			partida_en_curs=partida;
-			tauler_partida.main();
-			tauler_partida.setPartida(partida_en_curs);
-			tauler_partida.activa();
-			tauler_partida.setControladorPresentacioTauler( this );
-			tauler_partida.setControladorPresentacio(this);
-			tauler_partida.pinta();
-			System.out.println("Partida : "+partida);	
-			juga_partida( tauler_partida );
-		
+		if ( tauler_partida == null )
+		{
+			tauler_partida = new ProvaTaulerGUI();
+		}
+		frame_carrega_partides.dispose();
+		if ( partida.estaFinalitzada() )
+			estat = EstatPartida.GUANYA_JUGADOR_A;
+		else
+			estat = EstatPartida.NO_FINALITZADA;
+		partida_en_curs = partida;
+		tauler_partida.main();
+		tauler_partida.setPartida( partida_en_curs );
+		tauler_partida.activa();
+		tauler_partida.setControladorPresentacioTauler( this );
+		tauler_partida.setControladorPresentacio( this );
+		tauler_partida.pinta();
+		System.out.println( "Partida : " + partida );
+		juga_partida( tauler_partida );
+
 	}
-	public PartidaGomoku getPartidaactual(){
+
+	public PartidaGomoku getPartidaactual()
+	{
 		return partida_en_curs;
 	}
 
-	public void sincronitzacioPartidaMenu( ProvaTaulerGUI provaTaulerGUI)
+	public void sincronitzacioPartidaMenu( ProvaTaulerGUI provaTaulerGUI )
 	{
-		if(provaTaulerGUI==null){
+		if ( provaTaulerGUI == null )
+		{
 			provaTaulerGUI = new ProvaTaulerGUI();
 		}
-		if(frame_menu_principal == null){
+		if ( frame_menu_principal == null )
+		{
 			frame_menu_principal = new FrameMenuPrincipal();
 		}
 		provaTaulerGUI.dispose();
 		frame_menu_principal.main();
 		frame_menu_principal.setControladorPresentacio( this );
+	}
+
+	public void sincroEntrenamentPartida( ProvaTaulerGUIEntrenament tauler )
+	{
+		if ( tauler == null )
+		{
+			tauler = new ProvaTaulerGUIEntrenament();
+		}
+		if ( tauler_partida == null )
+		{
+			tauler_partida = new ProvaTaulerGUI();
+		}
+		entrenament = false;
+		tauler.dispose();
+		tauler_partida.main();
+		tauler_partida.setPartida( partida_en_curs );
+		tauler_partida.activa();
+		tauler_partida.setControladorPresentacioTauler( this );
+		tauler_partida.setControladorPresentacio( this );
+		tauler_partida.pinta();
+		juga_partida( tauler_partida );
+	}
+
+	public void setEntrenament( boolean entrenament )
+	{
+		this.entrenament = entrenament;
+	}
+
+	public boolean getEntrenament()
+	{
+		return entrenament;
+	}
+
+	public void sincronitzacioCanviNom( PartidaGomoku partida, String nou_nom )
+	{
+		ControladorPartidesGuardades partides = new ControladorPartidesGuardades();
+		partida.setNom( nou_nom );
+		partides.guardaPartida( partida );
+		List<PartidaGomoku> partides_nou_nom = partides.carregaPartides( usuari_actiu );
+		frame_carrega_partides.mostraLlistaPartides( partides_nou_nom );
+	}
+
+	public void esborraPartida( PartidaGomoku partida )
+	{
+		ControladorPartidesGuardades partides = new ControladorPartidesGuardades();
+		partides.esborraPartida( partida );
+		List<PartidaGomoku> partides_actualitzades = partides.carregaPartides( usuari_actiu );
+		frame_carrega_partides.mostraLlistaPartides( partides_actualitzades );
 	}
 }

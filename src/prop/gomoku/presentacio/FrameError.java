@@ -34,13 +34,14 @@ public class FrameError extends JFrame {
 		setLayout(new GroupLayout());
 		add(getJLabel0(), new Constraints(new Leading(12, 12, 12), new Leading(27, 10, 10)));
 		add(getJButton0(), new Constraints(new Leading(226, 99, 10, 10), new Trailing(12, 40, 12, 12)));
-		setSize(587, 232);
+		setSize(627, 232);
 	}
 	public void MissatgeActiva(String missatge){
 		jLabel0.setText(missatge);
 		this.setLocationRelativeTo(null);
 		this.setAlwaysOnTop(true);
 		this.setVisible(true);
+		this.setResizable( false );
 	}
 
 	private JButton getJButton0() {

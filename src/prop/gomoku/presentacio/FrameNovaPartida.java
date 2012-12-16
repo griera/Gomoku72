@@ -58,6 +58,12 @@ public class FrameNovaPartida extends JFrame {
 		if (jButton1 == null) {
 			jButton1 = new JButton();
 			jButton1.setText("Entrenament");
+			jButton1.addMouseListener(new MouseAdapter() {
+	
+				public void mouseClicked(MouseEvent event) {
+					jButton1MouseMouseClicked(event);
+				}
+			});
 		}
 		return jButton1;
 	}
@@ -133,5 +139,10 @@ public class FrameNovaPartida extends JFrame {
 	}
 	public void setControladorPresentacio(ControladorPresentacio controlador_presentacio){
 		this.controlador_presentacio=controlador_presentacio;
+	}
+
+	private void jButton1MouseMouseClicked(MouseEvent event) {
+		controlador_presentacio.setEntrenament( true );
+		controlador_presentacio.sincronitzacioNovaPartidaConfiguracio( this );
 	}
 }

@@ -218,6 +218,7 @@ public class FrameConfiguracioPartida2 extends JFrame {
 	}
 
 	private void jButton0MouseMouseClicked(MouseEvent event) {
+		System.out.println("Entrenament: " + controlador_presentacio.getEntrenament());
 		controlador_presentacio.sincronitzacioConfiguracio23(this);
 	}
 
@@ -233,6 +234,12 @@ public class FrameConfiguracioPartida2 extends JFrame {
 			tipus_maquina=TipusUsuari.FACIL;
 		}
 		return tipus_maquina;
+	}
+
+	public void setControladorPresentacio(ControladorPresentacio controlador_presentacio)
+	{
+		this.controlador_presentacio = controlador_presentacio;
+		
 	}
 
 

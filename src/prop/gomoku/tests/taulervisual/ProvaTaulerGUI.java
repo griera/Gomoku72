@@ -178,5 +178,8 @@ public class ProvaTaulerGUI extends JFrame
 			}
 		}
 	}
+	public void setTauler(TaulerGUI tauler){
+		 this.tauler=tauler;
+	}
 }
 
