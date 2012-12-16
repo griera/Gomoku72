@@ -9,7 +9,6 @@ import org.dyno.visual.swing.layouts.Constraints;
 import org.dyno.visual.swing.layouts.GroupLayout;
 import org.dyno.visual.swing.layouts.Leading;
 
-import prop.gomoku.tests.taulervisual.TaulerGUI;
 
 //VS4E -- DO NOT REMOVE THIS LINE!
 public class FramePartida extends JFrame {

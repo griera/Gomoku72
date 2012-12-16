@@ -25,8 +25,6 @@ import prop.gomoku.domini.models.TipusUsuari;
 import prop.gomoku.domini.models.UsuariGomoku;
 import prop.gomoku.gestors.excepcions.UsuariJaExisteix;
 import prop.gomoku.gestors.excepcions.UsuariNoExisteix;
-import prop.gomoku.tests.taulervisual.ProvaTaulerGUI;
-import prop.gomoku.tests.taulervisual.ProvaTaulerGUIEntrenament;
 
 public class ControladorPresentacio
 {
@@ -49,9 +47,9 @@ public class ControladorPresentacio
 	private FrameEstadistiquesGlobals frame_estadistiques_globals;
 	private FrameEstadistiquesIndividuals frame_estadistiques_indivuals;
 	private PartidaGomoku partida_en_curs;
-	private ProvaTaulerGUI tauler_partida;
+	private FrameTaulerGUI tauler_partida;
 	private EstatPartida estat;
-	private ProvaTaulerGUIEntrenament tauler_entrenament;
+	private FrameTaulerGUIEntrenament tauler_entrenament;
 	private ControladorPartidaEnJoc ctrl_en_joc;
 	private static boolean entrenament;
 
@@ -332,7 +330,7 @@ public class ControladorPresentacio
 		}
 		if ( tauler_entrenament == null )
 		{
-			tauler_entrenament = new ProvaTaulerGUIEntrenament();
+			tauler_entrenament = new FrameTaulerGUIEntrenament();
 		}
 		frame_configuracio3.dispose();
 		int color = color_jugador1;
@@ -373,7 +371,7 @@ public class ControladorPresentacio
 		}
 		if ( tauler_partida == null )
 		{
-			tauler_partida = new ProvaTaulerGUI();
+			tauler_partida = new FrameTaulerGUI();
 		}
 		frame_configuracio3.dispose();
 		int color = color_jugador1;
@@ -412,7 +410,7 @@ public class ControladorPresentacio
 		juga_partida( tauler_partida );
 	}
 
-	private void juga_partida( ProvaTaulerGUI tauler_partida )
+	private void juga_partida( FrameTaulerGUI tauler_partida )
 	{
 		System.out.println( "La partida acaba de començar, si la maquina es negres moura" );
 		ctrl_en_joc = new ControladorPartidaEnJoc( partida_en_curs );
@@ -1218,7 +1216,7 @@ public class ControladorPresentacio
 	{
 		if ( tauler_partida == null )
 		{
-			tauler_partida = new ProvaTaulerGUI();
+			tauler_partida = new FrameTaulerGUI();
 		}
 		frame_carrega_partides.dispose();
 		if ( partida.estaFinalitzada() )
@@ -1242,11 +1240,11 @@ public class ControladorPresentacio
 		return partida_en_curs;
 	}
 
-	public void sincronitzacioPartidaMenu( ProvaTaulerGUI provaTaulerGUI )
+	public void sincronitzacioPartidaMenu( FrameTaulerGUI provaTaulerGUI )
 	{
 		if ( provaTaulerGUI == null )
 		{
-			provaTaulerGUI = new ProvaTaulerGUI();
+			provaTaulerGUI = new FrameTaulerGUI();
 		}
 		if ( frame_menu_principal == null )
 		{
@@ -1257,15 +1255,15 @@ public class ControladorPresentacio
 		frame_menu_principal.setControladorPresentacio( this );
 	}
 
-	public void sincroEntrenamentPartida( ProvaTaulerGUIEntrenament tauler )
+	public void sincroEntrenamentPartida( FrameTaulerGUIEntrenament tauler )
 	{
 		if ( tauler == null )
 		{
-			tauler = new ProvaTaulerGUIEntrenament();
+			tauler = new FrameTaulerGUIEntrenament();
 		}
 		if ( tauler_partida == null )
 		{
-			tauler_partida = new ProvaTaulerGUI();
+			tauler_partida = new FrameTaulerGUI();
 		}
 		entrenament = false;
 		tauler.dispose();
