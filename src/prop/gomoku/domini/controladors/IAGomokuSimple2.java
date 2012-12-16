@@ -272,6 +272,239 @@ public class IAGomokuSimple2 extends IAGomoku
 	{
 
 		EstatCasella color_fitxa = tauler.getEstatCasella( fila, columna );
+
+		switch ( dir )
+		{
+			case VERTICAL:
+			{
+				int fitxes_1 = 0;
+				int fitxes_2 = 0;
+
+				boolean valid_1 = true;
+				boolean valid_2 = true;
+
+				for ( int i = 0; i < 5; i++ )
+				{
+					int fila_1 = fila + i;
+					int columna_1 = columna;
+
+					int fila_2 = fila - i;
+					int columna_2 = columna;
+
+					if ( tauler.esCasellaValida( fila_1, columna_1 ) && valid_1 )
+					{
+						EstatCasella color_casella = tauler.getEstatCasella( fila_1, columna_1 );
+						if ( color_casella == color_fitxa || color_casella == EstatCasella.BUIDA )
+						{
+							fitxes_1++;
+						}
+						else
+						{
+							valid_1 = false;
+						}
+					}
+					else
+					{
+						valid_1 = false;
+					}
+					if ( tauler.esCasellaValida( fila_2, columna_2 ) && valid_2 )
+					{
+						EstatCasella color_casella = tauler.getEstatCasella( fila_2, columna_2 );
+						if ( color_casella == color_fitxa || color_casella == EstatCasella.BUIDA )
+						{
+							fitxes_2++;
+						}
+						else
+						{
+							valid_2 = false;
+						}
+					}
+					else
+					{
+						valid_2 = false;
+					}
+				}
+				if ( fitxes_1 + fitxes_2 >= 5 )
+				{
+					return true;
+				}
+				break;
+			}
+			case HORITZONTAL:
+			{
+				int fitxes_1 = 0;
+				int fitxes_2 = 0;
+
+				boolean valid_1 = true;
+				boolean valid_2 = true;
+
+				for ( int i = 0; i < 5; i++ )
+				{
+					int fila_1 = fila;
+					int columna_1 = columna + i;
+
+					int fila_2 = fila;
+					int columna_2 = columna - i;
+
+					if ( tauler.esCasellaValida( fila_1, columna_1 ) && valid_1 )
+					{
+						EstatCasella color_casella = tauler.getEstatCasella( fila_1, columna_1 );
+						if ( color_casella == color_fitxa || color_casella == EstatCasella.BUIDA )
+						{
+							fitxes_1++;
+						}
+						else
+						{
+							valid_1 = false;
+						}
+					}
+					else
+					{
+						valid_1 = false;
+					}
+					if ( tauler.esCasellaValida( fila_2, columna_2 ) && valid_2 )
+					{
+						EstatCasella color_casella = tauler.getEstatCasella( fila_2, columna_2 );
+						if ( color_casella == color_fitxa || color_casella == EstatCasella.BUIDA )
+						{
+							fitxes_2++;
+						}
+						else
+						{
+							valid_2 = false;
+						}
+					}
+					else
+					{
+						valid_2 = false;
+					}
+				}
+				if ( fitxes_1 + fitxes_2 >= 5 )
+				{
+					return true;
+				}
+				break;
+			}
+			case DIAGONAL_DESC:
+			{
+				int fitxes_1 = 0;
+				int fitxes_2 = 0;
+
+				boolean valid_1 = true;
+				boolean valid_2 = true;
+
+				for ( int i = 0; i < 5; i++ )
+				{
+					int fila_1 = fila + i;
+					int columna_1 = columna + i;
+
+					int fila_2 = fila - i;
+					int columna_2 = columna - i;
+
+					if ( tauler.esCasellaValida( fila_1, columna_1 ) && valid_1 )
+					{
+						EstatCasella color_casella = tauler.getEstatCasella( fila_1, columna_1 );
+						if ( color_casella == color_fitxa || color_casella == EstatCasella.BUIDA )
+						{
+							fitxes_1++;
+						}
+						else
+						{
+							valid_1 = false;
+						}
+					}
+					else
+					{
+						valid_1 = false;
+					}
+					if ( tauler.esCasellaValida( fila_2, columna_2 ) && valid_2 )
+					{
+						EstatCasella color_casella = tauler.getEstatCasella( fila_2, columna_2 );
+						if ( color_casella == color_fitxa || color_casella == EstatCasella.BUIDA )
+						{
+							fitxes_2++;
+						}
+						else
+						{
+							valid_2 = false;
+						}
+					}
+					else
+					{
+						valid_2 = false;
+					}
+				}
+				if ( fitxes_1 + fitxes_2 >= 5 )
+				{
+					return true;
+				}
+				break;
+			}
+			case DIAGONAL_ASC:
+			{
+				int fitxes_1 = 0;
+				int fitxes_2 = 0;
+
+				boolean valid_1 = true;
+				boolean valid_2 = true;
+
+				for ( int i = 0; i < 5; i++ )
+				{
+					int fila_1 = fila - i;
+					int columna_1 = columna + i;
+
+					int fila_2 = fila + i;
+					int columna_2 = columna - i;
+
+					if ( tauler.esCasellaValida( fila_1, columna_1 ) && valid_1 )
+					{
+						EstatCasella color_casella = tauler.getEstatCasella( fila_1, columna_1 );
+						if ( color_casella == color_fitxa || color_casella == EstatCasella.BUIDA )
+						{
+							fitxes_1++;
+						}
+						else
+						{
+							valid_1 = false;
+						}
+					}
+					else
+					{
+						valid_1 = false;
+					}
+					if ( tauler.esCasellaValida( fila_2, columna_2 ) && valid_2 )
+					{
+						EstatCasella color_casella = tauler.getEstatCasella( fila_2, columna_2 );
+						if ( color_casella == color_fitxa || color_casella == EstatCasella.BUIDA )
+						{
+							fitxes_2++;
+						}
+						else
+						{
+							valid_2 = false;
+						}
+					}
+					else
+					{
+						valid_2 = false;
+					}
+				}
+				if ( fitxes_1 + fitxes_2 >= 5 )
+				{
+					return true;
+				}
+				break;
+			}
+		}
+		return false;
+
+	}
+
+	
+	private boolean potCrearLinia2( int fila, int columna, TaulerGomoku tauler, Direccio dir )
+	{
+
+		EstatCasella color_fitxa = tauler.getEstatCasella( fila, columna );
 		// TODO
 		System.out.println( "Mirant si " + color_fitxa + " pot crear linia" );
 		switch ( dir )
