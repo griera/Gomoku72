@@ -10,6 +10,7 @@ import java.util.List;
 
 import prop.cluster.domini.models.estats.EstatCasella;
 import prop.cluster.domini.models.estats.EstatPartida;
+import prop.gomoku.domini.controladors.ControladorDocumentacio;
 import prop.gomoku.domini.controladors.ControladorPartidaEnJoc;
 import prop.gomoku.domini.controladors.ControladorPartidesGuardades;
 import prop.gomoku.domini.controladors.ControladorPreparacioPartida;
@@ -971,18 +972,7 @@ public class ControladorPresentacio
 
 	public void MostraPDF()
 	{
-		if ( Desktop.isDesktopSupported() )
-		{
-			URL url = ControladorPresentacio.class.getResource( "/prop/gomoku/recursos/Manual_usuari.pdf" );
-			try
-			{
-				File myFile = new File( url.toString().substring( 6 ) );
-				Desktop.getDesktop().open( myFile );
-			} catch ( IOException ex )
-			{
-				// no application registered for PDFs
-			}
-		}
+		ControladorDocumentacio.obreManualPDF();
 	}
 
 	public UsuariGomoku getUsuariActual()

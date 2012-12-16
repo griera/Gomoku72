@@ -56,7 +56,7 @@ public class FrameCarregaPartides extends JFrame
 		add(getJScrollPane0(), new Constraints(new Leading(13, 276, 10, 10), new Leading(67, 143, 12, 12)));
 		add(getJLabel1(), new Constraints(new Leading(12, 12, 12), new Leading(228, 12, 12)));
 		add(getJTextField0(), new Constraints(new Leading(90, 199, 12, 12), new Leading(228, 12, 12)));
-		setSize(519, 279);
+		setSize(519, 304);
 	}
 
 	private JTextField getJTextField0()

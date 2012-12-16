@@ -42,7 +42,7 @@ public class FrameEstadistiquesGlobals extends JFrame
 		add(getJScrollPane0(), new Constraints(new Leading(47, 473, 10, 10), new Leading(76, 372, 10, 10)));
 		add(getJButton0(), new Constraints(new Leading(372, 148, 12, 12), new Leading(460, 35, 12, 12)));
 		add(getJLabel0(), new Constraints(new Leading(189, 12, 12), new Leading(26, 10, 10)));
-		setSize(562, 507);
+		setSize(562, 552);
 	}
 
 	private JButton getJButton0() {

@@ -39,7 +39,7 @@ public class FrameEstadistiquesIndividuals extends JFrame
 		add(getJScrollPane0(), new Constraints(new Leading(47, 465, 10, 10), new Leading(76, 372, 10, 10)));
 		add(getJButton0(), new Constraints(new Leading(411, 101, 12, 12), new Leading(456, 35, 10, 10)));
 		add(getJLabel0(), new Constraints(new Leading(170, 12, 12), new Leading(26, 10, 10)));
-		setSize(556, 508);
+		setSize(556, 544);
 	}
 
 	private JButton getJButton0() {

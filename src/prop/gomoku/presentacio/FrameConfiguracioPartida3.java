@@ -51,11 +51,11 @@ public class FrameConfiguracioPartida3 extends JFrame {
 		add(getJRadioButton0(), new Constraints(new Leading(25, 12, 12), new Leading(98, 10, 10)));
 		add(getJRadioButton1(), new Constraints(new Leading(25, 12, 12), new Leading(140, 12, 12)));
 		add(getJRadioButton2(), new Constraints(new Leading(25, 12, 12), new Leading(182, 12, 12)));
-		add(getJButton0(), new Constraints(new Trailing(12, 12, 12), new Trailing(12, 12, 12)));
-		add(getJButton1(), new Constraints(new Trailing(105, 12, 12), new Trailing(12, 90, 90)));
-		add(getJButton2(), new Constraints(new Leading(25, 189, 189), new Trailing(12, 214, 214)));
 		add(getJPanel0(), new Constraints(new Trailing(12, 205, 102, 102), new Leading(98, 100, 50, 50)));
-		setSize(454, 267);
+		add(getJButton0(), new Constraints(new Trailing(12, 12, 12), new Leading(232, 10, 10)));
+		add(getJButton1(), new Constraints(new Trailing(99, 12, 12), new Leading(232, 10, 10)));
+		add(getJButton2(), new Constraints(new Leading(25, 183, 183), new Leading(232, 10, 10)));
+		setSize(454, 311);
 	}
 
 	private JLabel getJLabel5() {
@@ -291,6 +291,7 @@ public class FrameConfiguracioPartida3 extends JFrame {
 			}
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		this.setResizable( false );
 		
 	}
 	
@@ -301,6 +302,7 @@ public class FrameConfiguracioPartida3 extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setAlwaysOnTop(true);
 		this.setVisible(true);
+		this.setResizable( false );
 	}
 
 }
