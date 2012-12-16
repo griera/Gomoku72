@@ -178,25 +178,25 @@ public class TaulerGUI extends JPanel
 		ctrl_en_joc = new ControladorPartidaEnJoc( this.partida );
 	}
 	
-	public boolean juga_maquines(){
-		int[] ultim_moviment;
-		int[] mov_ia;
-		if(estat == EstatPartida.NO_FINALITZADA){		
-			ultim_moviment = ctrl_en_joc.getUltimMoviment();
-				mov_ia = ctrl_en_joc.getMovimentMaquina();
-				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_A, mov_ia[0], mov_ia[1] );
-				this.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_A );
-				estat = partida.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
-		}
-				if( estat== EstatPartida.NO_FINALITZADA){
-					ultim_moviment = ctrl_en_joc.getUltimMoviment();
-					mov_ia = ctrl_en_joc.getMovimentMaquina();
-					ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_B, mov_ia[0], mov_ia[1] );
-					this.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_B );
-					estat = partida.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
-				}
-			return true;
-	}
+//	public boolean juga_maquines(){
+//		int[] ultim_moviment;
+//		int[] mov_ia;
+//		if(estat == EstatPartida.NO_FINALITZADA){		
+//			ultim_moviment = ctrl_en_joc.getUltimMoviment();
+//				mov_ia = ctrl_en_joc.getMovimentMaquina();
+//				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_A, mov_ia[0], mov_ia[1] );
+//				this.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_A );
+//				estat = partida.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
+//		}
+//				if( estat== EstatPartida.NO_FINALITZADA){
+//					ultim_moviment = ctrl_en_joc.getUltimMoviment();
+//					mov_ia = ctrl_en_joc.getMovimentMaquina();
+//					ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_B, mov_ia[0], mov_ia[1] );
+//					this.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_B );
+//					estat = partida.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
+//				}
+//			return true;
+//	}
 
 	public PartidaGomoku getPartida()
 	{

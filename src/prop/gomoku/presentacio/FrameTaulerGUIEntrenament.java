@@ -38,7 +38,7 @@ public class FrameTaulerGUIEntrenament extends JFrame
 			}
 		});
 		this.getContentPane().add( boto_comenca );
-
+		
 		JButton boto_sortir = new JButton( "Sortir" );
 		boto_sortir.setBounds( 600, 405, 135, 40 );
 		boto_sortir.addMouseListener(new MouseAdapter(){

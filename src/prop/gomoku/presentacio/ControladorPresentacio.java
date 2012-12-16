@@ -407,6 +407,9 @@ public class ControladorPresentacio
 		{
 			tauler_partida.bloquejaTauler();
 		}
+		
+		tauler_partida.actualitzaDades();
+		
 		juga_partida( tauler_partida );
 	}
 
@@ -1020,6 +1023,7 @@ public class ControladorPresentacio
 				mov_ia = ctrl_en_joc.getMovimentMaquina();
 				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_A, mov_ia[0], mov_ia[1] );
 				tauler_partida.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_A );
+				tauler_partida.actualitzaDades();
 				ultim_moviment = ctrl_en_joc.getUltimMoviment();
 				estat = partida_en_curs.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
 				System.out.println( estat );
@@ -1034,6 +1038,7 @@ public class ControladorPresentacio
 				mov_ia = ctrl_en_joc.getMovimentMaquina();
 				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_B, mov_ia[0], mov_ia[1] );
 				tauler_partida.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_B );
+				tauler_partida.actualitzaDades();
 				ultim_moviment = ctrl_en_joc.getUltimMoviment();
 				estat = partida_en_curs.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
 				System.out.println( estat );
@@ -1051,6 +1056,7 @@ public class ControladorPresentacio
 				mov_ia = ctrl_en_joc.getMovimentMaquina();
 				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_B, mov_ia[0], mov_ia[1] );
 				tauler_partida.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_B );
+				tauler_partida.actualitzaDades();
 				ultim_moviment = ctrl_en_joc.getUltimMoviment();
 				estat = partida_en_curs.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
 				System.out.println( estat );
@@ -1065,6 +1071,7 @@ public class ControladorPresentacio
 				mov_ia = ctrl_en_joc.getMovimentMaquina();
 				ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_A, mov_ia[0], mov_ia[1] );
 				tauler_partida.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_A );
+				tauler_partida.actualitzaDades();
 				ultim_moviment = ctrl_en_joc.getUltimMoviment();
 				estat = partida_en_curs.comprovaEstatPartida( ultim_moviment[0], ultim_moviment[1] );
 				System.out.println( estat );
@@ -1131,6 +1138,7 @@ public class ControladorPresentacio
 				else
 				{
 					tauler_partida.pinta( fila, columna, EstatCasella.JUGADOR_A );
+					tauler_partida.actualitzaDades();
 				}
 				if ( estat == EstatPartida.NO_FINALITZADA
 						&& partida_en_curs.getJugadorB().getTipus() != TipusUsuari.CONVIDAT
@@ -1139,6 +1147,7 @@ public class ControladorPresentacio
 					int[] mov_ia = ctrl_en_joc.getMovimentMaquina();
 					ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_B, mov_ia[0], mov_ia[1] );
 					tauler_partida.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_B );
+					tauler_partida.actualitzaDades();
 				}
 				else if ( estat != EstatPartida.NO_FINALITZADA )
 				{
@@ -1169,6 +1178,7 @@ public class ControladorPresentacio
 				else
 				{
 					tauler_partida.pinta( fila, columna, EstatCasella.JUGADOR_B );
+					tauler_partida.actualitzaDades();
 				}
 				if ( estat == EstatPartida.NO_FINALITZADA
 						&& partida_en_curs.getJugadorA().getTipus() != TipusUsuari.CONVIDAT
@@ -1177,6 +1187,7 @@ public class ControladorPresentacio
 					int[] mov_ia = ctrl_en_joc.getMovimentMaquina();
 					ctrl_en_joc.mouFitxa( EstatCasella.JUGADOR_A, mov_ia[0], mov_ia[1] );
 					tauler_partida.pinta( mov_ia[0], mov_ia[1], EstatCasella.JUGADOR_A );
+					tauler_partida.actualitzaDades();
 				}
 				else if ( estat != EstatPartida.NO_FINALITZADA )
 				{
@@ -1212,7 +1223,7 @@ public class ControladorPresentacio
 		}
 	}
 
-	public void carrega_partida( FrameCarregaPartides frame_carrega_partides, PartidaGomoku partida )
+	public void carregaPartida( FrameCarregaPartides frame_carrega_partides, PartidaGomoku partida )
 	{
 		if ( tauler_partida == null )
 		{
@@ -1230,6 +1241,7 @@ public class ControladorPresentacio
 		tauler_partida.setControladorPresentacioTauler( this );
 		tauler_partida.setControladorPresentacio( this );
 		tauler_partida.pinta();
+		tauler_partida.actualitzaDades();
 		System.out.println( "Partida : " + partida );
 		juga_partida( tauler_partida );
 
@@ -1273,6 +1285,7 @@ public class ControladorPresentacio
 		tauler_partida.setControladorPresentacioTauler( this );
 		tauler_partida.setControladorPresentacio( this );
 		tauler_partida.pinta();
+		tauler_partida.actualitzaDades();
 		juga_partida( tauler_partida );
 	}
 
@@ -1317,4 +1330,5 @@ public class ControladorPresentacio
 		frame_menu_principal.main();
 		frame_menu_principal.setControladorPresentacio( this );
 	}
+
 }
