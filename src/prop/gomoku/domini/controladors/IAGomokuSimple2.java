@@ -19,25 +19,24 @@ public class IAGomokuSimple2 extends IAGomoku
 	private int[][] analisi_oponent;
 	PriorityQueue<int[]> millors_caselles;
 
-	public IAGomokuSimple2( /* PartidaGomoku partida, EstatCasella color */)
-	{
-		// if ( color == EstatCasella.BUIDA )
-		// {
-		// throw new IllegalArgumentException( "color ha de representar a un jugador" );
-		// }
-		// this.partida = partida;
-		// this.color = color;
-		//
-		// millors_caselles = new PriorityQueue<int[]>();
-		// int mida = partida.getTauler().getMida();
-		// this.analisi_jugador = new int[mida][mida];
-		// this.analisi_oponent = new int[mida][mida];
-	}
-
-	// TODO documentar
+	/**
+	 * Classe comparada que serveix per comparar dues coordenades d'un tauler de Gomoku basant-se en la utilitat que li
+	 * té assignada a cadascuna d'aquestes
+	 * 
+	 * @author Ignacio
+	 * 
+	 */
 	private class ComparadorIASimple implements Comparator<int[]>
 	{
 
+		/**
+		 * Mètode encarregat de la comparació de dues coordenades basant-se en la utilitat d'aquestes segons els
+		 * anàlisis que realitat la IA
+		 * 
+		 * @param coord_a Primera coordenada de la comparació
+		 * @param coord_b Segona coordenada de la comparació
+		 * @return El resultat de la comparació entre les dues coordenades paràmetre
+		 */
 		@Override
 		public int compare( int[] coord_a, int[] coord_b )
 		{
@@ -62,6 +61,15 @@ public class IAGomokuSimple2 extends IAGomoku
 		}
 	}
 
+	/**
+	 * Mètode de conveniència que permet comprovar si un moviment és vàlid a un determinat tauler
+	 * 
+	 * @param color Color pel qual es vol realitzar el moviment
+	 * @param fila Fila on es voldria realitzar el moviment
+	 * @param columna Columna on es voldria realitzar el moviment
+	 * @param tauler Tauler on es voldria realitzar el moviment
+	 * @return <em>true</em> si el moviment es vàlid; <em>false</em> en cas contrari
+	 */
 	private boolean esMovimentValid( EstatCasella color, int fila, int columna, TaulerGomoku tauler )
 	{
 		try
@@ -77,6 +85,12 @@ public class IAGomokuSimple2 extends IAGomoku
 		return true;
 	}
 
+	/**
+	 * Mètode que avalua els anàlisis realitzats, classifica els possibles moviments i retorna les coordenades d'un
+	 * possible moviment vàlid
+	 * 
+	 * @return Coordenades del moviment que la IA considera com a millor
+	 */
 	private int[] classificaIDecideix()
 	{
 		millors_caselles = new PriorityQueue<int[]>( 20, new ComparadorIASimple() );
@@ -103,7 +117,7 @@ public class IAGomokuSimple2 extends IAGomoku
 		return casella;
 	}
 
-	// TODO AtenciÃ³: treballa amb les dades passades a la constructora, s'ignoren aquestes dades
+	// TODO
 	@Override
 	public int[] computaMoviment( Partida partida, EstatCasella estat_casella, int fila_ult_moviment,
 			int columna_ult_moviment )
@@ -380,7 +394,7 @@ public class IAGomokuSimple2 extends IAGomoku
 					}
 					else
 					{
-						analisi[i][columna] += puntuacio[fila - i] + potencial;
+						analisi[i][columna] += puntuacio[fila - i] * potencial;
 					}
 				}
 			}
@@ -397,7 +411,7 @@ public class IAGomokuSimple2 extends IAGomoku
 					}
 					else
 					{
-						analisi[i][columna] += puntuacio[i - fila] + potencial;
+						analisi[i][columna] += puntuacio[i - fila] * potencial;
 					}
 				}
 			}
@@ -418,7 +432,7 @@ public class IAGomokuSimple2 extends IAGomoku
 					}
 					else
 					{
-						analisi[fila][j] += puntuacio[columna - j] + potencial;
+						analisi[fila][j] += puntuacio[columna - j] * potencial;
 					}
 				}
 			}
@@ -435,7 +449,7 @@ public class IAGomokuSimple2 extends IAGomoku
 					}
 					else
 					{
-						analisi[fila][j] += puntuacio[j - columna] + potencial;
+						analisi[fila][j] += puntuacio[j - columna] * potencial;
 					}
 				}
 			}
@@ -455,7 +469,7 @@ public class IAGomokuSimple2 extends IAGomoku
 					}
 					else
 					{
-						analisi[i][j] += puntuacio[columna - j] + potencial;
+						analisi[i][j] += puntuacio[columna - j] * potencial;
 					}
 				}
 			}
@@ -472,7 +486,7 @@ public class IAGomokuSimple2 extends IAGomoku
 					}
 					else
 					{
-						analisi[i][j] += puntuacio[j - columna] + potencial;
+						analisi[i][j] += puntuacio[j - columna] * potencial;
 					}
 				}
 			}
@@ -494,7 +508,7 @@ public class IAGomokuSimple2 extends IAGomoku
 					}
 					else
 					{
-						analisi[i][j] += puntuacio[j - columna] + potencial;
+						analisi[i][j] += puntuacio[j - columna] * potencial;
 					}
 				}
 			}
@@ -510,7 +524,7 @@ public class IAGomokuSimple2 extends IAGomoku
 						es_util = false;
 					}
 					{
-						analisi[i][j] += puntuacio[columna - j] + potencial;
+						analisi[i][j] += puntuacio[columna - j] * potencial;
 					}
 				}
 			}
