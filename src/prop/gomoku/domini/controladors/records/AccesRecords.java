@@ -6,8 +6,22 @@ import prop.gomoku.domini.models.EstadistiquesPartides;
 import prop.gomoku.domini.models.LlistaRecordsIndividuals;
 import prop.gomoku.domini.models.ResumResultats;
 
+/**
+ * Classe de conveniència que permet accedir de forma parametritzada a una llista de records individuals d'un usuari
+ * 
+ * @author Mauricio Ignacio Contreras Pinilla
+ * 
+ */
 public class AccesRecords
 {
+	/**
+	 * Mètode que permet consultar el valor associat a una llista de records individuals determinada segons un criteri
+	 * específic
+	 * 
+	 * @param llista_records Llista de records individuals a consultar
+	 * @param criteri Criteri del qual obtenir la puntuació
+	 * @return Puntuació associada al criteri especificat a la llista de records individuals donada
+	 */
 	public static int get( LlistaRecordsIndividuals llista_records, CriteriRecords criteri )
 	{
 		Dificultat dificultat;
@@ -71,6 +85,15 @@ public class AccesRecords
 		}
 	}
 
+	/**
+	 * Mètode de consulta del valor absolut que conté una llista de records individuals donada una dificultat
+	 * determinada i un resultat específic
+	 * 
+	 * @param llista_records Llista de records individuals a consultar
+	 * @param dificultat Dificultat de la qual en volem saber la dada
+	 * @param resultat Restultat del qual en volem saber la dada
+	 * @return Dada rellevant (nombre absolut) de la llista de records per a una dificultat i resultats determinats
+	 */
 	public static int getAbsoluts( LlistaRecordsIndividuals llista_records, Dificultat dificultat, Resultat resultat )
 	{
 		EstadistiquesPartides est = llista_records.getStatsPartidaRapida();
@@ -151,6 +174,15 @@ public class AccesRecords
 		return 0;
 	}
 
+	/**
+	 * Mètode de consulta del valor percentual que conté una llista de records individuals donada una dificultat
+	 * determinada i un resultat específic
+	 * 
+	 * @param llista_records Llista de records individuals a consultar
+	 * @param dificultat Dificultat de la qual en volem saber la dada
+	 * @param resultat Restultat del qual en volem saber la dada
+	 * @return Dada rellevant (percentatge) de la llista de records per a una dificultat i resultats determinats
+	 */
 	public static int getPercentuals( LlistaRecordsIndividuals llista_records, Dificultat dificultat, Resultat resultat )
 	{
 		EstadistiquesPartides est = llista_records.getStatsPartidaRapida();

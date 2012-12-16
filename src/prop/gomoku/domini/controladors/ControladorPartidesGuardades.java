@@ -47,13 +47,27 @@ public class ControladorPartidesGuardades
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Mètode per esborrar una partida del sistema ja hi constava
+	 * 
+	 * @param partida Partida que es vol esborrar de disc
+	 * @return <em>true</em> si s'ha realitzat l'operació amb èxit; <em>false</em> en cas contrari
 	 */
-	public boolean esborraPartida(PartidaGomoku partida)
+	public boolean esborraPartida( PartidaGomoku partida )
 	{
-		return this.gestor.esborraPartida(partida);
+		return this.gestor.esborraPartida( partida );
 	}
 
+	// TODO valida nom!
+	// TODO documenta
+	public boolean reanomenaPartida(PartidaGomoku partida, String nou_nom)
+	{
+		partida.setNom( nou_nom );
+		if (gestor.guardaPartida( partida ) != null)
+		{
+			return true;
+		}
+		return false;
+	}
 }

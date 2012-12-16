@@ -146,6 +146,7 @@ public class ControladorPartidaEnJoc
 		}
 	}
 
+	// TODO completar informació del que fa aquesta classe
 	/**
 	 * Mètode per a moure una fitxa a la partida. Avança el nombre de torns jugats en conseqüència i comprova l'estat de
 	 * la partida com a resultat del moviment
@@ -168,9 +169,60 @@ public class ControladorPartidaEnJoc
 		}
 		else
 		{
+			// Es realitzen les gestions de finalització de partida
 			this.partida.setFinalitzada( true );
+
+			UsuariGomoku jugador_a = this.partida.getJugadorA();
+			UsuariGomoku jugador_b = this.partida.getJugadorB();
+
+			if ( estat_partida == EstatPartida.EMPAT )
+			{
+				jugador_a.incrementaEmpats( jugador_b.getTipus() );
+				jugador_b.incrementaEmpats( jugador_a.getTipus() );
+			}
+			else if ( estat_partida == EstatPartida.GUANYA_JUGADOR_A )
+			{
+				jugador_a.incrementaVictories( jugador_b.getTipus() );
+				jugador_b.incrementaDerrotes( jugador_a.getTipus() );
+			}
+			else if ( estat_partida == EstatPartida.GUANYA_JUGADOR_B )
+			{
+				jugador_a.incrementaDerrotes( jugador_b.getTipus() );
+				jugador_b.incrementaVictories( jugador_a.getTipus() );
+			}
+
+			actualitzaUsuarisNoConvidats();
+
 		}
 		return estat_partida;
+	}
+
+	/**
+	 * Mètode que actualitza les dades a disc dels usuaris implicats a la partida, sempre que aquests no siguin
+	 * convidats
+	 * 
+	 * @return <em>true</em> si l'operació ha tingut èxit (independenment del nombre de convidats participant a la
+	 *         partida); <em>false</em> en cas contrari
+	 */
+	private boolean actualitzaUsuarisNoConvidats()
+	{
+		// Si els usuaris no són convidats, es guarden les seves dades a disc
+		UsuariGomoku jugador_a = partida.getJugadorA();
+		UsuariGomoku jugador_b = partida.getJugadorB();
+
+		ControladorUsuari ctrl_usuari = new ControladorUsuari();
+		boolean estat_a = true;
+		if ( jugador_a.getTipus() != TipusUsuari.CONVIDAT )
+		{
+			estat_a = ctrl_usuari.actualitzaUsuari( jugador_a );
+		}
+		boolean estat_b = true;
+		if ( jugador_b.getTipus() != TipusUsuari.CONVIDAT )
+		{
+			estat_b = ctrl_usuari.actualitzaUsuari( jugador_b );
+		}
+
+		return estat_a && estat_b;
 	}
 
 	/**
@@ -188,7 +240,7 @@ public class ControladorPartidaEnJoc
 	 * Mètode per consultar les coordenades de l'últim moviment realitzat a l'actual partida des de que el controlador
 	 * implícit s'encarrega del seu control
 	 * 
-	 * @return Coordenades de l'últim moviment realitzat des de que s'ha iniciat el control de la partida 
+	 * @return Coordenades de l'últim moviment realitzat des de que s'ha iniciat el control de la partida
 	 */
 	public int[] getUltimMoviment()
 	{

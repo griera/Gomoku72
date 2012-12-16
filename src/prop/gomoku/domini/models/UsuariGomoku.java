@@ -20,17 +20,21 @@ public class UsuariGomoku extends Usuari
 	 */
 	private static final long serialVersionUID = -4414787291777756469L;
 
-	// TODO
+	/**
+	 * Tipus del usuari, proporciona informació important i facilita la gestió de convidats, usuaris CPU, etc.
+	 */
 	private TipusUsuari tipus;
 
-	// TODO
-	private static final int longitud_mininima_contrasenya = 4;
-	
 	/**
-	 * Creadora d'un usuari Gomoku
+	 * Longitud mínima de la contrasenya, com a mesura de seguretat i per evitar possibles conflictes amb el xifratge
+	 */
+	private static final int longitud_mininima_contrasenya = 4;
+
+	/**
+	 * Constructora d'un usuari Gomoku de tipus humà
 	 * 
-	 * @param nom Nom identificador de l'usuari
-	 * @param contrasenya Contrasenya de l'usuari
+	 * @param nom Nom identificador del usuari
+	 * @param contrasenya Contrasenya del usuari
 	 */
 	public UsuariGomoku( String nom, String contrasenya )
 	{
@@ -42,7 +46,13 @@ public class UsuariGomoku extends Usuari
 		tipus = TipusUsuari.HUMA;
 	}
 
-	// TODO
+	/**
+	 * Contructora bàsica per un usuari nou, permetent especificar el tipus
+	 * 
+	 * @param nom Nom identificardor del usuari
+	 * @param contrasenya Contrasenya del usuari
+	 * @param tipus Tipus del usuari a crear
+	 */
 	public UsuariGomoku( String nom, String contrasenya, TipusUsuari tipus )
 	{
 		super( nom, contrasenya, nombre_dificultats );
@@ -53,10 +63,17 @@ public class UsuariGomoku extends Usuari
 		this.tipus = tipus;
 	}
 
-	// TODO
+	/**
+	 * Comprovació bàsica de la validesa d'una contrasenya
+	 * 
+	 * @param contrasenya Contrasenya a comprovar
+	 * @return <em>true</em> si la contrasenya sembla vàlida; <em>false</em> si és incorrecte (e.g. conté un espai o no
+	 *         conté prous caracters
+	 */
 	private boolean validaContrasenya( String contrasenya )
 	{
-		if ( contrasenya.contains( " " ) || contrasenya.length() < longitud_mininima_contrasenya)
+		// TODO potser fer una verificació més bèstia
+		if ( contrasenya.contains( " " ) || contrasenya.length() < longitud_mininima_contrasenya )
 		{
 			return false;
 		}
@@ -66,7 +83,11 @@ public class UsuariGomoku extends Usuari
 		}
 	}
 
-	// TODO
+	/**
+	 * Consultora del tipus del usuaria paràmetre implícit
+	 * 
+	 * @return El tipus del usuari gomoku
+	 */
 	public TipusUsuari getTipus()
 	{
 		return this.tipus;
@@ -154,5 +175,67 @@ public class UsuariGomoku extends Usuari
 			return false;
 		}
 		return super.setContrasenya( contrasenya );
+	}
+
+	/**
+	 * Modificadora per incrementar el nombre de victòries del usuari contra el tipus de contrincant especificat
+	 * 
+	 * @param tipus_contrincant Tipus d'usuari del contrincant
+	 * @return <em>true</em> si la modificació ha estat efectiva, <em>false</em> en cas contrari
+	 */
+	public boolean incrementaVictories( TipusUsuari tipus_contrincant )
+	{
+		return incrementaVictories( UsuariGomoku.getIndexDeTipus( tipus_contrincant ) );
+	}
+
+	/**
+	 * Modificadora per incrementar el nombre d'empats del usuari contra el tipus de contrincant especificat
+	 * 
+	 * @param tipus_contrincant Tipus d'usuari del contrincant
+	 * @return <em>true</em> si la modificació ha estat efectiva, <em>false</em> en cas contrari
+	 */
+	public boolean incrementaEmpats( TipusUsuari tipus_contrincant )
+	{
+		return incrementaEmpats( UsuariGomoku.getIndexDeTipus( tipus_contrincant ) );
+	}
+
+	/**
+	 * Modificadora per incrementar el nombre de derrotes del usuari contra el tipus de contrincant especificat
+	 * 
+	 * @param tipus_contrincant Tipus d'usuari del contrincant
+	 * @return <em>true</em> si la modificació ha estat efectiva, <em>false</em> en cas contrari
+	 */
+	public boolean incrementaDerrotes( TipusUsuari tipus_contrincant )
+	{
+		return incrementaDerrotes( UsuariGomoku.getIndexDeTipus( tipus_contrincant ) );
+	}
+
+	/**
+	 * Mètode auxiliar de la classe que permet obtenir l'índex corresponent als nivells de dificultat (necessaris per a
+	 * modificar les estadístiques d'un Usuari) a partir d'un tipus d'usuari Gomoku
+	 * 
+	 * @param tipus Tipus del qual es vol obtenir l'índex
+	 * @return Índex corresponent al tipus d'usuari Gomoku indicat
+	 */
+	private static int getIndexDeTipus( TipusUsuari tipus )
+	{
+		int index = 0;
+		switch ( tipus )
+		{
+			case FACIL:
+				index = 0;
+				break;
+			case MITJA:
+				index = 1;
+				break;
+			case DIFICIL:
+				index = 2;
+				break;
+			case CONVIDAT:
+			case HUMA:
+				index = 3;
+				break;
+		}
+		return index;
 	}
 }

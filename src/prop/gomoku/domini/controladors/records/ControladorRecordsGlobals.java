@@ -9,16 +9,37 @@ import prop.gomoku.domini.models.LlistaRecordsIndividuals;
 import prop.gomoku.domini.models.UsuariGomoku;
 import prop.gomoku.gestors.GestorUsuaris;
 
-// The Great TODO
+/**
+ * Controlador de records globals. Permet el seu càlcul i consulta en temps d'execució. Considera tots els usuaris
+ * guardats a disc que hi hagi presents al sistema.
+ * 
+ * @author Mauricio Ignacio Contreras Pinilla
+ * 
+ */
 public class ControladorRecordsGlobals
 {
+	/**
+	 * Gestor d'usuaris utilitzat per a la càrrega d'aquests
+	 */
 	private GestorUsuaris gestor_usuaris;
 
+	/**
+	 * Constructora per defecte
+	 */
 	public ControladorRecordsGlobals()
 	{
 		gestor_usuaris = new GestorUsuaris();
 	}
 
+	/**
+	 * Permet obtenir una llista dels 5 usuaris que més destaquen per a un criteri donat. Cada element de la llista que
+	 * es retorna és una array de Strings on el primer element és el nom del usuari del rànquing i el segon és la dada
+	 * rellevant d'aquest pel criteri seleccionat
+	 * 
+	 * @param criteri Criteri pel qual es vol obtenir la llista de records
+	 * @return Llista que conté parelles de Strings amb el nom dels usuaris (primera posició) i les dades rellevants al
+	 *         criteri especificat (segona posició)
+	 */
 	public List<String[]> getLlistaRecords( CriteriRecords criteri )
 	{
 		PriorityQueue<LlistaRecordsIndividuals> llista_records_individuals = new PriorityQueue<LlistaRecordsIndividuals>(
@@ -45,16 +66,39 @@ public class ControladorRecordsGlobals
 		return llista_dades;
 	}
 
+	/**
+	 * Comparador personalitzat per permetre comparar llistes de records individuals donat un criteri específic (ens
+	 * permet utilitzar, per exemple, cues de prioritat)
+	 * 
+	 * @author Mauricio Ignacio Contreras Pinilla
+	 * 
+	 */
 	private class ComparadorRecords implements Comparator<LlistaRecordsIndividuals>
 	{
 
+		/**
+		 * Criteri pel qual es vol realitzar la comparació entre llistes de records individuals
+		 */
 		private CriteriRecords criteri;
 
+		/**
+		 * Creadora bàsica del comparador
+		 * 
+		 * @param criteri Criteri pel qual es vol realitzar la comparació
+		 */
 		public ComparadorRecords( CriteriRecords criteri )
 		{
 			this.criteri = criteri;
 		}
 
+		/**
+		 * Mètode per comparar dues llistes de records individuals, segons el criteri especificat en crear el comparador
+		 * 
+		 * @param a Primera llista de records individuals de la comparació
+		 * @param b Segona llista de records individuals de la comparació
+		 * @return 1 si <em>b</em> supera a <em>a</em> en el criteri especificat, 0 si segons el criteri són iguals i -1
+		 *         si <em>a</em> supera a <em>b<em>
+		 */
 		@Override
 		public int compare( LlistaRecordsIndividuals a, LlistaRecordsIndividuals b )
 		{
@@ -222,13 +266,61 @@ public class ControladorRecordsGlobals
 		}
 	}
 
+	/**
+	 * Enumeració que representa les diferents dificultats a tenir en compte a l'hora de treballar amb els criteris
+	 * 
+	 * @author Mauricio Ignacio Contreras Pinilla
+	 * 
+	 */
 	enum Dificultat
 	{
-		HUMA, FACIL, MITJA, DIFICIL, TOTES
+		/**
+		 * Dificultat d'una partida contra un jugador humà (ja sigui un usuari registrat o convidat)
+		 */
+		HUMA,
+		/**
+		 * Dificultat d'una partida contra la CPU fàcil
+		 */
+		FACIL,
+		/**
+		 * Dificultat d'una partida contra la CPU mitja
+		 */
+		MITJA,
+		/**
+		 * Dificultat d'una partida contra la CPU difícil
+		 */
+		DIFICIL,
+		/**
+		 * Totes les dificultats anteriors
+		 */
+		TOTES
+
 	};
 
+	/**
+	 * Enumeració que representa els diferents resultat d'una partida (de cara al jugador) a tenir en compte a l'hora de
+	 * treballar amb els criteris
+	 * 
+	 * @author Mauricio Ignacio Contreras Pinilla
+	 * 
+	 */
 	enum Resultat
 	{
-		VICTORIA, EMPAT, DERROTA, TOTS
+		/**
+		 * Partida guanyada en victoria del usuari
+		 */
+		VICTORIA,
+		/**
+		 * Partida acabada en empat
+		 */
+		EMPAT,
+		/**
+		 * Partida acabada en derrota del usuari
+		 */
+		DERROTA,
+		/**
+		 * Partida acabada en qualsevol resultat
+		 */
+		TOTS
 	}
 }
