@@ -2,7 +2,7 @@ package prop.gomoku.tests;
 
 import prop.cluster.domini.models.estats.EstatCasella;
 import prop.gomoku.auxiliars.LecturaScanners;
-import prop.gomoku.domini.controladors.IAGomokuSimple;
+import prop.gomoku.domini.controladors.IAGomokuAlternativa;
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.TaulerGomoku;
 import prop.gomoku.domini.models.UsuariGomoku;
@@ -14,7 +14,7 @@ public class TestIAGomokuSimple
 		UsuariGomoku jugador_a = new UsuariGomoku( "A", "passwordA" );
 		UsuariGomoku jugador_b = new UsuariGomoku( "B", "passwordB" );
 		PartidaGomoku partida = new PartidaGomoku( jugador_a, jugador_a, jugador_b, new TaulerGomoku(), "C" );
-		IAGomokuSimple simple_b = new IAGomokuSimple();
+		IAGomokuAlternativa simple_b = new IAGomokuAlternativa();
 
 		LecturaScanners lectura = new LecturaScanners();
 

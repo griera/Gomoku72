@@ -8,7 +8,7 @@ import prop.cluster.domini.models.estats.EstatCasella;
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.TaulerGomoku;
 
-public class IAGomokuSimple extends IAGomoku
+public class IAGomokuAlternativa extends IAGomoku
 {
 	// private static final int[] puntuacio_jugador = { 0, 8, 7, 6, 5 };
 	// private static final int[] puntuacio_oponent = { 0, 8, 7, 6, 5 };
@@ -27,7 +27,7 @@ public class IAGomokuSimple extends IAGomoku
 	PriorityQueue<int[]> millors_caselles;
 	boolean ha_computat = false;
 
-	public IAGomokuSimple( /* PartidaGomoku partida, EstatCasella color */)
+	public IAGomokuAlternativa( /* PartidaGomoku partida, EstatCasella color */)
 	{
 	}
 

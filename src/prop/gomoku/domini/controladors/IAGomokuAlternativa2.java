@@ -8,7 +8,7 @@ import prop.cluster.domini.models.estats.EstatCasella;
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.TaulerGomoku;
 
-public class IAGomokuSimple2 extends IAGomoku
+public class IAGomokuAlternativa2 extends IAGomoku
 {
 	private static final int[] puntuacio_jugador = { 0, 4, 3, 2, 1 };
 	private static final int[] puntuacio_oponent = { 0, 4, 3, 2, 1 };

@@ -14,7 +14,6 @@ import prop.cluster.domini.models.estats.EstatCasella;
 import prop.cluster.domini.models.estats.EstatPartida;
 import prop.gomoku.domini.controladors.ControladorPartidaEnJoc;
 import prop.gomoku.domini.models.PartidaGomoku;
-import prop.gomoku.domini.models.TipusUsuari;
 
 public class TaulerGUI extends JPanel
 {
