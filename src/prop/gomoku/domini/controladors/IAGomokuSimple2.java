@@ -10,13 +10,6 @@ import prop.gomoku.domini.models.TaulerGomoku;
 
 public class IAGomokuSimple2 extends IAGomoku
 {
-	// private static final int[] puntuacio_jugador = { 0, 8, 7, 6, 5 };
-	// private static final int[] puntuacio_oponent = { 0, 8, 7, 6, 5 };
-	// Con esto se le gana de manera tonta, pero en el resto de situaciones se defiende relativament bien
-	// private static final int[] puntuacio_jugador = { 0, 15, 7, 3, 2 };
-	// private static final int[] puntuacio_oponent = { 0, 16, 8, 4, 4 };
-	// private static final int[] puntuacio_jugador = { 0, 8, 8, 4, 4 };
-	// private static final int[] puntuacio_oponent = { 0, 8, 8, 4, 4 };
 	private static final int[] puntuacio_jugador = { 0, 4, 3, 2, 1 };
 	private static final int[] puntuacio_oponent = { 0, 4, 3, 2, 1 };
 	private static final int factor_potencial = 5;
@@ -254,7 +247,7 @@ public class IAGomokuSimple2 extends IAGomoku
 				}
 				break;
 			case 4:
-				puntuacio = 10000;
+				puntuacio = 100000;
 				break;
 		}
 
