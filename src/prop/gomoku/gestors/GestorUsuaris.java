@@ -37,7 +37,7 @@ public class GestorUsuaris
 	public UsuariGomoku carregaUsuari( String nom ) throws UsuariNoExisteix
 	{
 		UsuariGomoku usuari = null;
-		String ruta_fitxer = ruta_usuaris + nom + extensio;
+		String ruta_fitxer = ruta_usuaris + nom.toLowerCase() + extensio;
 		try
 		{
 			usuari = this.carregaUsuariDeFitxer( ruta_fitxer );
@@ -107,7 +107,7 @@ public class GestorUsuaris
 		// fitxers només
 		for ( String nom_fitxer : llista_fitxers )
 		{
-			if ( nom_fitxer.equals( usuari.getNom() + extensio ) )
+			if ( nom_fitxer.toLowerCase().equals( usuari.getNom().toLowerCase() + extensio ) )
 			{
 				return true;
 			}

@@ -59,8 +59,12 @@ public class ControladorPartidesGuardades
 		return this.gestor.esborraPartida( partida );
 	}
 
-	// TODO valida nom!
-	// TODO documenta
+	/**
+	 * Mètode per reanomenar una partida específica i actualitzar-la també a disc
+	 * @param partida Partida que es vol reanomenar
+	 * @param nou_nom Nou nom que se li vol posar a la partida
+	 * @return <em>true</em> en cas d'èxit; <em>false</em> en cas contrari
+	 */
 	public boolean reanomenaPartida(PartidaGomoku partida, String nou_nom)
 	{
 		partida.setNom( nou_nom );
