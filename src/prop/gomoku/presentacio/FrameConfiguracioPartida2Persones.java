@@ -192,7 +192,7 @@ public class FrameConfiguracioPartida2Persones extends JFrame {
 	private JLabel getJLabel0() {
 		if (jLabel0 == null) {
 			jLabel0 = new JLabel();
-			jLabel0.setText("<html><font size=5>Configuració de la partida ràpida</font></html>");
+			jLabel0.setText("<html><font size=5>Configuració de la Partida</font></html>");
 		}
 		return jLabel0;
 	}
@@ -304,7 +304,7 @@ public class FrameConfiguracioPartida2Persones extends JFrame {
 
 				FrameError error = new FrameError();
 				error.main();
-				error.MissatgeActiva("L'usuari introduït esta actualment loguejat en el sistema,introdueixi un usuari diferent, si us plau.");
+				error.MissatgeActiva("L'usuari introduït esta actualment identificat al sistema. Introdueixi un usuari diferent, si us plau.");
 				jPasswordField0.setText("");
 			}
 			else{
