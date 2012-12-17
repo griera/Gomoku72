@@ -46,7 +46,6 @@ public class FrameConfiguracioPartida2Persones extends JFrame {
 	private void initComponents() {
 		setTitle("Gomoku72 - Configuració de Partida");
 		setLayout(new GroupLayout());
-		add(getJLabel0(), new Constraints(new Leading(59, 10, 10), new Leading(20, 10, 10)));
 		add(getJLabel1(), new Constraints(new Leading(25, 10, 10), new Leading(62, 12, 12)));
 		add(getJButton0(), new Constraints(new Trailing(12, 12, 12), new Trailing(12, 12, 12)));
 		add(getJButton1(), new Constraints(new Trailing(105, 12, 12), new Trailing(12, 90, 90)));
@@ -54,6 +53,7 @@ public class FrameConfiguracioPartida2Persones extends JFrame {
 		add(getJButton2(), new Constraints(new Leading(25, 189, 189), new Trailing(12, 314, 328)));
 		add(getJRadioButton0(), new Constraints(new Leading(40, 8, 8), new Leading(142, 46, 46)));
 		add(getJRadioButton1(), new Constraints(new Leading(40, 8, 8), new Leading(100, 10, 10)));
+		add(getJLabel0(), new Constraints(new Leading(107, 10, 10), new Leading(20, 50, 50)));
 		setSize(447, 376);
 	}
 
