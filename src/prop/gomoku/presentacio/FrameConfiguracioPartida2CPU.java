@@ -42,7 +42,7 @@ public class FrameConfiguracioPartida2CPU extends JFrame
 
 	private void initComponents() {
 		controlador_presentacio = new ControladorPresentacio();
-		setTitle("Gomoku- Configuració de partida ràpida");
+		setTitle("Gomoku72- Configuració de Partida");
 		setLayout(new GroupLayout());
 		add(getJLabel0(), new Constraints(new Leading(53, 10, 10), new Leading(12, 12, 12)));
 		add(getJLabel1(), new Constraints(new Leading(26, 10, 10), new Leading(54, 12, 12)));
@@ -188,7 +188,7 @@ public class FrameConfiguracioPartida2CPU extends JFrame
 	private JLabel getJLabel2() {
 		if (jLabel2 == null) {
 			jLabel2 = new JLabel();
-			jLabel2.setText("Seleccioni el nivell de dificultat de la màquina 2:");
+			jLabel2.setText("Seleccioni el nivell de dificultat de la Màquina 2:");
 		}
 		return jLabel2;
 	}
@@ -196,7 +196,7 @@ public class FrameConfiguracioPartida2CPU extends JFrame
 	private JLabel getJLabel1() {
 		if (jLabel1 == null) {
 			jLabel1 = new JLabel();
-			jLabel1.setText("Seleccioni el nivell de dificultat de la màquina 1:");
+			jLabel1.setText("Seleccioni el nivell de dificultat de la Màquina 1:");
 		}
 		return jLabel1;
 	}
@@ -204,7 +204,7 @@ public class FrameConfiguracioPartida2CPU extends JFrame
 	private JLabel getJLabel0() {
 		if (jLabel0 == null) {
 			jLabel0 = new JLabel();
-			jLabel0.setText("<html><font size=5>Configuracio de la  Partida Ràpida</font></html>");
+			jLabel0.setText("<html><font size=5>Configuracio de la Partida</font></html>");
 		}
 		return jLabel0;
 	}
