@@ -30,7 +30,7 @@ public class FrameBenvingut extends JFrame
 		initComponents();
 	}
 	private void initComponents() {
-		setTitle("Gomoku - Benvinguts");
+		setTitle("Gomoku72 - Benvinguts");
 		setLayout(new GroupLayout());
 		add(getJButton0(), new Constraints(new Leading(70, 158, 10, 10), new Leading(62, 12, 12)));
 		add(getJButton3(), new Constraints(new Leading(70, 12, 12), new Leading(100, 12, 12)));

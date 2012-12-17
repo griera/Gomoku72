@@ -26,7 +26,7 @@ public class FrameAccedirEstadistiques extends JFrame {
 
 	private void initComponents() {
 		controlador_presentacio = new ControladorPresentacio();
-		setTitle("Gomoku - Rànquings globals i rècords individuals");
+		setTitle("Gomoku72 - Rècords individuals i Rànquings globals");
 		setLayout(new GroupLayout());
 		add(getJButton1(), new Constraints(new Leading(119, 177, 10, 10), new Leading(25, 10, 10)));
 		add(getJButton2(), new Constraints(new Leading(119, 176, 12, 12), new Leading(69, 12, 12)));
@@ -37,7 +37,7 @@ public class FrameAccedirEstadistiques extends JFrame {
 	private JButton getJButton2() {
 		if (jButton2 == null) {
 			jButton2 = new JButton();
-			jButton2.setText("Estadístiques globals");
+			jButton2.setText("Rànquings globals");
 			jButton2.addMouseListener(new MouseAdapter() {
 	
 				public void mouseClicked(MouseEvent event) {
@@ -51,7 +51,7 @@ public class FrameAccedirEstadistiques extends JFrame {
 	private JButton getJButton1() {
 		if (jButton1 == null) {
 			jButton1 = new JButton();
-			jButton1.setText("Estadístiques individuals");
+			jButton1.setText("Rècords individuals");
 			jButton1.addMouseListener(new MouseAdapter() {
 	
 				public void mouseClicked(MouseEvent event) {
