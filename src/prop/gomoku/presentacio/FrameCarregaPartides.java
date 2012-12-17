@@ -295,6 +295,10 @@ public class FrameCarregaPartides extends JFrame
 
 	private void jButton0MouseMouseClicked( MouseEvent event )
 	{
+		if (jList0.getSelectedIndex() == -1)
+		{
+			return;
+		}
 		PartidaGomoku partida = partides.get( jList0.getSelectedIndex() );
 		controlador_presentacio.carregaPartida( this, partida );
 	}
