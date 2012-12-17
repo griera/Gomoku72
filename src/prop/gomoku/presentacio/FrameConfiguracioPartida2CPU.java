@@ -44,7 +44,6 @@ public class FrameConfiguracioPartida2CPU extends JFrame
 		controlador_presentacio = new ControladorPresentacio();
 		setTitle("Gomoku72- Configuració de Partida");
 		setLayout(new GroupLayout());
-		add(getJLabel0(), new Constraints(new Leading(53, 10, 10), new Leading(12, 12, 12)));
 		add(getJLabel1(), new Constraints(new Leading(26, 10, 10), new Leading(54, 12, 12)));
 		add(getJLabel2(), new Constraints(new Leading(26, 12, 12), new Leading(132, 10, 10)));
 		add(getJRadioButton0(), new Constraints(new Leading(26, 12, 12), new Leading(88, 12, 12)));
@@ -56,6 +55,7 @@ public class FrameConfiguracioPartida2CPU extends JFrame
 		add(getJButton0(), new Constraints(new Trailing(12, 12, 12), new Trailing(12, 48, 48)));
 		add(getJButton2(), new Constraints(new Leading(26, 105, 105), new Trailing(12, 198, 198)));
 		add(getJButton1(), new Constraints(new Trailing(99, 156, 156), new Trailing(12, 160, 160)));
+		add(getJLabel0(), new Constraints(new Trailing(99, 12, 12), new Leading(12, 50, 50)));
 		setSize(402, 255);
 	}
 
