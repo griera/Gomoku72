@@ -40,7 +40,7 @@ public class FrameIdentificacio extends JFrame
 		initComponents();
 	}
 	private void initComponents() {
-		setTitle("Gomoku - Identificació");
+		setTitle("Gomoku72 - Identificació");
 		setLayout(new GroupLayout());
 		add(getJButton1(), new Constraints(new Leading(239, 82, 12, 12), new Leading(234, 10, 10)));
 		add(getJButton0(), new Constraints(new Leading(137, 10, 10), new Leading(234, 10, 10)));
