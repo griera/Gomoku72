@@ -36,7 +36,7 @@ public class FrameConfiguracioPartida1 extends JFrame
 	}
 
 	private void initComponents() {
-		setTitle("Gomoku - Configuració de Partida Ràpida");
+		setTitle("Gomoku72 - Configuració de Partida");
 		setLayout(new GroupLayout());
 		add(getJLabel0(), new Constraints(new Leading(59, 10, 10), new Leading(20, 10, 10)));
 		add(getJLabel1(), new Constraints(new Leading(25, 10, 10), new Leading(62, 12, 12)));
@@ -162,7 +162,7 @@ public class FrameConfiguracioPartida1 extends JFrame
 		if ( jLabel1 == null )
 		{
 			jLabel1 = new JLabel();
-			jLabel1.setText( "Seleccioni el tipus de jugadors que disputaran les partides:" );
+			jLabel1.setText( "Seleccioni el tipus de jugadors que disputaran la partida:" );
 		}
 		return jLabel1;
 	}
@@ -172,7 +172,7 @@ public class FrameConfiguracioPartida1 extends JFrame
 		if ( jLabel0 == null )
 		{
 			jLabel0 = new JLabel();
-			jLabel0.setText( "<html><font size=5>Configuració de la partida ràpida</font></html>" );
+			jLabel0.setText( "<html><font size=5>Configuració de la Partida</font></html>" );
 		}
 		return jLabel0;
 	}
