@@ -37,7 +37,7 @@ public class FrameEstadistiquesGlobals extends JFrame
 	}
 
 	private void initComponents() {
-		setTitle("Gomoku - Estadistiques Globals");
+		setTitle("Gomoku72 - Rànquings Globals");
 		setLayout(new GroupLayout());
 		add(getJScrollPane0(), new Constraints(new Leading(47, 473, 10, 10), new Leading(76, 372, 10, 10)));
 		add(getJButton0(), new Constraints(new Leading(372, 148, 12, 12), new Leading(460, 35, 12, 12)));
@@ -62,7 +62,7 @@ public class FrameEstadistiquesGlobals extends JFrame
 	private JLabel getJLabel0() {
 		if (jLabel0 == null) {
 			jLabel0 = new JLabel();
-			jLabel0.setText("<html><font size=5>Estadístiques Globals</font></html>");
+			jLabel0.setText("<html><font size=5>Rànquings Globals</font></html>");
 		}
 		return jLabel0;
 	}

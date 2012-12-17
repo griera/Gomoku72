@@ -34,11 +34,11 @@ public class FrameEstadistiquesIndividuals extends JFrame
 	}
 
 	private void initComponents() {
-		setTitle("Gomoku - Estadistiques Individuals");
+		setTitle("Gomoku72 - Rècords Individuals");
 		setLayout(new GroupLayout());
 		add(getJScrollPane0(), new Constraints(new Leading(47, 465, 10, 10), new Leading(76, 372, 10, 10)));
 		add(getJButton0(), new Constraints(new Leading(411, 101, 12, 12), new Leading(456, 35, 10, 10)));
-		add(getJLabel0(), new Constraints(new Leading(170, 12, 12), new Leading(26, 10, 10)));
+		add(getJLabel0(), new Constraints(new Leading(188, 10, 10), new Leading(27, 10, 10)));
 		setSize(556, 544);
 	}
 
@@ -59,7 +59,7 @@ public class FrameEstadistiquesIndividuals extends JFrame
 	private JLabel getJLabel0() {
 		if (jLabel0 == null) {
 			jLabel0 = new JLabel();
-			jLabel0.setText("<html><font size=5>Estadístiques Individuals</font></html>");
+			jLabel0.setText("<html><font size=5>Rècords Individuals</font></html>");
 		}
 		return jLabel0;
 	}
