@@ -28,7 +28,7 @@ public class FrameTaulerGUIEntrenament extends JFrame
 
 	private void initComponents()
 	{
-		this.setTitle( "Gomoku72 - Partida en joc" );
+		this.setTitle( "Gomoku72 - Preparació Partida" );
 
 		JButton boto_comenca = new JButton( "Començar Partida" );
 		boto_comenca.setBounds( 600, 325, 155, 40 );
