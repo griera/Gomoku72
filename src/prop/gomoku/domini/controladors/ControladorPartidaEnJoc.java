@@ -175,8 +175,8 @@ public class ControladorPartidaEnJoc
 	}
 
 	/**
-	 * Mètode que actualitza les dades dels jugadors (objectes en memòria i disc) que han participat a la partida (a
-	 * disc només en cas de no ser convidats) només si la partida ha estat finalitzada
+	 * Mètode que actualitza les dades dels jugadors que no siguin convidats (a memòria i disc) que han participat a la
+	 * partida (només si la partida ha estat finalitzada)
 	 * 
 	 * @return <em>true</em> en cas d'èxit; <em>false</em> en cas contrari (la partida no ha estat finalitzada o hi ha
 	 *         hagut algun problema extern a l'hora d'actualitzar a disc
@@ -193,27 +193,72 @@ public class ControladorPartidaEnJoc
 
 		EstatPartida estat_partida = partida.comprovaEstatPartida( fila_ult_moviment, columna_ult_moviment );
 
+		boolean actualitzacio_a = true;
+		// Només actualitzem dades d'usuaris no convidats
+		if ( jugador_a.getTipus() != TipusUsuari.CONVIDAT )
+		{
+			actualitzacio_a = actualitzaEstadistiquesJugador( jugador_a, jugador_b, estat_partida );
+		}
+
+		boolean actualitzacio_b = true;
+		if ( jugador_b.getTipus() != TipusUsuari.CONVIDAT )
+		{
+			actualitzacio_b = actualitzaEstadistiquesJugador( jugador_b, jugador_a, estat_partida );
+		}
+
+		return actualitzaUsuarisNoConvidats() && actualitzacio_a && actualitzacio_b;
+	}
+
+	/**
+	 * Mètode auxiliar encarregat d'actualitzar les dades de la instància d'UsuariGomoku <em>jugador</em> si es
+	 * considera que ha jugat una partida contra <em>oponent</em> amb resultat <em>estat_partida</em>
+	 * 
+	 * @param jugador Usuari Gomoku al qual volem actualitzar les seves dades
+	 * @param oponent Oponent de la partida que es considera en actualitzar
+	 * @param estat_partida Estat final de la partida que es té en compte
+	 * @return <em>true</em> si tot ha anat bé; <em>false</em> en cas contrari (si hi ha hagut algun problema)
+	 */
+	private boolean actualitzaEstadistiquesJugador( UsuariGomoku jugador, UsuariGomoku oponent,
+			EstatPartida estat_partida )
+	{
+		if ( estat_partida == EstatPartida.NO_FINALITZADA )
+		{
+			throw new IllegalArgumentException(
+					"No es pot demanar l'actualització de dades amb un estat de partida inacabada" );
+		}
+		if ( jugador.getTipus() == TipusUsuari.CONVIDAT )
+		{
+			throw new IllegalArgumentException( "No es pot demanar l'actualització de dades d'un usuari convidat" );
+		}
+
 		if ( estat_partida == EstatPartida.EMPAT )
 		{
-			jugador_a.incrementaEmpats( jugador_b.getTipus() );
-			jugador_b.incrementaEmpats( jugador_a.getTipus() );
+			jugador.incrementaEmpats( oponent.getTipus() );
 		}
 		else if ( estat_partida == EstatPartida.GUANYA_JUGADOR_A )
 		{
-			jugador_a.incrementaVictories( jugador_b.getTipus() );
-			jugador_b.incrementaDerrotes( jugador_a.getTipus() );
+			if ( jugador == partida.getJugadorA() )
+			{
+				jugador.incrementaVictories( oponent.getTipus() );
+			}
+			else
+			{
+				jugador.incrementaDerrotes( oponent.getTipus() );
+			}
 		}
 		else if ( estat_partida == EstatPartida.GUANYA_JUGADOR_B )
 		{
-			jugador_a.incrementaDerrotes( jugador_b.getTipus() );
-			jugador_b.incrementaVictories( jugador_a.getTipus() );
+			if ( jugador == partida.getJugadorB() )
+			{
+				jugador.incrementaVictories( oponent.getTipus() );
+			}
+			else
+			{
+				jugador.incrementaDerrotes( oponent.getTipus() );
+			}
 		}
-		else
-		{
-			// Si no és un estat de finalització alguna cosa inesperada ha passat
-			return false;
-		}
-		return actualitzaUsuarisNoConvidats();
+
+		return true;
 	}
 
 	/**

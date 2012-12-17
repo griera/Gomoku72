@@ -11,7 +11,7 @@ public class GestorDocumentacio
 {
 	/**
 	 * Mètode consultar de la ruta del manual en PDF
-	 * @return Ruta del manual en PDF
+	 * @return Ruta on es trobaria el manual en PDF
 	 */
 	public static String getRutaManualPDF()
 	{
