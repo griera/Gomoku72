@@ -37,7 +37,7 @@ public class FrameRegistrar extends JFrame {
 	}
 
 	private void initComponents() {
-		setTitle("Gomoku - Registre de nou usuari");
+		setTitle("Gomoku72 - Registre de nou usuari");
 		setLayout(new GroupLayout());
 		add(getJLabel2(), new Constraints(new Leading(19, 10, 10), new Leading(79, 10, 10)));
 		add(getJLabel3(), new Constraints(new Leading(19, 10, 10), new Leading(133, 10, 10)));

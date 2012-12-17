@@ -280,7 +280,7 @@ public class FrameConfiguracioPartida3 extends JFrame {
 		this.controlador_presentacio = controlador_presentacio;
 	}
 	public void setTipusText(){
-		if(controlador_presentacio.getUsuariActual().getTipus()==controlador_presentacio.getOponentActual().getTipus()){
+		if(controlador_presentacio.getUsuariActual().getTipus()==controlador_presentacio.getOponentActual().getTipus() || controlador_presentacio.getUsuariActual().getTipus() == TipusUsuari.CONVIDAT){
 			if(controlador_presentacio.getUsuariActual().getTipus()==TipusUsuari.HUMA){
 				jLabel1.setText("Seleccioni el color de les fitxes del Jugador 1:");
 			}
