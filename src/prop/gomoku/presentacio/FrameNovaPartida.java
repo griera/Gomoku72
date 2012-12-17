@@ -29,13 +29,13 @@ public class FrameNovaPartida extends JFrame {
 	}
 
 	private void initComponents() {
-		setTitle("Gomoku - Nova Partida");
+		setTitle("Gomoku72 - Nova Partida");
 		setLayout(new GroupLayout());
-		add(getJLabel1(), new Constraints(new Leading(20, 12, 12), new Leading(54, 12, 12)));
-		add(getJLabel0(), new Constraints(new Leading(76, 12, 12), new Leading(12, 12, 12)));
 		add(getJButton2(), new Constraints(new Leading(236, 85, 10, 10), new Leading(244, 27, 10, 10)));
 		add(getJButton0(), new Constraints(new Leading(85, 185, 10, 10), new Leading(95, 37, 10, 10)));
 		add(getJButton1(), new Constraints(new Leading(84, 186, 12, 12), new Leading(167, 38, 10, 10)));
+		add(getJLabel1(), new Constraints(new Leading(36, 10, 10), new Leading(54, 12, 12)));
+		add(getJLabel0(), new Constraints(new Leading(68, 10, 10), new Leading(12, 12, 12)));
 		setSize(339, 289);
 	}
 
@@ -84,7 +84,7 @@ public class FrameNovaPartida extends JFrame {
 	private JLabel getJLabel1() {
 		if (jLabel1 == null) {
 			jLabel1 = new JLabel();
-			jLabel1.setText("Si us plau, seleccioni el tipus de partida que vol jugar:");
+			jLabel1.setText("Si us plau, seleccioni la modalitat de la partida:");
 		}
 		return jLabel1;
 	}
@@ -92,7 +92,7 @@ public class FrameNovaPartida extends JFrame {
 	private JLabel getJLabel0() {
 		if (jLabel0 == null) {
 			jLabel0 = new JLabel();
-			jLabel0.setText("<html><font size=5>Selecció de modalitat</font></html>");
+			jLabel0.setText("<html><font size=5>Selecció de la modalitat</font></html>");
 		}
 		return jLabel0;
 	}
