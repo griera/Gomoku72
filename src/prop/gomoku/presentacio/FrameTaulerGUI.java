@@ -29,9 +29,9 @@ public class FrameTaulerGUI extends JFrame
 
 	private void initComponents()
 	{
-		this.setTitle( "Gomoku - Partida en joc" );
+		this.setTitle( "Gomoku72 - Partida en joc" );
 
-		JLabel informacio = new JLabel( "INFORMACIO DE LA PARTIDA" );
+		JLabel informacio = new JLabel( "INFORMACIÓ DE LA PARTIDA" );
 		informacio.setBounds( 600, 20, 170, 20 );
 		this.getContentPane().add( informacio );
 

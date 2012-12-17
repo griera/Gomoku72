@@ -37,7 +37,7 @@ public class FrameRegistrar extends JFrame {
 	}
 
 	private void initComponents() {
-		setTitle("Gomoku72 - Registre de nou usuari");
+		setTitle("Gomoku72 - Registre de Nou Usuari");
 		setLayout(new GroupLayout());
 		add(getJLabel2(), new Constraints(new Leading(19, 10, 10), new Leading(79, 10, 10)));
 		add(getJLabel3(), new Constraints(new Leading(19, 10, 10), new Leading(133, 10, 10)));
@@ -71,7 +71,7 @@ public class FrameRegistrar extends JFrame {
 	private JLabel getJLabel0() {
 		if (jLabel0 == null) {
 			jLabel0 = new JLabel();
-			jLabel0.setText("<html><font size=5>Registre de nou usuari</font></html>");
+			jLabel0.setText("<html><font size=5>Registre de Nou Usuari</font></html>");
 		}
 		return jLabel0;
 	}
@@ -79,7 +79,7 @@ public class FrameRegistrar extends JFrame {
 	private JLabel getJLabel1() {
 		if (jLabel1 == null) {
 			jLabel1 = new JLabel();
-			jLabel1.setText("Si us plau ompli el seguent formulari i premi el botó \"Registrar\"");
+			jLabel1.setText("Si us plau ompli el següent formulari i premi el botó \"Registrar\"");
 		}
 		return jLabel1;
 	}
@@ -87,7 +87,7 @@ public class FrameRegistrar extends JFrame {
 	private JLabel getJLabel4() {
 		if (jLabel4 == null) {
 			jLabel4 = new JLabel();
-			jLabel4.setText("Confirma contrasenya:");
+			jLabel4.setText("Confirmi contrasenya:");
 		}
 		return jLabel4;
 	}
