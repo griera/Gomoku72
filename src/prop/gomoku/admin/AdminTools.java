@@ -4,12 +4,12 @@ import java.io.IOException;
 
 import prop.gomoku.auxiliars.Lectura;
 import prop.gomoku.auxiliars.LecturaScanners;
+import prop.gomoku.domini.controladors.ControladorPartidesGuardades;
 import prop.gomoku.domini.controladors.ControladorUsuari;
 import prop.gomoku.domini.controladors.excepcions.ContrasenyaInvalida;
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.TaulerGomoku;
 import prop.gomoku.domini.models.UsuariGomoku;
-import prop.gomoku.gestors.GestorPartidesGuardades;
 import prop.gomoku.gestors.GestorUsuaris;
 import prop.gomoku.gestors.excepcions.UsuariJaExisteix;
 import prop.gomoku.gestors.excepcions.UsuariNoExisteix;
@@ -17,18 +17,18 @@ import prop.gomoku.gestors.excepcions.UsuariNoExisteix;
 public class AdminTools
 {
 	private static Lectura lectura = new LecturaScanners();
+	// Utilitza el gestor d'usuaris ja que no volem interactuar amb el controlador d'usuari que implementa més lògica
+	// (identificació, etc.)
 	private static GestorUsuaris gestor_usuaris = new GestorUsuaris();
 	private static ControladorUsuari ctrl_usuari = new ControladorUsuari();
-	private static GestorPartidesGuardades gestor_partides = new GestorPartidesGuardades();
+	private static ControladorPartidesGuardades ctrl_partides = new ControladorPartidesGuardades();
 
 	private static int menuPrincipal()
 	{
 		System.out.println( "Gomoku Admin Tools v.0.1\n" );
 		System.out.println( "1. Afegir un Usuari al sistema" );
-		System.out.println( "2. Esborrar un Usuari al sistema" );
-		System.out.println( "3. Afegir una Partida al sistema" );
-		System.out.println( "4. Esborrar una Partida al sistema" );
-		System.out.println( "5. Sortir" );
+		System.out.println( "2. Afegir una Partida al sistema" );
+		System.out.println( "3. Sortir" );
 		System.out.println();
 		return lectura.llegirInt();
 	}
@@ -100,11 +100,6 @@ public class AdminTools
 		System.out.println();
 	}
 
-	private static void esborraUsuari()
-	{
-
-	}
-
 	private static void afegeixPartida()
 	{
 		System.out.println( "Alta de partida al sistema" );
@@ -173,12 +168,7 @@ public class AdminTools
 
 		PartidaGomoku partida = new PartidaGomoku( jugador_principal, jugador_negres, jugador_blanques,
 				new TaulerGomoku(), nom_partida );
-		gestor_partides.guardaPartida( partida );
-	}
-
-	private static void esborraPartida()
-	{
-
+		ctrl_partides.guardaPartida( partida );
 	}
 
 	public static void main( String[] args )
@@ -193,16 +183,9 @@ public class AdminTools
 					afegeixUsuari();
 					break;
 				case 2:
-					esborraUsuari();
-					break;
-				case 3:
 					afegeixPartida();
 					break;
-				case 4:
-					esborraPartida();
-					break;
 				default:
-					// Inclou case 0 i 5
 					surt = true;
 					break;
 			}
