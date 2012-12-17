@@ -1,3 +1,14 @@
+prop.cluster.domini.controladors
+prop.cluster.domini.models
+prop.cluster.domini.models.estats
+prop.gomoku.admin
+prop.gomoku.auxiliars
 prop.gomoku.domini.controladors
+prop.gomoku.domini.controladors.excepcions
+prop.gomoku.domini.controladors.records
 prop.gomoku.domini.models
+prop.gomoku.drivers
+prop.gomoku.gestors
+prop.gomoku.gestors.excepcions
+prop.gomoku.presentacio
 prop.gomoku.tests

@@ -129,8 +129,8 @@ public class UsuariGomoku extends Usuari
 	/**
 	 * Incrementador del nombre de victories en un cert nivell de dificultat en una quantitat determinada
 	 * 
-	 * @param Nivell_oponent Nivell de l'oponent
-	 * @param Quantitat Quantitat en que es vol incrementar
+	 * @param nivell_oponent Nivell de l'oponent
+	 * @param quantitat Quantitat en que es vol incrementar
 	 * @return Retorna true ja que que sempre es produira l'increment
 	 */
 	public boolean incrementaVictories( int nivell_oponent, int quantitat )

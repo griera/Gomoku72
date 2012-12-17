@@ -21,7 +21,8 @@ public class ControladorDocumentacio
 	 * Aquesta informació podria bé estar a la Capa de Presentació també, però l'encapsulament en un controlador ens
 	 * permet abstraure el 'com' de cara a presentació
 	 * 
-	 * @return
+	 * @return <em>true</em> si s'ha pogut enviar l'ordre al S.O.; <em>false</em> si hi ha hagut algun problema a l'hora
+	 *         d'enviar l'ordre o bé el S.O. no admet aquest tipus d'ordres via l'API de Java
 	 */
 	public static boolean obreManualPDF()
 	{
