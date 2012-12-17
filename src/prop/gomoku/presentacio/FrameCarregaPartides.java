@@ -46,7 +46,7 @@ public class FrameCarregaPartides extends JFrame
 	}
 
 	private void initComponents() {
-		setTitle("Gomoku - Gestió de partides guardades");
+		setTitle("Gomoku72 - Gestió de Partides Guardades");
 		setLayout(new GroupLayout());
 		add(getJLabel0(), new Constraints(new Leading(94, 10, 10), new Leading(12, 12, 12)));
 		add(getJButton2(), new Constraints(new Leading(315, 12, 12), new Leading(144, 12, 12)));
@@ -83,7 +83,7 @@ public class FrameCarregaPartides extends JFrame
 		if ( jButton3 == null )
 		{
 			jButton3 = new JButton();
-			jButton3.setText( "Menu Principal" );
+			jButton3.setText( "Menú Principal" );
 			jButton3.addMouseListener( new MouseAdapter()
 			{
 
