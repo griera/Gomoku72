@@ -511,6 +511,9 @@ public class ControladorPresentacio {
 		System.out
 				.println("La partida acaba de començar, si la maquina es negres moura");
 		ctrl_en_joc = new ControladorPartidaEnJoc(partida_en_curs);
+		if (partida_en_curs.estaFinalitzada() == false)
+		{
+			
 		if ((partida_en_curs.getJugadorA().getTipus() != TipusUsuari.HUMA
 				&& partida_en_curs.getJugadorA().getTipus() != TipusUsuari.CONVIDAT && partida_en_curs
 				.getTornsJugats() % 2 == 0) && entrenament == false) { // negres
@@ -529,6 +532,7 @@ public class ControladorPresentacio {
 			tauler_partida.getTaulerActual().pinta(mov_ia[0], mov_ia[1],
 					EstatCasella.JUGADOR_B);
 			estat = partida_en_curs.comprovaEstatPartida(mov_ia[0], mov_ia[1]);
+		}
 		}
 
 	}

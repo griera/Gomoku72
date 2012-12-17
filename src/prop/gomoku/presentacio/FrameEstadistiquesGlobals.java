@@ -135,7 +135,7 @@ public class FrameEstadistiquesGlobals extends JFrame
 		for (CriteriRecords criteri : CriteriRecords.values())
 		{
 			// TODO   tractament dels titols adequats
-			listmodel.add( j, criteri.toString() );
+			listmodel.add( j, criteri.getTextDescriptiu() + ":" );
 			j++;
 			List<String[]> record_criteri = records.get( i );
 			for (String[] record : record_criteri)

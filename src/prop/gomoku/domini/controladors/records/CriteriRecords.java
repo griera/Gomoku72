@@ -105,9 +105,7 @@ public enum CriteriRecords
 	 * Percentatge d'empats contra CPU difícil
 	 */
 	PER_EMPATS_DIFICIL,
-	/*
-	 * Percentatge d'empats totals
-	 */
+	/* Percentatge d'empats totals */
 	PER_EMPATS_TOTAL,
 	/**
 	 * Percentatge de derrotes contra humà
@@ -122,7 +120,7 @@ public enum CriteriRecords
 	 */
 	PER_DERROTES_MITJA,
 	/**
-	 * Percentatge de derrotes contra CPU difícil 
+	 * Percentatge de derrotes contra CPU difícil
 	 */
 	PER_DERROTES_DIFICIL,
 	/**
@@ -148,5 +146,129 @@ public enum CriteriRecords
 	/**
 	 * Nombre de partides total
 	 */
-	NUM_PARTIDES_TOTAL,
-};
+	NUM_PARTIDES_TOTAL;
+
+	/**
+	 * Mètode que retorna un text descriptiu més entenible que no el propi nom dels elements de la enumeració
+	 * 
+	 * @return Text descriptiu corresponent a l'element de l'enumeració sobre el qual es crida
+	 */
+	public String getTextDescriptiu()
+	{
+		String text = "";
+		switch ( this )
+		{
+			case NUM_VICTORIES_FACIL:
+				text = "Nombre de victòries contra CPU Fàcil";
+				break;
+			case NUM_VICTORIES_MITJA:
+				text = "Nombre de victòries contra CPU Mitjà";
+				break;
+			case NUM_VICTORIES_DIFICIL:
+				text = "Nombre de victòries contra CPU Difícil";
+				break;
+			case NUM_VICTORIES_HUMA:
+				text = "Nombre de victòries contra Humà";
+				break;
+			case NUM_VICTORIES_TOTAL:
+				text = "Nombre total de victòries";
+
+				break;
+			case NUM_EMPATS_FACIL:
+				text = "Nombre d'empats contra CPU Fàcil";
+				break;
+			case NUM_EMPATS_MITJA:
+				text = "Nombre d'empats contra CPU Mitjà";
+				break;
+			case NUM_EMPATS_DIFICIL:
+				text = "Nombre d'empats contra CPU Difícil";
+				break;
+			case NUM_EMPATS_HUMA:
+				text = "Nombre d'empats contra CPU Humà";
+				break;
+			case NUM_EMPATS_TOTAL:
+				text = "Nombre total d'empats";
+
+				break;
+			case NUM_DERROTES_FACIL:
+				text = "Nombre de derrotes contra CPU Fàcil";
+				break;
+			case NUM_DERROTES_MITJA:
+				text = "Nombre de derrotes contra CPU Mitjà";
+				break;
+			case NUM_DERROTES_DIFICIL:
+				text = "Nombre de derrotes contra CPU Difícil";
+				break;
+			case NUM_DERROTES_HUMA:
+				text = "Nombre de derrotes contra Humà";
+				break;
+			case NUM_DERROTES_TOTAL:
+				text = "Nombre total de derrotes";
+
+				break;
+			case PER_VICTORIES_FACIL:
+				text = "Percentatge de victòries contra CPU Fàcil";
+				break;
+			case PER_VICTORIES_MITJA:
+				text = "Percentatge de victòries contra CPU Mitjà";
+				break;
+			case PER_VICTORIES_DIFICIL:
+				text = "Percentatge de victòries contra CPU Difícil";
+				break;
+			case PER_VICTORIES_HUMA:
+				text = "Percentatge de victòries contra Humà";
+				break;
+			case PER_VICTORIES_TOTAL:
+				text = "Percentatge total de victories";
+
+				break;
+			case PER_EMPATS_FACIL:
+				text = "Percentatge d'empats contra CPU Fàcil";
+				break;
+			case PER_EMPATS_MITJA:
+				text = "Percentatge d'empats contra CPU Mitjà";
+				break;
+			case PER_EMPATS_DIFICIL:
+				text = "Percentatge d'empats contra CPU Difícil";
+				break;
+			case PER_EMPATS_HUMA:
+				text = "Percentatge d'empats contra Humà";
+				break;
+			case PER_EMPATS_TOTAL:
+				text = "Percentatge total d'empats";
+
+				break;
+			case PER_DERROTES_FACIL:
+				text = "Percentatge de derrotes contra CPU Fàcil";
+				break;
+			case PER_DERROTES_MITJA:
+				text = "Percentatge de derrotes contra CPU Mitjà";
+				break;
+			case PER_DERROTES_DIFICIL:
+				text = "Percentatge de derrotes contra CPU Difícil";
+				break;
+			case PER_DERROTES_HUMA:
+				text = "Percentatge de derrotes contra Humà";
+				break;
+			case PER_DERROTES_TOTAL:
+				text = "Percentatge total de derrotes";
+
+				break;
+			case NUM_PARTIDES_FACIL:
+				text = "Nombre de partides disputades contra CPU Fàcil";
+				break;
+			case NUM_PARTIDES_MITJA:
+				text = "Nombre de partides disputades contra CPU Mitjà";
+				break;
+			case NUM_PARTIDES_DIFICIL:
+				text = "Nombre de partides disputades contra CPU Difícil";
+				break;
+			case NUM_PARTIDES_HUMA:
+				text = "Nombre de partides disputades contra Humà";
+				break;
+			case NUM_PARTIDES_TOTAL:
+				text = "Nombre total de partides disputades";
+		}
+		return text;
+	}
+}
