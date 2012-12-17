@@ -8,7 +8,6 @@ import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-
 public class CasellaGUI extends JPanel implements MouseListener
 {
 	/**
@@ -79,10 +78,9 @@ public class CasellaGUI extends JPanel implements MouseListener
 	{
 		if ( this.tauler.intentaFerMoviment( this.tauler.getCoordenades( (CasellaGUI) e.getComponent() ) ) )
 		{
-			// TODO hace falta esta llamada?
-//	CasellaGUI.setCasillaMarcada( this.tauler.getCoordenades( (CasellaGUI) e.getComponent() ) );
+			// TODO fa falta aquesta crida?
+			// CasellaGUI.setCasillaMarcada( this.tauler.getCoordenades( (CasellaGUI) e.getComponent() ) );
 		}
-		// TODO
 
 	}
 
