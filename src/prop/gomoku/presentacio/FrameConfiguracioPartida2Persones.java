@@ -44,7 +44,7 @@ public class FrameConfiguracioPartida2Persones extends JFrame {
 	}
 
 	private void initComponents() {
-		setTitle("Gomoku - Configuració de Partida Ràpida");
+		setTitle("Gomoku72 - Configuració de Partida");
 		setLayout(new GroupLayout());
 		add(getJLabel0(), new Constraints(new Leading(59, 10, 10), new Leading(20, 10, 10)));
 		add(getJLabel1(), new Constraints(new Leading(25, 10, 10), new Leading(62, 12, 12)));
@@ -70,7 +70,7 @@ public class FrameConfiguracioPartida2Persones extends JFrame {
 	private JPanel getJPanel0() {
 		if (jPanel0 == null) {
 			jPanel0 = new JPanel();
-			jPanel0.setBorder(BorderFactory.createTitledBorder(null, "Usuari Registrat", TitledBorder.LEADING, TitledBorder.DEFAULT_POSITION, null, null));
+			jPanel0.setBorder(BorderFactory.createTitledBorder(null, "Usuari registrat", TitledBorder.LEADING, TitledBorder.DEFAULT_POSITION, null, null));
 			jPanel0.setFocusable(false);
 			jPanel0.setEnabled(false);
 			jPanel0.setLayout(new GroupLayout());
@@ -304,7 +304,7 @@ public class FrameConfiguracioPartida2Persones extends JFrame {
 
 				FrameError error = new FrameError();
 				error.main();
-				error.MissatgeActiva("L'usuari introduit esta actualment loguejat en el sistema,introdueixi un usuari diferent, si us plau.");
+				error.MissatgeActiva("L'usuari introduït esta actualment loguejat en el sistema,introdueixi un usuari diferent, si us plau.");
 				jPasswordField0.setText("");
 			}
 			else{
