@@ -36,9 +36,8 @@ public class FrameConfiguracioPartida2 extends JFrame {
 	}
 
 	private void initComponents() {
-		setTitle("Gomoku - Configuració de Partida Ràpida");
+		setTitle("Gomoku72 - Configuració de Partida");
 		setLayout(new GroupLayout());
-		add(getJLabel0(), new Constraints(new Leading(59, 10, 10), new Leading(20, 10, 10)));
 		add(getJLabel1(), new Constraints(new Leading(25, 10, 10), new Leading(62, 12, 12)));
 		add(getJRadioButton0(), new Constraints(new Leading(25, 12, 12), new Leading(98, 10, 10)));
 		add(getJRadioButton1(), new Constraints(new Leading(25, 12, 12), new Leading(140, 12, 12)));
@@ -46,6 +45,7 @@ public class FrameConfiguracioPartida2 extends JFrame {
 		add(getJButton2(), new Constraints(new Leading(25, 189, 189), new Trailing(12, 214, 214)));
 		add(getJButton0(), new Constraints(new Leading(342, 10, 10), new Trailing(12, 12, 12)));
 		add(getJButton1(), new Constraints(new Leading(258, 10, 10), new Trailing(12, 90, 90)));
+		add(getJLabel0(), new Constraints(new Leading(106, 12, 12), new Leading(22, 10, 10)));
 		setSize(436, 267);
 	}
 
@@ -136,7 +136,7 @@ public class FrameConfiguracioPartida2 extends JFrame {
 	private JLabel getJLabel1() {
 		if (jLabel1 == null) {
 			jLabel1 = new JLabel();
-			jLabel1.setText("Seleccioni el Nivell de dificultat de la màquina:");
+			jLabel1.setText("Seleccioni el nivell de dificultat de la màquina:");
 		}
 		return jLabel1;
 	}
@@ -144,7 +144,7 @@ public class FrameConfiguracioPartida2 extends JFrame {
 	private JLabel getJLabel0() {
 		if (jLabel0 == null) {
 			jLabel0 = new JLabel();
-			jLabel0.setText("<html><font size=5>Configuració de la partida ràpida</font></html>");
+			jLabel0.setText("<html><font size=5>Configuració de la Partida</font></html>");
 		}
 		return jLabel0;
 	}
