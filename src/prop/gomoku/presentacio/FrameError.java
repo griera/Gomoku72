@@ -30,7 +30,7 @@ public class FrameError extends JFrame {
 		initComponents();
 	}
 	private void initComponents() {
-		setTitle("Gomoku - Avís");
+		setTitle("Gomoku72 - Avís");
 		setLayout(new GroupLayout());
 		add(getJLabel0(), new Constraints(new Leading(12, 12, 12), new Leading(27, 10, 10)));
 		add(getJButton0(), new Constraints(new Leading(215, 217, 10, 10), new Trailing(12, 40, 12, 12)));
