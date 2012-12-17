@@ -205,8 +205,8 @@ public class ControladorPresentacio {
 				+ (this == frame_configuracio1.getcontroladorPresentacio()));
 	}
 	/**
-	 * 
-	 * @param frame_configuracio1
+	 * Fa l'intercanvi del frame de configuracio cap al de nova partida
+	 * @param frame_configuracio1 Representa el frame de configuracio que volem tancar
 	 */
 	public void sincronitzacioConfiguracioNovaPartida(
 			FrameConfiguracioPartida1 frame_configuracio1) {
@@ -221,7 +221,10 @@ public class ControladorPresentacio {
 		frame_nova_partida.main();
 		frame_nova_partida.setControladorPresentacio(this);
 	}
-
+	/**
+	 * Fa l'intercanvi entre el frame de configuracio i el menu principal	
+	 * @param frame_configuracio1 Representa el frame de configuracio que volem tancar
+	 */
 	public void sincronitzacioConfiguracioMenu(
 			FrameConfiguracioPartida1 frame_configuracio1) {
 		if (frame_menu_principal == null) {
@@ -235,7 +238,10 @@ public class ControladorPresentacio {
 		frame_menu_principal.main();
 		frame_menu_principal.setControladorPresentacio(this);
 	}
-
+	/**
+	 * Fa l'intercanvi entre el menu de configuracio3  i el menu principal
+	 * @param frame_configuracio3 Representa el menu de configuracio 3 que volem tancar
+	 */
 	public void sincronitzacioConfiguracio3Menu(
 			FrameConfiguracioPartida3 frame_configuracio3) {
 		if (frame_menu_principal == null) {
@@ -249,7 +255,10 @@ public class ControladorPresentacio {
 		frame_menu_principal.main();
 		frame_menu_principal.setControladorPresentacio(this);
 	}
-
+	/**
+	 * Fa l'intercanvi entre el frame de configuracio de partida 2 i el menu principal
+	 * @param frame_configuracio2 Representa el frame de configuracio de partida 2 que volem tancar
+	 */
 	public void sincronitzacioConfiguracio2Menu(
 			FrameConfiguracioPartida2 frame_configuracio2) {
 		if (frame_menu_principal == null) {
@@ -263,7 +272,10 @@ public class ControladorPresentacio {
 		frame_menu_principal.main();
 		frame_menu_principal.setControladorPresentacio(this);
 	}
-
+	/**
+	 * Fa l'intercanvi entre el frame de configuracio de partida 2 on juguen 2 cpu cap al menu principal
+	 * @param frame_configuracio2cpu Representa el frame de configuracio partida 2 on juguen 2 cpu que volem tancar
+	 */
 	public void sincronitzacioConfiguracio2CPUMenu(
 			FrameConfiguracioPartida2CPU frame_configuracio2cpu) {
 		if (frame_menu_principal == null) {
@@ -277,7 +289,10 @@ public class ControladorPresentacio {
 		frame_menu_principal.main();
 		frame_menu_principal.setControladorPresentacio(this);
 	}
-
+	/**
+	 * Fa l'intercanvi entre el frame de configuracio de partida 2 entre 2 persones cap al menu principal
+	 * @param frame_configuracio2persones Representa el frame configuracio de partida 2 entre 2 persones que volem tancar
+	 */
 	public void sincronitzacioConfiguracio2PersonesMenu(
 			FrameConfiguracioPartida2Persones frame_configuracio2persones) {
 		if (frame_menu_principal == null) {
@@ -291,7 +306,10 @@ public class ControladorPresentacio {
 		frame_menu_principal.main();
 		frame_menu_principal.setControladorPresentacio(this);
 	}
-
+	/**
+	 * Fa l'intercanvi entre el frame de  carregar partides cap al menu principal
+	 * @param frame_carrega_partides Representa el frame de gestio de partides que volem tancar
+	 */
 	public void sincronitzacioCarregaPartidesMenu(
 			FrameCarregaPartides frame_carrega_partides) {
 		if (frame_menu_principal == null) {
@@ -304,7 +322,10 @@ public class ControladorPresentacio {
 		frame_menu_principal.setControladorPresentacio(this);
 		frame_menu_principal.main();
 	}
-
+	/**
+	 *  Fa l'intercanvi entre el menu principal cap al menu de gestio de partides guardades
+	 * @param frame_menu_principal Representa el frame de menu principal que volem tancar
+	 */
 	public void sincronitzacioMenuCarregaPartides(
 			FrameMenuPrincipal frame_menu_principal) {
 
@@ -331,7 +352,10 @@ public class ControladorPresentacio {
 		frame_carrega_partides.mostraLlistaPartides(llista_partides);
 
 	}
-
+	/**
+	 * Fa l'intercanvi de el frame de configuracio de partida 2 cap al frame de configuracio de partida 1
+	 * @param frame_configuracio2 Representa el frame de configuracio de partida 2 que volem tancar 
+	 */
 	public void sincronitzacioConfiguracio21(
 			FrameConfiguracioPartida2 frame_configuracio2) {
 		if (frame_configuracio2 == null) {
@@ -343,7 +367,10 @@ public class ControladorPresentacio {
 		frame_configuracio2.dispose();
 		frame_configuracio1.main();
 	}
-
+	/**
+	 * Fa l'intercanvi entre el frame de configuracio de partida 2 on juguen 2 cpu cap al frame de configuracio de partida 3
+	 * @param frame_configuracio2cpu Representa el frame ed configuracio de partida 2 on juguen 2 cpu que volem tancar
+	 */
 	public void sincronitzacioConfiguracio2cpu3(
 			FrameConfiguracioPartida2CPU frame_configuracio2cpu) {
 		if (frame_configuracio2cpu == null) {
@@ -373,7 +400,10 @@ public class ControladorPresentacio {
 		frame_configuracio3.setTipusText();
 		frame_configuracio3.setNomsusuaris();
 	}
-
+	/** 
+	 * Fa l'intercanvi entre el frame de configuracio de partida 2 on juguen 2 cpu cap al frame de configuracio de partida 1
+	 * @param frame_configuracio2cpu Representa el frame de configuracio de partida 2 on juguen 2 cpu que volem tancar
+	 */
 	public void sincronitzacioConfiguracio2cpu1(
 			FrameConfiguracioPartida2CPU frame_configuracio2cpu) {
 		if (frame_configuracio2cpu == null) {
@@ -386,7 +416,11 @@ public class ControladorPresentacio {
 		frame_configuracio1.main();
 
 	}
-
+	/**
+	 * Tanca la finestra de preparacio de partida i salta cap a la vista d'entrenament
+	 * @param frame_configuracio3 Representa el frame de configuracio 3 que volem tancar
+	 * @param color_jugador1 Indica el color del jugador 1
+	 */
 	public void iniciaEntrenament(
 			FrameConfiguracioPartida3 frame_configuracio3, int color_jugador1) {
 		if (frame_configuracio3 == null) {
@@ -421,7 +455,11 @@ public class ControladorPresentacio {
 		estat = EstatPartida.NO_FINALITZADA;
 		this.juga_partida(tauler_partida);
 	}
-
+	/**
+	 * Tanca la finestra de preparacio de partida 3 i inicia la vista del tauler principal de la partida
+	 * @param frame_configuracio3 Representa el frame de configuracio de partida 3 que volem tancar
+	 * @param color_jugador1 Indica del jugador 1
+	 */
 	public void iniciaPartida(FrameConfiguracioPartida3 frame_configuracio3,
 			int color_jugador1) {
 		if (frame_configuracio3 == null) {
@@ -465,7 +503,10 @@ public class ControladorPresentacio {
 
 		juga_partida(tauler_partida);
 	}
-
+	/**
+	 * Prepara el controlador de partida en joc per a començar la partida i si el primer moviment correspon a un jugador cpu, fa que faci aquest moviment
+	 * @param tauler_partida Representa la vista del tauler on es juga la partida
+	 */
 	private void juga_partida(FrameTaulerGUI tauler_partida) {
 		System.out
 				.println("La partida acaba de començar, si la maquina es negres moura");
@@ -491,7 +532,9 @@ public class ControladorPresentacio {
 		}
 
 	}
-
+	/**
+	 * Gestiona totes les accions necesaries quan una partida ha arribat al seu fi
+	 */
 	public void fi_partida() {
 		System.out.println(estat);
 		System.out.println("Entro a fi partida");
@@ -526,7 +569,10 @@ public class ControladorPresentacio {
 		ctrl_en_joc.actualitzaDadesFinalPartida();
 		entrenament = false;
 	}
-
+	/**
+	 * Fa l'intercanvi entre el frame de configuracio de partida 2 amb 2 jugadors humans cap al frame de configuracio de partida 1
+	 * @param frame_configuracio2persones Representa el frame de configuracio de partida 2 amb 2 humans com a jugadors que volem tancar
+	 */
 	public void sincronitzacioConfiguracio2persones1(
 			FrameConfiguracioPartida2Persones frame_configuracio2persones) {
 		if (frame_configuracio2persones == null) {
@@ -538,7 +584,10 @@ public class ControladorPresentacio {
 		frame_configuracio2persones.dispose();
 		frame_configuracio1.main();
 	}
-
+	/**
+	 * Fa l'intercanvi entre el frame de configuracio de partida 2 cap al frame de configuracio 3
+	 * @param frame_configuracio2 Representa el frame de configuracio de partida 2 que volem tancar
+	 */
 	public void sincronitzacioConfiguracio23(
 			FrameConfiguracioPartida2 frame_configuracio2) {
 		jugador_actiu = usuari_actiu;
@@ -565,7 +614,10 @@ public class ControladorPresentacio {
 		frame_configuracio3.setTipusText();
 		frame_configuracio3.setNomsusuaris();
 	}
-
+	/**
+	 * Fa l'intercanvi de la vista de escollir el tipus d'estadistiques que volem veure cap a la vista de les estadistiques individuals
+	 * @param frame_estadistiques Representa el frame on escollim el tipus d'estadistiques que volem veure que volem tancar
+	 */
 	public void sincronitzacioAccedirEstadistiquesIndividuals(
 			FrameAccedirEstadistiques frame_estadistiques) {
 		if (frame_estadistiques == null) {
@@ -587,28 +639,10 @@ public class ControladorPresentacio {
 		}
 		frame_estadistiques_indivuals.carregaestadistiques(records);
 	}
-
-	// public void sincronitzacioCanviNom(PartidaGomoku partida){
-	// if(frame_canvi_nom==null){
-	// frame_canvi_nom = new FrameCanviNom();
-	// }
-	// partida_canvi_nom = partida;
-	// frame_canvi_nom.main();
-	// frame_canvi_nom.setControladorPresentacio(this);
-	//
-	//
-	//
-	// }
-	//
-	// public void canvinomiguardat(FrameCanviNom canvi_nom){
-	// partida_canvi_nom.setNom( nomcanvi );
-	// canvi_nom.dispose();
-	// ControladorPartidesGuardades controlador_partides = new
-	// ControladorPartidesGuardades();
-	// controlador_partides.guardaPartida( partida_canvi_nom );
-	// frame_carrega_partides.mostraLlistaPartides(
-	// controlador_partides.carregaPartides( usuari_actiu ) );
-	// }
+	/**
+	 * Fa l'intercanvi entre el frame de escollir el tipus d'estadistiques que volem veure amb el el frame que mostra les estadistiques globals
+	 * @param frame_estadistiques Representa el frame que mostra els tipus d'estadistiques que podem veure que volem tancar
+	 */
 	public void sincronitzacioAccedirEstadistiquesGlobals(
 			FrameAccedirEstadistiques frame_estadistiques) {
 		if (frame_estadistiques == null) {
@@ -629,7 +663,10 @@ public class ControladorPresentacio {
 		frame_estadistiques_globals.carregaestadistiques(records);
 
 	}
-
+	/**
+	 * Fa l'intercanvi entre el frame de configuracio de partida 3 cap al frame de configuracio de partida 1
+	 * @param frame_configuracio3
+	 */
 	public void sincronitzacioConfiguracio31(
 			FrameConfiguracioPartida3 frame_configuracio3) {
 		if (frame_configuracio3 == null) {
@@ -641,7 +678,10 @@ public class ControladorPresentacio {
 		frame_configuracio3.dispose();
 		frame_configuracio1.main();
 	}
-
+	/**
+	 * Fa l'intercanvi entre el frame de configuracio de partida 2 amb 2 humans cap al frame de configuracio de partida 3
+	 * @param frame_configuracio2persones Representa el frame de configuracio de partida 2 amb 2 humans
+	 */
 	public void sincronitzacioConfiguracio2Persones3(
 			FrameConfiguracioPartida2Persones frame_configuracio2persones) {
 		jugador_actiu = usuari_actiu;
@@ -656,7 +696,10 @@ public class ControladorPresentacio {
 		frame_configuracio3.setNomsusuaris();
 		frame_configuracio3.setControladorPresentacio(this);
 	}
-
+	/**
+	 * Fa l'intercanvi entre el frame de configuracio de partida 1 cap al frame de configuracio de partida 2
+	 * @param frame_configuracio1 Representa el frame de configuracio de partida 1 que volem tancar
+	 */
 	public void sincronitzacioConfiguracio12(
 			FrameConfiguracioPartida1 frame_configuracio1) {
 		if (frame_configuracio2 == null) {
@@ -670,7 +713,10 @@ public class ControladorPresentacio {
 		frame_configuracio2.main();
 		frame_configuracio2.setControladorPresentacio(this);
 	}
-
+	/**
+	 * Fa l'intercanvi entre el frame de configuracio de partida 1 cap al frame de configuracio de partida 2 entre 2 cpu
+	 * @param frame_configuracio1 Representa el frame de configuracio partida 1 que volem tancar
+	 */
 	public void sincronitzacioConfiguracio12CPU(
 			FrameConfiguracioPartida1 frame_configuracio1) {
 		if (frame_configuracio2cpu == null) {
@@ -683,7 +729,10 @@ public class ControladorPresentacio {
 		frame_configuracio2cpu.main();
 		frame_configuracio2cpu.setControladorPresentacio(this);
 	}
-
+	/**
+	 * Fa l'intercanvi entre el frame de configuracio 1 cap al frame de configuracio 2 entre 2 humans
+	 * @param frame_configuracio1 Representa el frame de configuracio de partida 1 que volem tancar
+	 */
 	public void sincronitzacioConfiguracio12Persones(
 			FrameConfiguracioPartida1 frame_configuracio1) {
 		if (frame_configuracio2persones == null) {
@@ -696,7 +745,10 @@ public class ControladorPresentacio {
 		frame_configuracio2persones.main();
 		jugador_actiu = usuari_actiu;
 	}
-
+	/**
+	 * Fa l'intercanvi entre el frame de menu principal cap al frame de nova partida
+	 * @param frame_menu_principal Representa el frame de menu principal que volem tancar
+	 */
 	public void sincronitzacioMenuNovaPartida(
 			FrameMenuPrincipal frame_menu_principal) {
 		if (frame_nova_partida == null) {
@@ -710,7 +762,10 @@ public class ControladorPresentacio {
 		frame_nova_partida.setControladorPresentacio(this);
 
 	}
-
+	/**
+	 * Fa l'intercanvi entre el frame de menu principal cap al frame  de benvinguda
+	 * @param frame_menu_principal Representa el frame de menu principal que volem tancar
+	 */
 	public void sincronitzacioMenuBenvingut(
 			FrameMenuPrincipal frame_menu_principal) {
 		usuari_actiu = null;
@@ -723,7 +778,10 @@ public class ControladorPresentacio {
 		frame_menu_principal.dispose();
 		frame_benvingut.main();
 	}
-
+	/**
+	 * Fa l'intercanvi entre el frame de registre cap al frame de benvinguda
+	 * @param frame_registrar Representa el frame de registre que volem tancar
+	 */
 	public void sincronitzacioRegistrarBenvingut(FrameRegistrar frame_registrar) {
 		if (frame_benvingut == null) {
 			frame_benvingut = new FrameBenvingut();
@@ -734,11 +792,13 @@ public class ControladorPresentacio {
 		frame_registrar.dispose();
 		frame_benvingut.main();
 	}
-
-	public void sincronitzacioerroridentificacio(FrameError frame_error) {
-
-	}
-
+	/**
+	 * Fa l'intercanvi entre el frame de identificacio cap al menu principal realitzant un intent de identificar-se en el sistema,
+	 * si l'usuari existeix en el sistema i la contrasenya es correcta, podra accedir-hi, altrement li apareixera un missatge d'error
+	 * @param frame_identificacio Representa el frame de identificacio que volem tancar
+	 * @param alies Indica l'alies amb el que el usuari vol accedir al sistema
+	 * @param contrasenya Indica la contrasenya amb el que el usuari vol accedir al sistema
+	 */
 	public void Identificarse(FrameIdentificacio frame_identificacio,
 			String alies, String contrasenya) {
 		System.out.println("contrasenya : " + contrasenya);
@@ -794,7 +854,12 @@ public class ControladorPresentacio {
 			System.out.println("Usuari actiu 2: " + usuari_actiu);
 		}
 	}
-
+	/**
+	 * Fa l'intercanvi entre el frame de configuracio de partida 2 amb 2 jugadors humans i intenta identificar a un segon jugador, que si ha introduit les seves dades correctament podra accedir com a jugador secundari al sistema
+	 * @param frame_configuracio2persones Representa el frame de configuracio 2 de 2 humans que volem tancar
+	 * @param alies  Indica l'alies amb el que el segon usuari vol accedir al sistema
+	 * @param contrasenya Indica la contrasenya amb la que el segon usuari vol accedir al sistema
+	 */
 	public void IdentificarOponent(
 			FrameConfiguracioPartida2Persones frame_configuracio2persones,
 			String alies, String contrasenya) {
@@ -856,7 +921,12 @@ public class ControladorPresentacio {
 			frame_configuracio3.setNomsusuaris();
 		}
 	}
-
+	/**
+	 * Fa l'intercanvi del frame de registre cap al menu principal si el registre es dur a terme correctament. Altrement apareixera un missatge d'error.
+	 * @param frame_registrar Representa el frame de registre que volem tancar
+	 * @param nom Indica el nom d'usuari amb el que l'usuari vol registrar-se en el sistema
+	 * @param contrasenya Indica la contrasenya amb la que l'usuari vol registrar-se en el sistema
+	 */
 	public void RegistrarJugador(FrameRegistrar frame_registrar, String nom,
 			String contrasenya) {
 		boolean excepcio = false;
@@ -894,13 +964,17 @@ public class ControladorPresentacio {
 			System.out.println(usuari_actiu);
 		}
 	}
-
+	/**
+	 * Activa la vista del frame de benvinguda
+	 */
 	public void InicialitzarPresentacio() {
 		frame_benvingut = new FrameBenvingut();
 		frame_benvingut.main();
-
 	}
-
+	/**
+	 * Fa l'intercanvi entre els frame d'estadistiques cap al menu principal
+	 * @param frame_estadistiques Representa el frame de escollir el tipus d'estadistiques que volem veure que volem tancar
+	 */
 	public void sincronitzacioEstadistiquesMenu(
 			FrameAccedirEstadistiques frame_estadistiques) {
 		if (frame_menu_principal == null) {
@@ -913,7 +987,10 @@ public class ControladorPresentacio {
 		frame_menu_principal.main();
 		frame_menu_principal.setControladorPresentacio(this);
 	}
-
+	/**
+	 * Fa l'intercanvi entre el frame de benvinguda cap al frame del menu principal
+	 * @param frame_benvingut Representa el frame de benvinguda que volem tancar
+	 */
 	public void sincronitzacioBenvingutMenu(FrameBenvingut frame_benvingut) {
 		if (frame_menu_principal == null) {
 			frame_menu_principal = new FrameMenuPrincipal();
@@ -933,7 +1010,10 @@ public class ControladorPresentacio {
 		frame_menu_principal.setControladorPresentacio(this);
 		frame_menu_principal.menuConvidat();
 	}
-
+	/**
+	 * Fa l'intercanvi entre el frame del menu principal cap al frame d'estadistiques
+	 * @param frame_menu_principal Representa el frame de menu principal que volem tancar
+	 */
 	public void sincronitzacioMenuEstadistiques(
 			FrameMenuPrincipal frame_menu_principal) {
 		if (frame_menu_principal == null) {
@@ -946,41 +1026,61 @@ public class ControladorPresentacio {
 		frame_estadistiques.main();
 		frame_estadistiques.setControladorPresentacio(this);
 	}
-
+	/**
+	 * Creadora per defecte de un controlador de presentacio
+	 */
 	public ControladorPresentacio() {
-		frame_benvingut = null;
-		frame_registrar = null;
-		frame_identificacio = null;
-		controlador_usuari = new ControladorUsuari();
-		frame_menu_principal = null;
-		frame_nova_partida = null;
+		controlador_usuari = new ControladorUsuari();	
 	}
-
+	/**
+	 * Metode per modificar el jugador secundari
+	 * @param usuari_oponent Indica el nou jugador secundari
+	 */
 	public void setUsuari_oponent(UsuariGomoku usuari_oponent) {
 		this.jugador_oponent = usuari_oponent;
 	}
-
+	/**
+	 * Metode que crida el controlador de documentacio per a mostrar el manual d'usuari
+	 */
 	public void MostraPDF() {
 		ControladorDocumentacio.obreManualPDF();
 	}
-
+	/**
+	 * Metode que permet obetnir el usuari actualment identificat en el sistema
+	 * @return Retorna l'usuari actualment loguejat en el sistema
+	 */
 	public UsuariGomoku getUsuariActual() {
 		return usuari_actiu;
 	}
-
+	/**
+	 * Metode per obtenir la llista de partides guardades al sistema
+	 * @return La llista de partides guardades al sistema
+	 */
 	public List<PartidaGomoku> getLlistaPartides() {
 		return new ControladorPartidesGuardades().carregaPartides(usuari_actiu);
 	}
-
+	/**
+	 * Metode per obtenir el jugador secundari actualment
+	 * @return Retorna el jugador secundari per a la seguent partida
+	 */
 	public UsuariGomoku getOponentActual() {
 		return jugador_oponent;
 	}
-
+	
+	/**
+	 * 
+	 * @param nom
+	 * @return
+	 */
+	
 	public boolean setCanviNom(String nom) {
 		return true;
 	}
-
+	/**
+	 * Metode que gestiona la visibilitat dels moviments de les maquines aixi com la paritat dels seus torns durant una partida  entre dues maquines
+	 */
 	public void juga_maquines() {
+		if(partida_en_curs.estaFinalitzada()) return ;
 		if (partida_en_curs.getJugadorA().getTipus() == TipusUsuari.HUMA
 				|| partida_en_curs.getJugadorA().getTipus() == TipusUsuari.CONVIDAT
 				|| partida_en_curs.getJugadorB().getTipus() == TipusUsuari.HUMA
@@ -1063,11 +1163,18 @@ public class ControladorPresentacio {
 
 		}
 	}
-
+	/**
+	 * Metode per comprovar l'usuari que actualment es el jugador 1
+	 * @return Retorna el usuari que actualment es el jugador 1
+	 */
 	public UsuariGomoku getJugadorActual() {
 		return jugador_actiu;
 	}
-
+	/**
+	 * Metode que gestiona quan l'usuari pot o no clickar al tauler per fer un moviment i gestiona tambe els moviments amb els que la maquina contesta, permetent la seva visibilitat al tauler. Es que gestiona principalment l'accio a les partides, es invocat quan es prem alguna interseccio del tauler visual
+	 * @param coord Coordenades on s'ha pitjat la interseccio
+	 * @return Retorna un boolea que indica si el moviment s'ha pogut dur a terme existosament
+	 */
 	public boolean ferMoviment(int[] coord) {
 		if (partida_en_curs.estaFinalitzada())
 			return false;
@@ -1123,7 +1230,7 @@ public class ControladorPresentacio {
 					tauler_partida.actualitzaDades();
 				} else if (estat != EstatPartida.NO_FINALITZADA) {
 					 fi_partida();
-					 return false; // TODO
+					 return false;
 				}
 			} else {
 				try {
@@ -1169,7 +1276,10 @@ public class ControladorPresentacio {
 		}
 		return true;
 	}
-
+	/**
+	 * Metode invocat al seleccionar el boto de partida guarda i que s'ocupa de gestionar amb la capa de domini el guardat de la partida
+	 * @param partida Indica la partida que volem guardar
+	 */
 	public void guardaPartida(PartidaGomoku partida) {
 		if (partida.getJugadorPrincipal().getTipus() == TipusUsuari.CONVIDAT) {
 			FrameError noesguarda = new FrameError();
@@ -1181,7 +1291,11 @@ public class ControladorPresentacio {
 			controlador_partides.guardaPartida(partida);
 		}
 	}
-
+	/**
+	 * Carrega una partida i la mostra llesta per a ser jugada
+	 * @param frame_carrega_partides Representa el frame de carrega partides que volem tancar
+	 * @param partida Indica la partida que volem carregar per continuar jugant
+	 */
 	public void carregaPartida(FrameCarregaPartides frame_carrega_partides,
 			PartidaGomoku partida) {
 		if (tauler_partida == null) {
@@ -1204,11 +1318,17 @@ public class ControladorPresentacio {
 		juga_partida(tauler_partida);
 
 	}
-
+	/**
+	 * Metode per obtenir la partida en curs
+	 * @return Retorna la partida que s'esta jugant actualment o que s'esta preparant per a ser jugada
+	 */
 	public PartidaGomoku getPartidaactual() {
 		return partida_en_curs;
 	}
-
+	/**
+	 * Fa l'intercanvi entre el frame de jugar una partida cap al menu principal
+	 * @param provaTaulerGUI Representa el frame del tauler on juguem una partide que volem tancar
+	 */
 	public void sincronitzacioPartidaMenu(FrameTaulerGUI provaTaulerGUI) {
 		if (provaTaulerGUI == null) {
 			provaTaulerGUI = new FrameTaulerGUI();
@@ -1220,7 +1340,10 @@ public class ControladorPresentacio {
 		frame_menu_principal.main();
 		frame_menu_principal.setControladorPresentacio(this);
 	}
-
+	/**
+	 * Fa l'intercanvi entre el frame d'entrenament cap al de la partida
+	 * @param tauler Indica el tauler en el seu estat actual, un cop finalitzar l'entrenament
+	 */
 	public void sincroEntrenamentPartida(FrameTaulerGUIEntrenament tauler) {
 		if (tauler == null) {
 			tauler = new FrameTaulerGUIEntrenament();
@@ -1239,15 +1362,25 @@ public class ControladorPresentacio {
 		tauler_partida.actualitzaDades();
 		juga_partida(tauler_partida);
 	}
-
+	/**
+	 * Metode per indicar si estem o no en mode entrenament
+	 * @param entrenament Indica si anem a jugar o no una partida d'entrenament
+	 */
 	public void setEntrenament(boolean entrenament) {
 		this.entrenament = entrenament;
 	}
-	
+	/**
+	 * Metode que retorna si la partida que ens disposem a jugar es o no d'entrenament
+	 * @return Retorna el boolea que indica si la partida es o no d'entrenament
+	 */
 	public boolean getEntrenament() {
 		return entrenament;
 	}
-
+	/**
+	 * Canvia el nom de una partida i actualitza les dades mostrades per pantalla
+	 * @param partida Indica la partida a la qual volem canviar el nom
+	 * @param nou_nom Indica el nou nom que volem que tingui la partida
+	 */
 	public void sincronitzacioCanviNom(PartidaGomoku partida, String nou_nom) {
 		ControladorPartidesGuardades partides = new ControladorPartidesGuardades();
 		partida.setNom(nou_nom);
@@ -1256,7 +1389,10 @@ public class ControladorPresentacio {
 				.carregaPartides(usuari_actiu);
 		frame_carrega_partides.mostraLlistaPartides(partides_nou_nom);
 	}
-
+	/**
+	 * Metode per esborrar una partida de la llista de partides guardades
+	 * @param partida Indica la partida que volem esborrar
+	 */
 	public void esborraPartida(PartidaGomoku partida) {
 		ControladorPartidesGuardades partides = new ControladorPartidesGuardades();
 		partides.esborraPartida(partida);
@@ -1264,7 +1400,10 @@ public class ControladorPresentacio {
 				.carregaPartides(usuari_actiu);
 		frame_carrega_partides.mostraLlistaPartides(partides_actualitzades);
 	}
-
+	/**
+	 * Fa l'intercanvi entre el frame d'entrenament cap al frame  menu principal
+	 * @param frameTaulerGUIEntrenament Representa el frame de entrenament que volem tancar
+	 */
 	public void sincronitzacioEntrenamentMenu(
 			FrameTaulerGUIEntrenament frameTaulerGUIEntrenament) {
 		if (frameTaulerGUIEntrenament == null) {
