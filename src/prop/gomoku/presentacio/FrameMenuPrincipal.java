@@ -34,7 +34,7 @@ public class FrameMenuPrincipal extends JFrame
 
 	private void initComponents() {
 		controlador_presentacio = new ControladorPresentacio();
-		setTitle("Gomoku - Menú Principal");
+		setTitle("Gomoku72 - Menú Principal");
 		setLayout(new GroupLayout());
 		add(getJLabel0(), new Constraints(new Leading(135, 10, 10), new Leading(44, 10, 10)));
 		add(getJButton2(), new Constraints(new Leading(127, 10, 10), new Leading(180, 10, 10)));
