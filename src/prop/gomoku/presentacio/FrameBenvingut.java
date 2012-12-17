@@ -77,7 +77,7 @@ public class FrameBenvingut extends JFrame
 		if ( jButton2 == null )
 		{
 			jButton2 = new JButton();
-			jButton2.setText( "Manual D'usuari" );
+			jButton2.setText( "Manual d'usuari" );
 			jButton2.addMouseListener( new MouseAdapter()
 			{
 
