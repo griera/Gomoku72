@@ -22,7 +22,6 @@ public class TaulerGUI extends JPanel
 	 */
 	private static final long serialVersionUID = 599174304255843905L;
 
-	// private static int nombre_clics = 0;
 	private ImageIcon casella_buida, fitxa_negra, fitxa_blanca, tauler_fons;
 	private boolean tipusTauler;
 	private CasellaGUI[][] caselles;
