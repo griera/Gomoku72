@@ -36,13 +36,39 @@ import prop.gomoku.domini.models.TaulerGomoku;
  */
 public class IAGomokuAlternativa extends IAGomoku
 {
+	/**
+	 * Array d'integers que permet matitzar les puntuacions del jugador segons la distància respecte certa fitxa. La
+	 * posició 0 corresòn a la fitxa en sí (distància zero).
+	 */
 	private static final int[] puntuacio_jugador = { 0, 4, 3, 2, 1 };
+	/**
+	 * Array d'integers que com l'anterior permet matitzar puntuacions, però en aquest cas per l'oponent
+	 */
 	private static final int[] puntuacio_oponent = { 0, 4, 3, 2, 1 };
+	/**
+	 * Factor multiplicatiu del potencial calculat amb <em>calculaPotencialLinia</em>. D'aquesta forma es podria evitar
+	 * treballar amb nombres molts grans dins del mètode en sí
+	 */
 	private static final int factor_potencial = 5;
+	/**
+	 * Partida per la qual es vol trobar un moviment efectiu
+	 */
 	private PartidaGomoku partida;
+	/**
+	 * Color (EstatCasella.JUGADOR_A/B) pel qual es vol trobar el moviment adequat
+	 */
 	private EstatCasella color;
+	/**
+	 * Matriu amb les mateixes dimensions que el tauler de la partida que conté l'anàlisi pel jugador
+	 */
 	private int[][] analisi_jugador;
+	/**
+	 * Matriu amb les mateixes dimensions que el tauler de la partida que conté l'anàlisi per l'oponent
+	 */
 	private int[][] analisi_oponent;
+	/**
+	 * Cua de prioritat utilitzada per la comparació de les posicions del tauler
+	 */
 	PriorityQueue<int[]> millors_caselles;
 
 	/**
