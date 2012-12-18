@@ -3,6 +3,8 @@ package prop.gomoku.domini.controladors;
 /**
  * La classe <code>Vigenere</code> permet el xifrat i desxifrat de missatges de text utilitzant l'algorisme criptogràfic
  * Vigenère, descobert pel criptògraf francès Blaise de Vigenère.
+ * 
+ * @author Genís Riera Pérez
  */
 public class Vigenere
 {
