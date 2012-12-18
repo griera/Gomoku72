@@ -4,6 +4,8 @@ package prop.gomoku.domini.models;
  * 
  * Clase que conte els ResumResultats de victories, empats, derrotes i percentatges referents a les partides jugades
  * 
+ * @author Alexander Gimenez Ortega
+ * 
  */
 public class EstadistiquesPartides
 {

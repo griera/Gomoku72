@@ -3,6 +3,8 @@ package prop.gomoku.domini.models;
 /**
  * Classe que representa tot el conjunt d'estadistiques individuals d'un jugador
  * 
+ * @author Alexander Gimenez Ortega
+ * 
  */
 public class LlistaRecordsIndividuals
 {

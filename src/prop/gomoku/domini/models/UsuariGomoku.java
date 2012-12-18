@@ -7,6 +7,8 @@ import prop.cluster.domini.models.Usuari;
  * diferents nivells de dificultat. Cada usuari té un nom com a identificador, en particular aquest tipus d'usuari esta
  * adaptat al joc de Gomoku
  * 
+ * @author Alexander Gimenez Ortega
+ * 
  */
 public class UsuariGomoku extends Usuari
 {
