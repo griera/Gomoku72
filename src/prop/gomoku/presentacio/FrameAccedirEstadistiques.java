@@ -115,7 +115,7 @@ public class FrameAccedirEstadistiques extends JFrame {
 
 	private void jButton1MouseMouseClicked(MouseEvent event) {
 		controlador_presentacio.sincronitzacioAccedirEstadistiquesIndividuals(this);
-		System.out.println(controlador_presentacio.getUsuariActual());
+		// System.out.println(controlador_presentacio.getUsuariActual());
 	}
 
 	private void jButton2MouseMouseClicked(MouseEvent event) {

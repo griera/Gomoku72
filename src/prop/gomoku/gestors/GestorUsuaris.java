@@ -153,11 +153,11 @@ public class GestorUsuaris
 		{
 			if ( dir_usuaris.mkdirs() )
 			{
-				System.out.println( "Directori " + ruta_usuaris + " creat" );
+				// System.out.println( "Directori " + ruta_usuaris + " creat" );
 			}
 			else
 			{
-				System.out.println( "No s'ha pogut crear " + ruta_usuaris );
+				// System.out.println( "No s'ha pogut crear " + ruta_usuaris );
 			}
 		}
 	}

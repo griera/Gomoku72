@@ -267,7 +267,7 @@ public class FrameConfiguracioPartida3 extends JFrame {
 		if(jRadioButton0.isSelected()) color=0;
 		else if(jRadioButton1.isSelected()) color=1;
 		else if(jRadioButton2.isSelected()) color = 2;
-		System.out.println(controlador_presentacio.getEntrenament());
+		// System.out.println(controlador_presentacio.getEntrenament());
 		// TODO
 		//controlador_presentacio.setentrenament( true );
 		if(color!=-1 && controlador_presentacio.getEntrenament()==false)controlador_presentacio.iniciaPartida(this,color);
@@ -298,7 +298,7 @@ public class FrameConfiguracioPartida3 extends JFrame {
 	public void setNomsusuaris(){
 		jLabel4.setText(controlador_presentacio.getJugadorActual().getNom());
 		jLabel5.setText(controlador_presentacio.getOponentActual().getNom());
-		System.out.println("label4: " + jLabel4.getText()+ "label5 "+ jLabel5.getText());
+		// System.out.println("label4: " + jLabel4.getText()+ "label5 "+ jLabel5.getText());
 		this.setLocationRelativeTo(null);
 		this.setAlwaysOnTop(true);
 		this.setVisible(true);

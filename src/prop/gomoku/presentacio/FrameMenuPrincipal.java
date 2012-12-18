@@ -217,7 +217,7 @@ public class FrameMenuPrincipal extends JFrame
 	private void jButton2MouseMouseClicked( MouseEvent event )
 	{
 		// TODO
-		System.out.println("Abans d'anar-nos del menu principal: " + this.controlador_presentacio.getUsuariActual());
+		// System.out.println("Abans d'anar-nos del menu principal: " + this.controlador_presentacio.getUsuariActual());
 		controlador_presentacio.sincronitzacioMenuEstadistiques( this );
 	}
 	public void menuConvidat(){

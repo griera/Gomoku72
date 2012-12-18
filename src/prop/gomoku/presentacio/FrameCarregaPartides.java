@@ -239,13 +239,13 @@ public class FrameCarregaPartides extends JFrame
 	public void mostraLlistaPartides( List<PartidaGomoku> partides )
 	{
 		this.partides = partides;
-		System.out.println( "Ensenyo partides. Ho intento" );
+		// System.out.println( "Ensenyo partides. Ho intento" );
 		listModel = new DefaultListModel();
 		for ( PartidaGomoku partida : partides )
 		{
 			// TODO
 			listModel.addElement( partida.getNom() + " - " + partida.getDataCreacio().toString() );
-			System.out.println( partida );
+			// System.out.println( partida );
 		}
 		jList0.setModel( listModel );
 		this.setLocationRelativeTo( null );
@@ -290,7 +290,7 @@ public class FrameCarregaPartides extends JFrame
 	private void jList0ListSelectionValueChanged( ListSelectionEvent event )
 	{
 		// System.out.println(event.getFirstIndex());
-		System.out.println( this.jList0.getSelectedIndex() );
+		// System.out.println( this.jList0.getSelectedIndex() );
 	}
 
 	private void jButton0MouseMouseClicked( MouseEvent event )

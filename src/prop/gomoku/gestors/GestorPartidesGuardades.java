@@ -98,11 +98,11 @@ public class GestorPartidesGuardades
 		{
 			if ( dir_partides.mkdirs() )
 			{
-				System.out.println( "Directori " + ruta_partides_guardades + " creat" );
+				// System.out.println( "Directori " + ruta_partides_guardades + " creat" );
 			}
 			else
 			{
-				System.out.println( "No s'ha pogut crear! " + ruta_partides_guardades );
+				// System.out.println( "No s'ha pogut crear! " + ruta_partides_guardades );
 			}
 		}
 	}
@@ -144,10 +144,10 @@ public class GestorPartidesGuardades
 	{
 		List<PartidaGomoku> llista_partides = this.carregaTotes();
 		List<PartidaGomoku> partides_usuari = new ArrayList<PartidaGomoku>();
-		System.out.println( "Usuari actiu carregant: " + usuari );
+		// System.out.println( "Usuari actiu carregant: " + usuari );
 		for ( PartidaGomoku partida : llista_partides )
 		{
-			System.out.println( partida );
+			// System.out.println( partida );
 			if ( partida.getJugadorPrincipal().getNom().equals( usuari.getNom() ) )
 			{
 				partides_usuari.add( partida );

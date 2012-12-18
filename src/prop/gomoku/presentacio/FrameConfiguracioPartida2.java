@@ -211,7 +211,7 @@ public class FrameConfiguracioPartida2 extends JFrame {
 	}
 
 	private void jButton0MouseMouseClicked(MouseEvent event) {
-		System.out.println("Entrenament: " + controlador_presentacio.getEntrenament());
+		// System.out.println("Entrenament: " + controlador_presentacio.getEntrenament());
 		controlador_presentacio.sincronitzacioConfiguracio23(this);
 	}
 

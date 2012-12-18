@@ -137,7 +137,7 @@ public class FrameEstadistiquesIndividuals extends JFrame
 				
 				dades+=criteri.getTextDescriptiu() + ": ";
 				int espais = 55-dades.length();
-				System.out.println(espais);
+				// System.out.println(espais);
 				for(int k=0; k<espais;k++){
 					dades+="&nbsp;";
 				}

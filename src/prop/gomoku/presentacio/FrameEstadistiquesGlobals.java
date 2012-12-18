@@ -143,13 +143,13 @@ public class FrameEstadistiquesGlobals extends JFrame
 				String dades = "";
 				dades+=record[0];
 				int espais = 20-dades.length();
-				System.out.println(espais);
+				// System.out.println(espais);
 				for(int k=0; k<espais;k++){
 					dades+="&nbsp;";
-					System.out.print(" ,"+ k);
+					// System.out.print(" ,"+ k);
 				}
 
-				System.out.println();
+				// System.out.println();
 				dades+=record[1];
 				if(criteri.toString().contains( "PER" ) ){
 					dades+="%";

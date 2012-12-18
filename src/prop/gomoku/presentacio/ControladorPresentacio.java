@@ -198,11 +198,11 @@ public class ControladorPresentacio {
 		frame_nova_partida.dispose();
 		frame_configuracio1.main();
 		frame_configuracio1.setControladorPresentacio(this);
-		System.out.println("Entrenament :"
-				+ frame_configuracio1.getcontroladorPresentacio()
-						.getEntrenament());
-		System.out.println("Es el mateix controlador pres. = "
-				+ (this == frame_configuracio1.getcontroladorPresentacio()));
+		// System.out.println("Entrenament :"
+		// 		+ frame_configuracio1.getcontroladorPresentacio()
+		// 				.getEntrenament());
+		// System.out.println("Es el mateix controlador pres. = "
+		// 		+ (this == frame_configuracio1.getcontroladorPresentacio()));
 	}
 	/**
 	 * Fa l'intercanvi del frame de configuracio cap al de nova partida
@@ -338,15 +338,15 @@ public class ControladorPresentacio {
 		frame_menu_principal.dispose();
 		frame_carrega_partides.main();
 
-		System.out.println("Usuari que vol carregar les partides: "
-				+ usuari_actiu);
+		// System.out.println("Usuari que vol carregar les partides: "
+		// 		+ usuari_actiu);
 
 		ControladorPartidesGuardades ctrl_partides_guardades = new ControladorPartidesGuardades();
 		List<PartidaGomoku> llista_partides = ctrl_partides_guardades
 				.carregaPartides(usuari_actiu);
-		System.out.println("A punt de mostrar la llista de partides");
+		// System.out.println("A punt de mostrar la llista de partides");
 		for (PartidaGomoku partida : llista_partides) {
-			System.out.println(partida);
+			// System.out.println(partida);
 		}
 		frame_carrega_partides.setControladorPresentacio(this);
 		frame_carrega_partides.mostraLlistaPartides(llista_partides);
@@ -395,8 +395,8 @@ public class ControladorPresentacio {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Maquina 1:" + usuari_actiu + "Maquina 2:"
-				+ jugador_oponent);
+		// System.out.println("Maquina 1:" + usuari_actiu + "Maquina 2:"
+		// 		+ jugador_oponent);
 		frame_configuracio3.setTipusText();
 		frame_configuracio3.setNomsusuaris();
 	}
@@ -446,7 +446,7 @@ public class ControladorPresentacio {
 			partida_en_curs = new PartidaGomoku(usuari_actiu, jugador_oponent,
 					jugador_actiu, new TaulerGomoku(), "nova_partida");
 		}
-		System.out.println(partida_en_curs);
+		// System.out.println(partida_en_curs);
 		tauler_entrenament.main();
 		tauler_entrenament.setPartida(partida_en_curs);
 		tauler_entrenament.activa();
@@ -485,7 +485,7 @@ public class ControladorPresentacio {
 			partida_en_curs = new PartidaGomoku(usuari_actiu, jugador_oponent,
 					jugador_actiu, new TaulerGomoku(), "nova_partida");
 		}
-		System.out.println(partida_en_curs);
+		// System.out.println(partida_en_curs);
 		tauler_partida.main();
 		tauler_partida.setPartida(partida_en_curs);
 		tauler_partida.activa();
@@ -508,8 +508,8 @@ public class ControladorPresentacio {
 	 * @param tauler_partida Representa la vista del tauler on es juga la partida
 	 */
 	private void juga_partida(FrameTaulerGUI tauler_partida) {
-		System.out
-				.println("La partida acaba de començar, si la maquina es negres moura");
+		// System.out
+		//		.println("La partida acaba de començar, si la maquina es negres moura");
 		ctrl_en_joc = new ControladorPartidaEnJoc(partida_en_curs);
 		if (partida_en_curs.estaFinalitzada() == false)
 		{
@@ -540,9 +540,9 @@ public class ControladorPresentacio {
 	 * Gestiona totes les accions necesaries quan una partida ha arribat al seu fi
 	 */
 	public void fi_partida() {
-		System.out.println(estat);
-		System.out.println("Entro a fi partida");
-		System.out.println(partida_en_curs);
+		// System.out.println(estat);
+		// System.out.println("Entro a fi partida");
+		// System.out.println(partida_en_curs);
 		FrameError endgame = new FrameError();
 		endgame.main();
 		if (estat == EstatPartida.EMPAT) {
@@ -609,10 +609,10 @@ public class ControladorPresentacio {
 			e.printStackTrace();
 		}
 		frame_configuracio2.dispose();
-		System.out.println(tipus_oponent);
-		System.out.println("user1: " + jugador_actiu + "oponent: "
-				+ jugador_oponent);
-		System.out.println("Entrenament: " + entrenament);
+		// System.out.println(tipus_oponent);
+		// System.out.println("user1: " + jugador_actiu + "oponent: "
+		// 		+ jugador_oponent);
+		// System.out.println("Entrenament: " + entrenament);
 		frame_configuracio3.main();
 		frame_configuracio3.setControladorPresentacio(this);
 		frame_configuracio3.setTipusText();
@@ -631,8 +631,8 @@ public class ControladorPresentacio {
 			frame_estadistiques_indivuals = new FrameEstadistiquesIndividuals();
 		}
 		frame_estadistiques_indivuals.main();
-		System.out.println("Usuari actiu abans de crear els records: "
-				+ usuari_actiu);
+		// System.out.println("Usuari actiu abans de crear els records: "
+		// 		+ usuari_actiu);
 		int[] records = new int[35];
 		int i = 0;
 		ControladorRecordsIndividuals records_individuals = new ControladorRecordsIndividuals(
@@ -805,15 +805,15 @@ public class ControladorPresentacio {
 	 */
 	public void Identificarse(FrameIdentificacio frame_identificacio,
 			String alies, String contrasenya) {
-		System.out.println("contrasenya : " + contrasenya);
+		// System.out.println("contrasenya : " + contrasenya);
 		boolean excepcio = false;
 		try {
-			System.out.println("dades: " + alies + " - " + contrasenya);
+			// System.out.println("dades: " + alies + " - " + contrasenya);
 			usuari_actiu = controlador_usuari.identificaUsuari(alies,
 					contrasenya);
-			System.out.println("Usuari actiu: " + usuari_actiu);
+			// System.out.println("Usuari actiu: " + usuari_actiu);
 		} catch (UsuariNoExisteix e) {
-			System.out.println(e.getMessage());
+			// System.out.println(e.getMessage());
 			frame_identificacio.NetejaAliesContrasenya();
 			excepcio = true;
 			FrameError frame_error = new FrameError();
@@ -823,7 +823,7 @@ public class ControladorPresentacio {
 
 		} catch (ContrasenyaIncorrecta e) {
 			e.printStackTrace();
-			System.out.println(e.getMessage());
+			// System.out.println(e.getMessage());
 			frame_identificacio.netejaContrasenya();
 			excepcio = true;
 			FrameError frame_error = new FrameError();
@@ -832,12 +832,12 @@ public class ControladorPresentacio {
 					.MissatgeActiva("La contrasenya introduida no es la correcte per a aquest usuari");
 
 		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
+			// System.out.println(e.getMessage());
 			excepcio = true;
-			System.out.println("Illegar argument");
+			// System.out.println("Illegar argument");
 		} catch (ContrasenyaInvalida e) {
 			frame_identificacio.netejaContrasenya();
-			System.out.println(e.getMessage());
+			// System.out.println(e.getMessage());
 			excepcio = true;
 			FrameError error = new FrameError();
 			error.main();
@@ -855,7 +855,7 @@ public class ControladorPresentacio {
 			frame_identificacio.dispose();
 			frame_menu_principal.main();
 			frame_menu_principal.setControladorPresentacio(this);
-			System.out.println("Usuari actiu 2: " + usuari_actiu);
+			// System.out.println("Usuari actiu 2: " + usuari_actiu);
 		}
 	}
 	/**
@@ -919,8 +919,8 @@ public class ControladorPresentacio {
 			frame_configuracio2persones.dispose();
 			frame_configuracio3.main();
 			frame_configuracio3.setControladorPresentacio(this);
-			System.out.println("usuari_acutal:" + jugador_actiu
-					+ "usuari oponent: " + jugador_oponent);
+			// System.out.println("usuari_acutal:" + jugador_actiu
+			// 		+ "usuari oponent: " + jugador_oponent);
 			frame_configuracio3.setTipusText();
 			frame_configuracio3.setNomsusuaris();
 		}
@@ -945,7 +945,7 @@ public class ControladorPresentacio {
 			excepcio = true;
 		} catch (IOException e) {
 			excepcio = true;
-			System.out.println("Fallo de IO");
+			// System.out.println("Fallo de IO");
 
 		} catch (UsuariJaExisteix e) {
 			FrameError usuarijaexisteix = new FrameError();
@@ -965,7 +965,7 @@ public class ControladorPresentacio {
 			}
 			frame_registrar.dispose();
 			frame_menu_principal.main();
-			System.out.println(usuari_actiu);
+			// System.out.println(usuari_actiu);
 		}
 	}
 	/**
@@ -1105,7 +1105,7 @@ public class ControladorPresentacio {
 				ultim_moviment = ctrl_en_joc.getUltimMoviment();
 				estat = partida_en_curs.comprovaEstatPartida(ultim_moviment[0],
 						ultim_moviment[1]);
-				System.out.println(estat);
+				// System.out.println(estat);
 				finalitzada = partida_en_curs.estaFinalitzada();
 				if (finalitzada) {
 					fi_partida();
@@ -1122,7 +1122,7 @@ public class ControladorPresentacio {
 				ultim_moviment = ctrl_en_joc.getUltimMoviment();
 				estat = partida_en_curs.comprovaEstatPartida(ultim_moviment[0],
 						ultim_moviment[1]);
-				System.out.println(estat);
+				// System.out.println(estat);
 				finalitzada = partida_en_curs.estaFinalitzada();
 				if (finalitzada) {
 					fi_partida();
@@ -1140,7 +1140,7 @@ public class ControladorPresentacio {
 				ultim_moviment = ctrl_en_joc.getUltimMoviment();
 				estat = partida_en_curs.comprovaEstatPartida(ultim_moviment[0],
 						ultim_moviment[1]);
-				System.out.println(estat);
+				// System.out.println(estat);
 				finalitzada = partida_en_curs.estaFinalitzada();
 				if (finalitzada) {
 					fi_partida();
@@ -1157,7 +1157,7 @@ public class ControladorPresentacio {
 				ultim_moviment = ctrl_en_joc.getUltimMoviment();
 				estat = partida_en_curs.comprovaEstatPartida(ultim_moviment[0],
 						ultim_moviment[1]);
-				System.out.println(estat);
+				// System.out.println(estat);
 				finalitzada = partida_en_curs.estaFinalitzada();
 				if (finalitzada) {
 					fi_partida();
@@ -1193,20 +1193,20 @@ public class ControladorPresentacio {
 				estat = partida_en_curs.comprovaEstatPartida(ultim_moviment[0],
 						ultim_moviment[1]);
 				if (estat != EstatPartida.NO_FINALITZADA) {
-					System.out.println(estat);
+					// System.out.println(estat);
 					return false;
 				}
 			}
 			int fila = coord[0];
 			int columna = coord[1];
-			System.out.println("Clicat: " + fila + " " + columna);
+			// System.out.println("Clicat: " + fila + " " + columna);
 			if (partida_en_curs.getTornsJugats() % 2 == 0) {
 				try {
 					ctrl_en_joc.mouFitxa(EstatCasella.JUGADOR_A, fila, columna); // es
 																					// mouen
 																					// negres
 				} catch (Exception e) {
-					System.out.println(e.getMessage());
+					// System.out.println(e.getMessage());
 					if (estat != EstatPartida.NO_FINALITZADA) {
 						if (entrenament == false) {
 							fi_partida();
@@ -1240,7 +1240,7 @@ public class ControladorPresentacio {
 				try {
 					ctrl_en_joc.mouFitxa(EstatCasella.JUGADOR_B, fila, columna);
 				} catch (Exception e) {
-					System.out.println(e.getMessage());
+					// System.out.println(e.getMessage());
 					if (estat != EstatPartida.NO_FINALITZADA) {
 						if (entrenament == false) {
 							fi_partida();
@@ -1318,7 +1318,7 @@ public class ControladorPresentacio {
 		tauler_partida.setControladorPresentacio(this);
 		tauler_partida.pinta();
 		tauler_partida.actualitzaDades();
-		System.out.println("Partida : " + partida);
+		// System.out.println("Partida : " + partida);
 		juga_partida(tauler_partida);
 
 	}
