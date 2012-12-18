@@ -656,6 +656,10 @@ public class IAGomokuAlternativa extends IAGomoku
 		}
 	}
 
+	/**
+	 * Mètode encarregat de gestionar l'actualització dels anàlisis. Recòrrer el tauler i disparar els mètodes adequats
+	 * segons les fitxes de cada casella
+	 */
 	private void actualitzaAnalisi()
 	{
 		TaulerGomoku tauler = partida.getTauler();
@@ -669,5 +673,4 @@ public class IAGomokuAlternativa extends IAGomoku
 		}
 
 	}
-
 }
