@@ -1,0 +1,57 @@
+<class-diagram version="1.0.10" icons="true" automaticImage="PNG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.gestors.GestorDocumentacio" project="gomoku" 
+    file="/gomoku/src/prop/gomoku/gestors/GestorDocumentacio.java" binary="false">    
+    <position height="-1" width="-1" x="208" y="214"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="false" private="false"/>      
+      <operations public="true" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="2" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.gestors.GestorPartidesGuardades" 
+    project="gomoku" file="/gomoku/src/prop/gomoku/gestors/GestorPartidesGuardades.java" binary="false">    
+    <position height="-1" width="-1" x="774" y="248"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="false" private="false"/>      
+      <operations public="true" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="3" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.gestors.GestorUsuaris" project="gomoku" 
+    file="/gomoku/src/prop/gomoku/gestors/GestorUsuaris.java" binary="false">    
+    <position height="-1" width="-1" x="459" y="234"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="false" private="false"/>      
+      <operations public="true" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="4" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.gestors.excepcions.UsuariNoExisteix" 
+    project="gomoku" file="/gomoku/src/prop/gomoku/gestors/excepcions/UsuariNoExisteix.java" binary="false">    
+    <position height="-1" width="-1" x="344" y="510"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="false" private="false"/>      
+      <operations public="true" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="5" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.gestors.excepcions.UsuariJaExisteix" 
+    project="gomoku" file="/gomoku/src/prop/gomoku/gestors/excepcions/UsuariJaExisteix.java" binary="false">    
+    <position height="-1" width="-1" x="527" y="508"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="false" private="false"/>      
+      <operations public="true" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <dependency id="6">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="7">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    visibility="true">    
+    <attributes public="true" package="true" protected="false" private="false"/>    
+    <operations public="true" package="false" protected="false" private="false"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
