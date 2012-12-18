@@ -8,6 +8,11 @@ import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+/**
+ * 
+ * @author Genís Riera Pérez
+ *
+ */
 public class CasellaGUI extends JPanel implements MouseListener
 {
 	/**

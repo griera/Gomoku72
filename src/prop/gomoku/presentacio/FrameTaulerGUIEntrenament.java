@@ -12,6 +12,11 @@ import javax.swing.WindowConstants;
 import prop.cluster.domini.models.estats.EstatCasella;
 import prop.gomoku.domini.models.PartidaGomoku;
 
+/**
+ * 
+ * @author Genís Riera Pérez
+ *
+ */
 public class FrameTaulerGUIEntrenament extends JFrame
 {
 	/**
