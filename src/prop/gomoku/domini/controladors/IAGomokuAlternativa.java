@@ -8,6 +8,32 @@ import prop.cluster.domini.models.estats.EstatCasella;
 import prop.gomoku.domini.models.PartidaGomoku;
 import prop.gomoku.domini.models.TaulerGomoku;
 
+/**
+ * Classe que intenta modelar el comportament d'un jugador de Gomoku amb una competència mínima implementant un
+ * algorisme que avalua el tauler en el seu estat actual i pondera l'utilitat de posicionar una fitxa en cada casella
+ * del tauler.
+ * 
+ * Es basa principalment en el principi de que una posició que resulta molt profitosa pel jugador (generar més
+ * oportunitats de crear una línia de 5 fitxes), també ho serà pel contrincant (disminuir les possibilitats de
+ * l'oponent).
+ * 
+ * A alt nivell, es podria descriure l'algorisme en pocs passos:
+ * 
+ * 1. Per cada fitxa d'un jugador al tauler
+ * 
+ * 2. Analitzar si pot arribar a formar part d'una línia de 5 fitxes en alguna direcció
+ * 
+ * 3. Si en una direcció la creació d'una línia de 5 és possible, s'atorga una puntuació a la fitxa segons la
+ * <em>potencialitat</em> de la línia i s'aplica aquesta puntuació base a totes les caselles amb les que la casella
+ * analitzada podria arribar a crear una línia de 5 en aquella direcció.
+ * 
+ * 4. Tornem al pas 2 fins a haver analitzat totes les direccions donada a una fitxa posicionada al tauler
+ * 
+ * 5. Se sumen els anàlisis del jugador i del oponent i s'obté el primer moviment vàlid que tingui la puntuació més alta
+ * 
+ * @author Mauricio Ignacio Contreras Pinilla
+ * 
+ */
 public class IAGomokuAlternativa extends IAGomoku
 {
 	private static final int[] puntuacio_jugador = { 0, 4, 3, 2, 1 };
@@ -40,9 +66,8 @@ public class IAGomokuAlternativa extends IAGomoku
 		@Override
 		public int compare( int[] coord_a, int[] coord_b )
 		{
-			// int punts_a = analisi_jugador[coord_a[0]][coord_a[1]];
-			// int punts_b = analisi_jugador[coord_b[0]][coord_b[1]];
-
+			/* Es realitza la suma, la separació de puntuacions permet més flexibilitat a l'hora de decidir com comparar
+			 * les caselles (en cas de voler expandir o canviar els criteris) */
 			int punts_a = analisi_jugador[coord_a[0]][coord_a[1]] + analisi_oponent[coord_a[0]][coord_a[1]];
 			int punts_b = analisi_jugador[coord_b[0]][coord_b[1]] + analisi_oponent[coord_b[0]][coord_b[1]];
 
@@ -117,20 +142,19 @@ public class IAGomokuAlternativa extends IAGomoku
 		return casella;
 	}
 
-	// TODO
 	@Override
 	public int[] computaMoviment( Partida partida, EstatCasella estat_casella, int fila_ult_moviment,
 			int columna_ult_moviment )
 	{
+		if ( estat_casella == EstatCasella.BUIDA )
+		{
+			throw new IllegalArgumentException( "color ha de representar a un jugador" );
+		}
+		// Si ens trobem al primer torn, mourem al centre del tauler
 		if ( partida.getTornsJugats() == 0 )
 		{
 			int[] moviment = { 7, 7 };
 			return moviment;
-		}
-
-		if ( estat_casella == EstatCasella.BUIDA )
-		{
-			throw new IllegalArgumentException( "color ha de representar a un jugador" );
 		}
 
 		this.partida = (PartidaGomoku) partida;
@@ -144,9 +168,17 @@ public class IAGomokuAlternativa extends IAGomoku
 		return computaMoviment();
 	}
 
+	/**
+	 * Mètode auxiliar que fa la crida s'encarrega de reiniciar els anàlisis abans de cridar l'anàlisi del tauler i la
+	 * decisió del millor moviment
+	 * 
+	 * @return Coordenades del millor moviment segons aquesta IA per al tauler donat al mètode <em>computaMoviment</em>
+	 *         amb paràmetres
+	 */
 	public int[] computaMoviment()
 	{
-		// TODO si recalculem a cada cas?
+		/* Es reinicien els anàlisis a cada crida a computaMoviment, simplifica el plantejament dels algorismes que
+		 * actualitzen i puntuen caselles */
 		int mida = partida.getTauler().getMida();
 		for ( int i = 0; i < mida; i++ )
 		{
@@ -160,12 +192,28 @@ public class IAGomokuAlternativa extends IAGomoku
 		return classificaIDecideix();
 	}
 
+	/**
+	 * Enumeració auxiliar que representa una direcció al tauler
+	 * 
+	 * @author Mauricio Ignacio Contreras Pinilla
+	 * 
+	 */
 	private enum Direccio
 	{
 		HORITZONTAL, VERTICAL, DIAGONAL_DESC, DIAGONAL_ASC
 
 	};
 
+	/**
+	 * Mètode encarregat de retonar una puntuació d'oportunitat donada una casella i una direcció a analitzar
+	 * 
+	 * @param fila Fila de la casella a tenir en compte
+	 * @param columna Fila de la col·lumna a tenir en compte
+	 * @param tauler Tauler a analitzar la casella senyalada per (<em>fila</em>, <em>col·lumna</em>
+	 * @param dir Direcció en la qual es comptarà el <em>potencial</em> de la línia
+	 * @return <em>Potencialitat</em> de (o puntuació associada a) la línia que passa per (<em>fila</em>,
+	 *         <em>col·lumna<em>) en la direcció <em>dir</em>
+	 */
 	private int comptaPotencialitatLinia( int fila, int columna, TaulerGomoku tauler, Direccio dir )
 	{
 		EstatCasella color_fitxa = tauler.getEstatCasella( fila, columna );
@@ -268,6 +316,17 @@ public class IAGomokuAlternativa extends IAGomoku
 		return puntuacio * factor_potencial;
 	}
 
+	/**
+	 * Mètode auxiliar que permet saber si per una posició ocupada específica a un tauler, es podria crear,
+	 * potencialment, una línia de 5 fitxes del mateix jugador al qual pertany la fitxa indicada
+	 * 
+	 * @param fila Fila de la posició d'interès
+	 * @param columna Col·lumna de la posició d'interès
+	 * @param tauler Tauler on s'analitza la posició indicada
+	 * @param dir Direcció en la qual es vol comprovar la possibilitat de creació de línia de 5 fitxes
+	 * @return <em>true</em> si es pot crear una línia de 5 fitxes on participi la posició indicada en la direcció
+	 *         proporcionada
+	 */
 	private boolean potCrearLinia( int fila, int columna, TaulerGomoku tauler, Direccio dir )
 	{
 
@@ -371,6 +430,16 @@ public class IAGomokuAlternativa extends IAGomoku
 		return false;
 	}
 
+	/**
+	 * Mètode encarregat d'analitzar una casella ocupada i aplicar la puntuació corresponent en el seu camp d'influència
+	 * 
+	 * @param fila Fila de la posició a tractar
+	 * @param columna Col·lumna de la posició a tractar
+	 * @param tauler Tauler de l'anàlisi
+	 * @param puntuacio Vector amb puntuacions que permeten la matització dels valors assignats a les caselles de la
+	 *        zona d'influència segons la seva distància amb la casella especificada
+	 * @param analisi Matriu on s'emmagatzema l'anàlisi
+	 */
 	private void aplicaPuntuacions( int fila, int columna, TaulerGomoku tauler, int[] puntuacio, int[][] analisi )
 	{
 		EstatCasella color_consulta = tauler.getEstatCasella( fila, columna );
@@ -526,6 +595,15 @@ public class IAGomokuAlternativa extends IAGomoku
 		}
 	}
 
+	/**
+	 * Mètode auxiliar intermig que donada una posició a un tauler pren les decisions necessàries per cridar
+	 * <em>aplicaPuntuacions</em> amb tots els paràmetres possibles (quina puntuació assignar a l'oponent, anàlisi
+	 * destí, etc.)
+	 * 
+	 * @param fila Fila de la casella al voltant de la qual es volen aplicar les puntuacions
+	 * @param columna Col·lumna de la casella al voltant de la qual es volen aplicar les puntuacions
+	 * @param tauler Tauler on es realitza l'anàlisi
+	 */
 	private void aplicaPuntsFitxa( int fila, int columna, TaulerGomoku tauler )
 	{
 		EstatCasella estat = tauler.getEstatCasella( fila, columna );
@@ -566,59 +644,4 @@ public class IAGomokuAlternativa extends IAGomoku
 
 	}
 
-	// TODO mètode per corregir, dona excepcio si es crida i encara no s'ha computat moviment per primer cop, igual
-	// l'elimino
-	@Override
-	public String toString()
-	{
-		String sortida = "Analisi jugador - " + color.toString() + "\n";
-
-		for ( int j = 0; j < analisi_jugador[0].length; j++ )
-		{
-			sortida += "\t" + j;
-		}
-		sortida += "\n";
-
-		for ( int i = 0; i < analisi_jugador.length; i++ )
-		{
-			sortida += i + ":\t";
-			for ( int j = 0; j < analisi_jugador[0].length; j++ )
-			{
-				if ( analisi_jugador[i][j] == 0 )
-				{
-					sortida += ".\t";
-				}
-				else
-				{
-					sortida += Integer.toString( analisi_jugador[i][j] ) + "\t";
-				}
-			}
-			sortida += "\n";
-		}
-
-		sortida += "Analisi oponent\n";
-		for ( int j = 0; j < analisi_oponent[0].length; j++ )
-		{
-			sortida += "\t" + j + " ";
-		}
-		sortida += "\n";
-
-		for ( int i = 0; i < analisi_oponent.length; i++ )
-		{
-			sortida += i + ":\t";
-			for ( int j = 0; j < analisi_oponent[0].length; j++ )
-			{
-				if ( analisi_oponent[i][j] == 0 )
-				{
-					sortida += ".\t";
-				}
-				else
-				{
-					sortida += Integer.toString( analisi_oponent[i][j] ) + "\t";
-				}
-			}
-			sortida += "\n";
-		}
-		return sortida;
-	}
 }
