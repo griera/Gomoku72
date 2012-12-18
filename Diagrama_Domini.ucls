@@ -2,7 +2,7 @@
   generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.domini.models.LlistaRecordsIndividuals" 
     project="gomoku" file="/gomoku/src/prop/gomoku/domini/models/LlistaRecordsIndividuals.java" binary="false">    
-    <position height="-1" width="-1" x="685" y="189"/>    
+    <position height="-1" width="-1" x="469" y="157"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -18,7 +18,7 @@
   </class>  
   <enumeration id="3" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.domini.models.TipusUsuari" 
     project="gomoku" file="/gomoku/src/prop/gomoku/domini/models/TipusUsuari.java" binary="false">    
-    <position height="-1" width="-1" x="1377" y="875"/>    
+    <position height="-1" width="-1" x="1793" y="893"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -26,7 +26,7 @@
   </enumeration>  
   <class id="4" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.domini.models.TaulerGomoku" project="gomoku" 
     file="/gomoku/src/prop/gomoku/domini/models/TaulerGomoku.java" binary="false">    
-    <position height="-1" width="-1" x="427" y="-162"/>    
+    <position height="-1" width="-1" x="349" y="-268"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -42,7 +42,7 @@
   </class>  
   <class id="6" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.domini.models.UsuariGomoku" project="gomoku" 
     file="/gomoku/src/prop/gomoku/domini/models/UsuariGomoku.java" binary="false">    
-    <position height="-1" width="-1" x="1131" y="890"/>    
+    <position height="-1" width="-1" x="1475" y="890"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -51,7 +51,7 @@
   <enumeration id="7" corner="BOTTOM_RIGHT" language="java" 
     name="prop.gomoku.domini.controladors.records.CriteriRecords" project="gomoku" 
     file="/gomoku/src/prop/gomoku/domini/controladors/records/CriteriRecords.java" binary="false">    
-    <position height="-1" width="-1" x="-61" y="1283"/>    
+    <position height="-1" width="-1" x="-61" y="1379"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -87,7 +87,7 @@
   <class id="11" corner="BOTTOM_RIGHT" language="java" 
     name="prop.gomoku.domini.controladors.records.ControladorRecordsGlobals.ComparadorRecords" project="gomoku" 
     file="/gomoku/src/prop/gomoku/domini/controladors/records/ControladorRecordsGlobals.java" binary="false">    
-    <position height="-1" width="-1" x="-48" y="818"/>    
+    <position height="-1" width="-1" x="-52" y="858"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -131,7 +131,7 @@
   <class id="16" corner="BOTTOM_RIGHT" language="java" 
     name="prop.gomoku.domini.controladors.ControladorPartidesGuardades" project="gomoku" 
     file="/gomoku/src/prop/gomoku/domini/controladors/ControladorPartidesGuardades.java" binary="false">    
-    <position height="-1" width="-1" x="429" y="1181"/>    
+    <position height="-1" width="-1" x="1979" y="-367"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -139,72 +139,54 @@
   </class>  
   <class id="17" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.domini.controladors.InteligenciaCPU" 
     project="gomoku" file="/gomoku/src/prop/gomoku/domini/controladors/InteligenciaCPU.java" binary="false">    
-    <position height="-1" width="-1" x="1640" y="607"/>    
+    <position height="-1" width="-1" x="1984" y="607"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
     </display>  
   </class>  
-  <class id="18" corner="BOTTOM_RIGHT" language="java" 
-    name="prop.gomoku.domini.controladors.IAGomokuAlternativa.ComparadorIASimple" project="gomoku" 
-    file="/gomoku/src/prop/gomoku/domini/controladors/IAGomokuAlternativa.java" binary="false">    
-    <position height="-1" width="-1" x="1619" y="1217"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
-      <attributes public="true" package="true" protected="false" private="false"/>      
-      <operations public="true" package="false" protected="false" private="false"/>    
-    </display>  
-  </class>  
-  <class id="19" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.domini.controladors.ControladorPartida" 
+  <class id="18" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.domini.controladors.ControladorPartida" 
     project="gomoku" file="/gomoku/src/prop/gomoku/domini/controladors/ControladorPartida.java" binary="false">    
-    <position height="-1" width="-1" x="648" y="-491"/>    
+    <position height="-1" width="-1" x="352" y="-497"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
     </display>  
   </class>  
-  <class id="20" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.domini.controladors.IAGomoku" project="gomoku" 
+  <class id="19" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.domini.controladors.IAGomoku" project="gomoku" 
     file="/gomoku/src/prop/gomoku/domini/controladors/IAGomoku.java" binary="false">    
-    <position height="-1" width="-1" x="1854" y="796"/>    
+    <position height="-1" width="-1" x="2334" y="984"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
-      <operations public="true" package="false" protected="false" private="false"/>    
+      <operations public="true" package="true" protected="false" private="false"/>    
     </display>  
   </class>  
-  <class id="21" corner="BOTTOM_RIGHT" language="java" 
+  <class id="20" corner="BOTTOM_RIGHT" language="java" 
     name="prop.gomoku.domini.controladors.ControladorPreparacioPartida" project="gomoku" 
     file="/gomoku/src/prop/gomoku/domini/controladors/ControladorPreparacioPartida.java" binary="false">    
-    <position height="-1" width="-1" x="741" y="-20"/>    
+    <position height="-1" width="-1" x="529" y="-30"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
     </display>  
   </class>  
-  <class id="22" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.domini.controladors.ControladorPartidaEnJoc" 
+  <class id="21" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.domini.controladors.ControladorPartidaEnJoc" 
     project="gomoku" file="/gomoku/src/prop/gomoku/domini/controladors/ControladorPartidaEnJoc.java" binary="false">    
-    <position height="-1" width="-1" x="1587" y="-2"/>    
+    <position height="-1" width="-1" x="1991" y="6"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
     </display>  
   </class>  
-  <enumeration id="23" corner="BOTTOM_RIGHT" language="java" 
-    name="prop.gomoku.domini.controladors.IAGomokuAlternativa.Direccio" project="gomoku" 
-    file="/gomoku/src/prop/gomoku/domini/controladors/IAGomokuAlternativa.java" binary="false">    
-    <position height="-1" width="-1" x="1810" y="1242"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
-      <attributes public="true" package="true" protected="false" private="false"/>      
-      <operations public="true" package="false" protected="false" private="false"/>    
-    </display>  
-  </enumeration>  
-  <class id="24" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.domini.controladors.Vigenere" project="gomoku" 
+  <class id="22" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.domini.controladors.Vigenere" project="gomoku" 
     file="/gomoku/src/prop/gomoku/domini/controladors/Vigenere.java" binary="false">    
-    <position height="-1" width="-1" x="2506" y="102"/>    
+    <position height="-1" width="-1" x="2746" y="98"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
     </display>  
   </class>  
-  <class id="25" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.domini.controladors.ControladorDocumentacio" 
+  <class id="23" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.domini.controladors.ControladorDocumentacio" 
     project="gomoku" file="/gomoku/src/prop/gomoku/domini/controladors/ControladorDocumentacio.java" binary="false">    
     <position height="-1" width="-1" x="355" y="883"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
@@ -212,414 +194,456 @@
       <operations public="true" package="false" protected="false" private="false"/>    
     </display>  
   </class>  
-  <class id="26" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.domini.controladors.IAGomokuAlternativa" 
-    project="gomoku" file="/gomoku/src/prop/gomoku/domini/controladors/IAGomokuAlternativa.java" binary="false">    
-    <position height="-1" width="-1" x="1676" y="1073"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
-      <attributes public="true" package="true" protected="false" private="false"/>      
-      <operations public="true" package="false" protected="false" private="false"/>    
-    </display>  
-  </class>  
-  <class id="27" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.domini.controladors.ControladorUsuari" 
+  <class id="24" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.domini.controladors.ControladorUsuari" 
     project="gomoku" file="/gomoku/src/prop/gomoku/domini/controladors/ControladorUsuari.java" binary="false">    
-    <position height="-1" width="-1" x="2240" y="101"/>    
+    <position height="-1" width="-1" x="2480" y="97"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
     </display>  
   </class>  
-  <class id="28" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.domini.controladors.IAGomokuOptimitzada" 
+  <enumeration id="25" corner="BOTTOM_RIGHT" language="java" name="prop.cluster.domini.models.estats.EstatPartida" 
+    project="gomoku" file="/gomoku/src/prop/cluster/domini/models/estats/EstatPartida.java" binary="false">    
+    <position height="-1" width="-1" x="2452" y="-300"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="false" private="false"/>      
+      <operations public="true" package="false" protected="false" private="false"/>    
+    </display>  
+  </enumeration>  
+  <class id="26" corner="BOTTOM_RIGHT" language="java" name="prop.cluster.domini.models.Partida" project="gomoku" 
+    file="/gomoku/src/prop/cluster/domini/models/Partida.java" binary="false">    
+    <position height="-1" width="-1" x="1454" y="-56"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="false" private="false"/>      
+      <operations public="true" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="27" corner="BOTTOM_RIGHT" language="java" name="prop.cluster.domini.models.Usuari" project="gomoku" 
+    file="/gomoku/src/prop/cluster/domini/models/Usuari.java" binary="false">    
+    <position height="-1" width="-1" x="1016" y="759"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="false" private="false"/>      
+      <operations public="true" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="28" corner="BOTTOM_RIGHT" language="java" name="prop.cluster.domini.models.Tauler" project="gomoku" 
+    file="/gomoku/src/prop/cluster/domini/models/Tauler.java" binary="false">    
+    <position height="-1" width="-1" x="1076" y="-282"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="false" private="false"/>      
+      <operations public="true" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="29" corner="BOTTOM_RIGHT" language="java" name="prop.cluster.domini.controladors.InteligenciaArtificial" 
+    project="gomoku" file="/gomoku/src/prop/cluster/domini/controladors/InteligenciaArtificial.java" binary="false">    
+    <position height="-1" width="-1" x="2374" y="618"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="false" private="false"/>      
+      <operations public="true" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <enumeration id="30" corner="BOTTOM_RIGHT" language="java" name="prop.cluster.domini.models.estats.EstatCasella" 
+    project="gomoku" file="/gomoku/src/prop/cluster/domini/models/estats/EstatCasella.java" binary="false">    
+    <position height="-1" width="-1" x="2706" y="-302"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="false" private="false"/>      
+      <operations public="true" package="false" protected="false" private="false"/>    
+    </display>  
+  </enumeration>  
+  <class id="31" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.domini.models.PartidaGomoku" project="gomoku" 
+    file="/gomoku/src/prop/gomoku/domini/models/PartidaGomoku.java" binary="false">    
+    <position height="-1" width="-1" x="1462" y="450"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="false" private="false"/>      
+      <operations public="true" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="32" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.domini.controladors.IAGomokuOptimitzada" 
     project="gomoku" file="/gomoku/src/prop/gomoku/domini/controladors/IAGomokuOptimitzada.java" binary="false">    
-    <position height="-1" width="-1" x="2307" y="1086"/>    
+    <position height="112" width="261" x="2745" y="1224"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
     </display>  
   </class>  
-  <class id="29" corner="BOTTOM_RIGHT" language="java" 
+  <class id="33" corner="BOTTOM_RIGHT" language="java" 
     name="prop.gomoku.domini.controladors.IAGomokuOptimitzada.Informacio" project="gomoku" 
     file="/gomoku/src/prop/gomoku/domini/controladors/IAGomokuOptimitzada.java" binary="false">    
-    <position height="-1" width="-1" x="2064" y="1246"/>    
+    <position height="129" width="146" x="2559" y="1376"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
     </display>  
   </class>  
-  <class id="30" corner="BOTTOM_RIGHT" language="java" 
+  <class id="34" corner="BOTTOM_RIGHT" language="java" 
     name="prop.gomoku.domini.controladors.IAGomokuOptimitzada.ComparadorInformacio" project="gomoku" 
     file="/gomoku/src/prop/gomoku/domini/controladors/IAGomokuOptimitzada.java" binary="false">    
-    <position height="-1" width="-1" x="2272" y="1221"/>    
+    <position height="78" width="191" x="2745" y="1376"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
     </display>  
   </class>  
-  <class id="31" corner="BOTTOM_RIGHT" language="java" 
+  <class id="35" corner="BOTTOM_RIGHT" language="java" 
     name="prop.gomoku.domini.controladors.IAGomokuOptimitzada.ComparadorInformacioInvers" project="gomoku" 
     file="/gomoku/src/prop/gomoku/domini/controladors/IAGomokuOptimitzada.java" binary="false">    
-    <position height="-1" width="-1" x="2503" y="1221"/>    
+    <position height="78" width="191" x="2976" y="1376"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
     </display>  
   </class>  
-  <enumeration id="32" corner="BOTTOM_RIGHT" language="java" name="prop.cluster.domini.models.estats.EstatPartida" 
-    project="gomoku" file="/gomoku/src/prop/cluster/domini/models/estats/EstatPartida.java" binary="false">    
-    <position height="-1" width="-1" x="1256" y="-548"/>    
+  <enumeration id="36" corner="BOTTOM_RIGHT" language="java" 
+    name="prop.gomoku.domini.controladors.IAGomokuAlternativa.Direccio" project="gomoku" 
+    file="/gomoku/src/prop/gomoku/domini/controladors/IAGomokuAlternativa.java" binary="false">    
+    <position height="-1" width="-1" x="1939" y="1523"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
     </display>  
   </enumeration>  
-  <class id="33" corner="BOTTOM_RIGHT" language="java" name="prop.cluster.domini.models.Partida" project="gomoku" 
-    file="/gomoku/src/prop/cluster/domini/models/Partida.java" binary="false">    
-    <position height="-1" width="-1" x="1110" y="-56"/>    
+  <class id="37" corner="BOTTOM_RIGHT" language="java" 
+    name="prop.gomoku.domini.controladors.IAGomokuAlternativa.ComparadorIASimple" project="gomoku" 
+    file="/gomoku/src/prop/gomoku/domini/controladors/IAGomokuAlternativa.java" binary="false">    
+    <position height="-1" width="-1" x="2194" y="1510"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
     </display>  
   </class>  
-  <class id="34" corner="BOTTOM_RIGHT" language="java" name="prop.cluster.domini.models.Usuari" project="gomoku" 
-    file="/gomoku/src/prop/cluster/domini/models/Usuari.java" binary="false">    
-    <position height="-1" width="-1" x="848" y="839"/>    
+  <class id="38" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.domini.controladors.IAGomokuAlternativa" 
+    project="gomoku" file="/gomoku/src/prop/gomoku/domini/controladors/IAGomokuAlternativa.java" binary="false">    
+    <position height="-1" width="-1" x="2080" y="1294"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
     </display>  
   </class>  
-  <class id="35" corner="BOTTOM_RIGHT" language="java" name="prop.cluster.domini.models.Tauler" project="gomoku" 
-    file="/gomoku/src/prop/cluster/domini/models/Tauler.java" binary="false">    
-    <position height="-1" width="-1" x="-80" y="-402"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
-      <attributes public="true" package="true" protected="false" private="false"/>      
-      <operations public="true" package="false" protected="false" private="false"/>    
-    </display>  
-  </class>  
-  <class id="36" corner="BOTTOM_RIGHT" language="java" name="prop.cluster.domini.controladors.InteligenciaArtificial" 
-    project="gomoku" file="/gomoku/src/prop/cluster/domini/controladors/InteligenciaArtificial.java" binary="false">    
-    <position height="-1" width="-1" x="1854" y="444"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
-      <attributes public="true" package="true" protected="false" private="false"/>      
-      <operations public="true" package="false" protected="false" private="false"/>    
-    </display>  
-  </class>  
-  <enumeration id="37" corner="BOTTOM_RIGHT" language="java" name="prop.cluster.domini.models.estats.EstatCasella" 
-    project="gomoku" file="/gomoku/src/prop/cluster/domini/models/estats/EstatCasella.java" binary="false">    
-    <position height="-1" width="-1" x="1478" y="-550"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
-      <attributes public="true" package="true" protected="false" private="false"/>      
-      <operations public="true" package="false" protected="false" private="false"/>    
-    </display>  
-  </enumeration>  
-  <class id="38" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.domini.models.PartidaGomoku" project="gomoku" 
-    file="/gomoku/src/prop/gomoku/domini/models/PartidaGomoku.java" binary="false">    
-    <position height="197" width="502" x="867" y="352"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
-      <attributes public="true" package="true" protected="false" private="false"/>      
-      <operations public="true" package="false" protected="false" private="false"/>    
-    </display>  
-  </class>  
-  <nesting id="39">    
-    <end type="SOURCE" refId="28"/>    
-    <end type="TARGET" refId="31"/>  
-  </nesting>  
-  <association id="40">    
-    <end type="SOURCE" refId="38" navigable="false">      
-      <attribute id="41" name="jugador_b"/>      
-      <multiplicity id="42" minimum="0" maximum="1"/>    
+  <association id="39">    
+    <bendpoint x="1314" y="660"/>    
+    <end type="SOURCE" refId="31" navigable="false">      
+      <attribute id="40" name="jugador_b"/>      
+      <multiplicity id="41" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="43">    
-    <end type="SOURCE" refId="27"/>    
-    <end type="TARGET" refId="24"/>  
-  </dependency>  
-  <generalization id="44">    
-    <end type="SOURCE" refId="28"/>    
-    <end type="TARGET" refId="20"/>  
-  </generalization>  
-  <dependency id="45">    
-    <end type="SOURCE" refId="19"/>    
+  <dependency id="42">    
+    <end type="SOURCE" refId="18"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
-  <association id="46">    
-    <end type="SOURCE" refId="22" navigable="false">      
-      <attribute id="47" name="ia_negres"/>      
-      <multiplicity id="48" minimum="0" maximum="1"/>    
+  <dependency id="43">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="22"/>  
+  </dependency>  
+  <association id="44">    
+    <bendpoint x="1912" y="476"/>    
+    <bendpoint x="1902" y="528"/>    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="45" name="ia_negres"/>      
+      <multiplicity id="46" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="17" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="49">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="50" name="percentatge_victories"/>      
-      <multiplicity id="51" minimum="0" maximum="1"/>    
+  <association id="47">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="48" name="tauler"/>      
+      <multiplicity id="49" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="28" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <nesting id="52">    
-    <end type="SOURCE" refId="28"/>    
-    <end type="TARGET" refId="30"/>  
+  <association id="50">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="51" name="ia"/>      
+      <multiplicity id="52" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="53">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="34"/>  
   </nesting>  
-  <association id="53">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="54" name="nivell"/>      
-      <multiplicity id="55" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="56">    
-    <end type="SOURCE" refId="33" navigable="false">      
-      <attribute id="57" name="tauler"/>      
-      <multiplicity id="58" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="35" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="59">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="60" name="ia"/>      
-      <multiplicity id="61" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="20" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="62">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="63" name="estadistiques"/>      
-      <multiplicity id="64" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="65">    
-    <end type="SOURCE" refId="22" navigable="false">      
-      <attribute id="66" name="ia_blanques"/>      
-      <multiplicity id="67" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="68">    
-    <end type="SOURCE" refId="38" navigable="false">      
-      <attribute id="69" name="jugador_a"/>      
-      <multiplicity id="70" minimum="0" maximum="1"/>    
+  <association id="54">    
+    <bendpoint x="1508" y="668"/>    
+    <end type="SOURCE" refId="31" navigable="false">      
+      <attribute id="55" name="jugador_a"/>      
+      <multiplicity id="56" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <nesting id="71">    
-    <end type="SOURCE" refId="26"/>    
-    <end type="TARGET" refId="18"/>  
-  </nesting>  
-  <association id="72">    
+  <association id="57">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="73" name="total_disputades"/>      
-      <multiplicity id="74" minimum="0" maximum="1"/>    
+      <attribute id="58" name="total_disputades"/>      
+      <multiplicity id="59" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="75">    
-    <end type="SOURCE" refId="33" navigable="false">      
-      <attribute id="76" name="jugador_a"/>      
-      <multiplicity id="77" minimum="0" maximum="1"/>    
+  <association id="60">    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="61" name="partida"/>      
+      <multiplicity id="62" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="34" navigable="true"/>    
+    <end type="TARGET" refId="31" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="78">    
-    <end type="SOURCE" refId="22" navigable="false">      
-      <attribute id="79" name="partida"/>      
-      <multiplicity id="80" minimum="0" maximum="1"/>    
+  <association id="63">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="64" name="empats"/>      
+      <multiplicity id="65" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="38" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="81">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="27"/>  
-  </dependency>  
-  <dependency id="82">    
-    <end type="SOURCE" refId="27"/>    
+  <dependency id="66">    
+    <end type="SOURCE" refId="24"/>    
     <end type="TARGET" refId="15"/>  
   </dependency>  
-  <association id="83">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="84" name="empats"/>      
-      <multiplicity id="85" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <nesting id="86">    
-    <end type="SOURCE" refId="28"/>    
-    <end type="TARGET" refId="29"/>  
-  </nesting>  
-  <association id="87">    
-    <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="88" name="partida"/>      
-      <multiplicity id="89" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="38" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <nesting id="90">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="11"/>  
-  </nesting>  
-  <association id="91">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="92" name="derrotes"/>      
-      <multiplicity id="93" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="94">    
+  <dependency id="67">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="31"/>  
+  </dependency>  
+  <association id="68">    
+    <bendpoint x="1946" y="792"/>    
     <end type="SOURCE" refId="38" navigable="false">      
-      <attribute id="95" name="jugador_principal"/>      
-      <multiplicity id="96" minimum="0" maximum="1"/>    
+      <attribute id="69" name="partida"/>      
+      <multiplicity id="70" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="31" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <nesting id="97">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="13"/>  
-  </nesting>  
-  <generalization id="98">    
-    <end type="SOURCE" refId="20"/>    
-    <end type="TARGET" refId="36"/>  
+  <association id="71">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="72" name="partida"/>      
+      <multiplicity id="73" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="31" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="74">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="29"/>  
   </generalization>  
-  <dependency id="99">    
-    <end type="SOURCE" refId="27"/>    
+  <dependency id="75">    
+    <end type="SOURCE" refId="24"/>    
     <end type="TARGET" refId="14"/>  
   </dependency>  
-  <dependency id="100">    
-    <bendpoint x="1808" y="204"/>    
-    <bendpoint x="1624" y="318"/>    
-    <bendpoint x="1400" y="608"/>    
-    <end type="SOURCE" refId="27"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <generalization id="101">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="35"/>  
-  </generalization>  
-  <nesting id="102">    
-    <end type="SOURCE" refId="26"/>    
-    <end type="TARGET" refId="23"/>  
-  </nesting>  
-  <dependency id="103">    
-    <end type="SOURCE" refId="21"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <association id="104">    
+  <association id="76">    
     <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="105" name="criteri"/>      
-      <multiplicity id="106" minimum="0" maximum="1"/>    
+      <attribute id="77" name="criteri"/>      
+      <multiplicity id="78" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="107">    
-    <end type="SOURCE" refId="26"/>    
-    <end type="TARGET" refId="20"/>  
+  <generalization id="79">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="27"/>  
   </generalization>  
-  <association id="108">    
+  <generalization id="80">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <dependency id="81">    
+    <bendpoint x="172" y="-408"/>    
+    <bendpoint x="188" y="60"/>    
+    <bendpoint x="244" y="56"/>    
+    <bendpoint x="620" y="64"/>    
+    <bendpoint x="796" y="324"/>    
+    <bendpoint x="800" y="1072"/>    
+    <bendpoint x="1156" y="1068"/>    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <association id="82">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="83" name="records"/>      
+      <multiplicity id="84" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="85">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <nesting id="86">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="33"/>  
+  </nesting>  
+  <dependency id="87">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <association id="88">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="109" name="percentatge_derrotes"/>      
-      <multiplicity id="110" minimum="0" maximum="1"/>    
+      <attribute id="89" name="percentatge_victories"/>      
+      <multiplicity id="90" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="111">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="34"/>  
-  </generalization>  
-  <generalization id="112">    
+  <association id="91">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="92" name="nivell"/>      
+      <multiplicity id="93" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="94">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="95" name="estadistiques"/>      
+      <multiplicity id="96" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="97">    
     <end type="SOURCE" refId="38"/>    
-    <end type="TARGET" refId="33"/>  
-  </generalization>  
+    <end type="TARGET" refId="36"/>  
+  </nesting>  
+  <association id="98">    
+    <bendpoint x="2030" y="506"/>    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="99" name="ia_blanques"/>      
+      <multiplicity id="100" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="101">    
+    <end type="SOURCE" refId="38"/>    
+    <end type="TARGET" refId="37"/>  
+  </nesting>  
+  <association id="102">    
+    <bendpoint x="1052" y="352"/>    
+    <bendpoint x="952" y="516"/>    
+    <bendpoint x="938" y="568"/>    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="103" name="jugador_a"/>      
+      <multiplicity id="104" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="105">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="24"/>  
+  </dependency>  
+  <nesting id="106">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="11"/>  
+  </nesting>  
+  <association id="107">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="108" name="derrotes"/>      
+      <multiplicity id="109" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="110">    
+    <end type="SOURCE" refId="31" navigable="false">      
+      <attribute id="111" name="jugador_principal"/>      
+      <multiplicity id="112" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <nesting id="113">    
     <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="8"/>  
+    <end type="TARGET" refId="13"/>  
   </nesting>  
-  <association id="114">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="115" name="percentatge_empats"/>      
-      <multiplicity id="116" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
+  <generalization id="114">    
+    <end type="SOURCE" refId="38"/>    
+    <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <generalization id="115">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="28"/>  
+  </generalization>  
+  <dependency id="116">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
   <association id="117">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="118" name="victories"/>      
+      <attribute id="118" name="percentatge_derrotes"/>      
       <multiplicity id="119" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="120">    
-    <end type="SOURCE" refId="33" navigable="false">      
-      <attribute id="121" name="jugador_b"/>      
-      <multiplicity id="122" minimum="0" maximum="1"/>    
+  <nesting id="120">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="8"/>  
+  </nesting>  
+  <nesting id="121">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="35"/>  
+  </nesting>  
+  <association id="122">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="123" name="percentatge_empats"/>      
+      <multiplicity id="124" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="34" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="123">    
+  <association id="125">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="126" name="victories"/>      
+      <multiplicity id="127" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="128">    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="124" name="tipus"/>      
-      <multiplicity id="125" minimum="0" maximum="1"/>    
+      <attribute id="129" name="tipus"/>      
+      <multiplicity id="130" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="126">    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="6"/>  
-  </dependency>  
-  <association id="127">    
+  <association id="131">    
+    <bendpoint x="1138" y="322"/>    
+    <bendpoint x="1108" y="370"/>    
+    <bendpoint x="1056" y="524"/>    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="132" name="jugador_b"/>      
+      <multiplicity id="133" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="134">    
+    <bendpoint x="736" y="340"/>    
+    <bendpoint x="740" y="1108"/>    
+    <bendpoint x="1200" y="1092"/>    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="128" name="usuari"/>      
-      <multiplicity id="129" minimum="0" maximum="1"/>    
+      <attribute id="135" name="usuari"/>      
+      <multiplicity id="136" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="130">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="131" name="records"/>      
-      <multiplicity id="132" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="133">    
-    <bendpoint x="1798" y="174"/>    
-    <bendpoint x="1596" y="300"/>    
-    <end type="SOURCE" refId="27"/>    
+  <dependency id="137">    
+    <bendpoint x="2054" y="178"/>    
+    <bendpoint x="1840" y="312"/>    
+    <bendpoint x="1712" y="632"/>    
+    <end type="SOURCE" refId="24"/>    
     <end type="TARGET" refId="6"/>  
   </dependency>  
-  <association id="134">    
-    <end type="SOURCE" refId="26" navigable="false">      
-      <attribute id="135" name="partida"/>      
-      <multiplicity id="136" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="38" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     visibility="true">    
-    <attributes public="true" package="true" protected="false" private="false"/>    
-    <operations public="true" package="false" protected="false" private="false"/>  
+    <attributes public="true" package="false" protected="false" private="false"/>    
+    <operations public="true" package="true" protected="false" private="false"/>  
   </classifier-display>  
   <association-display labels="true" multiplicity="true"/>
 </class-diagram>
