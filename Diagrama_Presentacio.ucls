@@ -2,7 +2,7 @@
   generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.presentacio.ControladorPresentacio" 
     project="gomoku" file="/gomoku/src/prop/gomoku/presentacio/ControladorPresentacio.java" binary="false">    
-    <position height="-1" width="-1" x="2862" y="1645"/>    
+    <position height="-1" width="-1" x="1718" y="993"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -10,7 +10,7 @@
   </class>  
   <class id="2" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.presentacio.CasellaGUI" project="gomoku" 
     file="/gomoku/src/prop/gomoku/presentacio/CasellaGUI.java" binary="false">    
-    <position height="-1" width="-1" x="1334" y="1324"/>    
+    <position height="-1" width="-1" x="190" y="672"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -18,7 +18,7 @@
   </class>  
   <class id="3" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.presentacio.FrameTaulerGUI" project="gomoku" 
     file="/gomoku/src/prop/gomoku/presentacio/FrameTaulerGUI.java" binary="false">    
-    <position height="-1" width="-1" x="2147" y="1689"/>    
+    <position height="-1" width="-1" x="1003" y="1037"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -26,7 +26,7 @@
   </class>  
   <class id="4" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.presentacio.FrameTaulerGUIEntrenament" 
     project="gomoku" file="/gomoku/src/prop/gomoku/presentacio/FrameTaulerGUIEntrenament.java" binary="false">    
-    <position height="-1" width="-1" x="1790" y="2021"/>    
+    <position height="-1" width="-1" x="646" y="1369"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -34,7 +34,7 @@
   </class>  
   <class id="5" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.presentacio.ProgramaPrincipalGomoku72" 
     project="gomoku" file="/gomoku/src/prop/gomoku/presentacio/ProgramaPrincipalGomoku72.java" binary="false">    
-    <position height="-1" width="-1" x="2866" y="817"/>    
+    <position height="-1" width="-1" x="1722" y="165"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -42,7 +42,7 @@
   </class>  
   <class id="6" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.presentacio.TaulerGUI" project="gomoku" 
     file="/gomoku/src/prop/gomoku/presentacio/TaulerGUI.java" binary="false">    
-    <position height="-1" width="-1" x="1738" y="1332"/>    
+    <position height="-1" width="-1" x="594" y="680"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -50,7 +50,7 @@
   </class>  
   <class id="7" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.presentacio.FrameAccedirEstadistiques" 
     project="gomoku" file="/gomoku/src/prop/gomoku/presentacio/FrameAccedirEstadistiques.java" binary="false">    
-    <position height="-1" width="-1" x="3338" y="940"/>    
+    <position height="-1" width="-1" x="2194" y="288"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -58,7 +58,7 @@
   </class>  
   <class id="8" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.presentacio.FrameConfiguracioPartida2CPU" 
     project="gomoku" file="/gomoku/src/prop/gomoku/presentacio/FrameConfiguracioPartida2CPU.java" binary="false">    
-    <position height="-1" width="-1" x="3488" y="1105"/>    
+    <position height="-1" width="-1" x="2344" y="453"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -66,7 +66,7 @@
   </class>  
   <class id="9" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.presentacio.FrameEstadistiquesGlobals" 
     project="gomoku" file="/gomoku/src/prop/gomoku/presentacio/FrameEstadistiquesGlobals.java" binary="false">    
-    <position height="-1" width="-1" x="3582" y="1291"/>    
+    <position height="-1" width="-1" x="2438" y="639"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -74,7 +74,7 @@
   </class>  
   <class id="10" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.presentacio.FrameBenvingut" project="gomoku" 
     file="/gomoku/src/prop/gomoku/presentacio/FrameBenvingut.java" binary="false">    
-    <position height="-1" width="-1" x="3622" y="1442"/>    
+    <position height="-1" width="-1" x="2478" y="790"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -82,7 +82,7 @@
   </class>  
   <class id="11" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.presentacio.FrameCarregaPartides" 
     project="gomoku" file="/gomoku/src/prop/gomoku/presentacio/FrameCarregaPartides.java" binary="false">    
-    <position height="-1" width="-1" x="3650" y="1595"/>    
+    <position height="-1" width="-1" x="2506" y="943"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -90,7 +90,7 @@
   </class>  
   <class id="12" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.presentacio.FrameError" project="gomoku" 
     file="/gomoku/src/prop/gomoku/presentacio/FrameError.java" binary="false">    
-    <position height="-1" width="-1" x="3660" y="1757"/>    
+    <position height="-1" width="-1" x="2516" y="1105"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -98,7 +98,7 @@
   </class>  
   <class id="13" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.presentacio.FrameEstadistiquesIndividuals" 
     project="gomoku" file="/gomoku/src/prop/gomoku/presentacio/FrameEstadistiquesIndividuals.java" binary="false">    
-    <position height="-1" width="-1" x="3677" y="1919"/>    
+    <position height="-1" width="-1" x="2533" y="1267"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -106,7 +106,7 @@
   </class>  
   <class id="14" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.presentacio.FrameConfiguracioPartida2Persones" 
     project="gomoku" file="/gomoku/src/prop/gomoku/presentacio/FrameConfiguracioPartida2Persones.java" binary="false">    
-    <position height="-1" width="-1" x="3690" y="2089"/>    
+    <position height="-1" width="-1" x="2546" y="1437"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -114,7 +114,7 @@
   </class>  
   <class id="15" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.presentacio.FrameConfiguracioPartida1" 
     project="gomoku" file="/gomoku/src/prop/gomoku/presentacio/FrameConfiguracioPartida1.java" binary="false">    
-    <position height="-1" width="-1" x="3674" y="2292"/>    
+    <position height="-1" width="-1" x="2530" y="1640"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -122,7 +122,7 @@
   </class>  
   <class id="16" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.presentacio.FramePartida" project="gomoku" 
     file="/gomoku/src/prop/gomoku/presentacio/FramePartida.java" binary="false">    
-    <position height="-1" width="-1" x="2113" y="1195"/>    
+    <position height="-1" width="-1" x="969" y="543"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -130,7 +130,7 @@
   </class>  
   <class id="17" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.presentacio.FrameConfiguracioPartida3" 
     project="gomoku" file="/gomoku/src/prop/gomoku/presentacio/FrameConfiguracioPartida3.java" binary="false">    
-    <position height="-1" width="-1" x="3423" y="2471"/>    
+    <position height="-1" width="-1" x="2279" y="1819"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -138,7 +138,7 @@
   </class>  
   <class id="18" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.presentacio.FrameIdentificacio" 
     project="gomoku" file="/gomoku/src/prop/gomoku/presentacio/FrameIdentificacio.java" binary="false">    
-    <position height="-1" width="-1" x="3129" y="2549"/>    
+    <position height="-1" width="-1" x="1985" y="1897"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -146,7 +146,7 @@
   </class>  
   <class id="19" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.presentacio.FrameConfiguracioPartida2" 
     project="gomoku" file="/gomoku/src/prop/gomoku/presentacio/FrameConfiguracioPartida2.java" binary="false">    
-    <position height="-1" width="-1" x="2365" y="2258"/>    
+    <position height="-1" width="-1" x="1221" y="1606"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -154,7 +154,7 @@
   </class>  
   <class id="20" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.presentacio.FrameNovaPartida" project="gomoku" 
     file="/gomoku/src/prop/gomoku/presentacio/FrameNovaPartida.java" binary="false">    
-    <position height="-1" width="-1" x="2646" y="2440"/>    
+    <position height="-1" width="-1" x="1502" y="1788"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -162,7 +162,7 @@
   </class>  
   <class id="21" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.presentacio.FrameRegistrar" project="gomoku" 
     file="/gomoku/src/prop/gomoku/presentacio/FrameRegistrar.java" binary="false">    
-    <position height="-1" width="-1" x="2911" y="2563"/>    
+    <position height="-1" width="-1" x="1767" y="1911"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
@@ -170,7 +170,7 @@
   </class>  
   <class id="22" corner="BOTTOM_RIGHT" language="java" name="prop.gomoku.presentacio.FrameMenuPrincipal" 
     project="gomoku" file="/gomoku/src/prop/gomoku/presentacio/FrameMenuPrincipal.java" binary="false">    
-    <position height="-1" width="-1" x="2515" y="966"/>    
+    <position height="-1" width="-1" x="1371" y="314"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="false" private="false"/>      
       <operations public="true" package="false" protected="false" private="false"/>    
